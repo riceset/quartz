@@ -49,4 +49,4 @@ This blog is built with [Quartz](https://quartz.jzhao.xyz/), a fast static site 
 
 ---
 
-*Thanks for stopping by!*
+_Thanks for stopping by!_

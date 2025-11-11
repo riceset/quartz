@@ -20,12 +20,12 @@ TypeScript is a superset of JavaScript that adds static typing to the language. 
 ```typescript
 // JavaScript
 function greet(name) {
-  return `Hello, ${name}!`;
+  return `Hello, ${name}!`
 }
 
 // TypeScript
 function greet(name: string): string {
-  return `Hello, ${name}!`;
+  return `Hello, ${name}!`
 }
 ```
 
@@ -37,10 +37,10 @@ With TypeScript, many errors are caught at compile time rather than runtime:
 
 ```typescript
 function add(a: number, b: number): number {
-  return a + b;
+  return a + b
 }
 
-add(5, "10"); // Error: Argument of type 'string' is not assignable to parameter of type 'number'
+add(5, "10") // Error: Argument of type 'string' is not assignable to parameter of type 'number'
 ```
 
 ### 2. Better IDE Support
@@ -58,10 +58,10 @@ Types serve as inline documentation, making code more self-explanatory:
 
 ```typescript
 interface User {
-  id: number;
-  name: string;
-  email: string;
-  isActive: boolean;
+  id: number
+  name: string
+  email: string
+  isActive: boolean
 }
 
 function updateUser(user: User): Promise<User> {
@@ -100,10 +100,10 @@ Create a file called `hello.ts`:
 
 ```typescript
 function sayHello(name: string): void {
-  console.log(`Hello, ${name}!`);
+  console.log(`Hello, ${name}!`)
 }
 
-sayHello("World");
+sayHello("World")
 ```
 
 Compile and run:

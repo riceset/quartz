@@ -149,20 +149,9 @@ Modify `quartz.layout.ts` to change the page layout:
 
 ```typescript
 export const defaultContentPageLayout: PageLayout = {
-  beforeBody: [
-    Component.Breadcrumbs(),
-    Component.ArticleTitle(),
-    Component.ContentMeta(),
-  ],
-  left: [
-    Component.PageTitle(),
-    Component.Search(),
-    Component.Explorer(),
-  ],
-  right: [
-    Component.Graph(),
-    Component.TableOfContents(),
-  ],
+  beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
+  left: [Component.PageTitle(), Component.Search(), Component.Explorer()],
+  right: [Component.Graph(), Component.TableOfContents()],
 }
 ```
 

@@ -29,17 +29,20 @@ One of the most powerful learning techniques is to share what you're learning pu
 Theory is important, but nothing beats hands-on experience:
 
 ### Start Small
+
 - Build a simple CRUD app
 - Create a command-line tool
 - Make a browser extension
 
 ### Gradually Increase Complexity
+
 - Add authentication and authorization
 - Implement real-time features
 - Optimize performance
 - Add comprehensive tests
 
 **Example Project Ideas**:
+
 - Personal blog (like this one!)
 - Todo list with a twist
 - API wrapper for a service you use
@@ -75,6 +78,7 @@ The spacing effect shows that learning is more effective when spread over time:
 ```
 
 **Implementation tips**:
+
 - Review concepts after 1 day, 1 week, 1 month
 - Use spaced repetition apps like Anki
 - Revisit old code and notes regularly
@@ -84,11 +88,13 @@ The spacing effect shows that learning is more effective when spread over time:
 Interleaving—mixing different topics—can improve learning:
 
 Instead of:
+
 - Monday: React
 - Tuesday: React
 - Wednesday: React
 
 Try:
+
 - Monday: React, Node.js, SQL
 - Tuesday: React, Node.js, SQL
 - Wednesday: React, Node.js, SQL
@@ -136,6 +142,7 @@ Take time to review your progress:
 - Celebrate your wins
 
 **Weekly Review Questions**:
+
 - What did I learn this week?
 - What challenged me?
 - What would I do differently?

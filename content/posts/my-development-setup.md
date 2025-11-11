@@ -16,6 +16,7 @@ I often get asked about the tools and setup I use for development. In this post,
 ## Hardware
 
 ### Computer
+
 - **MacBook Pro M1 Pro** (14-inch, 2021)
 - 16GB RAM
 - 512GB SSD
@@ -23,6 +24,7 @@ I often get asked about the tools and setup I use for development. In this post,
 I switched to Apple Silicon and haven't looked back. The performance and battery life are incredible.
 
 ### Peripherals
+
 - **Keyboard**: Keychron K8 Pro (mechanical, hot-swappable)
 - **Mouse**: Logitech MX Master 3
 - **Monitor**: LG 27" 4K (27UP850-W)
@@ -35,6 +37,7 @@ I switched to Apple Silicon and haven't looked back. The performance and battery
 I use [Visual Studio Code](https://code.visualstudio.com/) as my primary editor. It's fast, extensible, and has excellent TypeScript support.
 
 **Key Extensions**:
+
 - **ESLint**: Linting for JavaScript/TypeScript
 - **Prettier**: Code formatting
 - **GitLens**: Enhanced Git integration
@@ -45,6 +48,7 @@ I use [Visual Studio Code](https://code.visualstudio.com/) as my primary editor.
 - **Todo Tree**: Highlight TODO comments
 
 **Settings**:
+
 ```json
 {
   "editor.fontSize": 14,
@@ -66,12 +70,14 @@ I use **iTerm2** with **Zsh** and **Oh My Zsh**:
 **Shell Theme**: Powerlevel10k
 
 **Useful Plugins**:
+
 - `git`: Git shortcuts and aliases
 - `zsh-autosuggestions`: Command suggestions
 - `zsh-syntax-highlighting`: Syntax highlighting in terminal
 - `fzf`: Fuzzy finder for files and history
 
 **Aliases**:
+
 ```bash
 alias g="git"
 alias gc="git commit"
@@ -92,6 +98,7 @@ alias ...="cd ../.."
 ### Browser
 
 **Primary**: Chrome (for development)
+
 - React Developer Tools
 - Redux DevTools
 - JSON Formatter
@@ -103,20 +110,24 @@ alias ...="cd ../.."
 ## Development Tools
 
 ### Node.js Ecosystem
+
 - **Node Version Manager (nvm)**: Manage multiple Node.js versions
 - **npm**: Package manager (though I also use pnpm for some projects)
 - **npx**: Run packages without installing globally
 
 ### Database Tools
+
 - **TablePlus**: Beautiful database GUI (supports PostgreSQL, MySQL, SQLite, etc.)
 - **Postman**: API development and testing
 - **Redis Desktop Manager**: For Redis databases
 
 ### Docker
+
 - **Docker Desktop**: Container management
 - **Portainer**: Web-based Docker UI
 
 ### Design & Assets
+
 - **Figma**: UI/UX design and prototyping
 - **ImageOptim**: Image compression
 - **ColorSlurp**: Color picker
@@ -124,20 +135,24 @@ alias ...="cd ../.."
 ## Productivity Tools
 
 ### Note-Taking & Documentation
+
 - **Obsidian**: Personal knowledge management
 - **Notion**: Project planning and documentation
 - **Quartz**: Publishing notes to the web (this blog!)
 
 ### Task Management
+
 - **Things 3**: Personal task management
 - **Linear**: Team project management
 
 ### Communication
+
 - **Slack**: Team communication
 - **Discord**: Community participation
 - **Zoom**: Video calls
 
 ### Other Tools
+
 - **Raycast**: Spotlight replacement with extensions
 - **Rectangle**: Window management
 - **1Password**: Password manager
@@ -148,6 +163,7 @@ alias ...="cd ../.."
 I keep my dotfiles in a [GitHub repository](https://github.com/username/dotfiles) for easy setup on new machines.
 
 Key files I version control:
+
 - `.zshrc`: Shell configuration
 - `.gitconfig`: Git settings
 - `.vimrc`: Vim configuration (for quick edits)
@@ -157,9 +173,11 @@ Key files I version control:
 ## Backup Strategy
 
 **Local**:
+
 - Time Machine to external SSD (hourly)
 
 **Cloud**:
+
 - GitHub for code
 - iCloud for documents
 - Backblaze for full system backup
@@ -167,6 +185,7 @@ Key files I version control:
 ## What I'm Considering
 
 Tools I'm evaluating or planning to try:
+
 - **Neovim**: As a potential VS Code replacement
 - **Warp**: Modern terminal with AI features
 - **Arc Browser**: New approach to browser design
@@ -182,6 +201,6 @@ Tools I'm evaluating or planning to try:
 
 ## Conclusion
 
-Your development setup should work for *you*. What works for me might not work for you, and that's okay. The key is to find tools that make you productive and happy.
+Your development setup should work for _you_. What works for me might not work for you, and that's okay. The key is to find tools that make you productive and happy.
 
 What's your setup like? Let me know what tools you can't live without!
