@@ -7,7 +7,6 @@ import HomeHero from "./HomeHero"
 import HomeProfile from "./HomeProfile"
 import HomeArticles from "./HomeArticles"
 import Darkmode from "./Darkmode"
-import ThemeToggle from "./ThemeToggle"
 import RailName from "./RailName"
 import Socials from "./Socials"
 import ReaderMode from "./ReaderMode"
@@ -40,7 +39,6 @@ export {
   TagContent,
   FolderContent,
   Darkmode,
-  ThemeToggle,
   RailName,
   Socials,
   ReaderMode,

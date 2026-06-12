@@ -47,7 +47,7 @@ export const defaultContentPageLayout: PageLayout = {
       condition: (props) => props.fileData.slug !== "index",
     }),
     Component.ConditionalRender({
-      component: Component.ThemeToggle(),
+      component: Component.Darkmode(),
       condition: (props) => props.fileData.slug !== "index",
     }),
     Component.ConditionalRender({
@@ -64,7 +64,7 @@ export const defaultListPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
-    Component.ThemeToggle(),
+    Component.Darkmode(),
     Component.DesktopOnly(Component.Socials()),
   ],
   right: [],
