@@ -4,9 +4,10 @@
   cursor: pointer;
   padding: 0;
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  // Grid stacking lets both icons occupy the same cell so we can crossfade
+  // between sun and moon without layout shift.
+  display: inline-grid;
+  place-items: center;
   -webkit-appearance: none;
   appearance: none;
   -webkit-tap-highlight-color: transparent;
@@ -30,13 +31,16 @@
     outline: none;
   }
 
-  & svg {
-    position: static;
+  & > svg {
+    grid-area: 1 / 1;
     width: var(--toolbar-icon-size, 20px);
     height: var(--toolbar-icon-size, 20px);
     fill: none;
     stroke: currentColor;
-    transition: opacity 0.1s ease;
+    transform-origin: 50% 50%;
+    transition:
+      opacity 0.32s ease,
+      transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
   }
 }
 
@@ -56,20 +60,32 @@
   color-scheme: light;
 }
 
-:root[saved-theme="dark"] .darkmode {
-  & > .dayIcon {
-    display: none;
-  }
-  & > .nightIcon {
-    display: inline;
-  }
+// Default / light: sun visible, moon parked offscreen-rotated and invisible.
+.darkmode > .dayIcon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+.darkmode > .nightIcon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0);
+  pointer-events: none;
 }
 
-:root .darkmode {
-  & > .dayIcon {
-    display: inline;
-  }
-  & > .nightIcon {
-    display: none;
+// Dark: sun rotates and shrinks out, moon rotates and grows in.
+:root[saved-theme="dark"] .darkmode > .dayIcon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0);
+  pointer-events: none;
+}
+:root[saved-theme="dark"] .darkmode > .nightIcon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .darkmode > svg {
+    transition: opacity 0.05s linear;
+    transform: none !important;
   }
 }
