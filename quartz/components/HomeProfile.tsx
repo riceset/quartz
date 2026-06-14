@@ -469,6 +469,7 @@ const HomeProfile: QuartzComponent = () => {
               <span class="home-lang-name">
                 {lang.flagAlt ? (
                   <span class="home-lang-flag home-lang-flag-flip" aria-hidden="true">
+                    <span class="home-lang-flag-sizer">{lang.flag}</span>
                     <span class="home-lang-flag-flip-inner">
                       <span class="home-lang-flag-face home-lang-flag-front">{lang.flag}</span>
                       <span class="home-lang-flag-face home-lang-flag-back">{lang.flagAlt}</span>
