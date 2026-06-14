@@ -190,6 +190,7 @@ interface EducationItem {
 
 interface Language {
   flag: string
+  flagAlt?: string
   name: string
   level: string
 }
@@ -357,11 +358,11 @@ const speaking: SpeakingItem[] = [
 ]
 
 const languages: Language[] = [
-  { flag: "🇧🇷", name: "Portuguese", level: "Proficient" },
+  { flag: "🇧🇷", flagAlt: "🇵🇹", name: "Portuguese", level: "Proficient" },
   { flag: "🇯🇵", name: "Japanese", level: "Proficient" },
-  { flag: "🇺🇸", name: "English", level: "Proficient" },
+  { flag: "🇺🇸", flagAlt: "🇬🇧", name: "English", level: "Proficient" },
   { flag: "🇪🇸", name: "Spanish", level: "Conversational" },
-  { flag: "🇨🇳", name: "Mandarin", level: "Conversational" },
+  { flag: "🇹🇼", flagAlt: "🇨🇳", name: "Mandarin", level: "Conversational" },
 ]
 
 // ── Component ──────────────────────────────────────────────────────────────
@@ -466,7 +467,16 @@ const HomeProfile: QuartzComponent = () => {
           {languages.map((lang) => (
             <div class="home-lang-item">
               <span class="home-lang-name">
-                <span class="home-lang-flag">{lang.flag}</span>
+                {lang.flagAlt ? (
+                  <span class="home-lang-flag home-lang-flag-flip" aria-hidden="true">
+                    <span class="home-lang-flag-flip-inner">
+                      <span class="home-lang-flag-face home-lang-flag-front">{lang.flag}</span>
+                      <span class="home-lang-flag-face home-lang-flag-back">{lang.flagAlt}</span>
+                    </span>
+                  </span>
+                ) : (
+                  <span class="home-lang-flag">{lang.flag}</span>
+                )}
                 {lang.name}
               </span>
               <span class="home-lang-level">{lang.level}</span>
