@@ -29,9 +29,26 @@ $hero-mobile: "(max-width: 767px)";
 .home-banner-logo {
   height: 2.8rem;
   width: auto;
+  transform-origin: center;
+  animation: home-banner-logo-float 4.5s ease-in-out infinite;
 
   @media all and ($hero-mobile) {
     height: 2rem;
+  }
+}
+
+@keyframes home-banner-logo-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(3deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-banner-logo {
+    animation: none;
   }
 }
 
@@ -97,13 +114,13 @@ $hero-mobile: "(max-width: 767px)";
 
 @media (prefers-color-scheme: dark) {
   .home-avatar {
-    border-color: #000;
+    border-color: rgb(15, 17, 18);
     outline-color: var(--lightgray);
   }
 }
 
 :root[saved-theme="dark"] .home-avatar {
-  border-color: rgb(22, 22, 24);
+  border-color: rgb(15, 17, 18);
   outline-color: var(--lightgray);
 }
 
@@ -183,7 +200,6 @@ $hero-mobile: "(max-width: 767px)";
     &:hover {
       background-color: var(--light);
       color: var(--secondary);
-      transform: translateY(-1px);
     }
   }
 
@@ -191,7 +207,6 @@ $hero-mobile: "(max-width: 767px)";
     &:hover {
       background-color: transparent;
       color: var(--secondary);
-      transform: none;
     }
   }
 }
@@ -216,14 +231,14 @@ $hero-mobile: "(max-width: 767px)";
   transition:
     color 0.15s ease,
     background-color 0.15s ease,
-    transform 0.15s ease;
+    transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
   background-color: transparent;
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       background-color: var(--light);
       color: var(--secondary);
-      transform: translateY(-1px);
+      transform: rotate(-10deg);
     }
   }
 
