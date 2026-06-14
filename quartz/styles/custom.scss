@@ -141,7 +141,10 @@
         color: var(--dark);
         transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-        &:hover {
+        @media (hover: hover) and (pointer: fine) {
+          &:hover {
+            transform: rotate(-10deg);
+          }
         }
 
         &:active {
@@ -194,8 +197,11 @@
         text-decoration: none;
         transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-        &:hover {
-          color: var(--dark);
+        @media (hover: hover) and (pointer: fine) {
+          &:hover {
+            color: var(--dark);
+            transform: rotate(-10deg);
+          }
         }
 
         &:active {
