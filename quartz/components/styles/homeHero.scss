@@ -114,13 +114,13 @@ $hero-mobile: "(max-width: 767px)";
 
 @media (prefers-color-scheme: dark) {
   .home-avatar {
-    border-color: #000;
+    border-color: rgb(15, 17, 18);
     outline-color: var(--lightgray);
   }
 }
 
 :root[saved-theme="dark"] .home-avatar {
-  border-color: rgb(22, 22, 24);
+  border-color: rgb(15, 17, 18);
   outline-color: var(--lightgray);
 }
 
