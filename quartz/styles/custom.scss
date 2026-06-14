@@ -42,7 +42,10 @@
     }
 
     & .site-logo {
-      height: 1em;
+      // Bumped above the 1em cap-height of the wordmark so the thin line-art
+      // icon reads at the same optical weight as the bold geometric type —
+      // same trick the desktop rail uses (2.1rem logo against 1.75rem boxes).
+      height: 1.15em;
     }
 
     & > .spacer {
@@ -204,6 +207,16 @@
         width: 1.75rem;
         height: 1.75rem;
       }
+    }
+  }
+
+  // Tag pages render a listing, not flowing prose — drop the 720px reading
+  // cap so the list fills the full content column instead of sitting
+  // squeezed in the middle of a wide screen.
+  body[data-page-type="tag"] .page > #quartz-body {
+    & .center,
+    & footer {
+      max-width: none;
     }
   }
 
