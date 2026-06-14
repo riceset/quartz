@@ -29,9 +29,26 @@ $hero-mobile: "(max-width: 767px)";
 .home-banner-logo {
   height: 2.8rem;
   width: auto;
+  transform-origin: center;
+  animation: home-banner-logo-float 4.5s ease-in-out infinite;
 
   @media all and ($hero-mobile) {
     height: 2rem;
+  }
+}
+
+@keyframes home-banner-logo-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(3deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-banner-logo {
+    animation: none;
   }
 }
 
