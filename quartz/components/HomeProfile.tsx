@@ -359,9 +359,9 @@ const speaking: SpeakingItem[] = [
 
 const languages: Language[] = [
   { flag: "🇧🇷", flagAlt: "🇵🇹", name: "Portuguese", level: "Native" },
-  { flag: "🇯🇵", name: "Japanese", level: "Fluent" },
-  { flag: "🇺🇸", flagAlt: "🇬🇧", name: "English", level: "Fluent" },
-  { flag: "🇪🇸", name: "Spanish", level: "Professional" },
+  { flag: "🇯🇵", name: "Japanese", level: "Bilingual" },
+  { flag: "🇺🇸", flagAlt: "🇬🇧", name: "English", level: "Bilingual" },
+  { flag: "🇪🇸", name: "Spanish", level: "Proficient" },
   { flag: "🇹🇼", flagAlt: "🇨🇳", name: "Mandarin", level: "Conversational" },
 ]
 
