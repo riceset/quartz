@@ -361,7 +361,7 @@ const languages: Language[] = [
   { flag: "🇧🇷", flagAlt: "🇵🇹", name: "Portuguese", level: "Native" },
   { flag: "🇯🇵", name: "Japanese", level: "Fluent" },
   { flag: "🇺🇸", flagAlt: "🇬🇧", name: "English", level: "Fluent" },
-  { flag: "🇪🇸", name: "Spanish", level: "Conversational" },
+  { flag: "🇪🇸", name: "Spanish", level: "Professional" },
   { flag: "🇹🇼", flagAlt: "🇨🇳", name: "Mandarin", level: "Conversational" },
 ]
 
