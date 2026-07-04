@@ -220,7 +220,7 @@ interface HackathonItem {
   logo?: string
   logoClass?: string
   date: string
-  location: string
+  location?: string
 }
 
 interface SpeakingItem {
@@ -322,6 +322,13 @@ const certifications: CertificationItem[] = [
 
 const hackathons: HackathonItem[] = [
   {
+    title: "Build with OpenAI Hackathon: Finalists",
+    organizer: "OpenAI",
+    logo: "/static/logos/openai.svg",
+    date: "Jun 2026",
+    location: "Tokyo, Japan",
+  },
+  {
     title: "try! Swift Tokyo Hackathon Winner",
     organizer: "Mercari Inc.",
     logo: "/static/logos/tryswift.svg",
@@ -332,7 +339,7 @@ const hackathons: HackathonItem[] = [
   {
     title: "24-Hour Hackathon by 42 Asia: 2nd Place",
     organizer: "Singapore University of Technology and Design",
-    logo: "/static/logos/sutd.svg",
+    logo: "/static/logos/sutd.jpeg",
     date: "Sep 2024",
     location: "Seoul, Korea",
   },
