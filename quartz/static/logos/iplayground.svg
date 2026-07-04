@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 688 688" role="img" aria-labelledby="title">
+  <title id="title">iPlayground</title>
+  <rect width="688" height="688" fill="#fff" />
+  <circle cx="228" cy="194" r="130" fill="#517cff" />
+  <path
+    d="M104 362c0-7.1 8.6-10.7 13.7-5.7l231.9 231.9c5 5 1.4 13.7-5.7 13.7H112c-4.4 0-8-3.6-8-8V362z"
+    fill="#f8ba00"
+  />
+  <rect
+    x="415.5"
+    y="301.5"
+    width="172"
+    height="172"
+    rx="20"
+    fill="#ef5fa7"
+    transform="rotate(45 501.5 387.5)"
+  />
+</svg>

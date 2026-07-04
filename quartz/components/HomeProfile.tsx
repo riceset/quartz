@@ -146,16 +146,18 @@ const LocationIcon = () => (
 )
 
 interface MetaRowProps {
-  period: string
+  period?: string
   location?: string
 }
 
 const MetaRow = ({ period, location }: MetaRowProps) => (
   <div class="home-meta-row">
-    <span class="home-meta-item">
-      <CalendarIcon />
-      <span>{period}</span>
-    </span>
+    {period && (
+      <span class="home-meta-item">
+        <CalendarIcon />
+        <span>{period}</span>
+      </span>
+    )}
     {location && (
       <span class="home-meta-item">
         <LocationIcon />
@@ -222,12 +224,13 @@ interface HackathonItem {
 }
 
 interface SpeakingItem {
-  role: string
+  title: string
   organization: string
   logo?: string
   logoClass?: string
   description: string
-  date: string
+  tags?: string[]
+  date?: string
   location: string
 }
 
@@ -337,7 +340,17 @@ const hackathons: HackathonItem[] = [
 
 const speaking: SpeakingItem[] = [
   {
-    role: "Guest Speaker",
+    title: "How to Win the Swift Student Challenge",
+    organization: "iPlayground Taiwan",
+    logo: "/static/logos/iplayground.svg",
+    logoClass: "home-org-logo-iplayground",
+    description:
+      "A talk on turning a personal story into a winning Swift Playground, covering how to find an idea only you could build, grow SwiftUI skills under real project constraints, and use attention to detail to raise a submission from good to winning.",
+    date: "Jul 2026",
+    location: "Taipei, Taiwan",
+  },
+  {
+    title: "MEXT Scholarship Speaker",
     organization: "Ministry of Foreign Affairs of Japan",
     logo: "/static/logos/mofa.svg",
     description:
@@ -346,7 +359,7 @@ const speaking: SpeakingItem[] = [
     location: "Tokyo, Japan",
   },
   {
-    role: "Guest Speaker",
+    title: "The 42 Live Radio Show",
     organization: "이노베이션 아카데미",
     logo: "/static/logos/innovationacademy_cropped.jpg",
     logoClass: "home-org-logo-innovationacademy",
@@ -354,6 +367,15 @@ const speaking: SpeakingItem[] = [
       "Joined a cross-campus podcast between Innovation Academy and 42 Tokyo, exchanging perspectives on the 42 Network with Korean students.",
     date: "Jan 2024",
     location: "Seoul, Korea",
+  },
+  {
+    title: "Vim Tutorial at Fora da Norma",
+    organization: "42 São Paulo",
+    logo: "/static/logos/42.svg",
+    description:
+      "Produced a Brazilian Portuguese tutorial for 42 São Paulo's YouTube channel, teaching beginners how to use Vim from the basics.",
+    date: "Apr 2023",
+    location: "São Paulo, Brazil",
   },
 ]
 
@@ -450,6 +472,76 @@ const HomeProfile: QuartzComponent = () => {
                   <span class="home-award-title">{item.title}</span>
                   <span class="home-award-institution">{item.institution}</span>
                   <p class="home-award-desc">{item.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Hackathons */}
+      <section class="home-section">
+        <h2 class="home-section-heading">
+          <HackathonIcon />
+          Hackathons
+        </h2>
+        <div class="home-hackathon-list">
+          {hackathons.map((item) => (
+            <div class="home-hackathon-item">
+              {item.logo && (
+                <span class="home-org-logo-badge">
+                  <img
+                    class={["home-org-logo", item.logoClass].filter(Boolean).join(" ")}
+                    src={item.logo}
+                    alt={item.organizer}
+                  />
+                </span>
+              )}
+              <div class="home-hackathon-text">
+                <span class="home-hackathon-title">{item.title}</span>
+                <span class="home-hackathon-organizer">{item.organizer}</span>
+                <div class="home-hackathon-meta">
+                  <MetaRow period={item.date} location={item.location} />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Talks */}
+      <section class="home-section">
+        <h2 class="home-section-heading">
+          <MicIcon />
+          Talks
+        </h2>
+        <div class="home-talk-list">
+          {speaking.map((item) => (
+            <div class="home-talk-item">
+              <div class="home-talk-row">
+                {item.logo && (
+                  <span class="home-org-logo-badge">
+                    <img
+                      class={["home-org-logo", item.logoClass].filter(Boolean).join(" ")}
+                      src={item.logo}
+                      alt={item.organization}
+                    />
+                  </span>
+                )}
+                <div class="home-talk-text">
+                  <span class="home-talk-title">{item.title}</span>
+                  <span class="home-talk-organization">{item.organization}</span>
+                  <div class="home-talk-meta">
+                    <MetaRow period={item.date} location={item.location} />
+                  </div>
+                  <p class="home-talk-desc">{item.description}</p>
+                  {item.tags && (
+                    <div class="home-talk-tags">
+                      {item.tags.map((tag) => (
+                        <span class="home-talk-tag">{tag}</span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
