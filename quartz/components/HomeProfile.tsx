@@ -329,9 +329,17 @@ const hackathons: HackathonItem[] = [
     location: "Tokyo, Japan",
   },
   {
+    title: "SDGs to Startups Hackathon 2026: 1st Place",
+    organizer: "Tokyo AI",
+    logo: "/static/logos/tokyo-ai.svg",
+    logoClass: "home-org-logo-tokyo-ai",
+    date: "Jun 2026",
+    location: "Tokyo, Japan",
+  },
+  {
     title: "try! Swift Tokyo Hackathon: Winner",
     organizer: "Mercari Inc.",
-    logo: "/static/logos/tryswift.svg",
+    logo: "/static/logos/mercari.svg",
     logoClass: "home-org-logo-mercari",
     date: "Apr 2026",
     location: "Tokyo, Japan",
@@ -486,36 +494,6 @@ const HomeProfile: QuartzComponent = () => {
         </div>
       </section>
 
-      {/* Hackathons */}
-      <section class="home-section">
-        <h2 class="home-section-heading">
-          <HackathonIcon />
-          Hackathons
-        </h2>
-        <div class="home-hackathon-list">
-          {hackathons.map((item) => (
-            <div class="home-hackathon-item">
-              {item.logo && (
-                <span class="home-org-logo-badge">
-                  <img
-                    class={["home-org-logo", item.logoClass].filter(Boolean).join(" ")}
-                    src={item.logo}
-                    alt={item.organizer}
-                  />
-                </span>
-              )}
-              <div class="home-hackathon-text">
-                <span class="home-hackathon-title">{item.title}</span>
-                <span class="home-hackathon-organizer">{item.organizer}</span>
-                <div class="home-hackathon-meta">
-                  <MetaRow period={item.date} location={item.location} />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Talks */}
       <section class="home-section">
         <h2 class="home-section-heading">
@@ -549,6 +527,36 @@ const HomeProfile: QuartzComponent = () => {
                       ))}
                     </div>
                   )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Hackathons */}
+      <section class="home-section">
+        <h2 class="home-section-heading">
+          <HackathonIcon />
+          Hackathons
+        </h2>
+        <div class="home-hackathon-list">
+          {hackathons.map((item) => (
+            <div class="home-hackathon-item">
+              {item.logo && (
+                <span class="home-org-logo-badge">
+                  <img
+                    class={["home-org-logo", item.logoClass].filter(Boolean).join(" ")}
+                    src={item.logo}
+                    alt={item.organizer}
+                  />
+                </span>
+              )}
+              <div class="home-hackathon-text">
+                <span class="home-hackathon-title">{item.title}</span>
+                <span class="home-hackathon-organizer">{item.organizer}</span>
+                <div class="home-hackathon-meta">
+                  <MetaRow period={item.date} location={item.location} />
                 </div>
               </div>
             </div>
