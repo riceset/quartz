@@ -329,7 +329,7 @@ const hackathons: HackathonItem[] = [
     location: "Tokyo, Japan",
   },
   {
-    title: "try! Swift Tokyo Hackathon Winner",
+    title: "try! Swift Tokyo Hackathon: Winner",
     organizer: "Mercari Inc.",
     logo: "/static/logos/tryswift.svg",
     logoClass: "home-org-logo-mercari",
