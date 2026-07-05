@@ -373,7 +373,7 @@ const hackathons: HackathonItem[] = [
   {
     title: "24-Hour Hackathon by 42 Asia",
     organizer: "Singapore University of Technology and Design",
-    logo: "/static/logos/sutd.jpeg",
+    logo: "/static/logos/sutd-mark.svg",
     date: "Sep 2024",
     rank: "2nd Place",
   },
