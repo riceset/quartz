@@ -410,9 +410,9 @@ const speaking: SpeakingItem[] = [
     location: "Seoul, Korea",
   },
   {
-    title: "Vim Tutorial at Fora da Norma",
-    organization: "42 São Paulo",
-    logo: "/static/logos/42.svg",
+    title: "Vim na Prática",
+    organization: "Fora da Norma Podcast",
+    logo: "/static/logos/fora-da-norma.svg",
     description:
       "Produced a Brazilian Portuguese tutorial for 42 São Paulo's YouTube channel, teaching beginners how to use Vim from the basics.",
     date: "Apr 2023",
