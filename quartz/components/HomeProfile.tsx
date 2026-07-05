@@ -145,17 +145,43 @@ const LocationIcon = () => (
   </svg>
 )
 
+const MedalIcon = () => (
+  <svg
+    class="meta-icon meta-icon-medal"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15" />
+    <path d="M11 12 5.12 2.2" />
+    <path d="m13 12 5.88-9.8" />
+    <path d="M8 7h8" />
+    <circle cx="12" cy="17" r="5" />
+    <path d="M12 18v-2h-.5" />
+  </svg>
+)
+
 interface MetaRowProps {
   period?: string
   location?: string
+  rank?: string
 }
 
-const MetaRow = ({ period, location }: MetaRowProps) => (
+const MetaRow = ({ period, location, rank }: MetaRowProps) => (
   <div class="home-meta-row">
     {period && (
       <span class="home-meta-item">
         <CalendarIcon />
         <span>{period}</span>
+      </span>
+    )}
+    {rank && (
+      <span class="home-meta-item">
+        <MedalIcon />
+        <span>{rank}</span>
       </span>
     )}
     {location && (
@@ -220,7 +246,7 @@ interface HackathonItem {
   logo?: string
   logoClass?: string
   date: string
-  location?: string
+  rank?: string
 }
 
 interface SpeakingItem {
@@ -322,34 +348,34 @@ const certifications: CertificationItem[] = [
 
 const hackathons: HackathonItem[] = [
   {
-    title: "Build with OpenAI Hackathon: Finalists",
+    title: "Build with OpenAI Hackathon",
     organizer: "OpenAI",
     logo: "/static/logos/openai.svg",
     date: "Jun 2026",
-    location: "Tokyo, Japan",
+    rank: "Finalist",
   },
   {
-    title: "SDGs to Startups Hackathon 2026: 1st Place",
+    title: "SDGs to Startups Hackathon",
     organizer: "Tokyo AI",
     logo: "/static/logos/tokyo-ai.svg",
     logoClass: "home-org-logo-tokyo-ai",
     date: "Jun 2026",
-    location: "Tokyo, Japan",
+    rank: "1st Place",
   },
   {
-    title: "try! Swift Tokyo Hackathon: Winner",
+    title: "try! Swift Tokyo Hackathon",
     organizer: "Mercari Inc.",
     logo: "/static/logos/mercari.svg",
     logoClass: "home-org-logo-mercari",
     date: "Apr 2026",
-    location: "Tokyo, Japan",
+    rank: "Winner",
   },
   {
-    title: "24-Hour Hackathon by 42 Asia: 2nd Place",
+    title: "24-Hour Hackathon by 42 Asia",
     organizer: "Singapore University of Technology and Design",
     logo: "/static/logos/sutd.jpeg",
     date: "Sep 2024",
-    location: "Seoul, Korea",
+    rank: "2nd Place",
   },
 ]
 
@@ -556,7 +582,7 @@ const HomeProfile: QuartzComponent = () => {
                 <span class="home-hackathon-title">{item.title}</span>
                 <span class="home-hackathon-organizer">{item.organizer}</span>
                 <div class="home-hackathon-meta">
-                  <MetaRow period={item.date} location={item.location} />
+                  <MetaRow period={item.date} rank={item.rank} />
                 </div>
               </div>
             </div>
