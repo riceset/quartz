@@ -199,6 +199,7 @@ interface ExperienceItem {
   role: string
   company: string
   companyUrl: string
+  employmentType?: string
   logo: string
   logoClass?: string
   period: string
@@ -263,8 +264,9 @@ interface SpeakingItem {
 const experience: ExperienceItem[] = [
   {
     role: "Full-Stack Software Engineer",
-    company: "BaseMe Inc.",
+    company: "BaseMe",
     companyUrl: "https://baseme.app",
+    employmentType: "Part-time",
     logo: "/static/logos/baseme.svg",
     logoClass: "home-org-logo-baseme",
     period: "May 2026 – Present",
@@ -274,9 +276,10 @@ const experience: ExperienceItem[] = [
     tags: ["TypeScript", "React", "Node.js", "LLM"],
   },
   {
-    role: "iOS Software Engineer Intern",
-    company: "MIXI Inc.",
+    role: "iOS Software Engineer",
+    company: "MIXI",
     companyUrl: "https://mixi.co.jp",
+    employmentType: "Internship",
     logo: "/static/logos/mixi.svg",
     period: "Jan 2026 – Apr 2026",
     location: "Tokyo, Japan",
@@ -321,7 +324,7 @@ const awards: AwardItem[] = [
     title: "Swift Student Challenge Winner",
     logo: "/static/logos/apple.svg",
     logoClass: "home-org-logo-apple",
-    institution: "Apple Inc.",
+    institution: "Apple",
     description:
       "Selected in 2026 for an app that impressed and inspired Apple with its creativity, technical skill, and thoughtful design.",
   },
@@ -356,7 +359,7 @@ const hackathons: HackathonItem[] = [
   },
   {
     title: "SDGs to Startups Hackathon",
-    organizer: "Tokyo AI",
+    organizer: "TokyoAI",
     logo: "/static/logos/tokyo-ai.svg",
     logoClass: "home-org-logo-tokyo-ai",
     date: "Jun 2026",
@@ -364,7 +367,7 @@ const hackathons: HackathonItem[] = [
   },
   {
     title: "try! Swift Tokyo Hackathon",
-    organizer: "Mercari Inc.",
+    organizer: "Mercari",
     logo: "/static/logos/mercari.svg",
     logoClass: "home-org-logo-mercari",
     date: "Apr 2026",
@@ -382,7 +385,7 @@ const hackathons: HackathonItem[] = [
 const speaking: SpeakingItem[] = [
   {
     title: "How to Win the Swift Student Challenge",
-    organization: "iPlayground Taiwan",
+    organization: "iPlayground",
     logo: "/static/logos/iplayground.svg",
     logoClass: "home-org-logo-iplayground",
     description:
@@ -411,7 +414,7 @@ const speaking: SpeakingItem[] = [
   },
   {
     title: "Vim na Prática",
-    organization: "Fora da Norma Podcast",
+    organization: "Fora da Norma",
     logo: "/static/logos/fora-da-norma.svg",
     description:
       "Produced a Brazilian Portuguese tutorial for 42 São Paulo's YouTube channel, teaching beginners how to use Vim from the basics.",
@@ -452,7 +455,10 @@ const HomeProfile: QuartzComponent = () => {
                 </span>
                 <div class="home-exp-text">
                   <span class="home-exp-role">{item.role}</span>
-                  <span class="home-exp-company">{item.company}</span>
+                  <span class="home-exp-company">
+                    {item.company}
+                    {item.employmentType && ` · ${item.employmentType}`}
+                  </span>
                   <div class="home-exp-meta">
                     <MetaRow period={item.period} location={item.location} />
                   </div>
