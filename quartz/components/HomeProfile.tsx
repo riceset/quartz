@@ -272,12 +272,12 @@ const experience: ExperienceItem[] = [
     period: "Aug 2026 – Sept 2026",
     location: "Tokyo, Japan",
     description:
-      "Incoming iOS Engineering Intern at LY Corporation / LINEヤフー developing features for LINE, a messaging app used by 193 million people monthly.",
+      "Incoming iOS engineering intern at LY Corporation / LINEヤフー developing features for LINE, a messaging app used by 193 million people monthly.",
     tags: ["Swift", "iOS"],
   },
   {
     role: "Incoming iOS Software Engineer",
-    company: "Sansan",
+    company: "Sansan Inc",
     companyUrl: "https://www.sansan.com",
     employmentType: "Internship",
     logo: "/static/logos/sansan.svg",
@@ -290,7 +290,7 @@ const experience: ExperienceItem[] = [
   },
   {
     role: "Full-Stack Software Engineer",
-    company: "BaseMe",
+    company: "BaseMe Inc",
     companyUrl: "https://baseme.app",
     employmentType: "Part-time",
     logo: "/static/logos/baseme.svg",
@@ -303,7 +303,7 @@ const experience: ExperienceItem[] = [
   },
   {
     role: "iOS Software Engineer",
-    company: "MIXI",
+    company: "MIXI Inc",
     companyUrl: "https://mixi.co.jp",
     employmentType: "Internship",
     logo: "/static/logos/mixi.svg",
@@ -351,7 +351,7 @@ const awards: AwardItem[] = [
     title: "Swift Student Challenge Winner",
     logo: "/static/logos/apple.svg",
     logoClass: "home-org-logo-apple",
-    institution: "Apple",
+    institution: "Apple Inc",
     description:
       "Selected in 2026 for an app that impressed and inspired Apple with its creativity, technical skill, and thoughtful design.",
   },
@@ -394,7 +394,7 @@ const hackathons: HackathonItem[] = [
   },
   {
     title: "try! Swift Tokyo Hackathon",
-    organizer: "Mercari",
+    organizer: "Mercari Inc",
     logo: "/static/logos/mercari.svg",
     logoClass: "home-org-logo-mercari",
     date: "Apr 2026",
@@ -420,7 +420,7 @@ const hackathons: HackathonItem[] = [
 const speaking: SpeakingItem[] = [
   {
     title: "如何贏得 Swift Student Challenge",
-    organization: "iPlayground",
+    organization: "iPlayground Taiwan",
     logo: "/static/logos/iplayground.svg",
     logoClass: "home-org-logo-iplayground",
     description:
@@ -449,7 +449,7 @@ const speaking: SpeakingItem[] = [
   },
   {
     title: "Vim na Prática",
-    organization: "Fora da Norma",
+    organization: "Fora da Norma Podcast",
     logo: "/static/logos/fora-da-norma.svg",
     description:
       "Produced a Brazilian Portuguese tutorial for 42 São Paulo's YouTube channel, teaching beginners how to use Vim from the basics.",
