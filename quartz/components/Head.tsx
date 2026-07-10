@@ -37,6 +37,7 @@ export default (() => {
       (e) => e.name === CustomOgImagesEmitterName,
     )
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
+    const ogImageExtension = getFileExtension(ogImageDefaultPath)?.replace(/^\./, "") ?? "png"
     const isHomePage = fileData.slug === "index" || fileData.slug === ""
     const websiteSchema = {
       "@context": "https://schema.org",
@@ -82,10 +83,9 @@ export default (() => {
             <meta property="og:image" content={ogImageDefaultPath} />
             <meta property="og:image:url" content={ogImageDefaultPath} />
             <meta name="twitter:image" content={ogImageDefaultPath} />
-            <meta
-              property="og:image:type"
-              content={`image/${getFileExtension(ogImageDefaultPath) ?? "png"}`}
-            />
+            <meta property="og:image:type" content={`image/${ogImageExtension}`} />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
           </>
         )}
 
@@ -97,9 +97,20 @@ export default (() => {
           </>
         )}
 
-        <link rel="icon" href={faviconLightPath} media="(prefers-color-scheme: light)" />
-        <link rel="icon" href={faviconDarkPath} media="(prefers-color-scheme: dark)" />
-        <link rel="icon" href={iconPath} />
+        <link rel="icon" href={iconPath} type="image/png" sizes="152x152" />
+        <link rel="apple-touch-icon" href={iconPath} sizes="152x152" />
+        <link
+          rel="icon"
+          href={faviconLightPath}
+          type="image/svg+xml"
+          media="(prefers-color-scheme: light)"
+        />
+        <link
+          rel="icon"
+          href={faviconDarkPath}
+          type="image/svg+xml"
+          media="(prefers-color-scheme: dark)"
+        />
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
         {isHomePage && <script type="application/ld+json">{JSON.stringify(websiteSchema)}</script>}
