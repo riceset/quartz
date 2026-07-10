@@ -43,8 +43,25 @@ export default (() => {
       "@context": "https://schema.org",
       "@type": "WebSite",
       name: cfg.pageTitle,
-      alternateName: ["riceset", "riceset.com"],
+      alternateName: ["Thiago Komeno", "riceset", "riceset.com"],
       url: `https://${cfg.baseUrl}/`,
+    }
+    const personSchema = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: "Thiago Komeno",
+      alternateName: "riceset",
+      url: `https://${cfg.baseUrl}/`,
+      image: `https://${cfg.baseUrl}/media/index/face.jpg`,
+      jobTitle: "Software Developer",
+      nationality: ["Brazilian", "Japanese"],
+      sameAs: [
+        "https://github.com/riceset",
+        "https://www.linkedin.com/in/riceset/",
+        "https://www.youtube.com/@riceset",
+        "https://www.instagram.com/riceset/",
+        "https://x.com/riceset",
+      ],
     }
 
     return (
@@ -113,7 +130,12 @@ export default (() => {
         />
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
-        {isHomePage && <script type="application/ld+json">{JSON.stringify(websiteSchema)}</script>}
+        {isHomePage && (
+          <>
+            <script type="application/ld+json">{JSON.stringify(websiteSchema)}</script>
+            <script type="application/ld+json">{JSON.stringify(personSchema)}</script>
+          </>
+        )}
 
         {css.map((resource) => CSSResourceToStyleElement(resource, true))}
         {js

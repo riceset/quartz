@@ -1,5 +1,5 @@
 ---
-title: "Komeno"
-description: "Japanese-Brazilian Software Developer"
-socialDescription: "Japanese-Brazilian Software Developer"
+title: "Thiago Komeno"
+description: "Thiago Komeno is a Japanese-Brazilian Software Developer."
+socialDescription: "Thiago Komeno is a Japanese-Brazilian Software Developer."
 ---

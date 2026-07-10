@@ -173,10 +173,10 @@ const HomeHero: QuartzComponent = (props: QuartzComponentProps) => {
         <span class="home-banner-wordmark">riceset</span>
       </div>
       <div class="home-hero-inner">
-        <img class="home-avatar" src="/media/index/face.jpg" alt="Komeno" />
+        <img class="home-avatar" src="/media/index/face.jpg" alt="Thiago Komeno" />
         <div class="home-hero-text">
           <h1 class="home-name">
-            Komeno
+            Thiago Komeno
             <span
               class="home-title home-title-japanese home-name-japanese"
               lang="ja"
@@ -185,9 +185,7 @@ const HomeHero: QuartzComponent = (props: QuartzComponentProps) => {
               米野
             </span>
           </h1>
-          <p class="home-bio">
-            Japanese-Brazilian Software Developer
-          </p>
+          <p class="home-bio">Japanese-Brazilian Software Developer</p>
           <div class="home-links">
             <HomeDarkmode {...props} />
             <span class="home-links-separator" aria-hidden="true"></span>
