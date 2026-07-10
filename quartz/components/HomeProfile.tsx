@@ -386,7 +386,7 @@ const hackathons: HackathonItem[] = [
   },
   {
     title: "SDGs to Startups Hackathon",
-    organizer: "TokyoAI",
+    organizer: "Tokyo AI",
     logo: "/static/logos/tokyo-ai.svg",
     logoClass: "home-org-logo-tokyo-ai",
     date: "Jun 2026",
