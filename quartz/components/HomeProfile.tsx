@@ -277,7 +277,7 @@ const experience: ExperienceItem[] = [
   },
   {
     role: "Incoming iOS Software Engineer",
-    company: "Sansan Inc",
+    company: "Sansan",
     companyUrl: "https://www.sansan.com",
     employmentType: "Internship",
     logo: "/static/logos/sansan.svg",
@@ -290,7 +290,7 @@ const experience: ExperienceItem[] = [
   },
   {
     role: "Full-Stack Software Engineer",
-    company: "BaseMe Inc",
+    company: "BaseMe",
     companyUrl: "https://baseme.app",
     employmentType: "Part-time",
     logo: "/static/logos/baseme.svg",
@@ -303,7 +303,7 @@ const experience: ExperienceItem[] = [
   },
   {
     role: "iOS Software Engineer",
-    company: "MIXI Inc",
+    company: "MIXI",
     companyUrl: "https://mixi.co.jp",
     employmentType: "Internship",
     logo: "/static/logos/mixi.svg",
@@ -351,7 +351,7 @@ const awards: AwardItem[] = [
     title: "Swift Student Challenge Winner",
     logo: "/static/logos/apple.svg",
     logoClass: "home-org-logo-apple",
-    institution: "Apple Inc",
+    institution: "Apple",
     description:
       "Selected in 2026 for an app that impressed and inspired Apple with its creativity, technical skill, and thoughtful design.",
   },
@@ -394,7 +394,7 @@ const hackathons: HackathonItem[] = [
   },
   {
     title: "try! Swift Tokyo Hackathon",
-    organizer: "Mercari Inc",
+    organizer: "Mercari",
     logo: "/static/logos/mercari.svg",
     logoClass: "home-org-logo-mercari",
     date: "Apr 2026",
