@@ -401,6 +401,14 @@ const hackathons: HackathonItem[] = [
     rank: "Winner",
   },
   {
+    title: "Mistral AI Worldwide Hackathon",
+    organizer: "Mistral AI",
+    logo: "/static/logos/mistral.svg",
+    logoClass: "home-org-logo-mistral",
+    date: "Mar 2026",
+    rank: "Participant",
+  },
+  {
     title: "24-Hour Hackathon by 42 Asia",
     organizer: "Singapore University of Technology and Design",
     logo: "/static/logos/sutd-mark.svg",
