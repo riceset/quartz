@@ -263,6 +263,32 @@ interface SpeakingItem {
 
 const experience: ExperienceItem[] = [
   {
+    role: "Incoming iOS Software Engineer",
+    company: "LY Corporation",
+    companyUrl: "https://www.lycorp.co.jp/en/",
+    employmentType: "Internship",
+    logo: "/static/logos/ly-corp.svg",
+    logoClass: "home-org-logo-ly-corp",
+    period: "Aug 2026 – Sept 2026",
+    location: "Tokyo, Japan",
+    description:
+      "Joining LY Corporation (LINEヤフー) as an incoming iOS engineering intern, developing mobile features for services used by millions across Japan.",
+    tags: ["Swift", "iOS"],
+  },
+  {
+    role: "Incoming iOS Software Engineer",
+    company: "Sansan",
+    companyUrl: "https://www.sansan.com",
+    employmentType: "Internship",
+    logo: "/static/logos/sansan.svg",
+    logoClass: "home-org-logo-sansan",
+    period: "Aug 2026 – Sept 2026",
+    location: "Tokyo, Japan",
+    description:
+      "Joining Sansan as an incoming iOS engineering intern, building native mobile features for its business card and contact management platform.",
+    tags: ["Swift", "iOS"],
+  },
+  {
     role: "Full-Stack Software Engineer",
     company: "BaseMe",
     companyUrl: "https://baseme.app",
