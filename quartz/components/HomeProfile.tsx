@@ -272,7 +272,7 @@ const experience: ExperienceItem[] = [
     period: "Aug 2026 – Sept 2026",
     location: "Tokyo, Japan",
     description:
-      "Joining LY Corporation (LINEヤフー) as an incoming iOS engineering intern, developing mobile features for LINE, a messaging app used by around 224 million people worldwide.",
+      "Joining LY Corporation (LINEヤフー) as an incoming iOS engineering intern, developing mobile features for LINE, a messaging app with 193 million monthly active users worldwide.",
     tags: ["Swift", "iOS"],
   },
   {
