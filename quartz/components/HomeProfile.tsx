@@ -272,7 +272,7 @@ const experience: ExperienceItem[] = [
     period: "Aug 2026 – Sept 2026",
     location: "Tokyo, Japan",
     description:
-      "Joining LY Corporation (LINEヤフー) as an incoming iOS engineering intern, developing mobile features for services used by millions across Japan.",
+      "Joining LY Corporation (LINEヤフー) as an incoming iOS engineering intern, developing mobile features for LINE, a messaging app used by around 224 million people worldwide.",
     tags: ["Swift", "iOS"],
   },
   {
@@ -310,7 +310,7 @@ const experience: ExperienceItem[] = [
     period: "Jan 2026 – Apr 2026",
     location: "Tokyo, Japan",
     description:
-      "Built and optimized iOS features for FamilyAlbum, a photo-sharing platform with 27M+ users across 175 countries, used by 60% of parents in Japan.",
+      "Built and optimized iOS features for FamilyAlbum, a photo-sharing platform with more than 27 million users across 175 countries, used by 60% of parents in Japan.",
     tags: ["Swift", "iOS", "Agile"],
   },
   {
