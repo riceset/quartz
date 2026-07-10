@@ -197,6 +197,8 @@ const MetaRow = ({ period, location, rank }: MetaRowProps) => (
 
 interface ExperienceItem {
   role: string
+  underlineColor: string
+  underlineShape: string
   company: string
   companyUrl: string
   employmentType?: string
@@ -264,6 +266,8 @@ interface SpeakingItem {
 const experience: ExperienceItem[] = [
   {
     role: "Incoming iOS Software Engineer",
+    underlineColor: "rgb(82, 175, 100)",
+    underlineShape: "sweep",
     company: "LY Corporation",
     companyUrl: "https://www.lycorp.co.jp/en/",
     employmentType: "Internship",
@@ -277,6 +281,8 @@ const experience: ExperienceItem[] = [
   },
   {
     role: "Incoming iOS Software Engineer",
+    underlineColor: "rgb(197, 45, 39)",
+    underlineShape: "chunky",
     company: "Sansan",
     companyUrl: "https://www.sansan.com",
     employmentType: "Internship",
@@ -290,6 +296,8 @@ const experience: ExperienceItem[] = [
   },
   {
     role: "Full-Stack Software Engineer",
+    underlineColor: "rgb(98, 92, 245)",
+    underlineShape: "wave",
     company: "BaseMe",
     companyUrl: "https://baseme.app",
     employmentType: "Part-time",
@@ -303,6 +311,8 @@ const experience: ExperienceItem[] = [
   },
   {
     role: "iOS Software Engineer",
+    underlineColor: "rgb(233, 164, 57)",
+    underlineShape: "slash",
     company: "MIXI",
     companyUrl: "https://mixi.co.jp",
     employmentType: "Internship",
@@ -316,6 +326,8 @@ const experience: ExperienceItem[] = [
   },
   {
     role: "Google Student Ambassador",
+    underlineColor: "rgb(83, 132, 237)",
+    underlineShape: "low",
     company: "Google Japan",
     companyUrl: "https://about.google/intl/ALL_jp/",
     logo: "/static/logos/google.svg",
@@ -489,7 +501,12 @@ const HomeProfile: QuartzComponent = () => {
                   />
                 </span>
                 <div class="home-exp-text">
-                  <span class="home-exp-role">{item.role}</span>
+                  <span
+                    class={`home-exp-role home-exp-role-shape-${item.underlineShape}`}
+                    style={`--crayola-underline: ${item.underlineColor};`}
+                  >
+                    {item.role}
+                  </span>
                   <span class="home-exp-company">
                     {item.company}
                     {item.employmentType && ` · ${item.employmentType}`}
