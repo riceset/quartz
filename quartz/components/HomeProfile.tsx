@@ -307,6 +307,7 @@ const experience: ExperienceItem[] = [
     companyUrl: "https://mixi.co.jp",
     employmentType: "Internship",
     logo: "/static/logos/mixi.svg",
+    logoClass: "home-org-logo-mixi",
     period: "Jan 2026 – Apr 2026",
     location: "Tokyo, Japan",
     description:
