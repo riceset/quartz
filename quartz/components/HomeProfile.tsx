@@ -410,7 +410,7 @@ const hackathons: HackathonItem[] = [
 
 const speaking: SpeakingItem[] = [
   {
-    title: "How to Win the Swift Student Challenge",
+    title: "如何贏得 Swift Student Challenge",
     organization: "iPlayground",
     logo: "/static/logos/iplayground.svg",
     logoClass: "home-org-logo-iplayground",
