@@ -29,20 +29,24 @@ $hero-mobile: "(max-width: 767px)";
 .home-banner-logo {
   height: 2.8rem;
   width: auto;
-  transform-origin: center;
-  animation: home-banner-logo-float 4.5s ease-in-out infinite;
+  transform-origin: 52% 72%;
+  animation: home-banner-logo-nod 2.5s ease-in-out infinite;
 
   @media all and ($hero-mobile) {
     height: 2rem;
   }
 }
 
-@keyframes home-banner-logo-float {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
+@keyframes home-banner-logo-nod {
+  0%,
+  100% {
+    transform: rotate(0deg);
   }
-  50% {
-    transform: translateY(-4px) rotate(3deg);
+  35% {
+    transform: rotate(8deg);
+  }
+  62% {
+    transform: rotate(0deg);
   }
 }
 
@@ -65,10 +69,18 @@ $hero-mobile: "(max-width: 767px)";
   }
 }
 
-:root[saved-theme="dark"] .home-banner-logo-light { display: none; }
-:root[saved-theme="dark"] .home-banner-logo-dark { display: block; }
-:root[saved-theme="light"] .home-banner-logo-light { display: block; }
-:root[saved-theme="light"] .home-banner-logo-dark { display: none; }
+:root[saved-theme="dark"] .home-banner-logo-light {
+  display: none;
+}
+:root[saved-theme="dark"] .home-banner-logo-dark {
+  display: block;
+}
+:root[saved-theme="light"] .home-banner-logo-light {
+  display: block;
+}
+:root[saved-theme="light"] .home-banner-logo-dark {
+  display: none;
+}
 
 .home-banner-wordmark {
   font-family: var(--headerFont);
@@ -152,8 +164,9 @@ $hero-mobile: "(max-width: 767px)";
 }
 
 .home-title-japanese {
-  font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic Medium", "Yu Gothic",
-    "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  font-family:
+    "Noto Sans JP", "Hiragino Sans", "Yu Gothic Medium", "Yu Gothic", "Hiragino Kaku Gothic ProN",
+    "Meiryo", sans-serif;
   letter-spacing: 0.01em;
 }
 
