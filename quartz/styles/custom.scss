@@ -18,8 +18,8 @@
 @media all and ($mobile) {
   body[data-page-type="content"] .sidebar.left,
   body[data-page-type="tag"] .sidebar.left {
-    // Unify logo height, wordmark cap height, and toggle icon size so all
-    // three visible elements in the floating bar read at the same scale.
+    // Match the home banner's logo-to-wordmark proportion while keeping the
+    // floating bar controls at the same optical size.
     --toolbar-icon-size: 1.35rem;
 
     justify-content: flex-start;
@@ -32,6 +32,9 @@
       line-height: 1;
       padding-left: 0;
       margin: 0;
+      font-family: "Instrument Serif", "Bricolage Grotesque", Georgia, "Times New Roman", serif;
+      font-size: 1.3rem;
+      font-weight: 400;
     }
 
     & .page-title-link {
@@ -42,10 +45,7 @@
     }
 
     & .site-logo {
-      // Bumped above the 1em cap-height of the wordmark so the thin line-art
-      // icon reads at the same optical weight as the bold geometric type —
-      // same trick the desktop rail uses (2.1rem logo against 1.75rem boxes).
-      height: 1.15em;
+      height: 1.03em;
     }
 
     & > .spacer {

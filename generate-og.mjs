@@ -1,14 +1,15 @@
 import sharp from "sharp"
 import { readFileSync } from "fs"
 
-const fontB64 = readFileSync("bricolage-700.ttf").toString("base64")
+const fontB64 = readFileSync("instrument-serif-regular.ttf").toString("base64")
 
 const W = 1200
 const H = 630
 const BG = "#e5e5e5"
 const TEXT_COLOR = "#2b2b2b"
 
-const LOGO_SIZE = 180
+const FONT_SIZE = 156
+const LOGO_SIZE = FONT_SIZE * 1.03
 const SCALE = LOGO_SIZE / 64
 
 const logoPaths = [
@@ -19,9 +20,8 @@ const logoPaths = [
   "M18.02,27.92c-.47-.28-1.36-.5-1.97-.08s0,2.58,0,2.58c2.08.84,3.34-1.67,1.97-2.49Z",
 ]
 
-const FONT_SIZE = 130
 const GAP = FONT_SIZE * 0.08
-const EST_TEXT_W = 430
+const EST_TEXT_W = 360
 const GROUP_W = LOGO_SIZE + GAP + EST_TEXT_W
 const GROUP_X = (W - GROUP_W) / 2
 const GROUP_Y = (H - LOGO_SIZE) / 2
@@ -32,24 +32,24 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
   <defs>
     <style>
       @font-face {
-        font-family: 'Bricolage Grotesque';
-        font-weight: 700;
+        font-family: 'Instrument Serif';
+        font-weight: 400;
         src: url('data:font/truetype;base64,${fontB64}') format('truetype');
       }
     </style>
   </defs>
   <rect width="${W}" height="${H}" fill="${BG}"/>
   <g transform="translate(${GROUP_X}, ${GROUP_Y}) scale(${SCALE})">
-    ${logoPaths.map(d => `<path d="${d}" fill="${TEXT_COLOR}"/>`).join("\n    ")}
+    ${logoPaths.map((d) => `<path d="${d}" fill="${TEXT_COLOR}"/>`).join("\n    ")}
   </g>
   <text
     x="${TEXT_X}"
     y="${TEXT_Y}"
-    font-family="'Bricolage Grotesque', sans-serif"
+    font-family="'Instrument Serif', Georgia, serif"
     font-size="${FONT_SIZE}"
-    font-weight="700"
+    font-weight="400"
     fill="${TEXT_COLOR}"
-    letter-spacing="-2"
+    letter-spacing="-0.02em"
   >riceset</text>
 </svg>`
 

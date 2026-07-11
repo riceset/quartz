@@ -27,13 +27,13 @@ $hero-mobile: "(max-width: 767px)";
 }
 
 .home-banner-logo {
-  height: 2.8rem;
+  height: 2.3rem;
   width: auto;
   transform-origin: 52% 72%;
   animation: home-banner-logo-nod 2.5s ease-in-out infinite;
 
   @media all and ($hero-mobile) {
-    height: 2rem;
+    height: 1.65rem;
   }
 }
 
@@ -83,9 +83,9 @@ $hero-mobile: "(max-width: 767px)";
 }
 
 .home-banner-wordmark {
-  font-family: var(--headerFont);
+  font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
   font-size: 2.25rem;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--dark);
   letter-spacing: -0.02em;
   line-height: 1;
@@ -148,9 +148,9 @@ $hero-mobile: "(max-width: 767px)";
 }
 
 .home-name {
-  font-family: var(--headerFont);
+  font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
   font-size: 1.75rem;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--dark);
   margin: 0;
   line-height: 1.2;
@@ -172,10 +172,13 @@ $hero-mobile: "(max-width: 767px)";
 
 .home-name-japanese {
   display: inline-block;
+  font-family:
+    "LINE Seed JP", "Noto Sans JP", "Hiragino Sans", "Yu Gothic Medium", "Yu Gothic",
+    "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
   font-size: 0.5em;
   line-height: inherit;
   vertical-align: 0.12em;
-  font-weight: 500;
+  font-weight: 400;
   margin-left: 0.48rem;
   opacity: 0.9;
   white-space: nowrap;

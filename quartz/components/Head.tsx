@@ -78,6 +78,10 @@ export default (() => {
               rel="stylesheet"
               href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&display=swap"
             />
+            <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=LINE+Seed+JP&display=swap"
+            />
             {cfg.theme.typography.title && (
               <link rel="stylesheet" href={googleFontSubsetHref(cfg.theme, cfg.pageTitle)} />
             )}
