@@ -169,17 +169,17 @@ This function works as follows:
 
 1. Checks if a number is negative. If so, it prints the minus sign and converts the number to positive.
 2. If a number is less than 10, we print the number indexing it from the string.
-3. If a number is greater or equal to 10, we call the `my_putnbr()` function recursivelly dividing the number by 10 until we get only one digit.
+3. If a number is greater or equal to 10, we call the `my_putnbr()` function recursively dividing the number by 10 until we get only one digit.
 
-example:
+Example:
 
 Imagine we want to print the number `42`:
 
 1. As 42 is positive, we skip the first `if` statement.
 2. 42 is also greater than 10 so it gets skipped as well.
-3. Now, in the `else` statement, $42 \div 10 = 4$ so we call `my_putnbr()` recursivelly passing the number 4.
+3. Now, in the `else` statement, $42 \div 10 = 4$ so we call `my_putnbr()` recursively passing the number 4.
 4. As 4 is less than 10, 4 gets printed and returns to the caller function.
-5. Now that `my_putnbr(ll_n / 10, size)` returned, we call `my_putnbr(ll_n % 10, size)` that calls recursivelly `my_putnbr()` passing $42 \mod 10 = 2$ as a parameter.
+5. Now that `my_putnbr(ll_n / 10, size)` returned, we call `my_putnbr(ll_n % 10, size)` that calls recursively `my_putnbr()` passing $42 \mod 10 = 2$ as a parameter.
 6. As 2 is less than 10, 2 gets printed and returns to the caller function.
 7. The caller function returns.
 8. 42 got printed to the standard output successfully.

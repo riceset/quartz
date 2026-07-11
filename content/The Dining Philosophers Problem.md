@@ -309,9 +309,9 @@ $$
 
 Imagine we have 3 philosophers:
 
-First iteraction:
+First iteration:
 
-The philosopher's left fork will be $i$, or 0 and their right fork will be 1:
+The philosopher's left fork will be $i$, or $0$ and their right fork will be $1$:
 
 $$
 \begin{align*}
@@ -327,9 +327,9 @@ Resulting into:
 ID: 1 L: 0 R: 1
 ```
 
-Second iteraction:
+Second iteration:
 
-Now $i = 1$ so the second philosopher's left fork will be 1 and their right fork will be 2:
+Now $i = 1$ so the second philosopher's left fork will be $1$ and their right fork will be $2$:
 
 $$
 \begin{align*}
@@ -345,11 +345,11 @@ Output:
 ID: 2 L: 1 R: 2
 ```
 
-Third iteraction:
+Third iteration:
 
-Now $i = 2$ and since we are running this loop until $i < n$ this is the last iteraction:
+Now $i = 2$ and since we are running this loop until $i < n$ this is the last iteration:
 
-So the third philosopher's left fork will be 2 and their right fork will be 0:
+So the third philosopher's left fork will be $2$ and their right fork will be $0$:
 
 $$
 \begin{align*}
@@ -381,7 +381,7 @@ See: [[Seconds Unit Conversion]]
 
 ### Implementation
 
-We can create 3 separate functions for each conversion seen above to get the current time in miliseconds ($ms$):
+We can create 3 separate functions for each conversion seen above to get the current time in milliseconds ($ms$):
 
 ```c
 time_t s_to_ms(time_t s)

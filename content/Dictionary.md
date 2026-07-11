@@ -19,7 +19,7 @@ I researched the most popular online dictionaries for Taiwanese Mandarin, and ev
 
 This led me to want to build a modern application using SwiftUI. Luckily, I found a GitHub repository containing the dictionary data in JSON format and started with the development of the app.
 
-## Understanding the JSON data and defining the schema
+## Understanding the JSON Data and Defining the Schema
 
 To make sure my database could handle the complexity of Chinese dictionary entries, I started by analyzing some entries in the JSON file. One of these entries I analyzed was the character "**行**" (_xíng_, _háng_, etc), which has **multiple readings (heteronyms)**, and each reading can have distinct meanings. This helped me to define the one-to-many relationships for the data.
 
@@ -36,8 +36,8 @@ with open("dict-revised.json", encoding="utf-8") as f:
 
 At this point, the variable `items` is a Python object representing the JSON file (a list of dictionaries.)
 
-> [!notes] Why UTF-8?
-> All files are stored as bytes on disk so to read then we need to decode those bytes. UTF-8 is a common text encoding used to represent all unicode characters. Without specifying it, Python might use a default encoding which can vary by system and reading non-ASCII characters could produce wrong characters.
+> [!note] Why UTF-8?
+> All files are stored as bytes on disk so to read then we need to decode those bytes. UTF-8 is a common text encoding used to represent all Unicode characters. Without specifying it, Python might use a default encoding which can vary by system and reading non-ASCII characters could produce wrong characters.
 
 Now, let's get some random elements from the middle of the list:
 
@@ -47,10 +47,10 @@ samples = random.sample(items[len(items)//4 : 3*len(items)//4], 3)
 
 To understand this line, let's suppose our JSON has 100 entries:
 
-1. `len(items) // 4`: [[Floor Division|Floor divides]] 100 (list length) by 4 to get the index 1/4 into the list. $$ \left\lfloor \frac{100}{4} \right\rfloor = \left\lfloor 25 \right\rfloor = 25 $$
-2. `3*len(items)//4`: Multiplies 100 (list length) by 3 and then [[Floor Division|floor divides]] by 4 giving the index 3/4 into the list. $$ \left\lfloor \frac{3 \cdot 100}{4} \right\rfloor = \left\lfloor \frac{300}{4} \right\rfloor = \left\lfloor 75 \right\rfloor = 75 $$
+1. `len(items) // 4`: [[Floor Division|Floor divides]] 100 (list length) by 4 to get the index $1/4$ into the list. $$ \left\lfloor \frac{100}{4} \right\rfloor = \left\lfloor 25 \right\rfloor = 25 $$
+2. `3*len(items)//4`: Multiplies 100 (list length) by 3 and then [[Floor Division|floor divides]] by 4 giving the index $3/4$ into the list. $$ \left\lfloor \frac{3 \cdot 100}{4} \right\rfloor = \left\lfloor \frac{300}{4} \right\rfloor = \left\lfloor 75 \right\rfloor = 75 $$
 3. Slice `items[start:end]`: In our case the slice is `items[25:75]` which represents a list ranging elements with indexes 25 through 74. (see: [[Slicing]])
-4. `random.sample(sequence, k)`: Where `k` is the number of elements to get from the `sequence`. In our case, we are getting 3 elements. $$ S = x*{25}, x*{26}, \dots, x\_{74} $$ By running this script, we can get three random entries to analyze.
+4. `random.sample(sequence, k)`: Where `k` is the number of elements to get from the `sequence`. In our case, we are getting 3 elements. $$ S = x_{25}, x_{26}, \dots, x_{74} $$ By running this script, we can get three random entries to analyze.
 
 Now, let's try to imagine how each entry structure is going to look like. I will use the character "行" as an example:
 
@@ -229,18 +229,18 @@ CREATE TABLE definition (
 );
 ```
 
-## Inserting data into the database
+## Inserting Data into the Database
 
 With the schema already defined, we need to put the data from the JSON file into our SQLite tables:
 
-First, let's open the json file using UTF-8 encoding and use `json.load()` to parse the file into a Python object (a list of dictionaries in this case):
+First, let's open the JSON file using UTF-8 encoding and use `json.load()` to parse the file into a Python object (a list of dictionaries in this case):
 
 ```python
 with open("dict-revised.json", encoding="utf-8") as f:
     items = json.load(f)
 ```
 
-Now, we connect to the database an create a cursor to talk to it:
+Now, we connect to the database and create a cursor to talk to it:
 
 ```python
 conn = sqlite3.connect("dictionary.db")
@@ -454,8 +454,8 @@ Inside the ViewModel, we are going to declare a variable to represent the connec
 @Dependency(\.defaultDatabase) var database
 ```
 
-> [!important] What is @Dependency?
-> @Dependency is a property wrapper from the Dependencies library. It uses a key path syntax `\.defaultDatabase` to access the database we configured in `App.swift`. This is called Dependency Injection which means that we are not creating our own database connection but receiving it from outside.
+> [!important] What is `@Dependency`?
+> `@Dependency` is a property wrapper from the Dependencies library. It uses a key path syntax `\.defaultDatabase` to access the database we configured in `App.swift`. This is called Dependency Injection which means that we are not creating our own database connection but receiving it from outside.
 
 ```mermaid
 graph LR
@@ -503,16 +503,16 @@ isLoading = true
 errorMessage = nil
 ```
 
-### The database query
+### The Database Query
 
 1. We start a `do-catch` block for error handling. Here, any throwing operation inside can be caught.
 2. `database.read` opens a read-only database transaction.
-3. This operation can cause throw an error so it is marked with `try`
-4. `await` signalizes it is an asynchronous operation meaning that the function suspends here while waiting for the database.
+3. This operation can throw an error so it is marked with `try`
+4. `await` signals it is an asynchronous operation meaning that the function suspends here while waiting for the database.
 5. `db` is the database connection handle.
 6. `try Entry` starts building a query on the `Entry` table
 7. `.where` adds a filter condition like SQL's `WHERE` clause
-8. Here. `$0` represents an entry object.
+8. Here, `$0` represents an entry object.
 9. `.order` is similar to SQL `ORDER BY`. Here, we are accessing the `.\title` key path to the title property.
 10. `.fetchAll` actually runs the query.
 11. We catch all possible errors and display a localized error message.
@@ -665,7 +665,7 @@ Group {
 > [!important] What is a Group?
 > It is a transparent container (like a [[VStack]]) but that does not add any visual styling.
 
-### The search interface state machine
+### The Search Interface State Machine
 
 ```mermaid
 graph TD

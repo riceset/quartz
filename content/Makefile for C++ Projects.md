@@ -8,6 +8,7 @@ tags:
 # Writing Makefile for C++ Projects
 
 ## Setting variables
+
 Let's start by setting some basic variables:
 
 ```makefile
@@ -18,8 +19,7 @@ NAME = program
 CXX = c++
 ```
 
-> [!notes] Considerations
-> > **Note:**
+> [!note] Considerations
 > The variable `CXX` is used to specify the C++ compiler. The command `c++` is analogous to using `cc` for compiling C programs. This is similar to how `g++`/`gcc` are used for GNU Compilers, and `clang`/`clang++` for Clang compilers.
 
 ## Flags
@@ -36,6 +36,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 ```
 
 ## Specifying the source files
+
 In the `SRCS` variable we can specify all the `.cpp` files used in the project. These are the files that are going to be compiled into object files (`.o`) and then combined into an executable file.
 
 ```makefile
@@ -44,10 +45,11 @@ OBJS = $(SRCS:.cpp=.o)
 INCLUDES = main.hpp
 ```
 
-> [!notes] Notes on OBJS
+> [!note] Notes on OBJS
 > The `OBJS` variable is a special computed variable that takes all the values from the `SRCS` variable that has the `.cpp` extension and turns into a `.o` file.
 
 ## Defining some basic rules
+
 When writing a Makefile we usually define 4 basic rules. Those are:
 
 - `all`: Compile the program
@@ -118,18 +120,21 @@ This is the rule used to create object files. It basically says: For any C++ fil
 To implement `clean`, `fclean` and `re` is really simple.
 
 `clean` just removes all object files so:
+
 ```makefile
 clean:
 	$(RM) $(OBJS)
 ```
 
 `fclean` calls clean to remove all object files and in addition, also removes the executable file:
+
 ```makefile
 fclean: clean
 	$(RM) $(NAME)
 ```
 
 `re` runs `fclean` and `all`:
+
 ```makefile
 re: fclean all
 ```

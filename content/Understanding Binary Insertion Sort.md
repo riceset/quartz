@@ -4,7 +4,9 @@ date: 2024-12-24
 tags:
   - algorithms
 ---
+
 # Understanding Binary Insertion Sort
+
 Binary Insertion Sort is a sorting algorithm that combines [[Insertion Sort]] with Binary Search for finding the location where an element should be inserted.
 
 ## Implementation
@@ -38,7 +40,8 @@ Where:
 - `insertionIndex` is the position to insert the `key` into the sorted portion of the array
 
 ### Binary Search Implementation
-The different between the original binary search and the binary dearch used here is that its purpose is to find the correct position to insert the **key** value into the sorted array
+
+The difference between the original binary search and the binary search used here is that its purpose is to find the correct position to insert the **key** value into the sorted array
 
 ```cpp
 int binarySearch(int arr[], int key, int low, int high)
@@ -58,17 +61,20 @@ int binarySearch(int arr[], int key, int low, int high)
 }
 ```
 
-where:
+Where:
 - `arr` is the sorted array in which to search
 - `key` is the value to search for
 - `low` is the lower bound index of the current search range
 - `high` is the higher bound index of the current search range
 
 Consider the following array $A$ with 3 elements $(n = 3)$:
+
 $$
 A = [6, 5, 3]
 $$
+
 ### Step by step
+
 Consider the following `for` loop that is the main part of the algorithm:
 
 ```cpp
@@ -86,6 +92,7 @@ for (int i = 1; i < size; i++)
 ```
 
 ---
+
 #### First Iteration
 
 Values:
@@ -104,7 +111,7 @@ for (int i = 1; i < size; i++)
 {
 	key = arr[i];
 	sortedIndex = i - 1;
-	> insertionIndex = binarySearch(arr, key, 0, sortedIndex);
+	insertionIndex = binarySearch(arr, key, 0, sortedIndex);
 
 	for (int j = sortedIndex; j >= insertionIndex; j--)
 		arr[j + 1] = arr[j];
@@ -127,7 +134,7 @@ As soon as we enter the function, the condition is met as $h \leq l$, so we ente
 
 ```cpp
 if (high <= low)
-	> return (key > arr[low] ? low + 1 : low);
+	return (key > arr[low] ? low + 1 : low);
 
 int mid = (low + high) / 2;
 
@@ -160,7 +167,7 @@ for (int i = 1; i < size; i++)
 	sortedIndex = i - 1;
 	insertionIndex = binarySearch(arr, key, 0, sortedIndex);
 
-	> for (int j = sortedIndex; j >= insertionIndex; j--)
+	for (int j = sortedIndex; j >= insertionIndex; j--)
 		arr[j + 1] = arr[j];
 
 	arr[insertionIndex] = key;
@@ -184,15 +191,18 @@ for (int i = 1; i < size; i++)
 	for (int j = sortedIndex; j >= insertionIndex; j--)
 		arr[j + 1] = arr[j];
 
-	> arr[insertionIndex] = key;
+	arr[insertionIndex] = key;
 }
 ```
 
 Result:
+
 $$
 A = [5, 6, 3]
 $$
+
 ---
+
 #### Second Iteration
 
 Values:
@@ -205,6 +215,7 @@ insertionIndex = ?
 ```
 
 Now, we are going to enter `binarySearch()` again to retrieve the index for inserting the `key`:
+
 ##### Inside `binarySearch()`:
 
 Values:
@@ -215,10 +226,10 @@ low = 0
 high = 1
 ```
 
-The condition base condition is false as $1 \nleq 0$ so we go to the next line:
+The base condition is false as $1 \nleq 0$ so we go to the next line:
 
 ```cpp
-> if (high <= low)
+if (high <= low)
 	return (key > arr[low]) ? (low + 1) : low;
 
 int mid = (low + high) / 2;
@@ -245,7 +256,7 @@ mid = 0
 if (high <= low)
 	return (key > arr[low]) ? (low + 1) : low;
 
-> int mid = (low + high) / 2;
+int mid = (low + high) / 2;
 
 if (key == arr[mid])
 	return (mid + 1);
@@ -266,7 +277,7 @@ if (high <= low)
 
 int mid = (low + high) / 2;
 
-> if (key == arr[mid])
+if (key == arr[mid])
 	return (mid + 1);
 
 if (key > arr[mid])
@@ -275,7 +286,7 @@ if (key > arr[mid])
 return (binarySearch(arr, key, low, mid - 1));
 ```
 
-After that, we check if the `key` is greater than the `arr[mid]`. As $3 \not> 5$m we go to the next line:
+After that, we check if the `key` is greater than the `arr[mid]`. As $3 \not> 5$, we go to the next line:
 
 ```cpp
 if (high <= low)
@@ -289,7 +300,7 @@ if (key == arr[mid])
 if (key > arr[mid])
 	return (binarySearch(arr, key, mid + 1, high));
 
-> return (binarySearch(arr, key, low, mid - 1));
+return (binarySearch(arr, key, low, mid - 1));
 ```
 
 Here, we recursively enter `binarySearch()` with the following values:
@@ -303,7 +314,7 @@ high = -1
 As $-1 \leq 0$, we enter the base case. Inside it, the `key` which is 3 gets compared with `arr[0]` which is 5, as $3 \not> 5$, the value for `low`, 0 gets returned.
 
 ```cpp
-> if (high <= low)
+if (high <= low)
 	return (key > arr[low]) ? (low + 1) : low;
 
 int mid = (low + high) / 2;
@@ -337,7 +348,7 @@ for (int i = 1; i < size; i++)
 	sortedIndex = i - 1;
 	insertionIndex = binarySearch(arr, key, 0, sortedIndex);
 
-	> for (int j = sortedIndex; j >= insertionIndex; j--)
+	for (int j = sortedIndex; j >= insertionIndex; j--)
 		arr[j + 1] = arr[j];
 
 	arr[insertionIndex] = key;
@@ -365,11 +376,12 @@ for (int i = 1; i < size; i++)
 	for (int j = sortedIndex; j >= insertionIndex; j--)
 		arr[j + 1] = arr[j];
 
-	> arr[insertionIndex] = key;
+	arr[insertionIndex] = key;
 }
 ```
 
 Result:
+
 $$
 A = [3, 5, 6]
 $$

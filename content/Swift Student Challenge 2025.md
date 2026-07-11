@@ -218,7 +218,7 @@ content
 )
 ```
 
-from: [Hacking with Swift](https://www.hackingwithswift.com/books/ios-swiftui/moving-views-with-draggesture-and-offset)
+Source: [Hacking with Swift](https://www.hackingwithswift.com/books/ios-swiftui/moving-views-with-draggesture-and-offset)
 
 #### The Opacity animation
 

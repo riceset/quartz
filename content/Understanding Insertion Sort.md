@@ -4,10 +4,13 @@ date: 2024-12-22
 tags:
   - algorithms
 ---
+
 # Understanding Insertion Sort
+
 Insertion sort is a straightforward yet inefficient sorting algorithm with a time complexity of $O(n^2)$. It works by treating the left portion of the array as already sorted, while the right portion remains unsorted. At each step, an element (referred to as the **key**) is taken from the unsorted portion and inserted into its correct position within the sorted section. The process begins by considering the first element already sorted, as it forms a one-element array. To insert the **key**, elements in the sorted section are shifted one position to the right until the key can be placed in its proper spot.
 
 ## Implementation
+
 Here is the complete function for the algorithm:
 
 ```cpp
@@ -40,6 +43,7 @@ A = [6, 5, 3]
 $$
 
 ### Step by step
+
 Consider the following `for` loop that is the main part of the algorithm:
 
 ```cpp
@@ -190,7 +194,7 @@ Indices:
  j     i
 ```
 
-4. The condition is checked again $(j \geq 0)$ and it matches it as $(0 \geq 0)$.  `a[j]` which is 5 is also greater than the key which is 3.
+4. The condition is checked again $(j \geq 0)$ and it matches it as $(0 \geq 0)$. `a[j]` which is 5 is also greater than the key which is 3.
 
 ```cpp
 while (j >= 0 && a[j] > key)
