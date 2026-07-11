@@ -269,7 +269,7 @@ const experience: ExperienceItem[] = [
     employmentType: "Internship",
     logo: "/static/logos/ly-corp-en.png",
     logoClass: "home-org-logo-ly-corp",
-    period: "Aug 2026 – Sept 2026",
+    period: "Aug 2026 – Sep 2026",
     location: "Tokyo, Japan",
     description:
       "Incoming iOS engineering intern at LY Corporation / LINEヤフー developing features for LINE, a messaging app used by 193 million people monthly.",
@@ -282,7 +282,7 @@ const experience: ExperienceItem[] = [
     employmentType: "Internship",
     logo: "/static/logos/sansan.svg",
     logoClass: "home-org-logo-sansan",
-    period: "Aug 2026 – Sept 2026",
+    period: "Aug 2026 – Sep 2026",
     location: "Tokyo, Japan",
     description:
       "Joining Sansan as an incoming iOS engineering intern, building native mobile features for its business card and contact management platform.",
