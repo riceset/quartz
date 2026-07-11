@@ -367,7 +367,7 @@ ID: 3 L: 2 R: 0
 
 ## Displaying the timestamps
 
-In this project, we are required to use the [[gettimeofday()]] function for displaying time in microseconds ($\mu s$)
+In this project, we are required to use the `gettimeofday()` function for displaying time in microseconds ($\mu s$)
 
 By accessing `tv_sec` and `tv_usec`, both members of `struct timeval`, we can calculate the current time in microseconds ($\mu s$) using the following formula:
 
@@ -377,7 +377,7 @@ T_{ms} \; = \; (T_{s} \; \times \; 10^3) \; + \; \frac{T_{\mu s}}{10^3}
 \end{align*}
 $$
 
-See: [[Seconds Unit Conversion]]
+See: Seconds Unit Conversion
 
 ### Implementation
 
@@ -516,7 +516,7 @@ static void	print_in_required_format(t_philo *philo, char *action)
 
 ## Working with threads
 
-Now that we finished preparing the `dinner`, we can start the dinner by getting the current time (the dinner start time) and create threads for each philosopher. To create a thread we need to use the [[pthread_create()]] function.
+Now that we finished preparing the `dinner`, we can start the dinner by getting the current time (the dinner start time) and create threads for each philosopher. To create a thread we need to use the `pthread_create()` function.
 
 ```c
 void	start_dinner(t_dinner *dinner)

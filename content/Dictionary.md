@@ -47,9 +47,9 @@ samples = random.sample(items[len(items)//4 : 3*len(items)//4], 3)
 
 To understand this line, let's suppose our JSON has 100 entries:
 
-1. `len(items) // 4`: [[Floor Division|Floor divides]] 100 (list length) by 4 to get the index $1/4$ into the list. $$ \left\lfloor \frac{100}{4} \right\rfloor = \left\lfloor 25 \right\rfloor = 25 $$
-2. `3*len(items)//4`: Multiplies 100 (list length) by 3 and then [[Floor Division|floor divides]] by 4 giving the index $3/4$ into the list. $$ \left\lfloor \frac{3 \cdot 100}{4} \right\rfloor = \left\lfloor \frac{300}{4} \right\rfloor = \left\lfloor 75 \right\rfloor = 75 $$
-3. Slice `items[start:end]`: In our case the slice is `items[25:75]` which represents a list ranging elements with indexes 25 through 74. (see: [[Slicing]])
+1. `len(items) // 4`: Floor divides 100 (list length) by 4 to get the index $1/4$ into the list. $$ \left\lfloor \frac{100}{4} \right\rfloor = \left\lfloor 25 \right\rfloor = 25 $$
+2. `3*len(items)//4`: Multiplies 100 (list length) by 3 and then floor divides by 4 giving the index $3/4$ into the list. $$ \left\lfloor \frac{3 \cdot 100}{4} \right\rfloor = \left\lfloor \frac{300}{4} \right\rfloor = \left\lfloor 75 \right\rfloor = 75 $$
+3. Slice `items[start:end]`: In our case the slice is `items[25:75]` which represents a list ranging elements with indexes 25 through 74. (see: slicing)
 4. `random.sample(sequence, k)`: Where `k` is the number of elements to get from the `sequence`. In our case, we are getting 3 elements. $$ S = x_{25}, x_{26}, \dots, x_{74} $$ By running this script, we can get three random entries to analyze.
 
 Now, let's try to imagine how each entry structure is going to look like. I will use the character "行" as an example:
@@ -409,7 +409,7 @@ prepareDependencies {
 > By executing the following line, we are:
 >
 > 1. Creating a database connection to the file at `dbPath`.
-> 2. Creating a [[Serial Dispatch Queue]] to ensure that **all database operations happen one at a time.**
+> 2. Creating a serial dispatch queue to ensure that **all database operations happen one at a time.**
 > 3. It is a throwing function so it must be marked with `try`. It can throw an error in case of corrupted file, not existing file or insufficient permissions.
 >
 > ```swift
@@ -426,8 +426,6 @@ graph TD
     D --> E[Container saved globally]
     E --> F[Available everywhere via @Dependency]
 
-    style C fill:#f9f,stroke:#333,stroke-width:2px
-    style D fill:#bbf,stroke:#333,stroke-width:2px
 ```
 
 ### ViewModel: Search by Stroke Count Functionality
@@ -441,8 +439,8 @@ class DictionaryModel {
 }
 ```
 
-> [!important] What is [[@Observable]]?
-> `@Observable` is a Swift macro (introduced in iOS 17+) that automatically makes all properties of this class **observable**. Before it, we would have to conform the model to [[ObservableObject]] and mark each of the changing properties with [[@Published]].
+> [!important] What is `@Observable`?
+> `@Observable` is a Swift macro (introduced in iOS 17+) that automatically makes all properties of this class **observable**. Before it, we would have to conform the model to `ObservableObject` and mark each of the changing properties with `@Published`.
 
 > [!info] Why a class?
 > Because all views should share the same instance.
@@ -464,8 +462,6 @@ graph LR
     C --> D[@Dependency injects it here]
     D --> E[DictionaryModel uses it]
 
-    style C fill:#bbf,stroke:#333,stroke-width:2px
-    style D fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ### Other Properties
@@ -484,7 +480,7 @@ Where:
 
 ### Asynchronous Database Query
 
-The `searchByStrokeCount` function handles the search logic. It first performs input validation using a [[guard]] statement, ensuring the `strokeCount` is a valid positive number:
+The `searchByStrokeCount` function handles the search logic. It first performs input validation using a `guard` statement, ensuring the `strokeCount` is a valid positive number:
 
 ```swift
 func searchByStrokeCount(_ strokeCount: Int) async {
@@ -495,7 +491,7 @@ func searchByStrokeCount(_ strokeCount: Int) async {
 }
 ```
 
-1. `isLoading`: Sets the loading flag before starting the query. It triggers the UI thanks to [[@Observable]] that makes the view update automatically to show the ProgressView with the text `"搜尋中..."`
+1. `isLoading`: Sets the loading flag before starting the query. It triggers the UI thanks to `@Observable` that makes the view update automatically to show the ProgressView with the text `"搜尋中..."`
 2. `errorMessage = nil` means there are no error messages.
 
 ```swift
@@ -541,8 +537,6 @@ graph TD
     D --> E[Map to Entry structs]
     E --> F[Return Array of Entry to entries]
 
-    style E fill:#bbf,stroke:#333,stroke-width:2px
-    style F fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 After finishing the query, we set `isLoading` to false:
@@ -615,7 +609,7 @@ For the home view, I just implemented a dummy view for the moment:
 
 ![Home](/media/dictionary/home.png)
 
-Let's start building the `SearchView()` for searching by stroke count. Here, we are going to use a pattern of having one main view switching between different states. Let's start by defining some [[@State]] variables:
+Let's start building the `SearchView()` for searching by stroke count. Here, we are going to use a pattern of having one main view switching between different states. Let's start by defining some `@State` variables:
 
 1. `model` holds the `ViewModel` instance to communicate with the model/data
 2. `searchText` stores what the user types in the search bar
@@ -663,7 +657,7 @@ Group {
 ```
 
 > [!important] What is a Group?
-> It is a transparent container (like a [[VStack]]) but that does not add any visual styling.
+> It is a transparent container (like a `VStack`) but that does not add any visual styling.
 
 ### The Search Interface State Machine
 
@@ -876,7 +870,7 @@ The first one is the navigation title:
 .navigationTitle("筆畫搜尋")
 ```
 
-Then, we need to add the search bar to the navigation view. To achieve that, we need to add the `searchable` modifier passing the `searchText` with the `$` syntax to create a [[two-way binding]] between the search bar text and the variable marked with [[@State]]:
+Then, we need to add the search bar to the navigation view. To achieve that, we need to add the `searchable` modifier passing the `searchText` with the `$` syntax to create a two-way binding between the search bar text and the variable marked with `@State`:
 
 ```swift
 .searchable(text: $searchText, prompt: "輸入筆畫數")
@@ -888,7 +882,7 @@ Then, we apply another modifier to limit the keyboard to use the numeric keyboar
 .keyboardType(.numberPad)
 ```
 
-Now, we will apply the [[Reactive Logic|reactive logic]] that connects the UI to the view model:
+Now, we will apply the reactive logic that connects the UI to the view model:
 
 1. `.onChange(of: searchText)`: watches for changes to `searchText`
 2. `{ _, newValue in }`: is the way of writing parameters to a closure. The first parameter (oldValue) is ignored. The second parameter (newValue) is the updated search text
