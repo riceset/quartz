@@ -43,18 +43,15 @@ export default (() => {
       "@context": "https://schema.org",
       "@type": "WebSite",
       name: cfg.pageTitle,
-      alternateName: ["Thiago Komeno", "riceset", "riceset.com"],
       url: `https://${cfg.baseUrl}/`,
     }
     const personSchema = {
       "@context": "https://schema.org",
       "@type": "Person",
       name: "Thiago Komeno",
-      alternateName: "riceset",
       url: `https://${cfg.baseUrl}/`,
       image: `https://${cfg.baseUrl}/media/index/face.jpg`,
       jobTitle: "Software Developer",
-      nationality: ["Brazilian", "Japanese"],
       sameAs: [
         "https://github.com/riceset",
         "https://www.linkedin.com/in/riceset/",
