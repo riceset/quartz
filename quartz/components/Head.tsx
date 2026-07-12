@@ -133,8 +133,8 @@ export default (() => {
         <meta name="generator" content="Quartz" />
         {isHomePage && (
           <>
-            <script type="application/ld+json">{JSON.stringify(websiteSchema)}</script>
-            <script type="application/ld+json">{JSON.stringify(personSchema)}</script>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
           </>
         )}
 
