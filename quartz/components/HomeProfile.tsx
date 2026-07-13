@@ -272,7 +272,7 @@ const experience: ExperienceItem[] = [
     period: "Aug 2026 – Sep 2026",
     location: "Tokyo, Japan",
     description:
-      "Incoming iOS engineering intern at LY Corporation / LINEヤフー developing features for LINE, a messaging app used by 193 million people monthly.",
+      "Incoming iOS engineering intern at LY Corporation / LINEヤフー, building features for the LINE app, which has 193 million monthly users.",
     tags: ["Swift", "iOS"],
   },
   {
@@ -470,7 +470,9 @@ const languages: Language[] = [
 
 const HomeProfile: QuartzComponent = () => {
   return (
-    <div class="home-profile">
+    // data-nosnippet: keep these body sections out of Google search snippets so the
+    // homepage snippet falls back to the meta description instead of stitching fragments.
+    <div class="home-profile" data-nosnippet>
       {/* Experience */}
       <section class="home-section">
         <h2 class="home-section-heading">

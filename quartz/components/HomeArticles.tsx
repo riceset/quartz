@@ -37,7 +37,7 @@ const HomeArticles: QuartzComponent = (props: QuartzComponentProps) => {
   if (pages.length === 0) return null
 
   return (
-    <section class="home-articles">
+    <section class="home-articles" data-nosnippet>
       <h2 class="home-articles-heading">
         <BookIcon />
         Articles
