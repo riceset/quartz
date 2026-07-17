@@ -378,7 +378,7 @@ const certifications: CertificationItem[] = [
 
 const hackathons: HackathonItem[] = [
   {
-    title: "ai& × Moonshot Tokyo Hackathon Night",
+    title: "ai& × Moonshot Hackathon",
     organizer: "Moonshot AI",
     logo: "/static/logos/moonshot-ai.svg",
     logoClass: "home-org-logo-moonshot",
