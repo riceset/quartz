@@ -270,7 +270,7 @@ const experience: ExperienceItem[] = [
     logo: "/static/logos/ly-corp-en.png",
     logoClass: "home-org-logo-ly-corp",
     period: "Aug 2026 – Sep 2026",
-    location: "Fukuoka, Japan",
+    location: "Fukuoka",
     description:
       "Incoming iOS engineering intern at LY Corporation / LINEヤフー developing features for LINE, a messaging app used by 193 million people monthly.",
     tags: ["Swift", "iOS"],
@@ -283,7 +283,7 @@ const experience: ExperienceItem[] = [
     logo: "/static/logos/sansan.svg",
     logoClass: "home-org-logo-sansan",
     period: "Aug 2026 – Sep 2026",
-    location: "Tokyo, Japan",
+    location: "Tokyo",
     description:
       "Joining Sansan as an incoming iOS engineering intern, building native mobile features for its business card and contact management platform.",
     tags: ["Swift", "iOS"],
@@ -296,7 +296,7 @@ const experience: ExperienceItem[] = [
     logo: "/static/logos/baseme.svg",
     logoClass: "home-org-logo-baseme",
     period: "May 2026 – Present",
-    location: "Tokyo, Japan",
+    location: "Tokyo",
     description:
       "Building an AI-powered career agent for job-seeking students in Japan, focused on retention-driven UX improvements, LLM implementation, and mobile-web parity.",
     tags: ["TypeScript", "React", "Node.js", "LLM"],
@@ -309,7 +309,7 @@ const experience: ExperienceItem[] = [
     logo: "/static/logos/mixi.svg",
     logoClass: "home-org-logo-mixi",
     period: "Jan 2026 – Apr 2026",
-    location: "Tokyo, Japan",
+    location: "Tokyo",
     description:
       "Built and optimized iOS features for FamilyAlbum, a photo-sharing platform with more than 27 million users across 175 countries, used by 60% of parents in Japan.",
     tags: ["Swift", "iOS", "Agile"],
@@ -320,7 +320,7 @@ const experience: ExperienceItem[] = [
     companyUrl: "https://about.google/intl/ALL_jp/",
     logo: "/static/logos/google.svg",
     period: "Aug 2025 – Feb 2026",
-    location: "Tokyo, Japan",
+    location: "Tokyo",
     description:
       "Participated in Google Japan's ambassador program to promote responsible and effective AI use among university students.",
     tags: ["AI", "Gemini"],
@@ -334,7 +334,7 @@ const education: EducationItem[] = [
     institutionUrl: "https://www.tufs.ac.jp/english/",
     logo: "/static/logos/Logo_tufs-cropped.svg",
     period: "2024 – 2028",
-    location: "Tokyo, Japan",
+    location: "Tokyo",
   },
   {
     degree: "Computer Software Engineering",
@@ -342,7 +342,7 @@ const education: EducationItem[] = [
     institutionUrl: "https://42.fr",
     logo: "/static/logos/42.svg",
     period: "2022 – 2025",
-    location: "Paris, France",
+    location: "Paris",
   },
 ]
 
@@ -434,7 +434,7 @@ const speaking: SpeakingItem[] = [
     description:
       "A talk on turning a personal story into a winning Swift Playground, covering how to find an idea only you could build, grow SwiftUI skills under real project constraints, and use attention to detail to raise a submission from good to winning.",
     date: "Jul 2026",
-    location: "Taipei, Taiwan",
+    location: "Taipei",
   },
   {
     title: "MEXT Scholarship Speaker",
@@ -443,7 +443,7 @@ const speaking: SpeakingItem[] = [
     description:
       "Spoke at a Consulate-General of Japan in São Paulo webinar, sharing my MEXT scholarship experience with prospective students.",
     date: "Apr 2026",
-    location: "Tokyo, Japan",
+    location: "Tokyo",
   },
   {
     title: "The 42 Live Radio Show",
@@ -453,7 +453,7 @@ const speaking: SpeakingItem[] = [
     description:
       "Joined a cross-campus podcast between Innovation Academy and 42 Tokyo, exchanging perspectives on the 42 Network with Korean students.",
     date: "Jan 2024",
-    location: "Seoul, Korea",
+    location: "Seoul",
   },
   {
     title: "Vim na Prática",
@@ -462,7 +462,7 @@ const speaking: SpeakingItem[] = [
     description:
       "Produced a Brazilian Portuguese tutorial for 42 São Paulo's YouTube channel, teaching beginners how to use Vim from the basics.",
     date: "Apr 2023",
-    location: "São Paulo, Brazil",
+    location: "São Paulo",
   },
 ]
 
