@@ -270,7 +270,7 @@ const experience: ExperienceItem[] = [
     logo: "/static/logos/ly-corp-en.png",
     logoClass: "home-org-logo-ly-corp",
     period: "Aug 2026 – Sep 2026",
-    location: "Tokyo, Japan",
+    location: "Fukuoka, Japan",
     description:
       "Incoming iOS engineering intern at LY Corporation / LINEヤフー developing features for LINE, a messaging app used by 193 million people monthly.",
     tags: ["Swift", "iOS"],
