@@ -267,7 +267,7 @@ const experience: ExperienceItem[] = [
     company: "LY Corporation",
     companyUrl: "https://www.lycorp.co.jp/en/",
     employmentType: "Internship",
-    logo: "/static/logos/ly-corp-en.png",
+    logo: "/static/logos/ly-corp-en.svg",
     logoClass: "home-org-logo-ly-corp",
     period: "Aug 2026 – Sep 2026",
     location: "Fukuoka",
