@@ -302,7 +302,7 @@ const experience: ExperienceItem[] = [
     tags: ["TypeScript", "React", "Node.js", "LLM"],
   },
   {
-    role: "iOS Software Engineer",
+    role: "Mobile Software Engineer",
     company: "MIXI",
     companyUrl: "https://mixi.co.jp",
     employmentType: "Internship",
