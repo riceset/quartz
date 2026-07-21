@@ -182,7 +182,7 @@ const HomeHero: QuartzComponent = (props: QuartzComponentProps) => {
               lang="ja"
               data-nosnippet
             >
-              米野 チアゴ
+              米野チアゴ
             </span>
           </h1>
           <p class="home-bio">Japanese-Brazilian Software Developer</p>
