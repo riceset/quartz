@@ -276,7 +276,7 @@ const experience: ExperienceItem[] = [
     tags: ["Swift", "iOS"],
   },
   {
-    role: "Incoming iOS Software Engineer",
+    role: "Mobile Software Engineer",
     company: "Sansan",
     companyUrl: "https://www.sansan.com",
     employmentType: "Internship",
