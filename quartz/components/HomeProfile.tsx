@@ -272,7 +272,7 @@ const experience: ExperienceItem[] = [
     period: "Aug 2026 – Sep 2026",
     location: "Fukuoka",
     description:
-      "Incoming iOS engineering intern at LY Corporation / LINEヤフー developing features for LINE, a messaging app used by 193 million people monthly.",
+      "iOS engineering intern at LY Corporation / LINEヤフー developing features for LINE, a messaging app used by 193 million people monthly.",
     tags: ["Swift", "iOS"],
   },
   {
@@ -285,7 +285,7 @@ const experience: ExperienceItem[] = [
     period: "Aug 2026 – Sep 2026",
     location: "Tokyo",
     description:
-      "Joining Sansan as an incoming iOS engineering intern, building native mobile features for its business card and contact management platform.",
+      "Joining Sansan as an iOS engineering intern, building native mobile features for its business card and contact management platform.",
     tags: ["Swift", "iOS"],
   },
   {
