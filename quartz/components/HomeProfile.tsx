@@ -271,7 +271,7 @@ interface SpeakingItem {
 
 const experience: ExperienceItem[] = [
   {
-    role: "LINE Application Engineer",
+    role: "Application Development Engineer",
     company: "LY Corporation",
     companyUrl: "https://www.lycorp.co.jp/en/",
     employmentType: "Internship",
@@ -293,7 +293,7 @@ const experience: ExperienceItem[] = [
     ],
   },
   {
-    role: "Eight Application Engineer",
+    role: "Application Development Engineer",
     company: "Sansan",
     companyUrl: "https://www.sansan.com",
     employmentType: "Internship",
@@ -337,7 +337,7 @@ const experience: ExperienceItem[] = [
     ],
   },
   {
-    role: "Digital Album Domain Engineer",
+    role: "Application Development Engineer",
     company: "MIXI",
     companyUrl: "https://mixi.co.jp",
     employmentType: "Internship",
