@@ -193,6 +193,15 @@ const MetaRow = ({ period, location, rank }: MetaRowProps) => (
   </div>
 )
 
+const TagList = ({ tags }: { tags?: string[] }) =>
+  tags ? (
+    <div class="home-exp-tags">
+      {tags.map((tag) => (
+        <span class="home-exp-tag">{tag}</span>
+      ))}
+    </div>
+  ) : null
+
 // ── Data ───────────────────────────────────────────────────────────────────
 
 interface ExperienceItem {
@@ -204,6 +213,16 @@ interface ExperienceItem {
   logoClass?: string
   period: string
   location: string
+  description?: string
+  tags?: string[]
+  children?: ExperienceChildItem[]
+}
+
+interface ExperienceChildItem {
+  title: string
+  logo: string
+  logoClass?: string
+  badgeClass?: string
   description: string
   tags?: string[]
 }
@@ -272,8 +291,18 @@ const experience: ExperienceItem[] = [
     period: "Aug 2026 – Sep 2026",
     location: "Fukuoka",
     description:
-      "iOS engineering intern at LY Corporation / LINEヤフー developing features for LINE, a messaging app used by 193 million people monthly.",
-    tags: ["Swift", "iOS"],
+      "iOS engineering intern at LY Corporation / LINEヤフー developing native mobile features for its communication platform.",
+    children: [
+      {
+        title: "LINE",
+        logo: "/static/logos/line-corporation.svg",
+        logoClass: "home-org-logo-line",
+        badgeClass: "home-exp-child-logo-badge-line",
+        description:
+          "LINE is Japan's leading communication app, with domestic monthly active users surpassing 100 million at the end of 2025.",
+        tags: ["Swift", "iOS", "UIKit", "SwiftUI"],
+      },
+    ],
   },
   {
     role: "Eight Application Engineer",
@@ -286,7 +315,17 @@ const experience: ExperienceItem[] = [
     location: "Tokyo",
     description:
       "Joining Sansan as an iOS engineering intern, building native mobile features for its business card and contact management platform.",
-    tags: ["Swift", "iOS"],
+    children: [
+      {
+        title: "Eight",
+        logo: "/static/logos/eight-app.svg",
+        logoClass: "home-org-logo-eight",
+        badgeClass: "home-exp-child-logo-badge-eight",
+        description:
+          "Eight is a business card app with more than 4 million users, offering QR-based digital card exchange and business card digitization.",
+        tags: ["VIPER", "UIKit", "SwiftUI"],
+      },
+    ],
   },
   {
     role: "Full-Stack Software Engineer",
@@ -298,8 +337,18 @@ const experience: ExperienceItem[] = [
     period: "May 2026 – Present",
     location: "Tokyo",
     description:
-      "Building an AI-powered career agent for job-seeking students in Japan, focused on retention-driven UX improvements, LLM implementation, and mobile-web parity.",
-    tags: ["TypeScript", "React", "Node.js", "LLM"],
+      "Working as a full-stack software engineer at BaseMe with a focus on retention-driven UX improvements, LLM implementation, and mobile-web parity.",
+    children: [
+      {
+        title: "BaseMe",
+        logo: "/static/logos/baseme-ken.svg",
+        logoClass: "home-org-logo-baseme-ken",
+        badgeClass: "home-exp-child-logo-badge-baseme",
+        description:
+          "BaseMe is a career support platform in Japan that helps job-seeking students with AI-assisted career planning, applications, and scouting.",
+        tags: ["React", "TypeScript", "Ruby", "Swift", "LLM"],
+      },
+    ],
   },
   {
     role: "Digital Album Domain Engineer",
@@ -311,19 +360,40 @@ const experience: ExperienceItem[] = [
     period: "Jan 2026 – Apr 2026",
     location: "Tokyo",
     description:
-      "Built and optimized iOS features for FamilyAlbum, a photo-sharing platform with more than 27 million users across 175 countries, used by 60% of parents in Japan.",
-    tags: ["Swift", "iOS", "Agile"],
+      "Built and optimized iOS features for MIXI's digital album domain, working in Swift with an agile product engineering team.",
+    children: [
+      {
+        title: "FamilyAlbum",
+        logo: "/static/logos/familyalbum-logo.svg",
+        logoClass: "home-org-logo-familyalbum",
+        badgeClass: "home-exp-child-logo-badge-familyalbum",
+        description:
+          "FamilyAlbum is a private family photo and video sharing app that surpassed 30 million users worldwide and supports families across 175 countries and regions.",
+        tags: ["Clean Architecture", "MVVM", "UIKit", "SwiftUI"],
+      },
+    ],
   },
   {
     role: "Google Student Ambassador",
     company: "Google Japan",
     companyUrl: "https://about.google/intl/ALL_jp/",
     logo: "/static/logos/google.svg",
+    logoClass: "home-org-logo-google",
     period: "Aug 2025 – Feb 2026",
     location: "Tokyo",
     description:
       "Participated in Google Japan's ambassador program to promote responsible and effective AI use among university students.",
-    tags: ["AI", "Gemini"],
+    children: [
+      {
+        title: "Google Student Ambassador Program",
+        logo: "/static/logos/google-student-ambassador.svg",
+        logoClass: "home-org-logo-google-student-ambassador",
+        badgeClass: "home-exp-child-logo-badge-google",
+        description:
+          "A program offered by Google Japan for university students, focused on helping peers learn safe and effective AI use through Gemini, prompting education, and workshops.",
+        tags: ["AI", "Gemini", "Community"],
+      },
+    ],
   },
 ]
 
@@ -490,30 +560,83 @@ const HomeProfile: QuartzComponent = () => {
         <div class="home-exp-list">
           {experience.map((item) => (
             <div class="home-exp-item">
-              <div class="home-exp-row">
-                <span class="home-org-logo-badge">
-                  <img
-                    class={["home-org-logo", item.logoClass].filter(Boolean).join(" ")}
-                    src={item.logo}
-                    alt={item.company}
-                  />
-                </span>
-                <div class="home-exp-text">
-                  <span class="home-exp-role">{item.role}</span>
-                  <span class="home-exp-company">
-                    {item.company}
-                    {item.employmentType && ` · ${item.employmentType}`}
+              {item.children ? (
+                <div class="home-exp-tree">
+                  <span class="home-org-logo-badge home-exp-tree-parent-logo">
+                    <img
+                      class={["home-org-logo", item.logoClass].filter(Boolean).join(" ")}
+                      src={item.logo}
+                      alt={item.company}
+                    />
                   </span>
-                  <div class="home-exp-meta">
-                    <MetaRow period={item.period} location={item.location} />
-                  </div>
-                  {item.description && (
-                    <div class="home-exp-body">
-                      <p class="home-exp-desc">{item.description}</p>
+                  <div class="home-exp-text home-exp-tree-parent-text">
+                    <span class="home-exp-role">{item.role}</span>
+                    <span class="home-exp-company">
+                      {item.company}
+                      {item.employmentType && ` · ${item.employmentType}`}
+                    </span>
+                    <div class="home-exp-meta">
+                      <MetaRow period={item.period} location={item.location} />
                     </div>
-                  )}
+                    {item.description && (
+                      <div class="home-exp-body">
+                        <p class="home-exp-desc">{item.description}</p>
+                      </div>
+                    )}
+                  </div>
+                  <span class="home-exp-tree-connector" aria-hidden="true" />
+                  {item.children.map((child) => (
+                    <>
+                      <span
+                        class={[
+                          "home-org-logo-badge",
+                          "home-exp-child-logo-badge",
+                          child.badgeClass,
+                        ]
+                          .filter(Boolean)
+                          .join(" ")}
+                      >
+                        <img
+                          class={["home-org-logo", child.logoClass].filter(Boolean).join(" ")}
+                          src={child.logo}
+                          alt={child.title}
+                        />
+                      </span>
+                      <div class="home-exp-child-text">
+                        <span class="home-exp-child-title">{child.title}</span>
+                        <p class="home-exp-desc">{child.description}</p>
+                        <TagList tags={child.tags} />
+                      </div>
+                    </>
+                  ))}
                 </div>
-              </div>
+              ) : (
+                <div class="home-exp-row">
+                  <span class="home-org-logo-badge">
+                    <img
+                      class={["home-org-logo", item.logoClass].filter(Boolean).join(" ")}
+                      src={item.logo}
+                      alt={item.company}
+                    />
+                  </span>
+                  <div class="home-exp-text">
+                    <span class="home-exp-role">{item.role}</span>
+                    <span class="home-exp-company">
+                      {item.company}
+                      {item.employmentType && ` · ${item.employmentType}`}
+                    </span>
+                    <div class="home-exp-meta">
+                      <MetaRow period={item.period} location={item.location} />
+                    </div>
+                    {item.description && (
+                      <div class="home-exp-body">
+                        <p class="home-exp-desc">{item.description}</p>
+                        <TagList tags={item.tags} />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>

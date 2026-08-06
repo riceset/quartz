@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Google Student Ambassador Program logo</title>
+  <defs>
+    <linearGradient id="gsa-star-top" x1="116" y1="136" x2="396" y2="136" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4285f4" />
+      <stop offset="0.47" stop-color="#4285f4" />
+      <stop offset="0.67" stop-color="#34a853" />
+      <stop offset="1" stop-color="#fbbc05" />
+    </linearGradient>
+    <linearGradient id="gsa-star-bottom" x1="137" y1="203" x2="374" y2="274" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6b79dd" />
+      <stop offset="0.48" stop-color="#9c62c6" />
+      <stop offset="0.7" stop-color="#ea4335" />
+      <stop offset="1" stop-color="#ff7a2f" />
+    </linearGradient>
+  </defs>
+  <path
+    d="M91 190c86-25 129-76 165-151c34 75 78 126 165 151"
+    fill="none"
+    stroke="url(#gsa-star-top)"
+    stroke-width="50"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M91 190c79 19 124 68 165 139c39-70 84-119 165-139"
+    fill="none"
+    stroke="url(#gsa-star-bottom)"
+    stroke-width="50"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M99 274v80l157 76l157-76v-80"
+    fill="none"
+    stroke="#4285f4"
+    stroke-width="50"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
