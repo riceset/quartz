@@ -263,7 +263,7 @@ interface SpeakingItem {
 
 const experience: ExperienceItem[] = [
   {
-    role: "iOS Software Engineer",
+    role: "Mobile Software Engineer",
     company: "LY Corporation",
     companyUrl: "https://www.lycorp.co.jp/en/",
     employmentType: "Internship",
@@ -276,7 +276,7 @@ const experience: ExperienceItem[] = [
     tags: ["Swift", "iOS"],
   },
   {
-    role: "iOS Software Engineer",
+    role: "Mobile Software Engineer",
     company: "Sansan",
     companyUrl: "https://www.sansan.com",
     employmentType: "Internship",
@@ -302,7 +302,7 @@ const experience: ExperienceItem[] = [
     tags: ["TypeScript", "React", "Node.js", "LLM"],
   },
   {
-    role: "iOS Software Engineer",
+    role: "Mobile Software Engineer",
     company: "MIXI",
     companyUrl: "https://mixi.co.jp",
     employmentType: "Internship",
