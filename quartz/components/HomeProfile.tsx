@@ -360,7 +360,7 @@ const experience: ExperienceItem[] = [
     period: "Jan 2026 – Apr 2026",
     location: "Tokyo",
     description:
-      "Built and optimized iOS features for MIXI's digital album domain, working in Swift with an agile product engineering team.",
+      "Built and optimized iOS features for MIXI's digital album application, working in Swift with an agile product engineering team.",
     children: [
       {
         title: "FamilyAlbum",
