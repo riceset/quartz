@@ -337,7 +337,7 @@ const experience: ExperienceItem[] = [
     period: "May 2026 – Present",
     location: "Tokyo",
     description:
-      "Working as a full-stack software engineer at BaseMe with a focus on retention-driven UX improvements, LLM implementation, and mobile-web parity.",
+      "Full-stack software engineer at BaseMe with a focus on retention-driven UX improvements, LLM implementation, and mobile-web parity.",
     children: [
       {
         title: "BaseMe",
