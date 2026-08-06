@@ -322,7 +322,7 @@ const experience: ExperienceItem[] = [
         logoClass: "home-org-logo-eight",
         badgeClass: "home-exp-child-logo-badge-eight",
         description:
-          "Eight is a business card app with more than 4 million users, offering QR-based digital card exchange and business card digitization.",
+          "Eight is a business card app with more than 4 million users, offering QR card exchange and digitization for business cards.",
         tags: ["VIPER", "UIKit", "SwiftUI"],
       },
     ],
