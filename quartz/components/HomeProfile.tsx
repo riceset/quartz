@@ -193,15 +193,6 @@ const MetaRow = ({ period, location, rank }: MetaRowProps) => (
   </div>
 )
 
-const TagList = ({ tags }: { tags?: string[] }) =>
-  tags ? (
-    <div class="home-exp-tags">
-      {tags.map((tag) => (
-        <span class="home-exp-tag">{tag}</span>
-      ))}
-    </div>
-  ) : null
-
 // ── Data ───────────────────────────────────────────────────────────────────
 
 interface ExperienceItem {
@@ -214,7 +205,6 @@ interface ExperienceItem {
   period: string
   location: string
   description?: string
-  tags?: string[]
   children?: ExperienceChildItem[]
 }
 
@@ -224,7 +214,6 @@ interface ExperienceChildItem {
   logoClass?: string
   badgeClass?: string
   description: string
-  tags?: string[]
 }
 
 interface EducationItem {
@@ -300,7 +289,6 @@ const experience: ExperienceItem[] = [
         badgeClass: "home-exp-child-logo-badge-line",
         description:
           "LINE is Japan's leading communication app, with domestic monthly active users surpassing 100 million at the end of 2025.",
-        tags: ["Swift", "UIKit", "SwiftUI"],
       },
     ],
   },
@@ -323,7 +311,6 @@ const experience: ExperienceItem[] = [
         badgeClass: "home-exp-child-logo-badge-eight",
         description:
           "Eight is a business card app with more than 4 million users, offering QR card exchange and digitization for business cards.",
-        tags: ["VIPER", "UIKit", "SwiftUI"],
       },
     ],
   },
@@ -346,7 +333,6 @@ const experience: ExperienceItem[] = [
         badgeClass: "home-exp-child-logo-badge-baseme",
         description:
           "BaseMe is a career support platform in Japan that helps job-seeking students with AI-assisted career planning, applications, and scouting.",
-        tags: ["TypeScript", "Ruby", "Swift", "LLM"],
       },
     ],
   },
@@ -369,7 +355,6 @@ const experience: ExperienceItem[] = [
         badgeClass: "home-exp-child-logo-badge-familyalbum",
         description:
           "FamilyAlbum is a private family photo and video sharing app that surpassed 30 million users worldwide and supports families across 175 countries and regions.",
-        tags: ["Clean Architecture", "MVVM"],
       },
     ],
   },
@@ -391,7 +376,6 @@ const experience: ExperienceItem[] = [
         badgeClass: "home-exp-child-logo-badge-google",
         description:
           "A program offered by Google Japan for university students, focused on helping peers learn safe and effective AI use through Gemini, prompting education, and workshops.",
-        tags: ["AI", "Gemini"],
       },
     ],
   },
@@ -605,7 +589,6 @@ const HomeProfile: QuartzComponent = () => {
                       <div class="home-exp-child-text">
                         <span class="home-exp-child-title">{child.title}</span>
                         <p class="home-exp-desc">{child.description}</p>
-                        <TagList tags={child.tags} />
                       </div>
                     </>
                   ))}
@@ -631,7 +614,6 @@ const HomeProfile: QuartzComponent = () => {
                     {item.description && (
                       <div class="home-exp-body">
                         <p class="home-exp-desc">{item.description}</p>
-                        <TagList tags={item.tags} />
                       </div>
                     )}
                   </div>

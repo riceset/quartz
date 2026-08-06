@@ -316,20 +316,6 @@
   max-width: 580px;
 }
 
-.home-exp-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-
-.home-exp-tag {
-  font-size: 0.75rem;
-  color: var(--secondary);
-  background-color: var(--highlight);
-  padding: 0.1rem 0.5rem;
-  border-radius: 999px;
-}
-
 .home-exp-tree {
   display: grid;
   grid-template-columns: var(--home-org-badge-size) minmax(0, 1fr);
