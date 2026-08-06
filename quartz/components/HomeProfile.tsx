@@ -300,7 +300,7 @@ const experience: ExperienceItem[] = [
         badgeClass: "home-exp-child-logo-badge-line",
         description:
           "LINE is Japan's leading communication app, with domestic monthly active users surpassing 100 million at the end of 2025.",
-        tags: ["Swift", "iOS", "UIKit", "SwiftUI"],
+        tags: ["Swift", "UIKit", "SwiftUI"],
       },
     ],
   },
@@ -346,7 +346,7 @@ const experience: ExperienceItem[] = [
         badgeClass: "home-exp-child-logo-badge-baseme",
         description:
           "BaseMe is a career support platform in Japan that helps job-seeking students with AI-assisted career planning, applications, and scouting.",
-        tags: ["React", "TypeScript", "Ruby", "Swift", "LLM"],
+        tags: ["TypeScript", "Ruby", "Swift", "LLM"],
       },
     ],
   },
@@ -369,7 +369,7 @@ const experience: ExperienceItem[] = [
         badgeClass: "home-exp-child-logo-badge-familyalbum",
         description:
           "FamilyAlbum is a private family photo and video sharing app that surpassed 30 million users worldwide and supports families across 175 countries and regions.",
-        tags: ["Clean Architecture", "MVVM", "UIKit", "SwiftUI"],
+        tags: ["Clean Architecture", "MVVM"],
       },
     ],
   },
@@ -391,7 +391,7 @@ const experience: ExperienceItem[] = [
         badgeClass: "home-exp-child-logo-badge-google",
         description:
           "A program offered by Google Japan for university students, focused on helping peers learn safe and effective AI use through Gemini, prompting education, and workshops.",
-        tags: ["AI", "Gemini", "Community"],
+        tags: ["AI", "Gemini"],
       },
     ],
   },
