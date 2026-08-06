@@ -169,14 +169,12 @@
 }
 
 .home-org-logo-baseme-ken {
-  width: 112%;
-  height: 112%;
+  width: 86%;
+  height: 86%;
   flex-shrink: 0;
   margin: auto;
   object-fit: contain;
   object-position: center center;
-  transform: translateY(-10%);
-  transform-origin: center center;
 }
 
 .home-org-logo-sansan {
@@ -374,31 +372,8 @@
 .home-exp-child-logo-badge {
   grid-column: 1;
   grid-row: 3;
-}
-
-.home-exp-child-logo-badge-line {
-  background-color: #f7fff8;
-  border-color: color-mix(in srgb, #06c755 28%, var(--lightgray));
-}
-
-.home-exp-child-logo-badge-eight {
-  background-color: #f6fbff;
-  border-color: color-mix(in srgb, #1687c9 28%, var(--lightgray));
-}
-
-.home-exp-child-logo-badge-familyalbum {
-  background-color: #fff9f1;
-  border-color: color-mix(in srgb, #f6a23b 32%, var(--lightgray));
-}
-
-.home-exp-child-logo-badge-google {
-  background-color: #f8fbff;
-  border-color: color-mix(in srgb, #4285f4 28%, var(--lightgray));
-}
-
-.home-exp-child-logo-badge-baseme {
-  background-color: #fffaf3;
-  border-color: color-mix(in srgb, #f2b84b 34%, var(--lightgray));
+  background-color: #fff;
+  border-color: var(--lightgray);
 }
 
 .home-exp-child-text {
