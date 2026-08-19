@@ -432,14 +432,6 @@ const certifications: CertificationItem[] = [
 
 const hackathons: HackathonItem[] = [
   {
-    title: "ai& × Moonshot Hackathon",
-    organizer: "Moonshot AI",
-    logo: "/static/logos/moonshot-ai.svg",
-    logoClass: "home-org-logo-moonshot",
-    date: "Jul 2026",
-    rank: "Participant",
-  },
-  {
     title: "Build with OpenAI Hackathon",
     organizer: "OpenAI",
     logo: "/static/logos/openai.svg",
@@ -461,14 +453,6 @@ const hackathons: HackathonItem[] = [
     logoClass: "home-org-logo-mercari",
     date: "Apr 2026",
     rank: "Winner",
-  },
-  {
-    title: "Mistral AI Worldwide Hackathon",
-    organizer: "Mistral AI",
-    logo: "/static/logos/mistral.svg",
-    logoClass: "home-org-logo-mistral",
-    date: "Mar 2026",
-    rank: "Participant",
   },
   {
     title: "24-Hour Hackathon by 42 Asia",
