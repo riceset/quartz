@@ -280,7 +280,7 @@ const experience: ExperienceItem[] = [
     period: "Aug 2026 – Sep 2026",
     location: "Fukuoka",
     description:
-      "iOS engineering intern at LY Corporation / LINEヤフー developing native mobile features for its communication platform.",
+      "Developing native iOS product features for LINE's Liquid Glass redesign, collaborating daily with engineers and designers.",
     children: [
       {
         title: "LINE",
@@ -302,7 +302,7 @@ const experience: ExperienceItem[] = [
     period: "Aug 2026 – Sep 2026",
     location: "Tokyo",
     description:
-      "Joining Sansan as an iOS engineering intern, building native mobile features for its business card and contact management platform.",
+      "Implementing iOS UI/UX improvements and generative AI features using Apple's Foundation Models framework for Eight.",
     children: [
       {
         title: "Eight",
