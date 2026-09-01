@@ -509,6 +509,16 @@
   font-size: 0.95rem;
   line-height: 1.4;
   color: color-mix(in srgb, var(--darkgray) 78%, var(--secondary) 22%);
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+.home-hackathon-organizer-full {
+  display: inline;
+}
+
+.home-hackathon-organizer-short {
+  display: none;
 }
 
 .home-hackathon-meta {
@@ -684,4 +694,30 @@
   font-family: "IBM Plex Mono", var(--codeFont);
   color: var(--gray);
   text-align: right;
+}
+
+@media (max-width: 520px) {
+  .home-hackathon-item {
+    gap: 0.75rem;
+  }
+
+  .home-hackathon-item .home-org-logo-badge {
+    width: calc(var(--home-org-badge-size) * 0.9);
+    height: calc(var(--home-org-badge-size) * 0.9);
+    padding: 0.3rem;
+  }
+
+  .home-hackathon-organizer-full {
+    display: none;
+  }
+
+  .home-hackathon-organizer-short {
+    display: inline;
+  }
+}
+
+@media (max-width: 360px) {
+  .home-hackathon-organizer {
+    font-size: 0.9rem;
+  }
 }

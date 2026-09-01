@@ -252,6 +252,7 @@ interface CertificationItem {
 interface HackathonItem {
   title: string
   organizer: string
+  organizerShort?: string
   logo?: string
   logoClass?: string
   date: string
@@ -457,6 +458,7 @@ const hackathons: HackathonItem[] = [
   {
     title: "24-Hour Hackathon by 42 Asia",
     organizer: "Singapore University of Technology and Design",
+    organizerShort: "SUTD",
     logo: "/static/logos/sutd-mark.svg",
     date: "Sep 2024",
     rank: "2nd Place",
@@ -720,7 +722,14 @@ const HomeProfile: QuartzComponent = () => {
               )}
               <div class="home-hackathon-text">
                 <span class="home-hackathon-title">{item.title}</span>
-                <span class="home-hackathon-organizer">{item.organizer}</span>
+                <span class="home-hackathon-organizer" title={item.organizer} aria-label={item.organizer}>
+                  <span class="home-hackathon-organizer-full">{item.organizer}</span>
+                  {item.organizerShort && (
+                    <span class="home-hackathon-organizer-short" aria-hidden="true">
+                      {item.organizerShort}
+                    </span>
+                  )}
+                </span>
                 <div class="home-hackathon-meta">
                   <MetaRow period={item.date} rank={item.rank} />
                 </div>
