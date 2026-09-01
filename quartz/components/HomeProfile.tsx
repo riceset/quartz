@@ -505,11 +505,11 @@ const speaking: SpeakingItem[] = [
 ]
 
 const languages: Language[] = [
-  { flag: "🇧🇷", flagAlt: "🇵🇹", name: "Portuguese", level: "Native" },
-  { flag: "🇯🇵", name: "Japanese", level: "Bilingual" },
-  { flag: "🇺🇸", flagAlt: "🇬🇧", name: "English", level: "Bilingual" },
-  { flag: "🇪🇸", name: "Spanish", level: "Proficient" },
-  { flag: "🇹🇼", flagAlt: "🇨🇳", name: "Mandarin", level: "Conversational" },
+  { flag: "🇧🇷", flagAlt: "🇵🇹", name: "Portuguese", level: "L1" },
+  { flag: "🇯🇵", name: "Japanese", level: "C2" },
+  { flag: "🇺🇸", flagAlt: "🇬🇧", name: "English", level: "C2" },
+  { flag: "🇪🇸", name: "Spanish", level: "C1" },
+  { flag: "🇹🇼", flagAlt: "🇨🇳", name: "Mandarin", level: "B1" },
 ]
 
 // ── Component ──────────────────────────────────────────────────────────────
