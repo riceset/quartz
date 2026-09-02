@@ -24,22 +24,6 @@ const summaryProcessor = unified()
   .use(remarkRehype)
   .use(rehypeKatex, { output: "html" })
 
-const BookIcon = () => (
-  <svg
-    class="section-icon"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-  >
-    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-  </svg>
-)
-
 const cleanExcerpt = (description: string | undefined, title: string) => {
   const raw = unescapeHTML(description?.trim() ?? "")
   const withoutRepeatedTitle = raw.toLocaleLowerCase().startsWith(title.toLocaleLowerCase())
@@ -81,10 +65,7 @@ export default ((opts?: Options) => {
 
     return (
       <section class="home-articles" data-nosnippet="true" data-article-pagination>
-        <h2 class="home-articles-heading">
-          <BookIcon />
-          Articles
-        </h2>
+        <h2 class="home-articles-heading">06 / Articles</h2>
 
         {featuredArticle && (
           <article class="article-card article-card-featured">

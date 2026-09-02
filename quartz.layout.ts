@@ -5,17 +5,7 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [
-    Component.ConditionalRender({
-      component: Component.Graph({
-        globalOnly: true,
-        globalGraph: {
-          removeSlugs: ["index"],
-        },
-      }),
-      condition: (props) => props.fileData.slug === "index",
-    }),
-  ],
+  afterBody: [],
   footer: Component.Footer({
     links: {},
   }),
@@ -34,6 +24,10 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.ConditionalRender({
       component: Component.HomeArticles({ pageSize: 6 }),
+      condition: (props) => props.fileData.slug === "index",
+    }),
+    Component.ConditionalRender({
+      component: Component.HomeAbout(),
       condition: (props) => props.fileData.slug === "index",
     }),
   ],

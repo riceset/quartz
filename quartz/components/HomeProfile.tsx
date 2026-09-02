@@ -3,120 +3,6 @@ import style from "./styles/homeProfile.scss"
 
 // ── Icons ──────────────────────────────────────────────────────────────────
 
-const BriefcaseIcon = () => (
-  <svg
-    class="section-icon"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <rect x="2" y="7" width="20" height="14" rx="2" />
-    <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
-    <line x1="12" y1="12" x2="12" y2="12.01" />
-    <path d="M2 12h20" />
-  </svg>
-)
-
-const GraduationCapIcon = () => (
-  <svg
-    class="section-icon section-icon-education"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-    <path d="M6 12v5c3 3 9 3 12 0v-5" />
-  </svg>
-)
-
-const GlobeIcon = () => (
-  <svg
-    class="section-icon"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <circle cx="12" cy="12" r="10" />
-    <line x1="2" y1="12" x2="22" y2="12" />
-    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-  </svg>
-)
-
-const AwardIcon = () => (
-  <svg
-    class="section-icon section-icon-award"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <circle cx="12" cy="8" r="4" />
-    <path d="m8.5 12.5-1 8 4.5-2.5 4.5 2.5-1-8" />
-  </svg>
-)
-
-const CertificationIcon = () => (
-  <svg
-    class="section-icon"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V7L12 2z" />
-    <polyline points="9 12 11 14 15 10" />
-  </svg>
-)
-
-const HackathonIcon = () => (
-  <svg
-    class="section-icon"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-    <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-    <path d="M4 22h16" />
-    <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
-    <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
-    <path d="M18 2H6v7a6 6 0 0 0 12 0V2z" />
-  </svg>
-)
-
-const MicIcon = () => (
-  <svg
-    class="section-icon"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
-    <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-    <line x1="12" y1="19" x2="12" y2="22" />
-    <line x1="8" y1="22" x2="16" y2="22" />
-  </svg>
-)
-
 const CalendarIcon = () => (
   <svg class="meta-icon" viewBox="-1 -1 26 26" fill="currentColor" stroke="none">
     <path
@@ -526,10 +412,7 @@ const HomeProfile: QuartzComponent = () => {
     <div class="home-profile" data-nosnippet>
       {/* Experience */}
       <section class="home-section">
-        <h2 class="home-section-heading">
-          <BriefcaseIcon />
-          Experience
-        </h2>
+        <h2 class="home-section-heading">00 / Experience</h2>
         <div class="home-exp-list">
           {experience.map((item) => (
             <div class="home-exp-item">
@@ -615,10 +498,7 @@ const HomeProfile: QuartzComponent = () => {
 
       {/* Education */}
       <section class="home-section">
-        <h2 class="home-section-heading">
-          <GraduationCapIcon />
-          Education
-        </h2>
+        <h2 class="home-section-heading">01 / Education</h2>
         <div class="home-edu-list">
           {education.map((item) => (
             <div class="home-edu-item">
@@ -639,10 +519,7 @@ const HomeProfile: QuartzComponent = () => {
 
       {/* Awards */}
       <section class="home-section">
-        <h2 class="home-section-heading">
-          <AwardIcon />
-          Awards
-        </h2>
+        <h2 class="home-section-heading">02 / Awards</h2>
         <div class="home-award-list">
           {awards.map((item) => (
             <div class="home-award-item">
@@ -667,10 +544,7 @@ const HomeProfile: QuartzComponent = () => {
 
       {/* Talks */}
       <section class="home-section" id="talks">
-        <h2 class="home-section-heading">
-          <MicIcon />
-          Talks
-        </h2>
+        <h2 class="home-section-heading">03 / Talks</h2>
         <div class="home-talk-list">
           {speaking.map((item) => (
             <div class="home-talk-item">
@@ -713,10 +587,7 @@ const HomeProfile: QuartzComponent = () => {
 
       {/* Hackathons */}
       <section class="home-section">
-        <h2 class="home-section-heading">
-          <HackathonIcon />
-          Hackathons
-        </h2>
+        <h2 class="home-section-heading">04 / Hackathons</h2>
         <div class="home-hackathon-list">
           {hackathons.map((item) => (
             <div class="home-hackathon-item">
@@ -743,10 +614,7 @@ const HomeProfile: QuartzComponent = () => {
 
       {/* Languages */}
       <section class="home-section">
-        <h2 class="home-section-heading">
-          <GlobeIcon />
-          Languages
-        </h2>
+        <h2 class="home-section-heading">05 / Languages</h2>
         <div class="home-lang-list">
           {languages.map((lang) => (
             <div class="home-lang-item">
