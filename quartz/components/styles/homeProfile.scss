@@ -564,9 +564,11 @@
   padding: 0;
   color: var(--dark);
   text-decoration-line: underline;
-  text-decoration-color: color-mix(in srgb, var(--dark) 28%, transparent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
+  text-decoration-style: dotted;
+  text-decoration-color: color-mix(in srgb, var(--dark) 58%, transparent);
+  text-decoration-thickness: 2px;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 0.24em;
   background: transparent;
   border-radius: 0;
 

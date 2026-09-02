@@ -244,7 +244,12 @@ $article-space-10: 2.5rem;
   &:not(:disabled):hover {
     color: var(--darkgray);
     background: transparent;
-    transform: rotate(-8deg);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:not(:disabled):hover {
+      transform: rotate(-8deg);
+    }
   }
 
   &:focus-visible {
