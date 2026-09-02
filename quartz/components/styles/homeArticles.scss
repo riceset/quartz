@@ -90,7 +90,7 @@ $article-space-10: 2.5rem;
     height: 100%;
     min-height: 260px;
     border-bottom: 0;
-    border-left: 1px solid color-mix(in srgb, var(--lightgray) 76%, var(--dark) 24%);
+    border-left: 0;
   }
 
   & .article-card-content {
@@ -290,7 +290,7 @@ $article-space-10: 2.5rem;
       grid-column: 1;
       grid-row: 2;
       min-height: 220px;
-      border-top: 1px solid color-mix(in srgb, var(--lightgray) 76%, var(--dark) 24%);
+      border-top: 0;
       border-bottom: 0;
       border-left: 0;
     }
