@@ -4,17 +4,17 @@ import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
 import { unified } from "unified"
 import { htmlToJsx } from "../util/jsx"
-import { FilePath, FullSlug, resolveRelative } from "../util/path"
+import { FilePath, resolveRelative } from "../util/path"
 import { unescapeHTML } from "../util/escape"
 import { Date, getDate } from "./Date"
 import { byDateAndAlphabetical } from "./PageList"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import style from "./styles/homeArticles.scss"
+// @ts-ignore
+import script from "./scripts/homeArticles.inline"
 
 interface Options {
-  limit?: number
-  archive?: boolean
-  showAllLink?: boolean
+  pageSize?: number
 }
 
 const featuredArticleSlug = "Swift-Student-Challenge-2026"
@@ -40,22 +40,6 @@ const BookIcon = () => (
   </svg>
 )
 
-const ArrowIcon = () => (
-  <svg
-    class="article-card-arrow"
-    viewBox="0 0 20 20"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1.8"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-  >
-    <path d="M4 10h11" />
-    <path d="m11 6 4 4-4 4" />
-  </svg>
-)
-
 const cleanExcerpt = (description: string | undefined, title: string) => {
   const raw = unescapeHTML(description?.trim() ?? "")
   const withoutRepeatedTitle = raw.toLocaleLowerCase().startsWith(title.toLocaleLowerCase())
@@ -76,18 +60,18 @@ const renderSummary = (summary: string) => {
 export default ((opts?: Options) => {
   const HomeArticles: QuartzComponent = (props: QuartzComponentProps) => {
     const { allFiles, fileData, cfg } = props
-    const isArchive = opts?.archive ?? false
+    const pageSize = Math.max(1, opts?.pageSize ?? 6)
     const allArticles = allFiles
-      .filter(
-        (page) =>
-          page.slug !== "index" && page.slug !== "articles" && !page.slug?.startsWith("notes/"),
-      )
+      .filter((page) => page.slug !== "index" && !page.slug?.startsWith("notes/"))
       .sort(byDateAndAlphabetical(cfg))
     const featuredArticle = allArticles.find((page) => page.slug === featuredArticleSlug)
     const gridArticles = featuredArticle
       ? allArticles.filter((page) => page.slug !== featuredArticle.slug)
       : allArticles
-    const pages = opts?.limit ? gridArticles.slice(0, opts.limit) : gridArticles
+    const articlePages = Array.from(
+      { length: Math.ceil(gridArticles.length / pageSize) },
+      (_, pageIndex) => gridArticles.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize),
+    )
     const featuredTitle = featuredArticle?.frontmatter?.title ?? "Untitled"
     const featuredSummary = featuredArticle
       ? getSummary(featuredArticle.description, featuredArticle.frontmatter?.summary, featuredTitle)
@@ -96,24 +80,11 @@ export default ((opts?: Options) => {
     if (allArticles.length === 0) return null
 
     return (
-      <section
-        class={["home-articles", isArchive ? "article-archive" : undefined]
-          .filter(Boolean)
-          .join(" ")}
-        data-nosnippet={!isArchive || undefined}
-      >
-        {isArchive && (
-          <header class="article-archive-header">
-            <h1>All articles</h1>
-          </header>
-        )}
-
-        {!isArchive && (
-          <h2 class="home-articles-heading">
-            <BookIcon />
-            Articles
-          </h2>
-        )}
+      <section class="home-articles" data-nosnippet="true" data-article-pagination>
+        <h2 class="home-articles-heading">
+          <BookIcon />
+          Articles
+        </h2>
 
         {featuredArticle && (
           <article class="article-card article-card-featured">
@@ -138,48 +109,88 @@ export default ((opts?: Options) => {
           </article>
         )}
 
-        <div class="article-card-grid">
-          {pages.map((page) => {
-            const title = page.frontmatter?.title ?? "Untitled"
-            const date = page.dates ? getDate(cfg, page) : null
-            const tag = page.frontmatter?.tags?.[0]
-            const summary = getSummary(page.description, page.frontmatter?.summary, title)
-            const href = resolveRelative(fileData.slug!, page.slug!)
-            const TitleTag = isArchive ? "h2" : "h3"
+        <div class="article-card-pages">
+          {articlePages.map((articles, pageIndex) => (
+            <div
+              class="article-card-grid article-card-page"
+              data-article-page={pageIndex}
+              hidden={pageIndex !== 0}
+            >
+              {articles.map((page) => {
+                const title = page.frontmatter?.title ?? "Untitled"
+                const date = page.dates ? getDate(cfg, page) : null
+                const tag = page.frontmatter?.tags?.[0]
+                const summary = getSummary(page.description, page.frontmatter?.summary, title)
+                const href = resolveRelative(fileData.slug!, page.slug!)
 
-            return (
-              <article class="article-card">
-                <div class="article-card-content">
-                  <div class="article-card-meta">
-                    {tag && <span>{tag}</span>}
-                    {tag && date && <span aria-hidden="true">·</span>}
-                    {date && <Date date={date} locale={cfg.locale} />}
-                  </div>
-                  <TitleTag class="article-card-title">
-                    <a href={href}>{title}</a>
-                  </TitleTag>
-                  {summary && <div class="article-card-excerpt">{renderSummary(summary)}</div>}
+                return (
+                  <article class="article-card">
+                    <div class="article-card-content">
+                      <div class="article-card-meta">
+                        {tag && <span>{tag}</span>}
+                        {tag && date && <span aria-hidden="true">·</span>}
+                        {date && <Date date={date} locale={cfg.locale} />}
+                      </div>
+                      <h3 class="article-card-title">
+                        <a href={href}>{title}</a>
+                      </h3>
+                      {summary && <div class="article-card-excerpt">{renderSummary(summary)}</div>}
+                    </div>
+                  </article>
+                )
+              })}
+              {Array.from({ length: pageSize - articles.length }, (_, placeholderIndex) => (
+                <div
+                  class="article-card article-card-placeholder"
+                  aria-hidden="true"
+                  data-placeholder={placeholderIndex}
+                >
+                  <div class="article-card-content" />
                 </div>
-              </article>
-            )
-          })}
+              ))}
+            </div>
+          ))}
         </div>
 
-        {opts?.showAllLink && allArticles.length > pages.length && (
-          <div class="articles-more-row">
-            <a
-              class="articles-more-link"
-              href={resolveRelative(fileData.slug!, "articles" as FullSlug)}
+        {articlePages.length > 1 && (
+          <nav class="article-pagination" aria-label="Article pages">
+            <button
+              type="button"
+              class="article-pagination-button article-pagination-previous"
+              data-article-previous
+              aria-label="Previous article page"
+              title="Previous page"
+              disabled
             >
-              All articles
-              <ArrowIcon />
-            </a>
-          </div>
+              <span aria-hidden="true">{"<-"}</span>
+            </button>
+            <span
+              class="article-pagination-status"
+              data-article-page-status
+              aria-live="polite"
+              aria-atomic="true"
+              aria-label={`Page 1 of ${articlePages.length}`}
+            >
+              <span data-article-page-current>1</span>
+              <span aria-hidden="true"> / </span>
+              <span>{articlePages.length}</span>
+            </span>
+            <button
+              type="button"
+              class="article-pagination-button article-pagination-next"
+              data-article-next
+              aria-label="Next article page"
+              title="Next page"
+            >
+              <span aria-hidden="true">{"->"}</span>
+            </button>
+          </nav>
         )}
       </section>
     )
   }
 
   HomeArticles.css = style
+  HomeArticles.afterDOMLoaded = script
   return HomeArticles
 }) satisfies QuartzComponentConstructor<Options | undefined>
