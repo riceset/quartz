@@ -585,9 +585,9 @@ const HomeProfile: QuartzComponent = () => {
         </div>
       </section>
 
-      {/* Hackathons */}
+      {/* Competitions */}
       <section class="home-section">
-        <h2 class="home-section-heading">04 / Hackathons</h2>
+        <h2 class="home-section-heading">04 / Competitions</h2>
         <div class="home-hackathon-list">
           {hackathons.map((item) => (
             <div class="home-hackathon-item">
