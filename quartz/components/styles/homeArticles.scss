@@ -288,6 +288,10 @@ $article-space-10: 2.5rem;
 }
 
 @media all and (max-width: 620px) {
+  .article-card-meta-logo {
+    transform: none;
+  }
+
   .article-card-grid {
     grid-template-columns: 1fr;
   }
