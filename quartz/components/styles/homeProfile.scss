@@ -558,6 +558,30 @@
   color: var(--dark);
 }
 
+.home-talk-title-link,
+.home-talk-title-link:visited {
+  align-self: flex-start;
+  padding: 0;
+  color: var(--dark);
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, var(--dark) 28%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  background: transparent;
+  border-radius: 0;
+
+  &:hover {
+    color: var(--dark);
+    text-decoration-color: currentColor;
+    background: transparent;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 3px;
+  }
+}
+
 .home-talk-organization {
   font-size: 0.95rem;
   line-height: 1.4;

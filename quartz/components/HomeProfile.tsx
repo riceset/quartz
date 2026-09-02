@@ -261,6 +261,7 @@ interface HackathonItem {
 
 interface SpeakingItem {
   title: string
+  talkUrl?: string
   organization: string
   logo?: string
   logoClass?: string
@@ -469,6 +470,7 @@ const hackathons: HackathonItem[] = [
 const speaking: SpeakingItem[] = [
   {
     title: "如何贏得 Swift Student Challenge",
+    talkUrl: "https://www.youtube.com/watch?v=t9sC0nL-uTA",
     organization: "iPlayground Taiwan",
     logo: "/static/logos/iplayground.svg",
     logoClass: "home-org-logo-iplayground",
@@ -664,7 +666,7 @@ const HomeProfile: QuartzComponent = () => {
       </section>
 
       {/* Talks */}
-      <section class="home-section">
+      <section class="home-section" id="talks">
         <h2 class="home-section-heading">
           <MicIcon />
           Talks
@@ -683,7 +685,13 @@ const HomeProfile: QuartzComponent = () => {
                   </span>
                 )}
                 <div class="home-talk-text">
-                  <span class="home-talk-title">{item.title}</span>
+                  {item.talkUrl ? (
+                    <a class="home-talk-title home-talk-title-link" href={item.talkUrl}>
+                      {item.title}
+                    </a>
+                  ) : (
+                    <span class="home-talk-title">{item.title}</span>
+                  )}
                   <span class="home-talk-organization">{item.organization}</span>
                   <div class="home-talk-meta">
                     <MetaRow period={item.date} location={item.location} />
