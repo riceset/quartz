@@ -1,6 +1,7 @@
 ---
 title: Replicating the Print Function in C
 date: 2024-02-17
+description: "A from-scratch C implementation of printf using variadic arguments, format parsing, custom output functions, and basic error handling."
 tags:
   - c
 ---

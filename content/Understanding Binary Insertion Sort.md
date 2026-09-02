@@ -1,6 +1,7 @@
 ---
 title: Understanding Binary Insertion Sort
 date: 2024-12-24
+description: "How Binary Insertion Sort combines binary search with insertion sort, with C++ implementation details and a step-by-step example."
 tags:
   - algorithms
 ---

@@ -1,6 +1,7 @@
 ---
 title: Writing Makefile for C++ Projects
 date: 2024-04-18
+description: "A step-by-step guide to writing a C++ Makefile with variables, compiler flags, build rules, cleanup targets, and .PHONY declarations."
 tags:
   - c++
 ---

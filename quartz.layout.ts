@@ -33,7 +33,7 @@ export const defaultContentPageLayout: PageLayout = {
       condition: (props) => props.fileData.slug === "index",
     }),
     Component.ConditionalRender({
-      component: Component.HomeArticles(),
+      component: Component.HomeArticles({ limit: 6, showAllLink: true }),
       condition: (props) => props.fileData.slug === "index",
     }),
   ],

@@ -1,6 +1,7 @@
 ---
 title: Introduction to Pointers in C
 date: 2021-06-09
+description: "An introduction to C pointers through memory addresses, the address-of operator, dereferencing, and a small practical example."
 tags:
   - c
 ---

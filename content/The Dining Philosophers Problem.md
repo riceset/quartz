@@ -1,6 +1,7 @@
 ---
 title: The Dining Philosophers Problem
 date: 2024-02-17
+description: "A detailed C implementation of the Dining Philosophers problem, covering mutexes, threads, fork assignment, timing, supervision, and shutdown."
 tags:
   - algorithms
 ---

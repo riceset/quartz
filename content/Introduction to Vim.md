@@ -1,6 +1,7 @@
 ---
 title: Introduction to Vim
 date: 2022-02-06
+description: "A practical guide to Vim's modes, movement, editing commands, search, macros, marks, tabs, and other essentials for working efficiently."
 tags:
   - vim
 ---

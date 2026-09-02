@@ -7,7 +7,7 @@
   }
 
   &.global-only {
-    margin-top: 2.25rem;
+    margin-top: 1rem;
     padding-top: 0;
     border-top: 0;
     position: relative;
@@ -17,7 +17,7 @@
       display: block;
       width: min(100%, 10rem);
       height: 1px;
-      margin: 0 auto 1.4rem;
+      margin: 0 auto 1.5rem;
       background: linear-gradient(
         90deg,
         rgba(0, 0, 0, 0) 0%,

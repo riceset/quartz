@@ -1,6 +1,8 @@
 ---
 title: Understanding Insertion Sort
 date: 2024-12-22
+description: "A clear explanation of insertion sort, from its C++ implementation and O(n²) complexity to a step-by-step walkthrough of each insertion."
+summary: 'A clear explanation of insertion sort, from its C++ implementation and $O(n^2)$ complexity to a step-by-step walkthrough of each insertion.'
 tags:
   - algorithms
 ---

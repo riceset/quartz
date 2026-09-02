@@ -1,6 +1,7 @@
 ---
 title: Understanding Signals in Linux
 date: 2022-08-12
+description: "A concise introduction to Linux process IDs and signals, including how to send signals and handle them safely in C."
 tags:
   - linux
 ---

@@ -253,6 +253,7 @@ interface HackathonItem {
   title: string
   organizer: string
   logo?: string
+  logoAlt?: string
   logoClass?: string
   date: string
   rank?: string
@@ -456,8 +457,10 @@ const hackathons: HackathonItem[] = [
   },
   {
     title: "24-Hour Hackathon by 42 Asia",
-    organizer: "Singapore University of Technology and Design",
-    logo: "/static/logos/sutd-mark.svg",
+    organizer: "foodpanda",
+    logo: "/static/logos/foodpanda.svg",
+    logoAlt: "foodpanda",
+    logoClass: "home-org-logo-foodpanda",
     date: "Sep 2024",
     rank: "2nd Place",
   },
@@ -714,7 +717,7 @@ const HomeProfile: QuartzComponent = () => {
                   <img
                     class={["home-org-logo", item.logoClass].filter(Boolean).join(" ")}
                     src={item.logo}
-                    alt={item.organizer}
+                    alt={item.logoAlt ?? item.organizer}
                   />
                 </span>
               )}

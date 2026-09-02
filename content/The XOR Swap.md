@@ -1,6 +1,8 @@
 ---
 title: The XOR Swap
 date: 02-05-2024
+description: "A mathematical and practical explanation of swapping two values with XOR, without allocating a temporary variable."
+summary: 'A mathematical and practical explanation of swapping two values with $\operatorname{XOR}$, without allocating a temporary variable.'
 tags:
   - bit-manipulation
 ---

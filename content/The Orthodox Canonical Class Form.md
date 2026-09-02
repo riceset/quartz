@@ -1,6 +1,7 @@
 ---
 title: Understanding the Orthodox Canonical Class Form
 date: 2024-08-15
+description: "A walkthrough of the constructors, copy behavior, assignment operator, and destructor that define the Orthodox Canonical Class Form in C++."
 tags:
   - c++
 ---

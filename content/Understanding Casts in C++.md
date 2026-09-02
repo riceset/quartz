@@ -1,6 +1,8 @@
 ---
 title: Understanding Casts in C++
 date: 2024-09-07
+description: "A guide to implicit conversion and C++ casts, including static_cast, dynamic_cast, reinterpret_cast, upcasting, and downcasting."
+summary: "A guide to implicit conversion and C++ casts, including `static_cast`, `dynamic_cast`, `reinterpret_cast`, upcasting, and downcasting."
 tags:
   - c++
 ---

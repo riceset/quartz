@@ -1,6 +1,7 @@
 ---
 title: The Story Behind My Swift Student Challenge Winning Submission
 date: 2026-07-08
+description: "A three-minute SwiftUI journey inspired by my grandfather's diaries, exploring memory, immigration, and the shift from historical to modern Japanese."
 tags:
   - swift
   - apple

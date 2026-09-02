@@ -1,6 +1,7 @@
 ---
 title: Building a Mandarin Dictionary
 date: 2025-11-17
+description: "How I turned Taiwan's MOE dictionary data into a modern SwiftUI app, from SQLite schema design and asynchronous search to polished interface states."
 tags:
   - swift
 ---

@@ -16,9 +16,7 @@ export default ((opts?: Options) => {
 
     return (
       <footer class={footerClass}>
-        <p>
-          © {year} riceset
-        </p>
+        <p>© {year} riceset</p>
         <ul>
           {Object.entries(links).map(([text, link]) => (
             <li>

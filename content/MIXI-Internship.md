@@ -1,6 +1,7 @@
 ---
 title: My Internship Experience at MIXI
 date: 2026-04-11
+description: "Lessons from my first iOS internship in Japan, covering team communication, large-codebase navigation, Scrum, and shipping production changes."
 tags:
   - internship
 ---

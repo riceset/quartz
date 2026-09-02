@@ -28,7 +28,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--gray);
+  color: color-mix(in srgb, var(--darkgray) 72%, var(--gray) 28%);
   margin: 0 0 1.25rem;
 }
 
@@ -36,7 +36,7 @@
   width: 14px;
   height: 14px;
   flex-shrink: 0;
-  stroke: var(--gray);
+  stroke: currentColor;
 }
 
 .section-icon-award {
@@ -116,6 +116,12 @@
   object-fit: contain;
   object-position: center;
   display: block;
+}
+
+.home-org-logo-foodpanda {
+  width: 88%;
+  height: 88%;
+  margin: auto;
 }
 
 .home-org-logo-apple {

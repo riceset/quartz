@@ -1,6 +1,7 @@
 ---
 title: "NeoMnemo: My Submission for the 2025 Swift Student Challenge"
 date: 2025-02-25
+description: "How I designed and built NeoMnemo, a SwiftUI visual-memory app using Image Playground, adaptive layouts, validation, and card animations."
 tags:
   - swift
   - apple
