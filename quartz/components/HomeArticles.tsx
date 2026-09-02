@@ -24,6 +24,18 @@ const summaryProcessor = unified()
   .use(remarkRehype)
   .use(rehypeKatex, { output: "html" })
 
+const AppleLogo = () => (
+  <svg
+    class="article-card-meta-logo"
+    viewBox="0 0 814 1000"
+    fill="currentColor"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M788.1 340.9c-5.6 4.3-104.3 59.3-104.3 183.2 0 143.4 126 194.1 129.8 195.3-.6 3.1-20 68.4-65.6 135.1-40.6 58.7-82.9 117.2-147.4 117.2-64.5 0-81.1-37.5-155.4-37.5-72.3 0-98.1 38.7-157.2 38.7-59.1 0-100.6-54.3-147.8-121-54.5-77.1-98.8-196.5-98.8-309.8 0-181.7 118.2-278 234.5-278 61.7 0 113.1 40.6 151.8 40.6 36.9 0 94.4-43.1 164.6-43.1 26.6 0 122.3 2.5 195.8 79.3zM564.1 182.3c29.4-35 50-83.7 50-132.3 0-6.9-.6-13.7-1.9-19.4-47.5 1.9-104.3 31.9-138.4 71.9-26.9 30.6-52 79.3-52 128.5 0 7.5 1.2 15 1.9 17.5 3.1.6 8.1 1.2 13.1 1.2 42.5 0 96.3-28.1 127.3-67.5z" />
+  </svg>
+)
+
 const cleanExcerpt = (description: string | undefined, title: string) => {
   const raw = unescapeHTML(description?.trim() ?? "")
   const withoutRepeatedTitle = raw.toLocaleLowerCase().startsWith(title.toLocaleLowerCase())
@@ -78,7 +90,10 @@ export default ((opts?: Options) => {
               <div class="article-card-meta">
                 <span>Featured</span>
                 <span aria-hidden="true">·</span>
-                <span>Apple</span>
+                <span class="article-card-meta-brand">
+                  <AppleLogo />
+                  Apple
+                </span>
               </div>
               <h2 class="article-card-title">
                 <a href={resolveRelative(fileData.slug!, featuredArticle.slug!)}>{featuredTitle}</a>

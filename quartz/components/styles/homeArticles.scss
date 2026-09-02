@@ -149,6 +149,21 @@ $article-space-10: 2.5rem;
   }
 }
 
+.article-card-meta-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28em;
+}
+
+.article-card-meta-logo {
+  display: inline-block;
+  width: 0.67em;
+  height: 0.82em;
+  flex: none;
+  color: inherit;
+  transform: translateY(-0.07em);
+}
+
 .article-card-title {
   margin: $article-space-2 0 0;
   color: var(--dark);
