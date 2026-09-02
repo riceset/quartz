@@ -102,12 +102,6 @@
   display: block;
 }
 
-.home-org-logo-foodpanda {
-  width: 88%;
-  height: 88%;
-  margin: auto;
-}
-
 .home-org-logo-apple {
   width: 90%;
   height: 90%;
@@ -499,6 +493,10 @@
   font-size: 0.95rem;
   line-height: 1.4;
   color: color-mix(in srgb, var(--darkgray) 78%, var(--secondary) 22%);
+}
+
+.home-hackathon-organizer-sutd {
+  font-size: 0.9rem;
 }
 
 .home-hackathon-meta {

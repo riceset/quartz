@@ -138,6 +138,7 @@ interface CertificationItem {
 interface HackathonItem {
   title: string
   organizer: string
+  organizerClass?: string
   logo?: string
   logoAlt?: string
   logoClass?: string
@@ -344,10 +345,10 @@ const hackathons: HackathonItem[] = [
   },
   {
     title: "24-Hour Hackathon by 42 Asia",
-    organizer: "foodpanda",
-    logo: "/static/logos/foodpanda.svg",
-    logoAlt: "foodpanda",
-    logoClass: "home-org-logo-foodpanda",
+    organizer: "Singapore University of Technology and Design",
+    organizerClass: "home-hackathon-organizer-sutd",
+    logo: "/static/logos/sutd.svg",
+    logoAlt: "Singapore University of Technology and Design",
     date: "Sep 2024",
     rank: "2nd Place",
   },
@@ -602,7 +603,13 @@ const HomeProfile: QuartzComponent = () => {
               )}
               <div class="home-hackathon-text">
                 <span class="home-hackathon-title">{item.title}</span>
-                <span class="home-hackathon-organizer">{item.organizer}</span>
+                <span
+                  class={["home-hackathon-organizer", item.organizerClass]
+                    .filter(Boolean)
+                    .join(" ")}
+                >
+                  {item.organizer}
+                </span>
                 <div class="home-hackathon-meta">
                   <MetaRow period={item.date} rank={item.rank} />
                 </div>
