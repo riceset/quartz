@@ -138,7 +138,6 @@ interface CertificationItem {
 interface HackathonItem {
   title: string
   organizer: string
-  organizerClass?: string
   logo?: string
   logoAlt?: string
   logoClass?: string
@@ -345,8 +344,7 @@ const hackathons: HackathonItem[] = [
   },
   {
     title: "24-Hour Hackathon by 42 Asia",
-    organizer: "Singapore University of Technology and Design",
-    organizerClass: "home-hackathon-organizer-sutd",
+    organizer: "SUTD & 42 Asia",
     logo: "/static/logos/sutd-mark.svg",
     logoAlt: "Singapore University of Technology and Design",
     date: "Sep 2024",
@@ -497,30 +495,9 @@ const HomeProfile: QuartzComponent = () => {
         </div>
       </section>
 
-      {/* Education */}
-      <section class="home-section">
-        <h2 class="home-section-heading">01 / Education</h2>
-        <div class="home-edu-list">
-          {education.map((item) => (
-            <div class="home-edu-item">
-              <span class="home-org-logo-badge">
-                <img class="home-org-logo" src={item.logo} alt={item.institution} />
-              </span>
-              <div class="home-edu-text">
-                <span class="home-edu-institution">{item.institution}</span>
-                <span class="home-edu-degree">{item.degree}</span>
-                <div class="home-edu-meta">
-                  <MetaRow period={item.period} location={item.location} />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Awards */}
       <section class="home-section">
-        <h2 class="home-section-heading">02 / Awards</h2>
+        <h2 class="home-section-heading">01 / Awards</h2>
         <div class="home-award-list">
           {awards.map((item) => (
             <div class="home-award-item">
@@ -536,6 +513,33 @@ const HomeProfile: QuartzComponent = () => {
                   <span class="home-award-title">{item.title}</span>
                   <span class="home-award-institution">{item.institution}</span>
                   <p class="home-award-desc">{item.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Hackathons */}
+      <section class="home-section">
+        <h2 class="home-section-heading">02 / Hackathons</h2>
+        <div class="home-hackathon-list">
+          {hackathons.map((item) => (
+            <div class="home-hackathon-item">
+              {item.logo && (
+                <span class="home-org-logo-badge">
+                  <img
+                    class={["home-org-logo", item.logoClass].filter(Boolean).join(" ")}
+                    src={item.logo}
+                    alt={item.logoAlt ?? item.organizer}
+                  />
+                </span>
+              )}
+              <div class="home-hackathon-text">
+                <span class="home-hackathon-title">{item.title}</span>
+                <span class="home-hackathon-organizer">{item.organizer}</span>
+                <div class="home-hackathon-meta">
+                  <MetaRow period={item.date} rank={item.rank} />
                 </div>
               </div>
             </div>
@@ -586,32 +590,20 @@ const HomeProfile: QuartzComponent = () => {
         </div>
       </section>
 
-      {/* Competitions */}
+      {/* Education */}
       <section class="home-section">
-        <h2 class="home-section-heading">04 / Competitions</h2>
-        <div class="home-hackathon-list">
-          {hackathons.map((item) => (
-            <div class="home-hackathon-item">
-              {item.logo && (
-                <span class="home-org-logo-badge">
-                  <img
-                    class={["home-org-logo", item.logoClass].filter(Boolean).join(" ")}
-                    src={item.logo}
-                    alt={item.logoAlt ?? item.organizer}
-                  />
-                </span>
-              )}
-              <div class="home-hackathon-text">
-                <span class="home-hackathon-title">{item.title}</span>
-                <span
-                  class={["home-hackathon-organizer", item.organizerClass]
-                    .filter(Boolean)
-                    .join(" ")}
-                >
-                  {item.organizer}
-                </span>
-                <div class="home-hackathon-meta">
-                  <MetaRow period={item.date} rank={item.rank} />
+        <h2 class="home-section-heading">04 / Education</h2>
+        <div class="home-edu-list">
+          {education.map((item) => (
+            <div class="home-edu-item">
+              <span class="home-org-logo-badge">
+                <img class="home-org-logo" src={item.logo} alt={item.institution} />
+              </span>
+              <div class="home-edu-text">
+                <span class="home-edu-institution">{item.institution}</span>
+                <span class="home-edu-degree">{item.degree}</span>
+                <div class="home-edu-meta">
+                  <MetaRow period={item.period} location={item.location} />
                 </div>
               </div>
             </div>
