@@ -43,7 +43,7 @@ $article-space-10: 2.5rem;
   overflow: hidden;
   flex-direction: column;
   color: var(--dark);
-  background: color-mix(in srgb, var(--lightgray) 30%, var(--light) 70%);
+  background: oklch(99.2% 0.003 20deg);
   border: 1px solid color-mix(in srgb, var(--lightgray) 84%, var(--dark) 16%);
   border-radius: 12px;
   transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -59,7 +59,12 @@ $article-space-10: 2.5rem;
   }
 }
 
+:root[saved-theme="dark"] .article-card:not(.article-card-placeholder) {
+  background: color-mix(in srgb, var(--lightgray) 30%, var(--light) 70%);
+}
+
 .article-card-placeholder {
+  min-height: 12rem;
   pointer-events: none;
   background: color-mix(in srgb, var(--lightgray) 12%, transparent);
   border-color: color-mix(in srgb, var(--lightgray) 68%, transparent);
