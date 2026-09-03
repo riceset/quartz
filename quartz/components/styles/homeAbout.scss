@@ -1,7 +1,7 @@
 @use "../../styles/variables.scss" as *;
 
 .home-about {
-  margin-top: 3rem;
+  margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid var(--lightgray);
 }
@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem;
   color: color-mix(in srgb, var(--darkgray) 68%, var(--gray) 32%);
   font-family: "IBM Plex Mono", var(--codeFont);
   font-size: 0.74rem;
@@ -71,14 +71,6 @@
 }
 
 @media all and (max-width: 620px) {
-  .home-about {
-    margin-top: 2.5rem;
-  }
-
-  .home-about-header {
-    margin-bottom: 1.5rem;
-  }
-
   .home-about-layout {
     grid-template-columns: 1fr;
     gap: 1.5rem;
