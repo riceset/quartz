@@ -20,13 +20,13 @@ const HomeAbout: QuartzComponent = () => (
       <div class="home-about-copy">
         <h2 id="home-about-title">I like building things that feel native.</h2>
         <p>
-          When I&apos;m not coding, I&apos;m probably studying a language, taking notes, or
-          wandering through Tokyo. Most of what I build starts with something personal: a family
-          story or a tool I wish existed.
+          My projects often begin with something close to me: a family story, a language I’m
+          learning, or a tool I kept wishing existed. From there, I build experiences that feel
+          natural to both the platform and the person using them.
         </p>
         <p>
-          I mostly build for iOS. Lately, I&apos;ve been exploring on-device AI and the ways
-          software can connect people through language.
+          I work mainly on iOS. Lately, I’ve been exploring on-device AI and the ways software can
+          connect people across languages.
         </p>
       </div>
     </div>
