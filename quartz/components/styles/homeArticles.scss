@@ -61,7 +61,7 @@ $article-space-10: 2.5rem;
 
 :root[saved-theme="dark"] .article-card:not(.article-card-placeholder) {
   background: color-mix(in srgb, var(--lightgray) 30%, var(--light) 70%);
-  border-color: color-mix(in srgb, var(--lightgray) 84%, var(--dark) 16%);
+  border-color: color-mix(in srgb, var(--lightgray) 96%, var(--dark) 4%);
 }
 
 .article-card-placeholder {
