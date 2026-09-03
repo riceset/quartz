@@ -77,7 +77,7 @@ export default (() => {
             />
             <link
               rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=LINE+Seed+JP&display=swap"
+              href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=La+Belle+Aurore&family=LINE+Seed+JP&display=swap"
             />
             {cfg.theme.typography.title && (
               <link rel="stylesheet" href={googleFontSubsetHref(cfg.theme, cfg.pageTitle)} />

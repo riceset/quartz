@@ -70,6 +70,48 @@
   }
 }
 
+.home-about-signature {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.7rem;
+  width: min(100%, 11.5rem);
+  margin: 2.5rem clamp(0.5rem, 2vw, 2rem) 0 auto;
+  color: var(--dark);
+}
+
+.home-about-signature-stroke {
+  flex: 1 1 auto;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.22;
+  transform: rotate(-2deg);
+  transform-origin: right center;
+}
+
+.home-about-signature-name {
+  display: block;
+  color: currentColor;
+  font-family: "La Belle Aurore", "Segoe Print", "Bradley Hand", cursive;
+  font-size: 1.65rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0.82;
+  transform: rotate(-3deg) translateY(1px);
+}
+
+.home-about-signature-mark {
+  display: block;
+  width: 2.5rem;
+  height: 2.375rem;
+  flex: 0 0 auto;
+  transform: rotate(-4deg);
+  transform-origin: 50% 80%;
+  opacity: 0.74;
+}
+
 @media all and (max-width: 620px) {
   .home-about-layout {
     grid-template-columns: 1fr;
@@ -83,5 +125,10 @@
       margin-bottom: 1rem;
       font-size: 1.7rem;
     }
+  }
+
+  .home-about-signature {
+    margin-top: 2rem;
+    margin-right: clamp(0.5rem, 2vw, 2rem);
   }
 }
