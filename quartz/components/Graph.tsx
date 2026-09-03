@@ -109,10 +109,12 @@ const GraphCloseIcon = () => (
 
 const GlobalGraphOverlay = ({ config }: { config: Partial<D3Config> }) => (
   <div class="global-graph-outer" role="dialog" aria-modal="true" aria-label="Graph view">
-    <button type="button" class="global-graph-close" aria-label="Close graph view">
-      <GraphCloseIcon />
-    </button>
-    <div class="global-graph-container" data-cfg={JSON.stringify(config)}></div>
+    <div class="global-graph-panel">
+      <button type="button" class="global-graph-close" aria-label="Close graph view">
+        <GraphCloseIcon />
+      </button>
+      <div class="global-graph-container" data-cfg={JSON.stringify(config)}></div>
+    </div>
   </div>
 )
 

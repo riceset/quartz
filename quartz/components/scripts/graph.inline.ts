@@ -794,8 +794,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     document.documentElement.classList.add("graph-modal-open")
     returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null
     const slug = getFullSlug(window)
+    const closeButtons: HTMLButtonElement[] = []
     for (const container of containers) {
-      container.classList.add("active")
       const sidebar = container.closest(".sidebar") as HTMLElement
       if (sidebar) {
         sidebar.style.zIndex = "1"
@@ -803,11 +803,21 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
       const graphContainer = container.querySelector(".global-graph-container") as HTMLElement
       const closeButton = container.querySelector(".global-graph-close") as HTMLButtonElement | null
-      closeButton?.focus()
+      if (closeButton) closeButtons.push(closeButton)
       if (graphContainer) {
         globalGraphCleanups.push(await mountGraph(graphContainer, slug))
       }
     }
+
+    // Let Mobile Safari paint the modal's hidden starting state before the
+    // active class begins the entrance transition.
+    await new Promise<void>((resolve) => {
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+    })
+    for (const container of containers) {
+      container.classList.add("active")
+    }
+    closeButtons[0]?.focus()
     setTriggerExpanded(true)
   }
 
