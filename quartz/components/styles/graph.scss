@@ -1,6 +1,16 @@
 @use "../../styles/variables.scss" as *;
 
+html.graph-modal-open,
+html.graph-modal-open body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 .graph {
+  &.modal-only {
+    display: contents;
+  }
+
   & > h3 {
     font-size: 1rem;
     margin: 0;
@@ -109,11 +119,70 @@
     width: 100vw;
     height: 100%;
     backdrop-filter: blur(4px);
-    display: none;
+    display: block;
     overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 240ms;
 
     &.active {
-      display: inline-block;
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+      transition-delay: 0s;
+    }
+
+    & > .global-graph-close {
+      position: fixed;
+      z-index: 1;
+      top: calc(10vh + 0.75rem);
+      right: calc(10vw + 0.75rem);
+      display: grid;
+      width: 2rem;
+      height: 2rem;
+      place-items: center;
+      padding: 0;
+      color: var(--darkgray);
+      background: color-mix(in srgb, var(--light) 92%, transparent);
+      border: 1px solid color-mix(in srgb, var(--lightgray) 86%, var(--dark) 14%);
+      border-radius: 6px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(0.5rem) scale(0.96);
+      transition:
+        opacity 180ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+        color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+        background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 180ms cubic-bezier(0.22, 1, 0.36, 1);
+
+      & > svg {
+        width: 1rem;
+        height: 1rem;
+      }
+
+      &:hover {
+        color: var(--dark);
+        background: var(--lightgray);
+        border-color: color-mix(in srgb, var(--lightgray) 70%, var(--dark) 30%);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--secondary);
+        outline-offset: 3px;
+      }
+
+      @media all and not ($desktop) {
+        right: calc(5% + 0.5rem);
+      }
+    }
+
+    &.active > .global-graph-close {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
     & > .global-graph-container {
@@ -121,16 +190,43 @@
       background-color: var(--light);
       border-radius: 5px;
       box-sizing: border-box;
+      overflow: hidden;
       position: fixed;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      opacity: 0;
+      transform: translate(-50%, calc(-50% + 0.75rem)) scale(0.985);
       height: 80vh;
       width: 80vw;
+      transition:
+        opacity 180ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
 
       @media all and not ($desktop) {
         width: 90%;
       }
+
+      & > canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &.active > .global-graph-container {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .graph > .global-graph-outer {
+    transition: none;
+
+    & > .global-graph-close,
+    & > .global-graph-container {
+      transition: none;
     }
   }
 }

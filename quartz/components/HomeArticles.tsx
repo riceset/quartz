@@ -36,6 +36,27 @@ const AppleLogo = () => (
   </svg>
 )
 
+const GraphViewIcon = () => (
+  <svg
+    class="home-articles-graph-icon"
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="m4.2 4.5 3.8 3 3.9-3.2M8 7.5l3.5 4M8 7.5l-3.4 4.1" />
+    <circle cx="3.3" cy="3.8" r="1.3" />
+    <circle cx="12.7" cy="3.6" r="1.3" />
+    <circle cx="12.3" cy="12.3" r="1.3" />
+    <circle cx="3.8" cy="12.4" r="1.3" />
+    <circle cx="8" cy="7.5" r="1.3" />
+  </svg>
+)
+
 const cleanExcerpt = (description: string | undefined, title: string) => {
   const raw = unescapeHTML(description?.trim() ?? "")
   const withoutRepeatedTitle = raw.toLocaleLowerCase().startsWith(title.toLocaleLowerCase())
@@ -77,7 +98,18 @@ export default ((opts?: Options) => {
 
     return (
       <section class="home-articles" data-nosnippet="true" data-article-pagination>
-        <h2 class="home-articles-heading">06 / Articles</h2>
+        <div class="home-articles-heading">
+          <h2>06 / Articles</h2>
+          <button
+            type="button"
+            class="home-articles-graph-trigger global-graph-icon"
+            aria-label="Open graph view"
+            aria-expanded="false"
+          >
+            <GraphViewIcon />
+            <span>Graph view</span>
+          </button>
+        </div>
 
         {featuredArticle && (
           <article class="article-card article-card-featured">

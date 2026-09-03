@@ -20,16 +20,20 @@ export interface D3Config {
   showTags: boolean
   focusOnHover?: boolean
   enableRadial?: boolean
+  labelOpacity?: number
+  graphLabels?: Record<string, string>
 }
 
 interface GraphOptions {
   globalOnly: boolean
+  modalOnly: boolean
   localGraph: Partial<D3Config> | undefined
   globalGraph: Partial<D3Config> | undefined
 }
 
 const defaultOptions: GraphOptions = {
   globalOnly: false,
+  modalOnly: false,
   localGraph: {
     drag: true,
     zoom: true,
@@ -45,6 +49,8 @@ const defaultOptions: GraphOptions = {
     removeTags: [],
     focusOnHover: false,
     enableRadial: false,
+    labelOpacity: 0,
+    graphLabels: {},
   },
   globalGraph: {
     drag: true,
@@ -61,6 +67,8 @@ const defaultOptions: GraphOptions = {
     removeTags: [],
     focusOnHover: true,
     enableRadial: true,
+    labelOpacity: 0,
+    graphLabels: {},
   },
 }
 
@@ -85,12 +93,44 @@ const GraphIcon = () => (
   </svg>
 )
 
+const GraphCloseIcon = () => (
+  <svg
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="m4 4 8 8M12 4l-8 8" />
+  </svg>
+)
+
+const GlobalGraphOverlay = ({ config }: { config: Partial<D3Config> }) => (
+  <div class="global-graph-outer" role="dialog" aria-modal="true" aria-label="Graph view">
+    <button type="button" class="global-graph-close" aria-label="Close graph view">
+      <GraphCloseIcon />
+    </button>
+    <div class="global-graph-container" data-cfg={JSON.stringify(config)}></div>
+  </div>
+)
+
 export default ((opts?: Partial<GraphOptions>) => {
   const Graph: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
     const localGraph = { ...defaultOptions.localGraph, ...opts?.localGraph }
     const globalGraph = { ...defaultOptions.globalGraph, ...opts?.globalGraph }
     const graphConfig = opts?.globalOnly ? globalGraph : localGraph
     const title = opts?.globalOnly ? "Graph" : i18n(cfg.locale).components.graph.title
+
+    if (opts?.modalOnly) {
+      return (
+        <div class={classNames(displayClass, "graph", "modal-only")}>
+          <GlobalGraphOverlay config={globalGraph} />
+        </div>
+      )
+    }
+
     return (
       <div class={classNames(displayClass, "graph", ...(opts?.globalOnly ? ["global-only"] : []))}>
         {opts?.globalOnly ? (
@@ -132,11 +172,7 @@ export default ((opts?: Partial<GraphOptions>) => {
             </button>
           )}
         </div>
-        {!opts?.globalOnly && (
-          <div class="global-graph-outer">
-            <div class="global-graph-container" data-cfg={JSON.stringify(globalGraph)}></div>
-          </div>
-        )}
+        {!opts?.globalOnly && <GlobalGraphOverlay config={globalGraph} />}
       </div>
     )
   }

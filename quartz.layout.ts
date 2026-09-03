@@ -30,6 +30,36 @@ export const defaultContentPageLayout: PageLayout = {
       component: Component.HomeAbout(),
       condition: (props) => props.fileData.slug === "index",
     }),
+    Component.ConditionalRender({
+      component: Component.Graph({
+        modalOnly: true,
+        globalGraph: {
+          removeSlugs: ["index"],
+          repelForce: 0.65,
+          centerForce: 0.45,
+          linkDistance: 38,
+          labelOpacity: 0.68,
+          graphLabels: {
+            Dictionary: "Mandarin",
+            "Introduction-to-Vim": "Vim",
+            "MIXI-Internship": "MIXI",
+            "Makefile-for-C++-Projects": "Makefiles",
+            Pointers: "Pointers",
+            "Replicating-the-Print-Function-in-C": "Print",
+            "Signals-in-Linux": "Signals",
+            "Swift-Student-Challenge-2025": "NeoMnemo",
+            "Swift-Student-Challenge-2026": "SSC 2026",
+            "The-Dining-Philosophers-Problem": "Dining",
+            "The-Orthodox-Canonical-Class-Form": "Canonical Form",
+            "The-XOR-Swap": "XOR Swap",
+            "Understanding-Binary-Insertion-Sort": "Binary Insert",
+            "Understanding-Casts-in-C++": "C++ Casts",
+            "Understanding-Insertion-Sort": "Insertion Sort",
+          },
+        },
+      }),
+      condition: (props) => props.fileData.slug === "index",
+    }),
   ],
   left: [
     Component.ConditionalRender({

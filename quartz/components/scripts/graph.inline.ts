@@ -52,6 +52,13 @@ type NodeRenderData = GraphicsInfo & {
   label: Text
 }
 
+type LabelBounds = {
+  left: number
+  right: number
+  top: number
+  bottom: number
+}
+
 const localStorageKey = "graph-visited"
 function getVisited(): Set<SimpleSlug> {
   return new Set(JSON.parse(localStorage.getItem(localStorageKey) ?? "[]"))
@@ -72,10 +79,18 @@ function getGraphDimensions(graph: HTMLElement) {
   const parent = graph.parentElement
   const graphRect = graph.getBoundingClientRect()
   const parentRect = parent?.getBoundingClientRect()
+  const isGlobalGraph = graph.classList.contains("global-graph-container")
 
   return {
-    width: Math.max(Math.round(graphRect.width), Math.round(parentRect?.width ?? 0)),
-    height: Math.max(Math.round(graphRect.height), Math.round(parentRect?.height ?? 0), 250),
+    width: Math.max(
+      Math.round(graphRect.width),
+      isGlobalGraph ? 0 : Math.round(parentRect?.width ?? 0),
+    ),
+    height: Math.max(
+      Math.round(graphRect.height),
+      isGlobalGraph ? 0 : Math.round(parentRect?.height ?? 0),
+      250,
+    ),
   }
 }
 
@@ -99,6 +114,8 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     showTags,
     focusOnHover,
     enableRadial,
+    labelOpacity = 0,
+    graphLabels = {},
   } = JSON.parse(graph.dataset["cfg"]!) as D3Config
 
   const hiddenSlugs = new Set(removeSlugs.map((slug) => simplifySlug(slug as FullSlug)))
@@ -156,7 +173,10 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   }
 
   const nodes = [...neighbourhood].map((url) => {
-    const text = url.startsWith("tags/") ? "#" + url.substring(5) : (data.get(url)?.title ?? url)
+    const details = data.get(url)
+    const text = url.startsWith("tags/")
+      ? "#" + url.substring(5)
+      : (graphLabels[url] ?? details?.title ?? url)
     return {
       id: url,
       text,
@@ -182,8 +202,16 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     .force("link", forceLink(graphData.links).distance(linkDistance))
     .force("collide", forceCollide<NodeData>((n) => nodeRadius(n)).iterations(3))
 
-  const radius = (Math.min(width, height) / 2) * 0.8
+  const radius = (Math.min(width, height) / 2) * 0.42
   if (enableRadial) simulation.force("radial", forceRadial(radius).strength(0.2))
+
+  // Resolve the initial layout before the canvas is shown so labels begin in
+  // their final above/below position instead of visibly flipping as it settles.
+  simulation.stop()
+  const initialTicks = Math.ceil(
+    Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay()),
+  )
+  simulation.tick(initialTicks)
 
   // precompute style prop strings as pixi doesn't support css variables
   const cssVars = [
@@ -224,6 +252,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   }
 
   let hoveredNodeId: string | null = null
+  let pinnedTagNodeId: string | null = null
   let hoveredNeighbours: Set<string> = new Set()
   const linkRenderData: LinkRenderData[] = []
   const nodeRenderData: NodeRenderData[] = []
@@ -292,6 +321,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
 
     const defaultScale = 1 / scale
     const activeScale = defaultScale * 1.1
+    const focusedTagId = hoveredNodeId?.startsWith("tags/") ? hoveredNodeId : null
     for (const n of nodeRenderData) {
       const nodeId = n.simulationData.id
 
@@ -306,10 +336,12 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
           ),
         )
       } else {
+        const isTagNode = nodeId.startsWith("tags/")
+        const isConnectedToFocusedTag = focusedTagId !== null && n.active
         tweenGroup.add(
           new Tweened<Text>(n.label).to(
             {
-              alpha: n.label.alpha,
+              alpha: isConnectedToFocusedTag ? 0.15 : isTagNode ? 0 : labelOpacity,
               scale: { x: defaultScale, y: defaultScale },
             },
             100,
@@ -357,6 +389,74 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     renderLabels()
   }
 
+  function activateNode(node: NodeData, pointerType?: string) {
+    if (node.id.startsWith("tags/")) {
+      if (pointerType === "touch" || pointerType === "pen") {
+        pinnedTagNodeId = node.id
+        updateHoverInfo(node.id)
+        renderPixiFromD3()
+      }
+      return
+    }
+
+    const target = resolveRelative(fullSlug, node.id)
+    window.spaNavigate(new URL(target, window.location.toString()))
+  }
+
+  function placeLabel(node: NodeRenderData, placedLabels: LabelBounds[]) {
+    const { simulationData, label } = node
+    if (simulationData.id.startsWith("tags/")) return
+
+    const x = simulationData.x! + width / 2
+    const y = simulationData.y! + height / 2
+    const labelWidth = label.width
+    const labelHeight = label.height
+    const gap = labelHeight * 0.2
+
+    const boundsFor = (below: boolean): LabelBounds => ({
+      left: x - labelWidth / 2,
+      right: x + labelWidth / 2,
+      top: below ? y + gap : y - gap - labelHeight,
+      bottom: below ? y + gap + labelHeight : y - gap,
+    })
+
+    const overlapScore = (bounds: LabelBounds) => {
+      let score = 0
+      for (const other of nodeRenderData) {
+        if (other === node) continue
+        const otherX = other.simulationData.x! + width / 2
+        const otherY = other.simulationData.y! + height / 2
+        const padding = nodeRadius(other.simulationData) + 2
+        if (
+          otherX + padding >= bounds.left &&
+          otherX - padding <= bounds.right &&
+          otherY + padding >= bounds.top &&
+          otherY - padding <= bounds.bottom
+        ) {
+          score += 2
+        }
+      }
+
+      for (const placed of placedLabels) {
+        if (
+          bounds.left < placed.right &&
+          bounds.right > placed.left &&
+          bounds.top < placed.bottom &&
+          bounds.bottom > placed.top
+        ) {
+          score += 1
+        }
+      }
+      return score
+    }
+
+    const above = boundsFor(false)
+    const below = boundsFor(true)
+    const useBelow = overlapScore(below) < overlapScore(above)
+    label.anchor.set(0.5, useBelow ? -0.2 : 1.2)
+    placedLabels.push(useBelow ? below : above)
+  }
+
   tweens.forEach((tween) => tween.stop())
   tweens.clear()
 
@@ -384,13 +484,14 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
 
   for (const n of graphData.nodes) {
     const nodeId = n.id
+    const isTagNode = nodeId.startsWith("tags/")
 
     const label = new Text({
       interactive: false,
       eventMode: "none",
       text: n.text,
-      alpha: 0,
-      anchor: { x: 0.5, y: 1.2 },
+      alpha: isTagNode ? 0 : labelOpacity,
+      anchor: { x: 0.5, y: isTagNode ? -0.35 : 1.2 },
       style: {
         fontSize: fontSize * 15,
         fill: computedStyleMap["--dark"],
@@ -400,8 +501,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
     })
     label.scale.set(1 / scale)
 
-    let oldLabelOpacity = 0
-    const isTagNode = nodeId.startsWith("tags/")
+    let oldLabelOpacity = isTagNode ? 0 : labelOpacity
     const gfx = new Graphics({
       interactive: true,
       label: nodeId,
@@ -419,8 +519,10 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
         }
       })
       .on("pointerleave", () => {
-        updateHoverInfo(null)
-        label.alpha = oldLabelOpacity
+        updateHoverInfo(pinnedTagNodeId)
+        if (pinnedTagNodeId !== nodeId) {
+          label.alpha = oldLabelOpacity
+        }
         if (!dragging) {
           renderPixiFromD3()
         }
@@ -461,6 +563,17 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   }
 
   let currentTransform = zoomIdentity
+  const clearPinnedTagOnTouch = (event: PointerEvent) => {
+    if ((event.pointerType !== "touch" && event.pointerType !== "pen") || !pinnedTagNodeId) {
+      return
+    }
+
+    pinnedTagNodeId = null
+    updateHoverInfo(null)
+    renderPixiFromD3()
+  }
+  app.canvas.addEventListener("pointerdown", clearPinnedTagOnTouch)
+
   if (enableDrag) {
     select<HTMLCanvasElement, NodeData | undefined>(app.canvas).call(
       drag<HTMLCanvasElement, NodeData | undefined>()
@@ -493,16 +606,14 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
           // if the time between mousedown and mouseup is short, we consider it a click
           if (Date.now() - dragStartTime < 500) {
             const node = graphData.nodes.find((n) => n.id === event.subject.id) as NodeData
-            const targ = resolveRelative(fullSlug, node.id)
-            window.spaNavigate(new URL(targ, window.location.toString()))
+            activateNode(node, event.sourceEvent?.pointerType)
           }
         }),
     )
   } else {
     for (const node of nodeRenderData) {
-      node.gfx.on("click", () => {
-        const targ = resolveRelative(fullSlug, node.simulationData.id)
-        window.spaNavigate(new URL(targ, window.location.toString()))
+      node.gfx.on("click", (event) => {
+        activateNode(node.simulationData, event.pointerType)
       })
     }
   }
@@ -510,6 +621,11 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   if (enableZoom) {
     select<HTMLCanvasElement, NodeData>(app.canvas).call(
       zoom<HTMLCanvasElement, NodeData>()
+        .filter((event) => {
+          const defaultAllowed = (!event.ctrlKey || event.type === "wheel") && !event.button
+          const pointerIsOverCanvas = event.type !== "wheel" || app.canvas.matches(":hover")
+          return defaultAllowed && pointerIsOverCanvas
+        })
         .extent([
           [0, 0],
           [width, height],
@@ -522,12 +638,13 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
 
           // zoom adjusts opacity of labels too
           const scale = transform.k * opacityScale
-          let scaleOpacity = Math.max((scale - 1) / 3.75, 0)
+          const zoomLabelOpacity = Math.max((scale - 1) / 3.75, 0)
           const activeNodes = nodeRenderData.filter((n) => n.active).flatMap((n) => n.label)
 
-          for (const label of labelsContainer.children) {
-            if (!activeNodes.includes(label)) {
-              label.alpha = scaleOpacity
+          for (const node of nodeRenderData) {
+            if (!activeNodes.includes(node.label)) {
+              const isTagNode = node.simulationData.id.startsWith("tags/")
+              node.label.alpha = isTagNode ? 0 : Math.max(labelOpacity, zoomLabelOpacity)
             }
           }
         }),
@@ -537,11 +654,13 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   let stopAnimation = false
   function animate(time: number) {
     if (stopAnimation) return
+    const placedLabels: LabelBounds[] = []
     for (const n of nodeRenderData) {
       const { x, y } = n.simulationData
       if (!x || !y) continue
       n.gfx.position.set(x + width / 2, y + height / 2)
       if (n.label) {
+        placeLabel(n, placedLabels)
         n.label.position.set(x + width / 2, y + height / 2)
       }
     }
@@ -563,6 +682,7 @@ async function renderGraph(graph: HTMLElement, fullSlug: FullSlug) {
   requestAnimationFrame(animate)
   return () => {
     stopAnimation = true
+    app.canvas.removeEventListener("pointerdown", clearPinnedTagOnTouch)
     app.destroy()
   }
 }
@@ -658,7 +778,21 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   })
 
   const containers = [...document.getElementsByClassName("global-graph-outer")] as HTMLElement[]
+  const containerIcons = [...document.getElementsByClassName("global-graph-icon")] as HTMLElement[]
+  let returnFocus: HTMLElement | null = null
+  let hideGraphTimer: number | undefined
+
+  function setTriggerExpanded(expanded: boolean) {
+    for (const icon of containerIcons) {
+      icon.setAttribute("aria-expanded", String(expanded))
+    }
+  }
+
   async function renderGlobalGraph() {
+    window.clearTimeout(hideGraphTimer)
+    cleanupGlobalGraphs()
+    document.documentElement.classList.add("graph-modal-open")
+    returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null
     const slug = getFullSlug(window)
     for (const container of containers) {
       container.classList.add("active")
@@ -668,22 +802,35 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
       }
 
       const graphContainer = container.querySelector(".global-graph-container") as HTMLElement
-      registerEscapeHandler(container, hideGlobalGraph)
+      const closeButton = container.querySelector(".global-graph-close") as HTMLButtonElement | null
+      closeButton?.focus()
       if (graphContainer) {
         globalGraphCleanups.push(await mountGraph(graphContainer, slug))
       }
     }
+    setTriggerExpanded(true)
   }
 
   function hideGlobalGraph() {
-    cleanupGlobalGraphs()
     for (const container of containers) {
       container.classList.remove("active")
-      const sidebar = container.closest(".sidebar") as HTMLElement
-      if (sidebar) {
-        sidebar.style.zIndex = ""
-      }
     }
+    setTriggerExpanded(false)
+
+    const exitDuration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 240
+    window.clearTimeout(hideGraphTimer)
+    hideGraphTimer = window.setTimeout(() => {
+      cleanupGlobalGraphs()
+      document.documentElement.classList.remove("graph-modal-open")
+      for (const container of containers) {
+        const sidebar = container.closest(".sidebar") as HTMLElement
+        if (sidebar) {
+          sidebar.style.zIndex = ""
+        }
+      }
+      returnFocus?.focus()
+      returnFocus = null
+    }, exitDuration)
   }
 
   async function shortcutHandler(e: HTMLElementEventMap["keydown"]) {
@@ -696,14 +843,23 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
     }
   }
 
-  const containerIcons = document.getElementsByClassName("global-graph-icon")
-  Array.from(containerIcons).forEach((icon) => {
+  containers.forEach((container) => registerEscapeHandler(container, hideGlobalGraph))
+
+  const closeButtons = document.getElementsByClassName("global-graph-close")
+  Array.from(closeButtons).forEach((button) => {
+    button.addEventListener("click", hideGlobalGraph)
+    window.addCleanup(() => button.removeEventListener("click", hideGlobalGraph))
+  })
+
+  containerIcons.forEach((icon) => {
     icon.addEventListener("click", renderGlobalGraph)
     window.addCleanup(() => icon.removeEventListener("click", renderGlobalGraph))
   })
 
   document.addEventListener("keydown", shortcutHandler)
   window.addCleanup(() => {
+    window.clearTimeout(hideGraphTimer)
+    document.documentElement.classList.remove("graph-modal-open")
     document.removeEventListener("keydown", shortcutHandler)
     cleanupLocalGraphs()
     cleanupGlobalGraphs()
