@@ -567,6 +567,9 @@ const HomeProfile: QuartzComponent = () => {
                   {item.talkUrl ? (
                     <a class="home-talk-title home-talk-title-link" href={item.talkUrl}>
                       {item.title}
+                      <span class="home-talk-title-arrow" aria-hidden="true">
+                        {"\u2060\u00a0↗"}
+                      </span>
                     </a>
                   ) : (
                     <span class="home-talk-title">{item.title}</span>
