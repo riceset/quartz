@@ -23,7 +23,7 @@ export const defaultContentPageLayout: PageLayout = {
       condition: (props) => props.fileData.slug === "index",
     }),
     Component.ConditionalRender({
-      component: Component.HomeArticles({ pageSize: 6 }),
+      component: Component.HomeArticles({ pageSize: 4 }),
       condition: (props) => props.fileData.slug === "index",
     }),
     Component.ConditionalRender({
