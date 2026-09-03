@@ -616,7 +616,10 @@ const HomeProfile: QuartzComponent = () => {
 
       {/* Languages */}
       <section class="home-section">
-        <h2 class="home-section-heading">05 / Languages</h2>
+        <h2 class="home-section-heading">
+          <span>05 / Languages</span>
+          <span>CEFR</span>
+        </h2>
         <div class="home-lang-list">
           {languages.map((lang) => (
             <div class="home-lang-item">
