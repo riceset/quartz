@@ -1,0 +1,594 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-04T14:22:43Z",
+  "title": "Design System: riceset",
+  "extensions": {
+    "colorMeta": {
+      "rice-paper": {
+        "role": "neutral",
+        "displayName": "Rice Paper",
+        "canonical": "#faf8f8",
+        "tonalRamp": [
+          "#282626",
+          "#464444",
+          "#656363",
+          "#838181",
+          "#a2a0a0",
+          "#c1bfbf",
+          "#dfdddd",
+          "#f4f2f2"
+        ]
+      },
+      "card-paper": {
+        "role": "neutral",
+        "displayName": "Card Paper",
+        "canonical": "#fdfcfc",
+        "tonalRamp": [
+          "#272626",
+          "#464545",
+          "#646363",
+          "#838282",
+          "#a1a0a0",
+          "#c0bfbf",
+          "#dfdede",
+          "#f3f2f2"
+        ]
+      },
+      "mist-rule": {
+        "role": "neutral",
+        "displayName": "Mist Rule",
+        "canonical": "#e5e5e5",
+        "tonalRamp": [
+          "#262626",
+          "#454545",
+          "#636363",
+          "#828282",
+          "#a1a1a1",
+          "#bfbfbf",
+          "#dedede",
+          "#f2f2f2"
+        ]
+      },
+      "quiet-gray": {
+        "role": "neutral",
+        "displayName": "Quiet Gray",
+        "canonical": "#b8b8b8",
+        "tonalRamp": [
+          "#262626",
+          "#454545",
+          "#636363",
+          "#828282",
+          "#a1a1a1",
+          "#bfbfbf",
+          "#dedede",
+          "#f2f2f2"
+        ]
+      },
+      "graphite-copy": {
+        "role": "neutral",
+        "displayName": "Graphite Copy",
+        "canonical": "#4e4e4e",
+        "tonalRamp": [
+          "#262626",
+          "#454545",
+          "#636363",
+          "#828282",
+          "#a1a1a1",
+          "#bfbfbf",
+          "#dedede",
+          "#f2f2f2"
+        ]
+      },
+      "charcoal-ink": {
+        "role": "neutral",
+        "displayName": "Charcoal Ink",
+        "canonical": "#2b2b2b",
+        "tonalRamp": [
+          "#262626",
+          "#454545",
+          "#636363",
+          "#828282",
+          "#a1a1a1",
+          "#bfbfbf",
+          "#dedede",
+          "#f2f2f2"
+        ]
+      },
+      "muted-navy": {
+        "role": "primary",
+        "displayName": "Muted Navy",
+        "canonical": "#284b63",
+        "tonalRamp": [
+          "#072a42",
+          "#264961",
+          "#44677f",
+          "#63869e",
+          "#81a4bc",
+          "#a0c3db",
+          "#bfe2fa",
+          "#d3f6ff"
+        ]
+      },
+      "sage-response": {
+        "role": "secondary",
+        "displayName": "Sage Response",
+        "canonical": "#84a59d",
+        "tonalRamp": [
+          "#13342c",
+          "#32534b",
+          "#507169",
+          "#6f9088",
+          "#8daea6",
+          "#accdc5",
+          "#cbece4",
+          "#dffff8"
+        ]
+      },
+      "soft-highlight": {
+        "role": "tertiary",
+        "displayName": "Soft Highlight",
+        "canonical": "#8f9fa926",
+        "tonalRamp": [
+          "#182832",
+          "#374751",
+          "#55656f",
+          "#74848e",
+          "#93a3ad",
+          "#b1c1cb",
+          "#d0e0ea",
+          "#e4f4fe"
+        ]
+      },
+      "marker-yellow": {
+        "role": "tertiary",
+        "displayName": "Marker Yellow",
+        "canonical": "#fff23688",
+        "tonalRamp": [
+          "#6e6100",
+          "#8c7f00",
+          "#ab9e00",
+          "#c9bc00",
+          "#e8db1f",
+          "#fffa3e",
+          "#ffff5c",
+          "#ffff71"
+        ]
+      },
+      "night-paper": {
+        "role": "neutral",
+        "displayName": "Night Paper",
+        "canonical": "#161618",
+        "tonalRamp": [
+          "#262628",
+          "#444446",
+          "#636365",
+          "#818183",
+          "#a0a0a2",
+          "#bfbfc1",
+          "#dddddf",
+          "#f2f2f4"
+        ]
+      },
+      "night-rule": {
+        "role": "neutral",
+        "displayName": "Night Rule",
+        "canonical": "#393639",
+        "tonalRamp": [
+          "#272427",
+          "#464346",
+          "#646164",
+          "#838083",
+          "#a29fa2",
+          "#c0bdc0",
+          "#dfdcdf",
+          "#f3f0f3"
+        ]
+      },
+      "night-muted": {
+        "role": "neutral",
+        "displayName": "Night Muted",
+        "canonical": "#646464",
+        "tonalRamp": [
+          "#262626",
+          "#454545",
+          "#636363",
+          "#828282",
+          "#a1a1a1",
+          "#bfbfbf",
+          "#dedede",
+          "#f2f2f2"
+        ]
+      },
+      "night-copy": {
+        "role": "neutral",
+        "displayName": "Night Copy",
+        "canonical": "#d4d4d4",
+        "tonalRamp": [
+          "#262626",
+          "#454545",
+          "#636363",
+          "#828282",
+          "#a1a1a1",
+          "#bfbfbf",
+          "#dedede",
+          "#f2f2f2"
+        ]
+      },
+      "night-ink": {
+        "role": "neutral",
+        "displayName": "Night Ink",
+        "canonical": "#ebebec",
+        "tonalRamp": [
+          "#262627",
+          "#454546",
+          "#636364",
+          "#828283",
+          "#a0a0a1",
+          "#bfbfc0",
+          "#dededf",
+          "#f2f2f3"
+        ]
+      },
+      "night-link": {
+        "role": "primary",
+        "displayName": "Night Link",
+        "canonical": "#7b97aa",
+        "tonalRamp": [
+          "#0d293c",
+          "#2c485b",
+          "#4a6679",
+          "#698598",
+          "#88a4b7",
+          "#a6c2d5",
+          "#c5e1f4",
+          "#d9f5ff"
+        ]
+      },
+      "night-marker": {
+        "role": "tertiary",
+        "displayName": "Night Marker",
+        "canonical": "#b3aa0288",
+        "tonalRamp": [
+          "#645b00",
+          "#837a00",
+          "#a19800",
+          "#c0b70f",
+          "#dfd62e",
+          "#fdf44c",
+          "#ffff6b",
+          "#ffff7f"
+        ]
+      },
+      "media-white": {
+        "role": "neutral",
+        "displayName": "Media White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#262626",
+          "#454545",
+          "#636363",
+          "#828282",
+          "#a1a1a1",
+          "#bfbfbf",
+          "#dedede",
+          "#f2f2f2"
+        ]
+      },
+      "rail-glass": {
+        "role": "neutral",
+        "displayName": "Rail Glass",
+        "canonical": "#ffffffb8",
+        "tonalRamp": [
+          "#262626",
+          "#454545",
+          "#636363",
+          "#828282",
+          "#a1a1a1",
+          "#bfbfbf",
+          "#dedede",
+          "#f2f2f2"
+        ]
+      },
+      "rail-glass-border": {
+        "role": "neutral",
+        "displayName": "Rail Glass Border",
+        "canonical": "#ffffff99",
+        "tonalRamp": [
+          "#262626",
+          "#454545",
+          "#636363",
+          "#828282",
+          "#a1a1a1",
+          "#bfbfbf",
+          "#dedede",
+          "#f2f2f2"
+        ]
+      },
+      "night-rail-glass": {
+        "role": "neutral",
+        "displayName": "Night Rail Glass",
+        "canonical": "#161617b8",
+        "tonalRamp": [
+          "#262627",
+          "#454546",
+          "#636364",
+          "#828283",
+          "#a0a0a1",
+          "#bfbfc0",
+          "#dededf",
+          "#f2f2f3"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display Serif",
+        "purpose": "Identity, article titles, featured stories, and reflective statements."
+      },
+      "headline": {
+        "displayName": "Editorial Headline",
+        "purpose": "Long-form titles and high-emphasis personal copy."
+      },
+      "title": {
+        "displayName": "Structural Heading",
+        "purpose": "Technical sections, record titles, and compact hierarchy."
+      },
+      "body": {
+        "displayName": "Reading Copy",
+        "purpose": "Long-form prose and explanatory portfolio writing."
+      },
+      "label": {
+        "displayName": "Field Note",
+        "purpose": "Section numbers, dates, locations, tags, and status text."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Inline and fenced source code only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "rail-ambient",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.7), 0 8px 32px rgba(27,33,48,0.12)",
+        "purpose": "Separates the persistent light-theme rail and mobile toolbar from scrolling content."
+      },
+      {
+        "name": "rail-night",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.45)",
+        "purpose": "Dark-theme counterpart to the ambient rail shadow."
+      },
+      {
+        "name": "search-rest",
+        "value": "0 1px 2px rgba(27,33,48,0.05)",
+        "purpose": "Barely visible separation for the resting inline search field."
+      },
+      {
+        "name": "search-focus",
+        "value": "0 6px 18px rgba(27,33,48,0.06)",
+        "purpose": "Soft lift when the inline search shell contains focus."
+      },
+      {
+        "name": "search-panel",
+        "value": "0 14px 34px rgba(27,33,48,0.08)",
+        "purpose": "Separates inline search results from the page."
+      },
+      {
+        "name": "search-modal",
+        "value": "0 14px 50px rgba(27,33,48,0.12), 0 10px 30px rgba(27,33,48,0.16)",
+        "purpose": "Reserved for the viewport-level search overlay."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-standard",
+        "value": "180ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Color and small directional state changes."
+      },
+      {
+        "name": "tactile-rotate",
+        "value": "180ms cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "purpose": "Tiny hover rotations and pressed-state scaling on expressive controls."
+      },
+      {
+        "name": "theme-icon",
+        "value": "450ms cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Sun and moon rotation during a theme change."
+      },
+      {
+        "name": "logo-nod",
+        "value": "2500ms ease-in-out infinite",
+        "purpose": "Slow identity-mark nod in the home banner."
+      },
+      {
+        "name": "flag-flip",
+        "value": "4000ms ease-in-out infinite",
+        "purpose": "Occasional bilingual flag flip in the language list."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "opacity 50ms linear; transforms disabled",
+        "purpose": "Fallback for visitors who request reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "composed-section-collapse",
+        "value": "620px",
+        "purpose": "Stacks article cards and the About portrait-copy grid."
+      },
+      {
+        "name": "hero-mobile",
+        "value": "767px",
+        "purpose": "Compacts the home banner, avatar, and identity block."
+      },
+      {
+        "name": "desktop-layout",
+        "value": "1200px",
+        "purpose": "Switches between the floating mobile toolbar and sticky desktop rail."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Desktop Tool Rail",
+      "kind": "nav",
+      "refersTo": "desktop-tool-rail",
+      "description": "Persistent glass utility rail with identity at the top and controls at the bottom.",
+      "html": "<nav class=\"ds-tool-rail\" aria-label=\"Site tools\"><a class=\"ds-rail-mark\" href=\"#\" aria-label=\"Home\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M8 13c2 2 6 2 8-1M9 9h.01M15 9h.01\"/></svg></a><div class=\"ds-rail-tools\"><button aria-label=\"Change theme\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M2 12h2M20 12h2\"/></svg></button><span></span><a href=\"#\" aria-label=\"Email\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"m4 7 8 6 8-6\"/></svg></a></div></nav>",
+      "css": ".ds-tool-rail { width: 4.5rem; height: 28rem; padding: 1.75rem 0.75rem; display: flex; box-sizing: border-box; flex-direction: column; align-items: center; border: 1px solid rgba(255,255,255,.6); border-radius: 1.5rem; background: rgba(255,255,255,.72); box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 8px 32px rgba(27,33,48,.12); color: #2b2b2b; } .ds-tool-rail svg { width: 1.75rem; height: 1.75rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; } .ds-rail-mark, .ds-rail-tools a, .ds-rail-tools button { width: 1.75rem; height: 1.75rem; display: grid; place-items: center; padding: 0; color: inherit; background: transparent; border: 0; cursor: pointer; transition: transform 180ms cubic-bezier(.34,1.56,.64,1); } .ds-rail-mark svg { width: 2.1rem; height: 2.1rem; } .ds-rail-tools { margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; } .ds-rail-tools > span { width: 1.75rem; height: 1px; background: currentColor; opacity: .15; } .ds-rail-tools a:hover { transform: rotate(-10deg); } .ds-rail-mark:focus-visible, .ds-rail-tools a:focus-visible, .ds-rail-tools button:focus-visible { outline: 2px solid #284b63; outline-offset: 3px; } .ds-rail-mark:active, .ds-rail-tools a:active, .ds-rail-tools button:active { transform: scale(.9); }"
+    },
+    {
+      "name": "Mobile Toolbar",
+      "kind": "nav",
+      "refersTo": "mobile-toolbar",
+      "description": "Compact capsule containing the wordmark and theme control.",
+      "html": "<nav class=\"ds-mobile-toolbar\" aria-label=\"Site tools\"><a href=\"#\" class=\"ds-mobile-brand\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><path d=\"M8 13c2 2 6 2 8-1\"/></svg><span>riceset</span></a><button aria-label=\"Change theme\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M2 12h2M20 12h2\"/></svg></button></nav>",
+      "css": ".ds-mobile-toolbar { display: flex; align-items: center; gap: .5rem; padding: .4rem .85rem; width: 22rem; max-width: 100%; box-sizing: border-box; color: #2b2b2b; background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.6); border-radius: 999px; box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 8px 32px rgba(27,33,48,.12); } .ds-mobile-brand { display: inline-flex; align-items: center; gap: .25rem; color: inherit; font: 400 1.3rem/1 \"Instrument Serif\", Georgia, serif; text-decoration: none; } .ds-mobile-toolbar svg { width: 1.35rem; height: 1.35rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; } .ds-mobile-toolbar button { width: 2.25rem; height: 2.25rem; margin-left: auto; display: grid; place-items: center; padding: 0; color: inherit; background: transparent; border: 0; cursor: pointer; } .ds-mobile-brand:focus-visible, .ds-mobile-toolbar button:focus-visible { outline: 2px solid #84a59d; outline-offset: 2px; border-radius: .375rem; }"
+    },
+    {
+      "name": "Article Card",
+      "kind": "card",
+      "refersTo": "article-card",
+      "description": "Editorial article preview using compact metadata and a serif title.",
+      "html": "<article class=\"ds-article-card\"><div class=\"ds-card-meta\"><span>SWIFT</span><span aria-hidden=\"true\">·</span><time>JUL 8, 2026</time></div><h3><a href=\"#\">The Story Behind My Swift Student Challenge Winning Submission</a></h3><p>A personal account of building an experience around memory, language, and family history.</p></article>",
+      "css": ".ds-article-card { position: relative; width: min(22rem,100%); min-height: 12rem; padding: 1rem; box-sizing: border-box; color: #2b2b2b; background: #fdfcfc; border: 1px solid #dedddd; border-radius: 12px; transition: transform 180ms cubic-bezier(.34,1.56,.64,1), border-color 180ms ease; } .ds-card-meta { display: flex; gap: .25rem; color: #777; font: 600 .68rem/1.4 \"Bricolage Grotesque\", system-ui, sans-serif; letter-spacing: .065em; text-transform: uppercase; } .ds-article-card h3 { margin: .5rem 0 0; font: 400 1.58rem/1.12 \"Instrument Serif\", Georgia, serif; letter-spacing: -.015em; } .ds-article-card h3 a { color: inherit; text-decoration: none; } .ds-article-card p { margin: .75rem 0 0; color: #4e4e4e; font: 400 .8rem/1.62 Poppins, system-ui, sans-serif; } .ds-article-card:hover { transform: rotate(-.6deg); } .ds-article-card:focus-within { border-color: #284b63; } .ds-article-card a:focus-visible { outline: 2px solid #284b63; outline-offset: 3px; }"
+    },
+    {
+      "name": "Inline Search",
+      "kind": "input",
+      "refersTo": "inline-search",
+      "description": "Pill search field that lifts softly when it contains focus.",
+      "html": "<label class=\"ds-search\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m20 20-4-4\"/></svg><span class=\"ds-visually-hidden\">Search articles</span><input type=\"search\" placeholder=\"Search articles\"></label>",
+      "css": ".ds-search { min-height: 2.9rem; width: min(28rem,100%); padding: .72rem .95rem; box-sizing: border-box; display: flex; align-items: center; gap: .75rem; color: #4e4e4e; background: #faf8f8; border: 1px solid #e5e5e5; border-radius: 999px; box-shadow: 0 1px 2px rgba(27,33,48,.05); transition: box-shadow 200ms ease; } .ds-search:focus-within { box-shadow: 0 6px 18px rgba(27,33,48,.06); } .ds-search svg { width: 18px; height: 18px; flex: none; fill: none; stroke: #b8b8b8; stroke-width: 2; stroke-linecap: round; } .ds-search input { width: 100%; padding: 0; color: #4e4e4e; background: transparent; border: 0; outline: 0; font: 400 16px/1.5 Poppins, system-ui, sans-serif; } .ds-search input::placeholder { color: #b8b8b8; } .ds-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }"
+    },
+    {
+      "name": "Topic Chip",
+      "kind": "chip",
+      "refersTo": "topic-chip",
+      "description": "Small topical annotation used in talks and article metadata.",
+      "html": "<a class=\"ds-topic-chip\" href=\"#\">SwiftUI</a>",
+      "css": ".ds-topic-chip { display: inline-flex; padding: .1rem .5rem; color: #284b63; background: rgba(143,159,169,.15); border-radius: 999px; font: 400 .75rem/1.4 Poppins, system-ui, sans-serif; text-decoration: none; transition: color 180ms ease, background-color 180ms ease; } .ds-topic-chip:hover { color: #2b2b2b; background: rgba(132,165,157,.22); } .ds-topic-chip:focus-visible { outline: 2px solid #284b63; outline-offset: 2px; }"
+    },
+    {
+      "name": "Portfolio Record",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Compact evidence-led record for experience, education, awards, and talks.",
+      "html": "<article class=\"ds-record\"><span class=\"ds-record-badge\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path d=\"M5 18V9l7-4 7 4v9M8 18v-6h8v6M3 18h18\"/></svg></span><div><h3>iOS Developer Intern</h3><p class=\"ds-record-org\">FamilyAlbum at MIXI</p><p class=\"ds-record-meta\">TOKYO · 2026</p><p class=\"ds-record-copy\">Built native product experiences with a production iOS team.</p></div></article>",
+      "css": ".ds-record { width: min(34rem,100%); display: flex; align-items: flex-start; gap: 1rem; color: #2b2b2b; font-family: Poppins, system-ui, sans-serif; } .ds-record-badge { width: 2.8rem; height: 2.8rem; flex: none; display: grid; place-items: center; background: #fff; border: 1px solid #e5e5e5; border-radius: 50%; } .ds-record-badge svg { width: 1.55rem; height: 1.55rem; fill: none; stroke: #2b2b2b; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; } .ds-record h3 { margin: 0; font: 600 1.05rem/1.4 \"Bricolage Grotesque\", system-ui, sans-serif; } .ds-record p { margin: 0; } .ds-record-org { color: #52616b; font-size: .95rem; line-height: 1.4; } .ds-record-meta { margin-top: .2rem !important; color: #8b8b8b; font: 400 .74rem/1.4 \"IBM Plex Mono\", monospace; } .ds-record-copy { margin-top: .35rem !important; max-width: 30rem; color: #4e4e4e; font-size: .85rem; line-height: 1.6; }"
+    },
+    {
+      "name": "Section Field Note",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Numbered section heading that organizes the long home page like annotated notes.",
+      "html": "<header class=\"ds-section-note\"><span>04 / Articles</span><span>Selected writing</span></header>",
+      "css": ".ds-section-note { width: min(42rem,100%); padding-top: 2rem; display: flex; justify-content: space-between; gap: 1rem; color: #777; border-top: 1px solid #e5e5e5; font: 400 .74rem/1.4 \"IBM Plex Mono\", \"JetBrains Mono\", monospace; text-transform: uppercase; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Cross-Cultural Field Notebook",
+    "overview": "riceset should feel like a field notebook kept by a thoughtful engineer: orderly enough to scan quickly, personal enough to reward a slower read, and specific enough that the author is always present. Its visual voice is precise, warm, and quietly personal. Editorial type, real project imagery, compact metadata, hand-drawn marks, and restrained technical details carry the Japanese-Brazilian and software-craft story without turning it into decoration.\n\nThe system is calm but not anonymous. Instrument Serif provides a literary surface for names, article titles, and reflective statements. Poppins keeps explanations approachable. Bricolage Grotesque gives technical headings a firm shape, while mono labels organize dates, locations, and section numbers like annotations in a working notebook. Muted navy and sage are used sparingly so photographs, organization marks, and writing remain the visual focus.\n\nThe home page is a broad, image-supported portfolio canvas. Long-form articles are narrow reading surfaces with a persistent tool rail. Desktop pages use fluid outer gutters and keep the rail anchored near the viewport edge; article prose stays capped at 720px. At widths below 1200px the desktop rail becomes a compact floating toolbar, and composed two-column sections collapse when their content needs a single reading order.",
+    "keyCharacteristics": [
+      "Warm off-white and near-black surfaces instead of pure neutral page backgrounds.",
+      "A deliberate serif, sans, and mono hierarchy with distinct jobs for each family.",
+      "Real portraits, organization marks, article covers, and project imagery rather than decorative filler.",
+      "Thin rules, compact metadata, and generous 2rem section intervals for editorial rhythm.",
+      "Small, tactile rotations on hover, never constant spectacle.",
+      "Light and dark themes that preserve the same hierarchy and reading comfort.",
+      "A 720px long-form measure and fluid home-page canvas up to 100rem.",
+      "Visible keyboard focus and reduced-motion fallbacks for every animated control."
+    ],
+    "rules": [
+      {
+        "name": "The Content-First Rule",
+        "body": "Every visual decision must make the work, writing, or personal story easier to understand. If an effect competes with the content, remove it.",
+        "section": "overview"
+      },
+      {
+        "name": "The Two-Surface Rule",
+        "body": "Home pages may use the wide portfolio canvas. Articles must remain a focused 720px reading surface with the utility rail outside the prose measure.",
+        "section": "overview"
+      },
+      {
+        "name": "The Real-Evidence Rule",
+        "body": "Prefer a real project image, organization mark, portrait, date, or outcome over a decorative graphic or unsupported claim.",
+        "section": "overview"
+      },
+      {
+        "name": "The Ink Hierarchy Rule",
+        "body": "Use the strongest ink for headings and icons, body graphite for prose, and muted gray only for metadata. Never flatten all text into one gray.",
+        "section": "colors"
+      },
+      {
+        "name": "The Quiet Accent Rule",
+        "body": "Muted Navy identifies navigation. Sage Response identifies interaction. Neither color should occupy a large decorative area.",
+        "section": "colors"
+      },
+      {
+        "name": "The Paper, Not White Rule",
+        "body": "Page backgrounds use Rice Paper or Night Paper. Pure white is reserved for media assets that need it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Assigned-Family Rule",
+        "body": "Instrument Serif tells the story, Poppins explains it, Bricolage Grotesque structures it, and mono type annotates it. Do not substitute one role for another without a specific reason.",
+        "section": "typography"
+      },
+      {
+        "name": "The Short-Label Rule",
+        "body": "Uppercase mono styling is permitted only for short section chrome, dates, tags, and status text. Never set body copy in uppercase.",
+        "section": "typography"
+      },
+      {
+        "name": "The Reading-Measure Rule",
+        "body": "Long-form prose never exceeds 720px. Wider space belongs to imagery and portfolio composition, not longer lines.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-by-Default Rule",
+        "body": "Standard content and article cards do not receive shadows. Use a 1px rule, a tonal shift, or whitespace first.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Floating-Utility Rule",
+        "body": "Blur and ambient shadows are reserved for persistent utility surfaces that sit above scrolling content. Never spread the glass treatment to content cards.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Soft-Depth Test",
+        "body": "If a shadow edge is clearly traceable, it is too sharp or too dark for this system.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do lead with the personal thread connecting identity, technology, and craft.",
+      "Do show real work and specific outcomes through project imagery, organization marks, dates, and descriptive writing.",
+      "Do keep long-form articles at a maximum width of 720px and body copy near 65 to 75 characters per line.",
+      "Do keep the desktop tool rail near the viewport edge by leaving article and tag page shells uncapped above the 1200px breakpoint.",
+      "Do use the 0.25rem to 2.5rem spacing vocabulary, with 2rem as the standard section boundary.",
+      "Do preserve the distinct jobs of Instrument Serif, Poppins, Bricolage Grotesque, and mono labels.",
+      "Do preserve meaningful image crops and provide descriptive alternative text.",
+      "Do use visible 2px focus outlines and verify keyboard operation for links, theme controls, pagination, search, and graph triggers.",
+      "Do preserve light and dark theme parity, including logos, borders, muted text, overlays, and focus states.",
+      "Do honor `prefers-reduced-motion` for nodding, flipping, rotating, and theme-transition effects.",
+      "Do keep the handcrafted identity consistent across the wordmark, line icons, signature, and interaction details."
+    ],
+    "donts": [
+      "Don't use generic developer portfolio templates. Every major surface must carry riceset's specific identity, evidence, and editorial rhythm.",
+      "Don't use loud self-promotion. Let concrete projects, roles, awards, and writing establish credibility.",
+      "Don't create dense resume walls. Preserve organization marks, grouping, compact metadata, and breathing room between records.",
+      "Don't build decorative card grids. Cards are reserved for article previews and search results where they clarify a repeated content type.",
+      "Don't add effects that compete with the content. Remove any animation, blur, shadow, or rotation that draws attention away from the work.",
+      "Don't spread glassmorphism beyond the floating rail, mobile toolbar, and search surfaces.",
+      "Don't use pure white as the page canvas; reserve Media White for organization logos that require it.",
+      "Don't use Sage Response as a large fill or a decorative accent. It exists primarily for interaction feedback.",
+      "Don't set paragraphs or long labels in uppercase mono type.",
+      "Don't add shadows to ordinary article cards, portfolio records, portraits, or prose containers.",
+      "Don't use a colored side stripe thicker than 1px on cards, lists, callouts, or alerts.",
+      "Don't use gradient text, decorative metric heroes, nested cards, or repeated icon-above-heading tiles.",
+      "Don't hide focus indicators or rely on hover as the only way to reveal an action.",
+      "Don't allow browser width, zoom, or display scaling to detach the utility rail from the viewport edge again."
+    ]
+  }
+}
