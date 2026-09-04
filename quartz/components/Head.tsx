@@ -42,6 +42,15 @@ export default (() => {
       (e) => e.name === CustomOgImagesEmitterName,
     )
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
+    const logoImagePath = `https://${cfg.baseUrl}/static/icon.png`
+    const organizationId = `https://${cfg.baseUrl}/#organization`
+    const socialProfiles = [
+      "https://github.com/riceset",
+      "https://www.linkedin.com/in/riceset/",
+      "https://www.youtube.com/@riceset",
+      "https://www.instagram.com/riceset/",
+      "https://x.com/riceset",
+    ]
     const ogImageExtension = getFileExtension(ogImageDefaultPath)?.replace(/^\./, "") ?? "png"
     const ogImageAlt = usesCustomOgImage
       ? description
@@ -59,6 +68,7 @@ export default (() => {
       "@type": "WebSite",
       name: cfg.pageTitle,
       url: `https://${cfg.baseUrl}/`,
+      publisher: { "@id": organizationId },
     }
     const webPageSchema = {
       "@context": "https://schema.org",
@@ -67,6 +77,24 @@ export default (() => {
       url: `https://${cfg.baseUrl}/`,
       description,
       primaryImageOfPage: ogImageObject,
+      publisher: { "@id": organizationId },
+    }
+    const organizationSchema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": organizationId,
+      name: cfg.pageTitle,
+      alternateName: "Thiago Komeno",
+      url: `https://${cfg.baseUrl}/`,
+      logo: {
+        "@type": "ImageObject",
+        url: logoImagePath,
+        contentUrl: logoImagePath,
+        width: 192,
+        height: 192,
+        caption: "riceset",
+      },
+      sameAs: socialProfiles,
     }
     const personSchema = {
       "@context": "https://schema.org",
@@ -75,13 +103,7 @@ export default (() => {
       url: `https://${cfg.baseUrl}/`,
       image: `https://${cfg.baseUrl}/media/index/face.jpg`,
       jobTitle: "Software Developer",
-      sameAs: [
-        "https://github.com/riceset",
-        "https://www.linkedin.com/in/riceset/",
-        "https://www.youtube.com/@riceset",
-        "https://www.instagram.com/riceset/",
-        "https://x.com/riceset",
-      ],
+      sameAs: socialProfiles,
     }
 
     return (
@@ -165,6 +187,10 @@ export default (() => {
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
             />
             <script
               type="application/ld+json"
