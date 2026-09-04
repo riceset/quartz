@@ -25,23 +25,24 @@ export default (() => {
     const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`)
     const path = url.pathname as FullSlug
     const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
-    const iconPath = joinSegments(baseDir, "static/icon.png")
     const faviconSvgPath = joinSegments(baseDir, "static/favicon.svg")
     const faviconIcoPath = joinSegments(baseDir, "static/favicon.ico")
     const appleTouchIconPath = joinSegments(baseDir, "static/apple-touch-icon.png")
     const msTileIconPath = joinSegments(baseDir, "static/mstile-150x150.png")
     const manifestPath = joinSegments(baseDir, "static/site.webmanifest")
+    const isHomePage = fileData.slug === "index" || fileData.slug === ""
 
     // Url of current page
     const socialUrl =
-      fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug!)
+      fileData.slug === "404" || isHomePage
+        ? url.toString()
+        : joinSegments(url.toString(), fileData.slug!)
 
     const usesCustomOgImage = ctx.cfg.plugins.emitters.some(
       (e) => e.name === CustomOgImagesEmitterName,
     )
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
     const ogImageExtension = getFileExtension(ogImageDefaultPath)?.replace(/^\./, "") ?? "png"
-    const isHomePage = fileData.slug === "index" || fileData.slug === ""
     const ogImageAlt = usesCustomOgImage
       ? description
       : "The riceset boy mark and wordmark centered on a warm gray background"
@@ -144,9 +145,13 @@ export default (() => {
           </>
         )}
 
-        <link rel="icon" href={faviconSvgPath} type="image/svg+xml" />
-        <link rel="icon" href={iconPath} type="image/png" sizes="192x192" />
-        <link rel="shortcut icon" href={faviconIcoPath} />
+        <link
+          rel="icon"
+          href={faviconIcoPath}
+          sizes="16x16 32x32 48x48 96x96"
+          media="(prefers-color-scheme: light)"
+        />
+        <link rel="icon" href={faviconSvgPath} type="image/svg+xml" sizes="any" />
         <link rel="apple-touch-icon" href={appleTouchIconPath} sizes="180x180" />
         <link rel="manifest" href={manifestPath} />
         <meta name="description" content={description} />
