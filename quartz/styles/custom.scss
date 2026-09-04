@@ -65,6 +65,13 @@
 // outrank base.scss's `.page > #quartz-body .sidebar` rules on specificity.
 // --------------------------------------------------------------------------
 @media all and ($desktop) {
+  // Keep the floating rail anchored to the viewport edge on wide displays.
+  // Quartz otherwise centers the entire page inside a 1500px max-width shell.
+  body[data-page-type="content"] .page,
+  body[data-page-type="tag"] .page {
+    max-width: none;
+  }
+
   body[data-page-type="content"] .page > #quartz-body,
   body[data-page-type="tag"] .page > #quartz-body {
     grid-template-columns: 6rem 1fr 0;
