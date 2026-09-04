@@ -1,16 +1,17 @@
 import sharp from "sharp"
-import { readFileSync } from "fs"
+import { readFileSync, writeFileSync } from "node:fs"
+import { dirname, join } from "node:path"
+import { fileURLToPath } from "node:url"
 
-const fontB64 = readFileSync("instrument-serif-regular.ttf").toString("base64")
+const root = dirname(fileURLToPath(import.meta.url))
+const staticDir = join(root, "quartz", "static")
+const fontB64 = readFileSync(join(root, "instrument-serif-regular.ttf")).toString("base64")
 
-const W = 1200
-const H = 630
-const BG = "#e5e5e5"
+const OG_WIDTH = 1200
+const OG_HEIGHT = 630
+const OG_ARTWORK_WIDTH = 360
+const BACKGROUND = "#e5e5e5"
 const TEXT_COLOR = "#2b2b2b"
-
-const FONT_SIZE = 156
-const LOGO_SIZE = FONT_SIZE * 1.03
-const SCALE = LOGO_SIZE / 64
 
 const logoPaths = [
   "M59.76,22.94c.27-1.26-.58-.52-1.03-.77-.14-.07-.41.08-.51,0-.05-.04-.5-.97-.51-1.03-.04-.14.02-.34,0-.51-.24-2.7.3-1.69,2.13-2.77.72-.42,1.21-.1.96-1.35-1.36.3-2.73.36-4.11.51.04-.68-.02-1.38,0-2.06l-1.53,1.03c-.06-1.85-1.69-1.86-2.73-2.58-.37-.26-.34-.87-.45-.96-.57-.45-1.88,1.98-1.46-1.6.4-.63.66-1.4,1.03-2.06.07-.12.64-.21.79-.53.92-2.02-1.97-4.57-3.36-3.07-.71.77,2.26,1.82,1.54,3.08-1.61-.82-3.52-.02-5.14.51-.03-.2-.41-.36-.51-.51v-1.54c-.4-.14-.44.51-.51.51-.54.03-1.1.1-1.03-.51,1.35-2.37-3.01-1.3-4.11.51.49-2.42-2.19-4.43-4.27-3.11-.44.28-.49,1.1-1.23,1.45-.76.36-7.82,3.08-8.27,3.13-1.21.11-1.67-.99-2.89-.95-2.9.09-7.67,3.69-4.43,5.91-1.61,2.44-3.68,3.76-6.68,2.82-.14-.2.32-2.39.5-2.7.26-.43,4.28-1.52,3.09-2.42-1.94-1.48-7.97,3.5-4.91,6.2.73.64,2.77.88,2.86,1,.06.08-.45,1.34-.52,2.05-1.56.11-.89.6-1.54,2.06-.1.23.09.75,0,1.03-.23.7-1.13.45-1.03,3.09,0,.17-1.08,1.17-1.53,1.79-5.64,7.74-7.69,16.7-1.04,24.44,4.01,4.67,7.71,7.08,14.12,7.22,5.9.13,11.25-2.22,15.71-5.95.49-.41,1.72-1.79,2.32-2.31,2.25-1.97,3.29-4.4,6.94-5.14.37.29.5,1.15.77,1.03,1.43-.64,4.64-4.38,5.92-5.66.25-.24,1.3-.08,2-1.34.49-.89.63-1.78.57-2.78l1.53.27c-.88-1.37.07-3.78.53-5.41.77-2.77.36-1.74.49-4.35.06-1.12.65-2.13.54-3.37-.07-.78-.22-1.3-1.03-1.54.14-.03.67-.37,1.03-.51.28-.11,1.06.27,1.03-.26ZM36.87,5.21l1.29,3.6c-.34-.15-.69-.4-1.03-.51-1.17-1.06-2.9-2.13-.26-3.08ZM23.76,9.32c.42,1.68-2.41,1.37-2.98,2.2-.28.41-.02,1.3-.11,1.4-.1.1-1.99-.43-2.05-.52-.85-1.15,3.69-3.98,5.14-3.08ZM37.63,51.24c-.39.4-8.8,5.85-9.77,6.15-6.71,2.09-15.62-.4-20.04-5.9-2.19-2.72-3.05-8.01-2.96-11.44.06-2.4,4-9.73,5.53-11.7.8-1.03,4.42-3.99,5.66-5.14.12-.11,2.96-1.14,3.08-1.03.81.77-.78,3.37,3.61,2.06.8-.24,2.4-1.06,2.8-1.06.42,0,.34,1.24,1.11,1.51.99.34,3.32-.24,3.73.15.18.17.06,1.05.36,1.4,1.4,1.59,1.48,2.41,2.29,3.39,1.56,1.91,4.82.71,3.08,4.38,1.76.22,1.46-1.89,2.03-2.72.27-.39,1.14-1.36,1.57-1.91.43-.54,2.51-2.95,4.63-1.54s.43,3.21,0,5.14c-.63,2.87-2.92,2.83-3.6,5.14-.3,1.02-.27,2.06,0,3.09.51,1.95.37.56,1.54,1.03.18,4.4-1.9,6.17-4.65,9.01Z",
@@ -20,15 +21,72 @@ const logoPaths = [
   "M18.02,27.92c-.47-.28-1.36-.5-1.97-.08s0,2.58,0,2.58c2.08.84,3.34-1.67,1.97-2.49Z",
 ]
 
-const GAP = FONT_SIZE * 0.08
-const EST_TEXT_W = 360
-const GROUP_W = LOGO_SIZE + GAP + EST_TEXT_W
-const GROUP_X = (W - GROUP_W) / 2
-const GROUP_Y = (H - LOGO_SIZE) / 2
-const TEXT_X = GROUP_X + LOGO_SIZE + GAP
-const TEXT_Y = GROUP_Y + LOGO_SIZE * 0.78
+const paths = logoPaths.map((d) => `<path d="${d}" fill="${TEXT_COLOR}"/>`).join("\n")
 
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
+const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <circle cx="32" cy="32" r="30" fill="#fff"/>
+  <svg x="12" y="12" width="40" height="40" viewBox="0.18 2.31 61.37 58.57">
+    ${paths}
+  </svg>
+</svg>`
+
+const faviconOutputs = new Map([
+  [16, "favicon-16x16.png"],
+  [32, "favicon-32x32.png"],
+  [48, "favicon-48x48.png"],
+  [144, "android-chrome-144x144.png"],
+  [150, "mstile-150x150.png"],
+  [180, "apple-touch-icon.png"],
+  [192, "android-chrome-192x192.png"],
+  [256, "android-chrome-256x256.png"],
+  [512, "android-chrome-512x512.png"],
+])
+
+writeFileSync(join(staticDir, "favicon.svg"), faviconSvg)
+
+const faviconPngs = new Map()
+for (const [size, filename] of faviconOutputs) {
+  const png = await sharp(Buffer.from(faviconSvg)).resize(size, size).png().toBuffer()
+  faviconPngs.set(size, png)
+  writeFileSync(join(staticDir, filename), png)
+}
+
+writeFileSync(join(staticDir, "icon.png"), faviconPngs.get(192))
+
+const icoSizes = [16, 32, 48]
+const icoHeader = Buffer.alloc(6)
+icoHeader.writeUInt16LE(0, 0)
+icoHeader.writeUInt16LE(1, 2)
+icoHeader.writeUInt16LE(icoSizes.length, 4)
+
+let icoOffset = icoHeader.length + icoSizes.length * 16
+const icoEntries = icoSizes.map((size) => {
+  const png = faviconPngs.get(size)
+  const entry = Buffer.alloc(16)
+  entry.writeUInt8(size, 0)
+  entry.writeUInt8(size, 1)
+  entry.writeUInt8(0, 2)
+  entry.writeUInt8(0, 3)
+  entry.writeUInt16LE(1, 4)
+  entry.writeUInt16LE(32, 6)
+  entry.writeUInt32LE(png.length, 8)
+  entry.writeUInt32LE(icoOffset, 12)
+  icoOffset += png.length
+  return entry
+})
+
+writeFileSync(
+  join(staticDir, "favicon.ico"),
+  Buffer.concat([icoHeader, ...icoEntries, ...icoSizes.map((size) => faviconPngs.get(size))]),
+)
+
+const FONT_SIZE = 156
+const LOGO_SIZE = FONT_SIZE * 1.03
+const GAP = FONT_SIZE * 0.08
+const WORDMARK_CANVAS_WIDTH = 900
+const WORDMARK_CANVAS_HEIGHT = 260
+
+const wordmarkSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WORDMARK_CANVAS_WIDTH}" height="${WORDMARK_CANVAS_HEIGHT}">
   <defs>
     <style>
       @font-face {
@@ -38,13 +96,12 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
       }
     </style>
   </defs>
-  <rect width="${W}" height="${H}" fill="${BG}"/>
-  <g transform="translate(${GROUP_X}, ${GROUP_Y}) scale(${SCALE})">
-    ${logoPaths.map((d) => `<path d="${d}" fill="${TEXT_COLOR}"/>`).join("\n    ")}
-  </g>
+  <svg x="0" y="0" width="${LOGO_SIZE}" height="${LOGO_SIZE}" viewBox="0.18 2.31 61.37 58.57">
+    ${paths}
+  </svg>
   <text
-    x="${TEXT_X}"
-    y="${TEXT_Y}"
+    x="${LOGO_SIZE + GAP}"
+    y="${LOGO_SIZE * 0.78}"
     font-family="'Instrument Serif', Georgia, serif"
     font-size="${FONT_SIZE}"
     font-weight="400"
@@ -53,5 +110,25 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
   >riceset</text>
 </svg>`
 
-await sharp(Buffer.from(svg)).png().toFile("quartz/static/og-image.png")
-console.log("og-image.png written to quartz/static/og-image.png")
+const { data: wordmark, info: wordmarkInfo } = await sharp(Buffer.from(wordmarkSvg))
+  .trim()
+  .resize({ width: OG_ARTWORK_WIDTH })
+  .png()
+  .toBuffer({ resolveWithObject: true })
+
+const left = Math.round((OG_WIDTH - wordmarkInfo.width) / 2)
+const top = Math.round((OG_HEIGHT - wordmarkInfo.height) / 2)
+
+await sharp({
+  create: {
+    width: OG_WIDTH,
+    height: OG_HEIGHT,
+    channels: 3,
+    background: BACKGROUND,
+  },
+})
+  .composite([{ input: wordmark, left, top }])
+  .png()
+  .toFile(join(staticDir, "og-image.png"))
+
+console.log("Generated square favicon set and centered 1200x630 Open Graph image.")

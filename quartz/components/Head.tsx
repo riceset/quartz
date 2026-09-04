@@ -26,8 +26,11 @@ export default (() => {
     const path = url.pathname as FullSlug
     const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
     const iconPath = joinSegments(baseDir, "static/icon.png")
-    const faviconLightPath = joinSegments(baseDir, "static/logo-light.svg")
-    const faviconDarkPath = joinSegments(baseDir, "static/logo-dark.svg")
+    const faviconSvgPath = joinSegments(baseDir, "static/favicon.svg")
+    const faviconIcoPath = joinSegments(baseDir, "static/favicon.ico")
+    const appleTouchIconPath = joinSegments(baseDir, "static/apple-touch-icon.png")
+    const msTileIconPath = joinSegments(baseDir, "static/mstile-150x150.png")
+    const manifestPath = joinSegments(baseDir, "static/site.webmanifest")
 
     // Url of current page
     const socialUrl =
@@ -39,11 +42,30 @@ export default (() => {
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
     const ogImageExtension = getFileExtension(ogImageDefaultPath)?.replace(/^\./, "") ?? "png"
     const isHomePage = fileData.slug === "index" || fileData.slug === ""
+    const ogImageAlt = usesCustomOgImage
+      ? description
+      : "The riceset boy mark and wordmark centered on a warm gray background"
+    const ogImageObject = {
+      "@type": "ImageObject",
+      url: ogImageDefaultPath,
+      contentUrl: ogImageDefaultPath,
+      width: 1200,
+      height: 630,
+      caption: ogImageAlt,
+    }
     const websiteSchema = {
       "@context": "https://schema.org",
       "@type": "WebSite",
       name: cfg.pageTitle,
       url: `https://${cfg.baseUrl}/`,
+    }
+    const webPageSchema = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: title,
+      url: `https://${cfg.baseUrl}/`,
+      description,
+      primaryImageOfPage: ogImageObject,
     }
     const personSchema = {
       "@context": "https://schema.org",
@@ -66,6 +88,11 @@ export default (() => {
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" content="#faf8f8" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)" />
+        <meta name="msapplication-TileColor" content="#faf8f8" />
+        <meta name="msapplication-TileImage" content={msTileIconPath} />
+        <meta name="robots" content="max-image-preview:large" />
         {cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && (
           <>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -87,20 +114,22 @@ export default (() => {
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <meta name="og:site_name" content={cfg.pageTitle}></meta>
+        <meta property="og:site_name" content={cfg.pageTitle}></meta>
         <meta property="og:title" content={title} />
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content={isHomePage ? "website" : "article"} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta property="og:description" content={description} />
-        <meta property="og:image:alt" content={description} />
+        <meta property="og:image:alt" content={ogImageAlt} />
 
         {!usesCustomOgImage && (
           <>
             <meta property="og:image" content={ogImageDefaultPath} />
             <meta property="og:image:url" content={ogImageDefaultPath} />
+            <meta property="og:image:secure_url" content={ogImageDefaultPath} />
             <meta name="twitter:image" content={ogImageDefaultPath} />
+            <meta name="twitter:image:alt" content={ogImageAlt} />
             <meta property="og:image:type" content={`image/${ogImageExtension}`} />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
@@ -115,26 +144,27 @@ export default (() => {
           </>
         )}
 
-        <link rel="icon" href={iconPath} type="image/png" sizes="152x152" />
-        <link rel="apple-touch-icon" href={iconPath} sizes="152x152" />
-        <link
-          rel="icon"
-          href={faviconLightPath}
-          type="image/svg+xml"
-          media="(prefers-color-scheme: light)"
-        />
-        <link
-          rel="icon"
-          href={faviconDarkPath}
-          type="image/svg+xml"
-          media="(prefers-color-scheme: dark)"
-        />
+        <link rel="icon" href={faviconSvgPath} type="image/svg+xml" />
+        <link rel="icon" href={iconPath} type="image/png" sizes="192x192" />
+        <link rel="shortcut icon" href={faviconIcoPath} />
+        <link rel="apple-touch-icon" href={appleTouchIconPath} sizes="180x180" />
+        <link rel="manifest" href={manifestPath} />
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
         {isHomePage && (
           <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+            />
           </>
         )}
 
