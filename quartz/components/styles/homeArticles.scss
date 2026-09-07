@@ -208,12 +208,14 @@ $article-space-10: 2.5rem;
 }
 
 .article-card-meta-logo {
+  position: relative;
+  top: -0.07em;
   display: inline-block;
   width: 0.67em;
   height: 0.82em;
+  overflow: visible;
   flex: none;
   color: inherit;
-  transform: translateY(-0.07em);
 }
 
 .article-card-title {
@@ -341,7 +343,7 @@ $article-space-10: 2.5rem;
 
 @media all and (max-width: 620px) {
   .article-card-meta-logo {
-    transform: none;
+    top: 0;
   }
 
   .article-card-grid {
