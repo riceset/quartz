@@ -168,7 +168,7 @@ const experience: ExperienceItem[] = [
     period: "Aug 2026 – Sep 2026",
     location: "Fukuoka",
     description:
-      "Developing native iOS product features for LINE's Liquid Glass redesign, collaborating daily with engineers and designers.",
+      "Developed native iOS product features for LINE's Liquid Glass redesign and collaborated daily with engineers and designers.",
     children: [
       {
         title: "LINE",

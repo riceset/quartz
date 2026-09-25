@@ -1,6 +1,40 @@
 @use "./base.scss";
 @use "./variables.scss" as *;
 
+// LINE article easter egg: use LINE's own typeface for body copy while
+// preserving the site's normal title, heading, table, and code typography.
+body[data-slug="LINE-Internship"] article {
+  font-family:
+    "LINE Seed JP", "Noto Sans JP", "Hiragino Sans", "Yu Gothic Medium", "Yu Gothic", Poppins,
+    sans-serif;
+
+  & > h1 {
+    font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+  }
+
+  & :where(pre, code, kbd, samp) {
+    font-family: var(--codeFont);
+  }
+}
+
+body[data-slug="LINE-Internship"] article code.mermaid > svg {
+  justify-self: center;
+}
+
+// Display equations use a consistent editorial scale and alignment across
+// every article, while remaining horizontally scrollable on narrow screens.
+article .katex-display {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 1.5rem auto;
+  padding: 0.35em 0.25rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  font-size: 1.12em;
+  text-align: center;
+}
+
 // PageTitle link color is locked across hover/visited/active/focus so the
 // home link in the bar never recolors on hover (global `a:hover` would
 // otherwise switch it to var(--tertiary)).

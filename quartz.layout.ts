@@ -44,6 +44,7 @@ export const defaultContentPageLayout: PageLayout = {
             "Introduction-to-Vim": "Vim",
             "MIXI-Internship": "MIXI",
             "Makefile-for-C++-Projects": "Makefiles",
+            "LINE-Internship": "LINE",
             Pointers: "Pointers",
             "Replicating-the-Print-Function-in-C": "Print",
             "Signals-in-Linux": "Signals",
