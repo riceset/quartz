@@ -190,7 +190,7 @@ const experience: ExperienceItem[] = [
     period: "Aug 2026 – Sep 2026",
     location: "Tokyo",
     description:
-      "Improving the UI/UX of the Eight iOS app and evaluating proof-of-concept (PoC) features built with Apple's Foundation Models framework.",
+      "Improved the Eight iOS app’s UI/UX and evaluated proof-of-concept features built with Apple’s Foundation Models framework.",
     children: [
       {
         title: "Eight",
