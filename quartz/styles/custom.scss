@@ -17,7 +17,8 @@ body[data-slug="LINE-Internship"] article {
   }
 }
 
-body[data-slug="LINE-Internship"] article code.mermaid > svg {
+body[data-slug="LINE-Internship"] article code.mermaid > svg,
+body[data-slug="Sansan-Internship"] article code.mermaid > svg {
   justify-self: center;
 }
 
