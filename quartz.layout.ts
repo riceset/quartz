@@ -45,6 +45,7 @@ export const defaultContentPageLayout: PageLayout = {
             "MIXI-Internship": "MIXI",
             "Makefile-for-C++-Projects": "Makefiles",
             "LINE-Internship": "LINE",
+            "Sansan-Internship": "Sansan",
             Pointers: "Pointers",
             "Replicating-the-Print-Function-in-C": "Print",
             "Signals-in-Linux": "Signals",
