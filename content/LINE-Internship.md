@@ -441,7 +441,7 @@ The `$` prefix reaches the property wrapper's `projectedValue`, which for `@Publ
 Combine models data flow like plumbing. A **publisher** is the source, producing values over time. **Operators** in the middle transform or filter them. A **sink** is the endpoint that consumes them. Data flows in one direction:
 
 ```mermaid
-flowchart LR
+flowchart TB
     P["$viewState<br/>publisher"] --> R[".receive(on: DispatchQueue.main)"]
     R --> S[".sink { state in ... }"]
     S --> U["update the UI"]
@@ -466,7 +466,7 @@ The controller stores the subscription in its `cancellables` property. Saying th
 
 ```mermaid
 %%{init: {"flowchart": {"nodeSpacing": 20, "rankSpacing": 28}, "themeVariables": {"fontSize": "13px"}}}%%
-flowchart LR
+flowchart TB
     VC["View controller"] -->|owns| C["cancellables"]
     C -->|keeps alive| S["Subscription"]
     S -->|keeps alive| CL["Sink closure"]
@@ -545,7 +545,7 @@ In UIKit, a `UIViewController` manages a screen, or a self-contained piece of on
 Same role, different contents. It is a bridge:
 
 ```mermaid
-flowchart LR
+flowchart TB
     A["SwiftUI View"] --> B["UIHostingController"]
     B --> C[".view is a UIView"]
     C --> D["usable anywhere in UIKit"]

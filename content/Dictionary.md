@@ -457,7 +457,7 @@ Inside the ViewModel, we are going to declare a variable to represent the connec
 > `@Dependency` is a property wrapper from the Dependencies library. It uses a key path syntax `\.defaultDatabase` to access the database we configured in `App.swift`. This is called Dependency Injection which means that we are not creating our own database connection but receiving it from outside.
 
 ```mermaid
-graph LR
+graph TB
     A[App.swift<br/>prepareDependencies] --> B[Sets defaultDatabase]
     B --> C[Dependency Container]
     C --> D[@Dependency injects it here]
