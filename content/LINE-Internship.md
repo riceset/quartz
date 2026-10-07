@@ -1,6 +1,6 @@
 ---
 title: "Six Weeks Building at LINE"
-date: 2026-09-18
+date: 2026-10-01
 description: "What I learned during a six-week iOS internship at LINE, from navigating a large UIKit codebase and refining Liquid Glass interfaces to bridging SwiftUI into an existing production screen."
 tags:
   - internship
