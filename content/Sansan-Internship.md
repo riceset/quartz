@@ -27,11 +27,7 @@ I was there two days a week. As an international student I am allowed to work 28
 
 ## How Work Moves Through the Team
 
-**Every ticket takes the same path: two documents, a review of each, the code, and three separate reviews of the code.**
-
 ### From PBI to Merge
-
-**Before any code, a ticket becomes two documents, and both are reviewed.**
 
 A ticket arrives as a **PBI** (Product Backlog Item) written by the product manager. Before any code exists, I write two documents.
 
@@ -53,8 +49,6 @@ flowchart TD
 ```
 
 ### Feature Branches
-
-**Features merge into an integration branch, not straight into `main`.**
 
 I had used Git before, but not **git-flow**, a branching convention that gives a few long-lived branches fixed roles. A **branch** is a line of work that can later be merged into another. Features merge into an integration branch, not into `main`. For a feature the team cuts a branch off that integration line, then a smaller branch off that one for each piece of work. Each small branch gets its own pull request into the feature branch. The feature branch has a pull request of its own into the integration branch, opened as a draft when the feature starts and marked ready for review when it is finished. QA checks that build on a device, and once the pull request is approved it is merged.
 
@@ -102,8 +96,6 @@ gitGraph
 
 ### Releases
 
-**A merge into `main` is a release, which is why features never go there directly.**
-
 `main` does not hold the latest code. When the team is ready to ship, a release branch is cut from the integration branch and the version number is bumped on it. A pull request from that branch into `main` is opened. Merging it tags the version and creates the release, and after that `main` is merged back so the integration branch picks up the version bump too.
 
 ```mermaid
@@ -145,19 +137,13 @@ The integration branch is therefore ahead of `main` nearly all of the time. If a
 
 ### The Daily Report
 
-**The reply to my first daily report reframed the two documents as engineering work, not paperwork.**
-
 Every day I wrote a **daily report** with what I did, what I learned, what I got stuck on, and what I wanted to ask my mentor. My mentor read it and wrote back.
 
 The reply to my first report was the longest one I received. I had written that the specification and the implementation policy were the first documents of that kind I had produced. The answer was that writing them is not a formality before the real work. It is the work of putting two things in a form another person will read the same way I do: what has to be true for the task to be done, and in what order it should be built.
 
 ## Expanding the Premium Landing Page
 
-**The first ticket removed a toolbar from one screen. The code is a handful of lines; the work was two documents showing that a handful of lines was all it would take.**
-
 ### The Problem
-
-**The premium landing page carried a toolbar whose three buttons did nothing useful there, and the ticket asked for that strip to become content.**
 
 Eight's premium landing page is the page in the premium registration flow that presents Eight Premium. It is a web page shown inside the app in a **web view**, a browser window embedded in an app screen. It had a **toolbar**, a bar of buttons along the bottom edge, with back, forward and reload buttons. On a landing page none of those three buttons is necessary, and the space could go to more of the web view's content, the part that explains the premium benefits.
 
@@ -167,8 +153,6 @@ Eight's premium landing page is the page in the premium registration flow that p
 </figure>
 
 ### The Specification
-
-**The specification turned the PBI's acceptance criteria into four statements a person can go and check.**
 
 A PBI states what it asks for as numbered **acceptance criteria**, the conditions that have to hold for the ticket to count as done, written as AC1, AC2 and so on, and my specification has to turn each of them into something a person can go and check. For this ticket that came down to four statements:
 
@@ -183,8 +167,6 @@ In the implementation policy I wrote where the change lived, which was the View 
 
 ### The VIPER Architecture
 
-**VIPER splits a screen into five parts, and only one of them, the View, draws. "The change lives in the View layer" is a promise that data and navigation stay untouched.**
-
 [VIPER](https://www.objc.io/issues/13-architecture/viper/) is how the team splits one screen into parts. One screen is one **module**, and a module is five parts:
 
 | Part | What it does |
@@ -196,7 +178,7 @@ In the implementation policy I wrote where the change lived, which was the View 
 | **R**outer | Moves to another screen, and builds the module in the first place |
 
 ```mermaid
-graph LR
+graph TB
     View["View (this ticket)"] -->|forwards input| Presenter
     Presenter -->|tells what to draw| View
     Presenter -->|asks for data and side effects| Interactor
@@ -209,8 +191,6 @@ Entity is the data the arrows carry, so it has no box of its own. The View talks
 
 ### The Implementation Policy
 
-**The policy said where the change lived, the View, and spent most of its length on what it would not touch.**
-
 The screen is built with [UIKit](https://developer.apple.com/documentation/uikit), Apple's framework for writing iOS screens in code, and laid out with [SnapKit](https://github.com/SnapKit/SnapKit), a small library that shortens UIKit's layout rules. After saying where the change lived, I spent most of the document on what it did not touch:
 
 - No change to the local database's **schema**, the shape of the data the app stores on the phone, and so no **migration**, the step that converts already-stored data into a new shape
@@ -220,8 +200,6 @@ The screen is built with [UIKit](https://developer.apple.com/documentation/uikit
 - No effect on restoring the phone from a backup
 
 ### Making the Change
-
-**Two edits: delete the code that showed the toolbar, and let the web view's bottom edge reach the edge of the screen.**
 
 The first edit is a deletion. Every screen inherits a `viewWillAppear` method that runs just before it comes on screen. This screen **overrode** it, that is, supplied its own version, and the one extra step in that version was showing the toolbar. Here `showWebViewToolbar()` stands in for the call that showed the toolbar:
 
@@ -258,17 +236,11 @@ Those two edits, one line replaced by two and a four-line method deleted, are th
 
 ### What the First Task Taught Me
 
-**Most of what the implementation policy says is "no", and each "no" was a check I ran, not a guess.**
-
 I did not know that any of it was "no" until I went and checked. What the document holds is the outcome of those checks, which is how I found out the change was as small as it looked.
 
 ## Showing the Premium Tip Once a Day
 
-**The second ticket changed one display rule. The work was in two places: making a date rule something a test can run, and telling a tap on the tip apart from an ordinary tap on the button.**
-
 ### The Problem
-
-**The ticket asked for two changes to one hint: show it once a day instead of once a month, and never again once the user has acted on it.**
 
 Eight's profile screen has a diamond icon in the navigation bar. The icon leads to the premium screen, and a **popover**, a small box that floats over the screen and points at a control, points at it with the text *"Eight Premium: 7-day free trial"* (in Japanese in the app). The popover is a **tip** built with Apple's [TipKit](https://developer.apple.com/documentation/tipkit) framework, and "the tip" is what this article calls it from here. The tip appeared at most once every 30 days. The ticket asked for it to be shown once per **calendar day** instead, that is, at most once between one midnight and the next, and to stop showing it at all to anyone who had already tapped the icon while the tip was pointing at it.
 
@@ -289,8 +261,6 @@ The function in Making the Rule Testable is the check for both.
 
 ### Where the Display Rule Lives
 
-**TipKit draws the tip. The app decides when to show it and keeps the two values the decision needs, because TipKit's own record can be neither read nor edited while the app runs.**
-
 TipKit is Apple's framework for hints like this one. A tip is a type that describes its own content, and the framework presents it as a popover pointing at a view. The tip itself is small:
 
 ```swift
@@ -308,8 +278,6 @@ The reason is that TipKit keeps its own record of what it has shown, and the app
 In VIPER terms, the rule became a function in the Entity layer with no dependencies. The Interactor reads the two saved values and calls it, and the View shows the popover and works out whether a tap on the icon was a tap on the tip.
 
 ### Making the Rule Testable
-
-**I moved the rule into a function whose every input is an argument, so a test can choose the saved values, the date and the time zone.**
 
 A `Date` in Swift is an instant, a point in time with no time zone attached. Which day that instant falls on depends on where you ask. Here is the rule that decided whether to show the tip before my change:
 
@@ -380,8 +348,6 @@ func canDisplayTip(isSubscriber: Bool) -> Bool {
 
 ### Writing the Tests
 
-**Two tests carry the rule: one runs it over four display histories with the tap flag set, and one gives the same two instants to two calendars and expects two different answers.**
-
 The project uses [Swift Testing](https://developer.apple.com/documentation/testing). `@Test` marks a function as a test and gives it a name, `#expect` states what must be true, and a test function can take `arguments`, in which case the framework runs it once per argument and reports each run as its own case. `gmtCalendar` and `reference` are two fixed values shared by every test in the file, a calendar pinned to GMT and one instant in it, and `shifted(by:times:)`, `gmtDate` and `zonedCalendar(offsetHours:)` are small helpers that build dates and calendars from them. **GMT** is the zero-offset time zone that every other zone is measured from.
 
 ```swift
@@ -449,8 +415,6 @@ The rule answers `false` for one calendar and `true` for the other, which is onl
 ### Counting a Tap on the Tip
 
 So far, the ticket's first half, the daily rule. The second half, never showing the tip again after a tap, is not about dates. It is about touches.
-
-**Recording a tap on the tip means knowing whether the tip was on screen at the moment the icon was tapped, and it took three versions of one property to know that reliably.**
 
 The tip is a popover, and a popover is not only the box on screen. UIKit also lays an invisible view over the rest of the screen, underneath the box, and that view exists to catch the next touch outside the popover and close it. That is why a popover normally spends the first tap on closing itself. The touch stops at the invisible view and never reaches what is underneath.
 
@@ -560,8 +524,6 @@ Now the reference tells the truth no matter who closed the tip, and `isShowingTi
 
 ### What the Second Task Taught Me
 
-**A `Date` is an instant, and it only becomes a day once you say whose time zone you are asking about. I did not see that until I had to name every test case.**
-
 The rule looked obviously correct to me until I had to commit to an answer for each case: no history at all, today, yesterday, thirty days ago, and the same two instants read in GMT and in Tokyo. The catch happened while writing the implementation policy, before any code. The tap half taught the same thing from the other side. A flag that says what is on screen is only true if every party that can change the screen also updates the flag, and UIKit was one of those parties.
 
 ## Trying Foundation Models on Japanese Search
@@ -571,8 +533,6 @@ To find out which kinds of processing Foundation Models handles well and which a
 What I built takes a Japanese query, pulls the searchable words out of it, decides which field of a card each word belongs in, and runs a search that matches field by field and ranks the results. The model does one step inside that, and Swift does everything around it. A search is fast enough to feel like a search. It worked well enough to show what the model handles well and where it struggles, and it still has two clear limits: the model puts words in the wrong field, and place names the dictionary does not know are split in two. Both come up below.
 
 ### Learning Foundation Models
-
-**Foundation Models can hand back a typed Swift value instead of free text, and that is the one feature the search is built on.**
 
 I had never used the framework, so I started outside the codebase with a sample app and changed one small thing at a time. The smallest thing that works fits in a [playground](https://developer.apple.com/documentation/xcode/running-code-snippets-using-the-playground-macro), a scratch file in which Xcode runs a snippet and shows its output:
 
@@ -612,8 +572,6 @@ struct QueryFields {
 
 ### The Pipeline
 
-**Everything Swift can solve on its own is solved before the model is called, and everything the model returns is checked afterwards.**
-
 Take one query and follow it through the pipeline. I chose a harder one than a plain name-and-company query on purpose: `去年名刺を交換した丸の内の人`, "someone in Marunouchi I exchanged business cards with last year". It has a date, a verb phrase, and a place name with a `の` inside it (`丸の内` is a business district in Tokyo), so every step has something to do.
 
 ```mermaid
@@ -644,8 +602,6 @@ Each step is a section below, with the same name. Dashed boxes are values that d
 
 ### Solving the Date
 
-**Dates are resolved in Swift before the model sees the query, because the model gets them wrong.**
-
 I do this in Swift because the model is bad at dates. In some cases, it misreads `昨日` ("yesterday") as a day in the previous year, and `2024年` ("the year 2024") as a single day. So Swift matches the query against a list of date patterns, `去年` ("last year"), `昨日`, `3日前` ("three days ago") and so on, tried longest first, turns the match into a range of dates, and cuts it out of the sentence before the model sees it:
 
 | Stage                   | Value                                                                    |
@@ -657,8 +613,6 @@ I do this in Swift because the model is bad at dates. In some cases, it misreads
 Cutting the date out has a side effect I like. If nothing searchable is left, the model is not called at all: `去年` on its own becomes a date range and nothing else.
 
 ### Asking the Model
-
-**The model is called once, here, and what it returns is a set of candidates, not an answer: for this query, one of its three values is worth searching for.**
 
 The app hands `名刺を交換した丸の内の人` to the model and gets this back:
 
@@ -673,8 +627,6 @@ The model sorts words into three **labels**: company, name and title. A card has
 `丸の内` is a place, and the model put it under company names. It also returned `人`, which only means "person", as a name, and `名刺を交換した` ("exchanged business cards"), a piece of the sentence, as a title.
 
 ### Checking Every Word
-
-**Each value the model returns is checked twice: is it really in the sentence, and is it a word rather than a piece of a sentence?**
 
 First, the app checks whether the value appears in the text the model was given. This catches words the model made up. For `大阪の企業の人` ("someone at a company in Osaka") the model once returned `大阪の人` ("someone from Osaka") as a name. That string is not in the sentence, so it is thrown away without a second look. Here all three values pass, since they are all in `名刺を交換した丸の内の人`.
 
@@ -691,8 +643,6 @@ Failing the second check does not mean being thrown away. A piece of a sentence 
 For our query, `丸の内` passes both checks. `人` and `名刺を交換した` fail the second one. The next section is about how MeCab tells a word from a piece of a sentence, because that is the part I could not get right without it.
 
 ### Telling a Word from a Phrase
-
-**To tell a word from a piece of a sentence I needed the part of speech of every piece, and for Japanese only MeCab gave me that.**
 
 A **part of speech** is the grammatical class of a piece of text: noun, verb, particle and so on. I got to MeCab by way of three attempts that did not work:
 
@@ -748,8 +698,6 @@ So a value written entirely in hiragana counts as a phrase only if it is nothing
 
 ### Keeping Only the Nouns
 
-**A value that fails the second check is not thrown away, because a useful word may be inside it. It is cut into its nouns, and each noun is kept or dropped on its own.**
-
 `名刺を交換した` has two nouns, `名刺` and `交換`, and the app drops both, for different reasons.
 
 **`名刺` only says what the user is looking for.** It is on a short list of words the app sets aside: words for a person or a company in general, legal forms printed on almost every card, names of fields on the card, and words about the search itself, such as `名刺`, rather than anything printed on a card.
@@ -797,8 +745,6 @@ Back to `去年名刺を交換した丸の内の人`. After these checks only `�
 
 ### Letting the Cards Decide the Field
 
-**Which fields a word is searched in is decided by where that word already appears on the user's own cards. The model's label is only a starting point.**
-
 The model is good at splitting a sentence into words, but it often puts a word under the wrong label:
 
 | Input                                                     | Where it ended up                        | Where it belongs |
@@ -823,7 +769,7 @@ Here is a query where all three labels are right, `藤原食品でマネージ�
 Three words, decided three ways:
 
 ```mermaid
-flowchart LR
+flowchart TB
     K1["藤原食品"] --> L1["The cards: company name only"] --> F1["company name"]
     K2["中原"] --> H["さん follows it in the query"] --> F2["name"]
     K3["マネージャー"] --> L2["The cards: mostly a job title, also a skill tag and a company name"] --> F3["job title, skill tag, company name"]
@@ -839,23 +785,17 @@ When two cards match the same number of conditions, the app orders them by how c
 
 ### What Did Not Work
 
-**The failure worth repeating is tool calling, the experiment I expected to keep and did not.**
-
 I tried letting the model call [tools](https://developer.apple.com/documentation/foundationmodels/expanding-generation-with-tool-calling). A tool is a small Swift function the model can ask for while it answers, to look something up in the user's data. Every search got slower, including searches that had no use for a tool.
 
 The time goes into the model, not into the tools. Each tool's name and description is part of the text the model reads before every answer, whether it calls the tool or not. Each call it does make is one more round of answering, over a longer conversation. And one of those lookups needed no model at all: the cards already decide which field a word belongs in. So I removed the tools.
 
 ### What the Third Task Taught Me
 
-**Every version of this that worked better than the last was a version where the model did less.**
-
 Dates go to Swift because the model gets them wrong. Invented words are caught by a check against the text the model was given, pieces of sentences are caught by MeCab, and the field each word belongs in is decided by the user's own cards instead of by the model's guess. The one time I let the model do more, by giving it tools, every search got slower.
 
 What is left for the model is the one thing none of that can do, which is reading a sentence and saying which parts of it are worth searching for. It ended up as one step inside a pipeline.
 
 ## Conclusion
-
-**The part I did not expect was how much of the engineering happened before any code was written.**
 
 Two months, two days a week, three tasks. I had been told that writing specifications and policies is part of the engineering, and that the skill can be built up. In the same weeks, [at LINE](https://riceset.com/LINE-Internship), the lesson had been to slow down and learn what was underneath the code I was changing. Here it was the other half. A good part of the engineering happens before the code, and it is written down in two documents before anyone opens Xcode.
 
