@@ -400,8 +400,6 @@ const languages: Language[] = [
   { flag: "🇺🇸", flagAlt: "🇬🇧", name: "English", level: "C2" },
   { flag: "🇪🇸", name: "Spanish", level: "C1" },
   { flag: "🇹🇼", flagAlt: "🇨🇳", name: "Mandarin", level: "B1" },
-  { flag: "🇮🇹", name: "Italian", level: "A1" },
-  { flag: "🇨🇦", flagAlt: "🇫🇷", name: "French", level: "A1" },
 ]
 
 // ── Component ──────────────────────────────────────────────────────────────
