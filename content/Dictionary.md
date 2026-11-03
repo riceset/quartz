@@ -1,12 +1,15 @@
 ---
-title: Building a Mandarin Dictionary
+title: "Building a Mandarin Dictionary: Part 1"
 date: 2025-11-17
-description: "How I turned Taiwan's MOE dictionary data into a modern SwiftUI app, from SQLite schema design and asynchronous search to polished interface states."
+description: "The first part of building a SwiftUI dictionary app from Taiwan's MOE data, covering the JSON structure, a SQLite schema, and a first stroke-count search."
 tags:
   - swift
 ---
 
-# Building a Mandarin Dictionary
+# Building a Mandarin Dictionary: Part 1
+
+> [!info] Part 1 of a series
+> The app is still a work in progress. This part goes from the raw dictionary data to a first working version: a SQLite database and a SwiftUI screen that searches characters by stroke count.
 
 Recently, I had the idea to start building my new app: a Mandarin dictionary specifically for Traditional Mandarin Chinese.
 
@@ -926,3 +929,7 @@ sequenceDiagram
     DictionaryModel->>View: SwiftUI detects change
     View->>View: Shows SearchResultsListView
 ```
+
+## What's Next
+
+That is where the app stands at the end of part one: the dictionary data lives in SQLite, and the first SwiftUI screens can search it by stroke count and show each character's details. The app is not finished yet, and I will pick up from here in part two.
