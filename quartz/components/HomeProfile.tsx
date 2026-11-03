@@ -236,7 +236,7 @@ const experience: ExperienceItem[] = [
     period: "May 2026 – Present",
     location: "Tokyo",
     description:
-      "Full-stack software engineer at BaseMe with a focus on retention-driven UX improvements, LLM implementation, and mobile-web parity.",
+      "Built features for BaseMe's AI career chat, such as using your notes as context and stopping a reply, and redesigned how company recommendations appear. Also added profile view counts to help students get noticed by recruiters.",
     children: [
       {
         title: "BaseMe",
