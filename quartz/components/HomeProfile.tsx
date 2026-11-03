@@ -145,6 +145,13 @@ interface HackathonItem {
   rank?: string
 }
 
+interface CoverageItem {
+  outlet: string
+  title: string
+  url: string
+  date: string
+}
+
 interface SpeakingItem {
   title: string
   talkUrl?: string
@@ -152,6 +159,7 @@ interface SpeakingItem {
   logo?: string
   logoClass?: string
   description: string
+  coverage?: CoverageItem[]
   tags?: string[]
   date?: string
   location: string
@@ -361,6 +369,14 @@ const speaking: SpeakingItem[] = [
     logoClass: "home-org-logo-iplayground",
     description:
       "A talk on turning a personal story into a winning Swift Playground, covering how to find an idea only you could build, grow SwiftUI skills under real project constraints, and use attention to detail to raise a submission from good to winning.",
+    coverage: [
+      {
+        outlet: "LY Corporation Tech Blog",
+        title: "iPlayground 2026 Apple Developer Conference",
+        url: "https://techblog.lycorp.co.jp/zh-hant/TWC-2026-iPlayground-Apple-Developer-Conference",
+        date: "Oct 2026",
+      },
+    ],
     date: "Jul 2026",
     location: "Taipei",
   },
@@ -579,6 +595,24 @@ const HomeProfile: QuartzComponent = () => {
                     <MetaRow period={item.date} location={item.location} />
                   </div>
                   <p class="home-talk-desc">{item.description}</p>
+                  {item.coverage && (
+                    <ul class="home-talk-coverage">
+                      {item.coverage.map((c) => (
+                        <li class="home-talk-coverage-item">
+                          <span class="home-talk-coverage-label">Press · {c.date}</span>
+                          <a class="home-talk-coverage-link" href={c.url}>
+                            <span class="home-talk-coverage-title">
+                              {c.title}
+                              <span class="home-talk-title-arrow" aria-hidden="true">
+                                {"\u2060\u00a0↗"}
+                              </span>
+                            </span>
+                            <span class="home-talk-coverage-outlet">{c.outlet}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   {item.tags && (
                     <div class="home-talk-tags">
                       {item.tags.map((tag) => (
