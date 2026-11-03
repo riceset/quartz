@@ -161,7 +161,6 @@ interface HackathonItem {
 
 interface CoverageItem {
   outlet: string
-  title: string
   url: string
   date: string
 }
@@ -389,7 +388,6 @@ const speaking: SpeakingItem[] = [
     coverage: [
       {
         outlet: "LY Corporation Tech Blog",
-        title: "iPlayground 2026 Apple Developer Conference",
         url: "https://techblog.lycorp.co.jp/zh-hant/TWC-2026-iPlayground-Apple-Developer-Conference",
         date: "Oct 2026",
       },
@@ -636,12 +634,11 @@ const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
                           <span class="home-talk-coverage-label">Press · {c.date}</span>
                           <a class="home-talk-coverage-link" href={c.url}>
                             <span class="home-talk-coverage-title">
-                              {c.title}
+                              {c.outlet}
                               <span class="home-talk-title-arrow" aria-hidden="true">
                                 {"\u2060\u00a0↗"}
                               </span>
                             </span>
-                            <span class="home-talk-coverage-outlet">{c.outlet}</span>
                           </a>
                         </li>
                       ))}
