@@ -664,6 +664,80 @@
   max-width: 620px;
 }
 
+.home-talk-coverage {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0.6rem 0 0;
+  padding: 0 0 0 0.85rem;
+  max-width: 620px;
+  border-left: 2px solid var(--lightgray);
+}
+
+.home-talk-coverage-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0;
+}
+
+.home-talk-coverage-label {
+  font-family: "IBM Plex Mono", var(--codeFont);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.home-talk-coverage-link,
+.home-talk-coverage-link:visited {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  padding: 0;
+  color: var(--dark);
+  text-decoration: none;
+  background: transparent;
+  border-radius: 0;
+
+  &:hover {
+    color: var(--dark);
+    background: transparent;
+
+    & .home-talk-coverage-title {
+      text-decoration-line: underline;
+      text-decoration-color: color-mix(in srgb, currentColor 72%, transparent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+    }
+
+    & .home-talk-title-arrow {
+      color: currentColor;
+      transform: translate(0.08em, -0.08em);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 3px;
+  }
+}
+
+.home-talk-coverage-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--dark);
+}
+
+.home-talk-coverage-outlet {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--darkgray) 78%, var(--secondary) 22%);
+}
+
 .home-talk-tags {
   display: flex;
   flex-wrap: wrap;

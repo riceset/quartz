@@ -159,6 +159,13 @@ interface HackathonItem {
   rank?: string
 }
 
+interface CoverageItem {
+  outlet: string
+  title: string
+  url: string
+  date: string
+}
+
 interface SpeakingItem {
   title: string
   talkUrl?: string
@@ -166,18 +173,9 @@ interface SpeakingItem {
   logo?: string
   logoClass?: string
   description: string
+  coverage?: CoverageItem[]
   tags?: string[]
   date?: string
-  location: string
-}
-
-interface PressItem {
-  title: string
-  url: string
-  outlet: string
-  logo: string
-  logoClass?: string
-  date: string
   location: string
 }
 
@@ -321,7 +319,6 @@ const awards: AwardItem[] = [
     logo: "/static/logos/apple.svg",
     logoClass: "home-org-logo-apple",
     institution: "Apple",
-    articleUrl: "/Swift-Student-Challenge-2026",
     description:
       "Selected in 2026 for an app that impressed and inspired Apple with its creativity, technical skill, and thoughtful design.",
   },
@@ -389,6 +386,14 @@ const speaking: SpeakingItem[] = [
     logoClass: "home-org-logo-iplayground",
     description:
       "A talk on turning a personal story into a winning Swift Playground, covering how to find an idea only you could build, grow SwiftUI skills under real project constraints, and use attention to detail to raise a submission from good to winning.",
+    coverage: [
+      {
+        outlet: "LY Corporation Tech Blog",
+        title: "iPlayground 2026 Apple Developer Conference",
+        url: "https://techblog.lycorp.co.jp/zh-hant/TWC-2026-iPlayground-Apple-Developer-Conference",
+        date: "Oct 2026",
+      },
+    ],
     date: "Jul 2026",
     location: "Taipei",
   },
@@ -419,18 +424,6 @@ const speaking: SpeakingItem[] = [
       "Produced a Brazilian Portuguese tutorial for 42 São Paulo's YouTube channel, teaching beginners how to use Vim from the basics.",
     date: "Apr 2023",
     location: "São Paulo",
-  },
-]
-
-const press: PressItem[] = [
-  {
-    title: "iPlayground 2026 Apple Developer Conference",
-    url: "https://techblog.lycorp.co.jp/zh-hant/TWC-2026-iPlayground-Apple-Developer-Conference",
-    outlet: "LY Corporation Tech Blog",
-    logo: "/static/logos/ly-corp-en.svg",
-    logoClass: "home-org-logo-ly-corp",
-    date: "Oct 2026",
-    location: "Taipei",
   },
 ]
 
@@ -636,6 +629,24 @@ const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
                     <MetaRow period={item.date} location={item.location} />
                   </div>
                   <p class="home-talk-desc">{item.description}</p>
+                  {item.coverage && (
+                    <ul class="home-talk-coverage">
+                      {item.coverage.map((c) => (
+                        <li class="home-talk-coverage-item">
+                          <span class="home-talk-coverage-label">Press · {c.date}</span>
+                          <a class="home-talk-coverage-link" href={c.url}>
+                            <span class="home-talk-coverage-title">
+                              {c.title}
+                              <span class="home-talk-title-arrow" aria-hidden="true">
+                                {"\u2060\u00a0↗"}
+                              </span>
+                            </span>
+                            <span class="home-talk-coverage-outlet">{c.outlet}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   {item.tags && (
                     <div class="home-talk-tags">
                       {item.tags.map((tag) => (
@@ -643,40 +654,6 @@ const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
                       ))}
                     </div>
                   )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Press */}
-      <section class="home-section" id="press">
-        <h2 class="home-section-heading">
-          <span class="home-section-label">Press</span>
-        </h2>
-        <div class="home-talk-list">
-          {press.map((item) => (
-            <div class="home-talk-item">
-              <div class="home-talk-row">
-                <span class="home-org-logo-badge">
-                  <img
-                    class={["home-org-logo", item.logoClass].filter(Boolean).join(" ")}
-                    src={item.logo}
-                    alt={item.outlet}
-                  />
-                </span>
-                <div class="home-talk-text">
-                  <a class="home-talk-title home-talk-title-link" href={item.url}>
-                    {item.title}
-                    <span class="home-talk-title-arrow" aria-hidden="true">
-                      {"\u2060\u00a0↗"}
-                    </span>
-                  </a>
-                  <span class="home-talk-organization">{item.outlet}</span>
-                  <div class="home-talk-meta">
-                    <MetaRow period={item.date} location={item.location} />
-                  </div>
                 </div>
               </div>
             </div>
