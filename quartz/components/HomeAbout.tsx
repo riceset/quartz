@@ -4,7 +4,7 @@ import style from "./styles/homeAbout.scss"
 const HomeAbout: QuartzComponent = () => (
   <section class="home-about" aria-labelledby="home-about-title">
     <header class="home-about-header">
-      <span>07 / About</span>
+      <span class="home-section-label">About</span>
       <span>Tokyo, Japan</span>
     </header>
 

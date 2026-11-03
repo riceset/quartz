@@ -106,21 +106,6 @@ const XIcon = () => (
   </svg>
 )
 
-const MastodonIcon = () => (
-  <svg
-    class="home-link-icon"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <rect x="4" y="4" width="16" height="16" rx="5" />
-    <path d="M8 16v-4.5a2.5 2.5 0 0 1 4.38-1.66A2.5 2.5 0 0 1 16 11.5V16" />
-  </svg>
-)
-
 const homeLinks = [
   {
     href: "mailto:komeno@riceset.com",

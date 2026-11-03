@@ -99,7 +99,7 @@ export default ((opts?: Options) => {
     return (
       <section class="home-articles" data-nosnippet="true" data-article-pagination>
         <div class="home-articles-heading">
-          <h2>06 / Articles</h2>
+          <h2 class="home-section-label">Articles</h2>
           <button
             type="button"
             class="home-articles-graph-trigger global-graph-icon"

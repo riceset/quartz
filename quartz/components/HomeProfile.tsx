@@ -1,4 +1,4 @@
-import { QuartzComponent, QuartzComponentConstructor } from "./types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import style from "./styles/homeProfile.scss"
 
 // ── Icons ──────────────────────────────────────────────────────────────────
@@ -79,6 +79,18 @@ const MetaRow = ({ period, location, rank }: MetaRowProps) => (
   </div>
 )
 
+const ReadMore = ({ href, title }: { href: string; title: string }) => (
+  <a class="home-read-more" href={href}>
+    <span class="home-read-more-label">Write-up</span>
+    <span class="home-read-more-title">
+      {title}
+      <span class="home-read-more-arrow" aria-hidden="true">
+        {"\u2060\u00a0→"}
+      </span>
+    </span>
+  </a>
+)
+
 // ── Data ───────────────────────────────────────────────────────────────────
 
 interface ExperienceItem {
@@ -91,6 +103,7 @@ interface ExperienceItem {
   period: string
   location: string
   description?: string
+  articleUrl?: string
   children?: ExperienceChildItem[]
 }
 
@@ -124,6 +137,7 @@ interface AwardItem {
   logoClass?: string
   institution: string
   description: string
+  articleUrl?: string
 }
 
 interface CertificationItem {
@@ -145,13 +159,6 @@ interface HackathonItem {
   rank?: string
 }
 
-interface CoverageItem {
-  outlet: string
-  title: string
-  url: string
-  date: string
-}
-
 interface SpeakingItem {
   title: string
   talkUrl?: string
@@ -159,9 +166,18 @@ interface SpeakingItem {
   logo?: string
   logoClass?: string
   description: string
-  coverage?: CoverageItem[]
   tags?: string[]
   date?: string
+  location: string
+}
+
+interface PressItem {
+  title: string
+  url: string
+  outlet: string
+  logo: string
+  logoClass?: string
+  date: string
   location: string
 }
 
@@ -175,8 +191,9 @@ const experience: ExperienceItem[] = [
     logoClass: "home-org-logo-ly-corp",
     period: "Aug 2026 – Sep 2026",
     location: "Fukuoka",
+    articleUrl: "/LINE-Internship",
     description:
-      "Developed native iOS product features for LINE's Liquid Glass redesign and collaborated daily with engineers and designers.",
+      "Updated LINE's sticker and emoji screens in UIKit for the Liquid Glass redesign and fixed iOS 26 layout issues in settings, aligning on styling with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
     children: [
       {
         title: "LINE",
@@ -184,7 +201,7 @@ const experience: ExperienceItem[] = [
         logoClass: "home-org-logo-line",
         badgeClass: "home-exp-child-logo-badge-line",
         description:
-          "LINE is Japan's leading communication app, with domestic monthly active users surpassing 100 million at the end of 2025.",
+          "LINE is Japan's leading communication app, with more than 100 million monthly active users in Japan.",
       },
     ],
   },
@@ -197,8 +214,9 @@ const experience: ExperienceItem[] = [
     logoClass: "home-org-logo-sansan",
     period: "Aug 2026 – Sep 2026",
     location: "Tokyo",
+    articleUrl: "/Sansan-Internship",
     description:
-      "Improved the Eight iOS app’s UI/UX and evaluated proof-of-concept features built with Apple’s Foundation Models framework.",
+      "Built a proof of concept for on-device Japanese contact search with Apple’s Foundation Models and MeCab, matching natural-language queries to names and companies. Also reworked Eight’s TipKit Premium reminders and expanded its Premium landing page, writing the specs for both.",
     children: [
       {
         title: "Eight",
@@ -206,7 +224,7 @@ const experience: ExperienceItem[] = [
         logoClass: "home-org-logo-eight",
         badgeClass: "home-exp-child-logo-badge-eight",
         description:
-          "Eight is a business card app with more than 4 million users, offering QR card exchange and digitization for business cards.",
+          "Eight is a business card app with more than 4.5 million users, offering QR card exchange and digitization for business cards.",
       },
     ],
   },
@@ -241,8 +259,9 @@ const experience: ExperienceItem[] = [
     logoClass: "home-org-logo-mixi",
     period: "Jan 2026 – Apr 2026",
     location: "Tokyo",
+    articleUrl: "/MIXI-Internship",
     description:
-      "Built and optimized iOS features for MIXI's digital album application, working in Swift with an agile product engineering team.",
+      "Added country-based access controls to an AI feature that recognizes family members and suggests photos for albums, keeping it to legally approved regions with cached location checks covered by Swift Testing. Also replaced PanModal with native iOS sheets for iOS 26.",
     children: [
       {
         title: "FamilyAlbum",
@@ -250,7 +269,7 @@ const experience: ExperienceItem[] = [
         logoClass: "home-org-logo-familyalbum",
         badgeClass: "home-exp-child-logo-badge-familyalbum",
         description:
-          "FamilyAlbum is a private family photo and video sharing app that surpassed 30 million users worldwide and supports families across 175 countries and regions.",
+          "FamilyAlbum is a private family photo and video sharing app with more than 27 million users across 175 countries and regions.",
       },
     ],
   },
@@ -263,7 +282,7 @@ const experience: ExperienceItem[] = [
     period: "Aug 2025 – Feb 2026",
     location: "Tokyo",
     description:
-      "Participated in Google Japan's ambassador program to promote responsible and effective AI use among university students.",
+      "Part of the program's first cohort, sharing everyday AI use cases with more than 1,000 followers. Helped fellow university students learn to use AI safely and effectively.",
     children: [
       {
         title: "Google Student Ambassador Program",
@@ -302,6 +321,7 @@ const awards: AwardItem[] = [
     logo: "/static/logos/apple.svg",
     logoClass: "home-org-logo-apple",
     institution: "Apple",
+    articleUrl: "/Swift-Student-Challenge-2026",
     description:
       "Selected in 2026 for an app that impressed and inspired Apple with its creativity, technical skill, and thoughtful design.",
   },
@@ -369,14 +389,6 @@ const speaking: SpeakingItem[] = [
     logoClass: "home-org-logo-iplayground",
     description:
       "A talk on turning a personal story into a winning Swift Playground, covering how to find an idea only you could build, grow SwiftUI skills under real project constraints, and use attention to detail to raise a submission from good to winning.",
-    coverage: [
-      {
-        outlet: "LY Corporation Tech Blog",
-        title: "iPlayground 2026 Apple Developer Conference",
-        url: "https://techblog.lycorp.co.jp/zh-hant/TWC-2026-iPlayground-Apple-Developer-Conference",
-        date: "Oct 2026",
-      },
-    ],
     date: "Jul 2026",
     location: "Taipei",
   },
@@ -410,6 +422,18 @@ const speaking: SpeakingItem[] = [
   },
 ]
 
+const press: PressItem[] = [
+  {
+    title: "iPlayground 2026 Apple Developer Conference",
+    url: "https://techblog.lycorp.co.jp/zh-hant/TWC-2026-iPlayground-Apple-Developer-Conference",
+    outlet: "LY Corporation Tech Blog",
+    logo: "/static/logos/ly-corp-en.svg",
+    logoClass: "home-org-logo-ly-corp",
+    date: "Oct 2026",
+    location: "Taipei",
+  },
+]
+
 const languages: Language[] = [
   { flag: "🇧🇷", flagAlt: "🇵🇹", name: "Portuguese", level: "L1" },
   { flag: "🇯🇵", name: "Japanese", level: "C2" },
@@ -420,14 +444,22 @@ const languages: Language[] = [
 
 // ── Component ──────────────────────────────────────────────────────────────
 
-const HomeProfile: QuartzComponent = () => {
+const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
+  // Label each write-up link with the linked article's own title.
+  const articleLink = (url: string) => {
+    const title = allFiles.find((file) => `/${file.slug}` === url)?.frontmatter?.title
+    return <ReadMore href={url} title={title ?? "Read the write-up"} />
+  }
+
   return (
     // data-nosnippet: keep these body sections out of Google search snippets so the
     // homepage snippet falls back to the meta description instead of stitching fragments.
     <div class="home-profile" data-nosnippet>
       {/* Experience */}
       <section class="home-section">
-        <h2 class="home-section-heading">00 / Experience</h2>
+        <h2 class="home-section-heading">
+          <span class="home-section-label">Experience</span>
+        </h2>
         <div class="home-exp-list">
           {experience.map((item) => (
             <div class="home-exp-item">
@@ -452,6 +484,7 @@ const HomeProfile: QuartzComponent = () => {
                     {item.description && (
                       <div class="home-exp-body">
                         <p class="home-exp-desc">{item.description}</p>
+                        {item.articleUrl && articleLink(item.articleUrl)}
                       </div>
                     )}
                   </div>
@@ -501,6 +534,7 @@ const HomeProfile: QuartzComponent = () => {
                     {item.description && (
                       <div class="home-exp-body">
                         <p class="home-exp-desc">{item.description}</p>
+                        {item.articleUrl && articleLink(item.articleUrl)}
                       </div>
                     )}
                   </div>
@@ -513,7 +547,9 @@ const HomeProfile: QuartzComponent = () => {
 
       {/* Awards */}
       <section class="home-section">
-        <h2 class="home-section-heading">01 / Awards</h2>
+        <h2 class="home-section-heading">
+          <span class="home-section-label">Awards</span>
+        </h2>
         <div class="home-award-list">
           {awards.map((item) => (
             <div class="home-award-item">
@@ -529,6 +565,7 @@ const HomeProfile: QuartzComponent = () => {
                   <span class="home-award-title">{item.title}</span>
                   <span class="home-award-institution">{item.institution}</span>
                   <p class="home-award-desc">{item.description}</p>
+                  {item.articleUrl && articleLink(item.articleUrl)}
                 </div>
               </div>
             </div>
@@ -538,7 +575,9 @@ const HomeProfile: QuartzComponent = () => {
 
       {/* Hackathons */}
       <section class="home-section">
-        <h2 class="home-section-heading">02 / Hackathons</h2>
+        <h2 class="home-section-heading">
+          <span class="home-section-label">Hackathons</span>
+        </h2>
         <div class="home-hackathon-list">
           {hackathons.map((item) => (
             <div class="home-hackathon-item">
@@ -565,7 +604,9 @@ const HomeProfile: QuartzComponent = () => {
 
       {/* Talks */}
       <section class="home-section" id="talks">
-        <h2 class="home-section-heading">03 / Talks</h2>
+        <h2 class="home-section-heading">
+          <span class="home-section-label">Talks</span>
+        </h2>
         <div class="home-talk-list">
           {speaking.map((item) => (
             <div class="home-talk-item">
@@ -595,24 +636,6 @@ const HomeProfile: QuartzComponent = () => {
                     <MetaRow period={item.date} location={item.location} />
                   </div>
                   <p class="home-talk-desc">{item.description}</p>
-                  {item.coverage && (
-                    <ul class="home-talk-coverage">
-                      {item.coverage.map((c) => (
-                        <li class="home-talk-coverage-item">
-                          <span class="home-talk-coverage-label">Press · {c.date}</span>
-                          <a class="home-talk-coverage-link" href={c.url}>
-                            <span class="home-talk-coverage-title">
-                              {c.title}
-                              <span class="home-talk-title-arrow" aria-hidden="true">
-                                {"\u2060\u00a0↗"}
-                              </span>
-                            </span>
-                            <span class="home-talk-coverage-outlet">{c.outlet}</span>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
                   {item.tags && (
                     <div class="home-talk-tags">
                       {item.tags.map((tag) => (
@@ -627,9 +650,45 @@ const HomeProfile: QuartzComponent = () => {
         </div>
       </section>
 
+      {/* Press */}
+      <section class="home-section" id="press">
+        <h2 class="home-section-heading">
+          <span class="home-section-label">Press</span>
+        </h2>
+        <div class="home-talk-list">
+          {press.map((item) => (
+            <div class="home-talk-item">
+              <div class="home-talk-row">
+                <span class="home-org-logo-badge">
+                  <img
+                    class={["home-org-logo", item.logoClass].filter(Boolean).join(" ")}
+                    src={item.logo}
+                    alt={item.outlet}
+                  />
+                </span>
+                <div class="home-talk-text">
+                  <a class="home-talk-title home-talk-title-link" href={item.url}>
+                    {item.title}
+                    <span class="home-talk-title-arrow" aria-hidden="true">
+                      {"\u2060\u00a0↗"}
+                    </span>
+                  </a>
+                  <span class="home-talk-organization">{item.outlet}</span>
+                  <div class="home-talk-meta">
+                    <MetaRow period={item.date} location={item.location} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Education */}
       <section class="home-section">
-        <h2 class="home-section-heading">04 / Education</h2>
+        <h2 class="home-section-heading">
+          <span class="home-section-label">Education</span>
+        </h2>
         <div class="home-edu-list">
           {education.map((item) => (
             <div class="home-edu-item">
@@ -651,7 +710,7 @@ const HomeProfile: QuartzComponent = () => {
       {/* Languages */}
       <section class="home-section">
         <h2 class="home-section-heading">
-          <span>05 / Languages</span>
+          <span class="home-section-label">Languages</span>
           <span>CEFR</span>
         </h2>
         <div class="home-lang-list">

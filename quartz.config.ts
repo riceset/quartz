@@ -19,7 +19,6 @@ const config: QuartzConfig = {
     baseUrl: "riceset.com",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "created",
-    generateSocialImages: false,
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
