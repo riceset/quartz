@@ -50,7 +50,12 @@ const HomeSplash: QuartzComponent = (props: QuartzComponentProps) => {
 
       <div class="splash-bottom">
         <div class="splash-signature">
-          <h1 class="splash-name">Thiago Komeno</h1>
+          <h1 class="splash-name">
+            Thiago Komeno
+            <span class="splash-name-japanese" lang="ja" data-nosnippet>
+              米野
+            </span>
+          </h1>
           <nav class="splash-nav" aria-label="Sections">
             {navLinks.map(({ href, label }) => (
               <a class="splash-nav-link" href={href}>
