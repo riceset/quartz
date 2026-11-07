@@ -108,25 +108,6 @@ body[data-slug="index"] {
   color: var(--dark);
 }
 
-.splash-name-japanese {
-  display: inline-block;
-  font-family:
-    "LINE Seed JP", "Noto Sans JP", "Hiragino Sans", "Yu Gothic Medium", "Yu Gothic",
-    "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-  font-size: 0.38em;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  vertical-align: 0.12em;
-  margin-left: 0.5rem;
-  color: var(--gray);
-  white-space: nowrap;
-
-  // The name is at its smallest on phones, so give the kanji a larger share of it.
-  @media all and ($splash-mobile) {
-    font-size: 0.5em;
-  }
-}
-
 .splash-nav {
   display: flex;
   flex-wrap: wrap;
