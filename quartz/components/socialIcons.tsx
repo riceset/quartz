@@ -53,8 +53,8 @@ const YouTubeIcon = () => (
     stroke-linejoin="round"
     aria-hidden="true"
   >
-    <rect x="3" y="6" width="18" height="12" rx="3.5" />
-    <path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none" />
+    <rect x="2.5" y="4.5" width="19" height="15" rx="4.5" />
+    <path d="m10 8.75 5.5 3.25-5.5 3.25z" fill="currentColor" stroke="none" />
   </svg>
 )
 
