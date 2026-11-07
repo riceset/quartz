@@ -158,7 +158,7 @@ const HomeHero: QuartzComponent = (props: QuartzComponentProps) => {
         <span class="home-banner-wordmark">riceset</span>
       </div>
       <div class="home-hero-inner">
-        <img class="home-avatar" src="/media/index/IMG_3751.jpeg" alt="Thiago Komeno" />
+        <div class="home-avatar" role="img" aria-label="Thiago Komeno" />
         <div class="home-hero-text">
           <h1 class="home-name">
             Thiago Komeno
