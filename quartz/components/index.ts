@@ -7,6 +7,7 @@ import HomeHero from "./HomeHero"
 import HomeProfile from "./HomeProfile"
 import HomeArticles from "./HomeArticles"
 import HomeAbout from "./HomeAbout"
+import HomeSplash from "./HomeSplash"
 import Darkmode from "./Darkmode"
 import RailName from "./RailName"
 import Socials from "./Socials"
@@ -37,6 +38,7 @@ export {
   HomeProfile,
   HomeArticles,
   HomeAbout,
+  HomeSplash,
   Content,
   TagContent,
   FolderContent,

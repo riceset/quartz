@@ -10,74 +10,100 @@ $article-space-10: 2.5rem;
   margin-top: 3rem;
 }
 
-.home-articles-heading {
+.home-articles-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  margin: 0 0 $article-space-8;
-  color: color-mix(in srgb, var(--darkgray) 68%, var(--gray) 32%);
-  font-family: var(--codeFont);
-  font-size: 0.74rem;
-  font-weight: 400;
-  line-height: 1.4;
-  text-transform: uppercase;
-
-  & > h2 {
-    margin: 0;
-    color: inherit;
-    font: inherit;
-    letter-spacing: inherit;
-    line-height: inherit;
-    text-transform: inherit;
-  }
+  gap: 1.5rem;
+  margin-bottom: $article-space-8;
 }
 
-.home-articles-graph-trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4em;
+.home-articles-title {
+  margin: 0;
+  font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+  font-size: clamp(2.75rem, 6vw, 4rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--dark);
+}
+
+// A sketch of the article graph beside the title, drawn as tall as the title's letters;
+// clicking it opens the full graph view.
+.article-graph {
+  display: block;
   margin: 0;
   padding: 0;
-  color: inherit;
-  font: inherit;
-  letter-spacing: inherit;
-  line-height: inherit;
-  text-transform: inherit;
-  background: transparent;
+  font-size: clamp(2.75rem, 6vw, 4rem);
+  background: none;
   border: 0;
-  border-radius: 0;
   cursor: pointer;
-  transition: color 180ms cubic-bezier(0.22, 1, 0.36, 1);
-
-  &:hover {
-    color: var(--dark);
-    background: transparent;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.22em;
-  }
 
   &:focus-visible {
     outline: 2px solid var(--secondary);
-    outline-offset: 3px;
+    outline-offset: 4px;
+    border-radius: 4px;
   }
 }
 
-.home-articles-graph-icon {
-  width: 1em;
-  height: 1em;
-  flex: none;
+.article-graph-preview {
+  display: block;
+  height: 0.9em;
+  width: auto;
+
+  & line {
+    stroke: var(--lightgray);
+    stroke-width: 1;
+    transition: stroke 0.2s ease;
+  }
+
+  & circle {
+    fill: var(--gray);
+    transition: fill 0.2s ease;
+  }
+
+  // Tag hubs are hollow, so the articles read as the main dots.
+  & .article-graph-tag {
+    fill: var(--light);
+    stroke: var(--gray);
+    stroke-width: 1;
+  }
+
+  .article-graph:hover & line {
+    stroke: var(--tertiary);
+  }
+
+  .article-graph:hover & circle:not(.article-graph-tag) {
+    fill: var(--secondary);
+  }
 }
 
+// Masonry: cards keep their natural height and flow down up to three columns.
 .article-card-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: $article-space-4;
+  columns: 3 15rem;
+  column-gap: $article-space-4;
+
+  & > .article-card {
+    break-inside: avoid;
+    margin-bottom: $article-space-4;
+  }
 }
 
-.article-card-page[hidden] {
-  display: none;
+// In the masonry grid every photo gets the same 3:2 frame; the column rhythm comes from
+// mixing photo cards with text-only ones.
+.article-card-grid .article-card-cover {
+  min-height: 0;
+
+  & > img {
+    aspect-ratio: 3 / 2;
+    height: auto;
+    min-height: 0;
+  }
+}
+
+// Cards without a photo get more breathing room so the text isn't tight to the border.
+.article-card-text .article-card-content {
+  padding: $article-space-6;
 }
 
 .article-card {
@@ -103,23 +129,9 @@ $article-space-10: 2.5rem;
   }
 }
 
-:root[saved-theme="dark"] .article-card:not(.article-card-placeholder) {
+:root[saved-theme="dark"] .article-card {
   background: color-mix(in srgb, var(--lightgray) 30%, var(--light) 70%);
   border-color: color-mix(in srgb, var(--lightgray) 96%, var(--dark) 4%);
-}
-
-.article-card-placeholder {
-  min-height: 12rem;
-  pointer-events: none;
-  background: color-mix(in srgb, var(--lightgray) 12%, transparent);
-  border-color: color-mix(in srgb, var(--lightgray) 68%, transparent);
-  border-style: dashed;
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      transform: none;
-    }
-  }
 }
 
 .article-card-featured {
@@ -174,7 +186,6 @@ $article-space-10: 2.5rem;
 .article-card-content {
   display: flex;
   min-width: 0;
-  min-height: 12rem;
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
@@ -275,77 +286,13 @@ $article-space-10: 2.5rem;
   }
 }
 
-.article-pagination {
-  display: grid;
-  grid-template-columns: 1.75rem minmax(3.25rem, auto) 1.75rem;
-  align-items: center;
-  justify-content: center;
-  gap: $article-space-3;
-  padding-top: $article-space-10;
-}
-
-.article-pagination-button {
-  display: grid;
-  width: 1.75rem;
-  height: 1.75rem;
-  place-items: center;
-  padding: 0;
-  color: var(--darkgray);
-  font-family: var(--codeFont);
-  font-size: 0.85rem;
-  line-height: 1;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  cursor: pointer;
-  transition:
-    color 180ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1);
-
-  &:not(:disabled):hover {
-    color: var(--darkgray);
-    background: transparent;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    &:not(:disabled):hover {
-      transform: rotate(-8deg);
-    }
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--secondary);
-    outline-offset: 2px;
-  }
-
-  &:disabled {
-    cursor: default;
-    opacity: 0.24;
-  }
-
-  &:not(:disabled):active {
-    transform: scale(0.9);
-  }
-}
-
-.article-pagination-status {
-  min-width: 3.25rem;
-  color: var(--gray);
-  font-family: var(--codeFont);
-  font-size: 0.8rem;
-  font-variant-numeric: tabular-nums;
-  font-weight: 500;
-  line-height: 1;
-  text-align: center;
-}
-
 @media all and (max-width: 620px) {
   .article-card-meta-logo {
     top: 0;
   }
 
   .article-card-grid {
-    grid-template-columns: 1fr;
+    columns: 1;
   }
 
   .article-card-featured {
@@ -369,9 +316,7 @@ $article-space-10: 2.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .article-card,
-  .article-pagination-button,
-  .home-articles-graph-trigger {
+  .article-card {
     transition: none;
   }
 
