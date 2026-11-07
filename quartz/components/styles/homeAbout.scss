@@ -4,17 +4,15 @@
   margin-top: 3rem;
 }
 
-.home-about-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+// Same scale as the Articles page title, so the two section pages open alike.
+.home-about-title {
   margin: 0 0 2rem;
-  color: color-mix(in srgb, var(--darkgray) 68%, var(--gray) 32%);
-  font-family: var(--codeFont);
-  font-size: 0.74rem;
-  line-height: 1.4;
-  text-transform: uppercase;
+  font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+  font-size: clamp(2.75rem, 6vw, 4rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--dark);
 }
 
 .home-about-layout {
@@ -28,7 +26,7 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
   margin: 0;
-  border-radius: 6px;
+  border-radius: 12px;
 
   & > img {
     display: block;
@@ -48,7 +46,8 @@
     margin: 0 0 1.5rem;
     color: var(--dark);
     font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
-    font-size: 2rem;
+    // Sized to keep the line whole beside the portrait at full width.
+    font-size: 1.85rem;
     font-style: italic;
     font-weight: 400;
     letter-spacing: 0;
@@ -73,12 +72,13 @@
   align-items: center;
   justify-content: flex-end;
   gap: 0.7rem;
-  width: min(100%, 11.5rem);
+  width: min(100%, 9rem);
   margin: 2.5rem clamp(0.5rem, 2vw, 2rem) 0 auto;
   color: var(--dark);
 }
 
 .home-about-signature-stroke {
+  display: block;
   flex: 1 1 auto;
   height: 1px;
   background-color: currentColor;
@@ -89,7 +89,6 @@
 
 .home-about-signature-name {
   display: block;
-  color: currentColor;
   font-family: "La Belle Aurore", "Segoe Print", "Bradley Hand", cursive;
   font-size: 1.65rem;
   font-weight: 400;
@@ -98,16 +97,6 @@
   white-space: nowrap;
   opacity: 0.82;
   transform: rotate(-3deg) translateY(1px);
-}
-
-.home-about-signature-mark {
-  display: block;
-  width: 2.5rem;
-  height: 2.375rem;
-  flex: 0 0 auto;
-  transform: rotate(-4deg);
-  transform-origin: 50% 80%;
-  opacity: 0.74;
 }
 
 @media all and (max-width: 620px) {
@@ -127,6 +116,5 @@
 
   .home-about-signature {
     margin-top: 2rem;
-    margin-right: clamp(0.5rem, 2vw, 2rem);
   }
 }

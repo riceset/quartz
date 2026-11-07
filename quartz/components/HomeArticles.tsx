@@ -13,11 +13,9 @@ import style from "./styles/homeArticles.scss"
 // @ts-ignore
 import script from "./scripts/homeArticles.inline"
 
-interface Options {
-  pageSize?: number
-}
-
 const featuredArticleSlug = "Swift-Student-Challenge-2026"
+// Section pages reached from the home splash; they host components, not writing.
+const sectionSlugs = new Set(["index", "about", "articles"])
 const summaryProcessor = unified()
   .use(remarkParse)
   .use(remarkMath)
@@ -36,27 +34,6 @@ const AppleLogo = () => (
   </svg>
 )
 
-const GraphViewIcon = () => (
-  <svg
-    class="home-articles-graph-icon"
-    viewBox="0 0 16 16"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1.4"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-    focusable="false"
-  >
-    <path d="m4.2 4.5 3.8 3 3.9-3.2M8 7.5l3.5 4M8 7.5l-3.4 4.1" />
-    <circle cx="3.3" cy="3.8" r="1.3" />
-    <circle cx="12.7" cy="3.6" r="1.3" />
-    <circle cx="12.3" cy="12.3" r="1.3" />
-    <circle cx="3.8" cy="12.4" r="1.3" />
-    <circle cx="8" cy="7.5" r="1.3" />
-  </svg>
-)
-
 const cleanExcerpt = (description: string | undefined, title: string) => {
   const raw = unescapeHTML(description?.trim() ?? "")
   const withoutRepeatedTitle = raw.toLocaleLowerCase().startsWith(title.toLocaleLowerCase())
@@ -69,47 +46,130 @@ const cleanExcerpt = (description: string | undefined, title: string) => {
 const getSummary = (description: string | undefined, summary: unknown, title: string): string =>
   typeof summary === "string" ? summary : cleanExcerpt(description, title)
 
+// A small, deterministic force layout of the article graph (articles linked directly and
+// through their tags, like the full graph view), drawn at build time beside the title.
+const GRAPH_W = 220
+const GRAPH_H = 64
+const GRAPH_PAD = 5
+
+const graphPreview = (pages: QuartzComponentProps["allFiles"]) => {
+  const tags = [...new Set(pages.flatMap((page) => page.frontmatter?.tags ?? []))]
+  const index = new Map<string, number>(pages.map((page, i) => [page.slug as string, i]))
+  tags.forEach((tag, i) => index.set(`tag:${tag}`, pages.length + i))
+  const keys = new Set<string>()
+  const edges: (readonly [number, number])[] = []
+  const connect = (a: number, b: number | undefined) => {
+    if (b === undefined || a === b) return
+    const key = a < b ? `${a}-${b}` : `${b}-${a}`
+    if (keys.has(key)) return
+    keys.add(key)
+    edges.push([a, b])
+  }
+  pages.forEach((page, i) => {
+    page.links?.forEach((link) => connect(i, index.get(link as string)))
+    page.frontmatter?.tags?.forEach((tag) => connect(i, index.get(`tag:${tag}`)))
+  })
+  const count = pages.length + tags.length
+  const isTag = Array.from({ length: count }, (_, i) => i >= pages.length)
+  const nodes = Array.from({ length: count }, (_, i) => {
+    const angle = i * 2.39996
+    const radius = 6 * Math.sqrt(i + 1)
+    return {
+      x: GRAPH_W / 2 + radius * 2.5 * Math.cos(angle),
+      y: GRAPH_H / 2 + radius * Math.sin(angle),
+    }
+  })
+
+  for (let step = 0; step < 400; step++) {
+    const force = nodes.map(() => ({ x: 0, y: 0 }))
+    for (let i = 0; i < count; i++) {
+      for (let j = i + 1; j < count; j++) {
+        const dx = nodes[i].x - nodes[j].x
+        const dy = nodes[i].y - nodes[j].y
+        const push = 2.5 / Math.max(dx * dx + dy * dy, 4)
+        force[i].x += dx * push
+        force[i].y += dy * push
+        force[j].x -= dx * push
+        force[j].y -= dy * push
+      }
+    }
+    for (const [a, b] of edges) {
+      const dx = nodes[b].x - nodes[a].x
+      const dy = nodes[b].y - nodes[a].y
+      const pull = (Math.hypot(dx, dy) - 12) * 0.004
+      force[a].x += dx * pull
+      force[a].y += dy * pull
+      force[b].x -= dx * pull
+      force[b].y -= dy * pull
+    }
+    nodes.forEach((node, i) => {
+      node.x += force[i].x + (GRAPH_W / 2 - node.x) * 0.02
+      node.y += force[i].y + (GRAPH_H / 2 - node.y) * 0.05
+      node.x = Math.min(GRAPH_W - GRAPH_PAD, Math.max(GRAPH_PAD, node.x))
+      node.y = Math.min(GRAPH_H - GRAPH_PAD, Math.max(GRAPH_PAD, node.y))
+    })
+  }
+
+  return { nodes, edges, isTag }
+}
+
 const renderSummary = (summary: string) => {
   const tree = summaryProcessor.runSync(summaryProcessor.parse(summary))
   return htmlToJsx("article-summary.md" as FilePath, tree)
 }
 
-export default ((opts?: Options) => {
+export default (() => {
   const HomeArticles: QuartzComponent = (props: QuartzComponentProps) => {
     const { allFiles, fileData, cfg } = props
-    const pageSize = Math.max(1, opts?.pageSize ?? 6)
     const allArticles = allFiles
-      .filter((page) => page.slug !== "index" && !page.slug?.startsWith("notes/"))
+      .filter((page) => !sectionSlugs.has(page.slug!) && !page.slug?.startsWith("notes/"))
       .sort(byDateAndAlphabetical(cfg))
     const featuredArticle = allArticles.find((page) => page.slug === featuredArticleSlug)
     const gridArticles = featuredArticle
       ? allArticles.filter((page) => page.slug !== featuredArticle.slug)
       : allArticles
-    const articlePages = Array.from(
-      { length: Math.ceil(gridArticles.length / pageSize) },
-      (_, pageIndex) => gridArticles.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize),
-    )
     const featuredTitle = featuredArticle?.frontmatter?.title ?? "Untitled"
     const featuredSummary = featuredArticle
       ? getSummary(featuredArticle.description, featuredArticle.frontmatter?.summary, featuredTitle)
       : ""
 
     if (allArticles.length === 0) return null
+    const graph = graphPreview(allArticles)
 
     return (
-      <section class="home-articles" data-nosnippet="true" data-article-pagination>
-        <div class="home-articles-heading">
-          <h2 class="home-section-label">Articles</h2>
-          <button
-            type="button"
-            class="home-articles-graph-trigger global-graph-icon"
-            aria-label="Open graph view"
-            aria-expanded="false"
-          >
-            <GraphViewIcon />
-            <span>Graph view</span>
+      <section class="home-articles" data-nosnippet="true">
+        <header class="home-articles-header">
+          <h1 class="home-articles-title">Articles</h1>
+          <button type="button" class="article-graph global-graph-icon">
+            <svg
+              class="article-graph-preview"
+              data-article-graph
+              viewBox={`0 0 ${GRAPH_W} ${GRAPH_H}`}
+              aria-hidden="true"
+              focusable="false"
+            >
+              {graph.edges.map(([a, b]) => (
+                <line
+                  data-a={a}
+                  data-b={b}
+                  x1={graph.nodes[a].x}
+                  y1={graph.nodes[a].y}
+                  x2={graph.nodes[b].x}
+                  y2={graph.nodes[b].y}
+                />
+              ))}
+              {graph.nodes.map((node, i) => (
+                <circle
+                  class={graph.isTag[i] ? "article-graph-tag" : undefined}
+                  data-node={i}
+                  cx={node.x}
+                  cy={node.y}
+                  r={graph.isTag[i] ? 2.6 : 2}
+                />
+              ))}
+            </svg>
           </button>
-        </div>
+        </header>
 
         {featuredArticle && (
           <article class="article-card article-card-featured">
@@ -137,83 +197,37 @@ export default ((opts?: Options) => {
           </article>
         )}
 
-        <div class="article-card-pages">
-          {articlePages.map((articles, pageIndex) => (
-            <div
-              class="article-card-grid article-card-page"
-              data-article-page={pageIndex}
-              hidden={pageIndex !== 0}
-            >
-              {articles.map((page) => {
-                const title = page.frontmatter?.title ?? "Untitled"
-                const date = page.dates ? getDate(cfg, page) : null
-                const tag = page.frontmatter?.tags?.[0]
-                const summary = getSummary(page.description, page.frontmatter?.summary, title)
-                const href = resolveRelative(fileData.slug!, page.slug!)
+        <div class="article-card-grid">
+          {gridArticles.map((page) => {
+            const title = page.frontmatter?.title ?? "Untitled"
+            const date = page.dates ? getDate(cfg, page) : null
+            const tag = page.frontmatter?.tags?.[0]
+            const summary = getSummary(page.description, page.frontmatter?.summary, title)
+            const href = resolveRelative(fileData.slug!, page.slug!)
+            const cover = page.frontmatter?.cardImage as string | undefined
 
-                return (
-                  <article class="article-card">
-                    <div class="article-card-content">
-                      <div class="article-card-meta">
-                        {tag && <span>{tag}</span>}
-                        {tag && date && <span aria-hidden="true">·</span>}
-                        {date && <Date date={date} locale={cfg.locale} />}
-                      </div>
-                      <h3 class="article-card-title">
-                        <a href={href}>{title}</a>
-                      </h3>
-                      {summary && <div class="article-card-excerpt">{renderSummary(summary)}</div>}
-                    </div>
-                  </article>
-                )
-              })}
-              {Array.from({ length: pageSize - articles.length }, (_, placeholderIndex) => (
-                <div
-                  class="article-card article-card-placeholder"
-                  aria-hidden="true"
-                  data-placeholder={placeholderIndex}
-                >
-                  <div class="article-card-content" />
+            return (
+              <article class={cover ? "article-card" : "article-card article-card-text"}>
+                {cover && (
+                  <span class="article-card-cover" aria-hidden="true">
+                    <img src={cover} alt="" />
+                  </span>
+                )}
+                <div class="article-card-content">
+                  <div class="article-card-meta">
+                    {tag && <span>{tag}</span>}
+                    {tag && date && <span aria-hidden="true">·</span>}
+                    {date && <Date date={date} locale={cfg.locale} />}
+                  </div>
+                  <h3 class="article-card-title">
+                    <a href={href}>{title}</a>
+                  </h3>
+                  {summary && <div class="article-card-excerpt">{renderSummary(summary)}</div>}
                 </div>
-              ))}
-            </div>
-          ))}
+              </article>
+            )
+          })}
         </div>
-
-        {articlePages.length > 1 && (
-          <nav class="article-pagination" aria-label="Article pages">
-            <button
-              type="button"
-              class="article-pagination-button article-pagination-previous"
-              data-article-previous
-              aria-label="Previous article page"
-              title="Previous page"
-              disabled
-            >
-              <span aria-hidden="true">{"<-"}</span>
-            </button>
-            <span
-              class="article-pagination-status"
-              data-article-page-status
-              aria-live="polite"
-              aria-atomic="true"
-              aria-label={`Page 1 of ${articlePages.length}`}
-            >
-              <span data-article-page-current>1</span>
-              <span aria-hidden="true"> / </span>
-              <span>{articlePages.length}</span>
-            </span>
-            <button
-              type="button"
-              class="article-pagination-button article-pagination-next"
-              data-article-next
-              aria-label="Next article page"
-              title="Next page"
-            >
-              <span aria-hidden="true">{"->"}</span>
-            </button>
-          </nav>
-        )}
       </section>
     )
   }
@@ -221,4 +235,4 @@ export default ((opts?: Options) => {
   HomeArticles.css = style
   HomeArticles.afterDOMLoaded = script
   return HomeArticles
-}) satisfies QuartzComponentConstructor<Options | undefined>
+}) satisfies QuartzComponentConstructor

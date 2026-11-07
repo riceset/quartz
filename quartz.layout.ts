@@ -15,26 +15,26 @@ export const sharedPageComponents: SharedLayout = {
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
     Component.ConditionalRender({
-      component: Component.HomeHero(),
-      condition: (props) => props.fileData.slug === "index",
-    }),
-    Component.ConditionalRender({
-      component: Component.HomeProfile(),
-      condition: (props) => props.fileData.slug === "index",
-    }),
-    Component.ConditionalRender({
-      component: Component.HomeArticles({ pageSize: 4 }),
+      component: Component.HomeSplash(),
       condition: (props) => props.fileData.slug === "index",
     }),
     Component.ConditionalRender({
       component: Component.HomeAbout(),
-      condition: (props) => props.fileData.slug === "index",
+      condition: (props) => props.fileData.slug === "about",
+    }),
+    Component.ConditionalRender({
+      component: Component.HomeProfile(),
+      condition: (props) => props.fileData.slug === "about",
+    }),
+    Component.ConditionalRender({
+      component: Component.HomeArticles(),
+      condition: (props) => props.fileData.slug === "articles",
     }),
     Component.ConditionalRender({
       component: Component.Graph({
         modalOnly: true,
         globalGraph: {
-          removeSlugs: ["index"],
+          removeSlugs: ["index", "about", "articles"],
           repelForce: 0.65,
           centerForce: 0.45,
           linkDistance: 38,
@@ -60,7 +60,7 @@ export const defaultContentPageLayout: PageLayout = {
           },
         },
       }),
-      condition: (props) => props.fileData.slug === "index",
+      condition: (props) => props.fileData.slug === "articles",
     }),
   ],
   left: [
