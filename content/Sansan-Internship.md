@@ -1,7 +1,7 @@
 ---
 title: "What I built at Sansan"
 date: 2026-09-28
-description: "What I learned during a two-month iOS internship at Sansan, from working within a structured VIPER codebase and writing specifications before implementation to evaluating Apple’s on-device Foundation Models for Japanese business card search."
+description: "What I learned in a two-month iOS internship at Sansan, from writing specs before code to testing Apple’s on-device models for Japanese card search."
 tags:
   - internship
 ---

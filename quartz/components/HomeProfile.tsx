@@ -221,7 +221,7 @@ const experience: ExperienceItem[] = [
         logoClass: "home-org-logo-eight",
         badgeClass: "home-exp-child-logo-badge-eight",
         description:
-          "Eight is a business card app with more than 4.5 million users, offering QR card exchange and digitization for business cards.",
+          "Eight is a business card management app with more than 4.5 million users, turning paper business cards into a searchable digital contact list.",
       },
     ],
   },
