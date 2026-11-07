@@ -37,7 +37,7 @@ typography:
     lineHeight: 1.12
     letterSpacing: "normal"
   title:
-    fontFamily: "Bricolage Grotesque, system-ui, sans-serif"
+    fontFamily: "Poppins, system-ui, sans-serif"
     fontSize: "1.4rem"
     fontWeight: 700
     lineHeight: 1.4
@@ -49,7 +49,7 @@ typography:
     lineHeight: "1.6rem"
     letterSpacing: "normal"
   label:
-    fontFamily: "IBM Plex Mono, JetBrains Mono, ui-monospace, monospace"
+    fontFamily: "JetBrains Mono, ui-monospace, monospace"
     fontSize: "0.74rem"
     fontWeight: 400
     lineHeight: 1.4
@@ -131,7 +131,7 @@ components:
 
 riceset should feel like a field notebook kept by a thoughtful engineer: orderly enough to scan quickly, personal enough to reward a slower read, and specific enough that the author is always present. Its visual voice is precise, warm, and quietly personal. Editorial type, real project imagery, compact metadata, hand-drawn marks, and restrained technical details carry the Japanese-Brazilian and software-craft story without turning it into decoration.
 
-The system is calm but not anonymous. Instrument Serif provides a literary surface for names, article titles, and reflective statements. Poppins keeps explanations approachable. Bricolage Grotesque gives technical headings a firm shape, while mono labels organize dates, locations, and section numbers like annotations in a working notebook. Muted navy and sage are used sparingly so photographs, organization marks, and writing remain the visual focus.
+The system is calm but not anonymous. Instrument Serif provides a literary surface for names, article titles, and reflective statements. Poppins keeps explanations approachable and, in heavier weights, gives technical headings a firm shape, while mono labels organize dates, locations, and section numbers like annotations in a working notebook. Muted navy and sage are used sparingly so photographs, organization marks, and writing remain the visual focus.
 
 The home page is a broad, image-supported portfolio canvas. Long-form articles are narrow reading surfaces with a persistent tool rail. Desktop pages use fluid outer gutters and keep the rail anchored near the viewport edge; article prose stays capped at 720px. At widths below 1200px the desktop rail becomes a compact floating toolbar, and composed two-column sections collapse when their content needs a single reading order.
 
@@ -198,19 +198,19 @@ The palette resembles warm paper, charcoal drawing ink, blue-gray annotations, a
 
 - **Display Font:** Instrument Serif (with Georgia and Times New Roman fallbacks)
 - **Body Font:** Poppins (with the system sans-serif stack)
-- **Heading Font:** Bricolage Grotesque (with the system sans-serif stack)
-- **Label/Mono Font:** IBM Plex Mono, falling back to JetBrains Mono
+- **Heading Font:** Poppins at 600/700 (with the system sans-serif stack)
+- **Label/Mono Font:** JetBrains Mono
 - **Code Font:** JetBrains Mono (with the system monospace stack)
 - **Japanese Support:** LINE Seed JP and Noto Sans JP, followed by native Japanese system fonts
 - **Signature Font:** La Belle Aurore, used only for the handwritten sign-off
 
-**Character:** Instrument Serif makes the site feel reflective and human without weakening its technical confidence. Poppins and Bricolage Grotesque keep dense information clear, while mono labels behave like precise marginal notes. The families are not interchangeable; each one carries a specific layer of the voice.
+**Character:** Instrument Serif makes the site feel reflective and human without weakening its technical confidence. Poppins keeps dense information clear, while mono labels behave like precise marginal notes. The families are not interchangeable; each one carries a specific layer of the voice.
 
 ### Hierarchy
 
 - **Display** (400, 2.25rem, 1): Home wordmark and the largest identity moment. Use tight tracking at `-0.02em`.
 - **Headline** (400, 2rem, 1.12): Article titles and reflective home-page statements. Featured-card titles may scale fluidly from 1.6rem to 2.05rem. Italic is reserved for personal, reflective copy such as the About statement.
-- **Section Title** (700, 1.4rem, 1.4): Technical and article section hierarchy in Bricolage Grotesque.
+- **Section Title** (700, 1.4rem, 1.4): Technical and article section hierarchy in Poppins.
 - **Item Title** (600, 1.05rem, 1.4): Experience roles, schools, awards, talks, and similarly compact records.
 - **Body** (400, 1rem, 1.6rem): Long-form prose. Articles must stay within a 720px measure, approximately 65 to 75 characters for typical paragraphs.
 - **Compact Body** (400, 0.85rem to 0.95rem, 1.4 to 1.75): Portfolio descriptions, organizations, summaries, and supporting narrative.
@@ -221,7 +221,7 @@ The palette resembles warm paper, charcoal drawing ink, blue-gray annotations, a
 
 ### Named Rules
 
-**The Assigned-Family Rule.** Instrument Serif tells the story, Poppins explains it, Bricolage Grotesque structures it, and mono type annotates it. Do not substitute one role for another without a specific reason.
+**The Assigned-Family Rule.** Instrument Serif tells the story, Poppins explains and structures it, and mono type annotates it. Do not substitute one role for another without a specific reason.
 
 **The Short-Label Rule.** Uppercase mono styling is permitted only for short section chrome, dates, tags, and status text. Never set body copy in uppercase.
 
@@ -314,7 +314,7 @@ The system is flat by default. Depth appears only where a surface must remain sp
 ### Long-Form Article
 
 - **Measure:** 720px maximum on desktop, centered independently from the tool rail.
-- **Title:** Instrument Serif at 2rem. Section headings return to Bricolage Grotesque.
+- **Title:** Instrument Serif at 2rem. Section headings return to Poppins.
 - **Body:** Poppins with 1.6rem line height and Graphite Copy or Night Copy.
 - **Media:** Images fill the available article width, use 5px corners, and retain useful alternative text.
 - **Code:** JetBrains Mono on a theme-aware rule-colored surface with 5px corners.
@@ -336,7 +336,7 @@ The system is flat by default. Depth appears only where a surface must remain sp
 - **Do** keep long-form articles at a maximum width of 720px and body copy near 65 to 75 characters per line.
 - **Do** keep the desktop tool rail near the viewport edge by leaving article and tag page shells uncapped above the 1200px breakpoint.
 - **Do** use the 0.25rem to 2.5rem spacing vocabulary, with 2rem as the standard section boundary.
-- **Do** preserve the distinct jobs of Instrument Serif, Poppins, Bricolage Grotesque, and mono labels.
+- **Do** preserve the distinct jobs of Instrument Serif, Poppins, and mono labels.
 - **Do** preserve meaningful image crops and provide descriptive alternative text.
 - **Do** use visible 2px focus outlines and verify keyboard operation for links, theme controls, pagination, search, and graph triggers.
 - **Do** preserve light and dark theme parity, including logos, borders, muted text, overlays, and focus states.
