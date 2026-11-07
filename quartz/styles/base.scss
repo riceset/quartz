@@ -5,6 +5,9 @@
 @use "./callouts.scss";
 
 html {
+  // Safari 26 tints its bars from the root background rather than theme-color, so give the
+  // root the theme color too or the screen edges keep the old theme after an in-page switch.
+  background-color: var(--light);
   scroll-behavior: smooth;
   text-size-adjust: none;
   overflow-x: hidden;
