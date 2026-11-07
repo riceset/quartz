@@ -182,6 +182,7 @@ const languages: Language[] = [
   { name: "English", level: "C2" },
   { name: "Spanish", level: "C1" },
   { name: "Mandarin", level: "B1" },
+  { name: "French", level: "A1" },
 ]
 
 // ── Component ──────────────────────────────────────────────────────────────
