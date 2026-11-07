@@ -15,7 +15,7 @@ const HomeSplash: QuartzComponent = (props: QuartzComponentProps) => {
   const navLinks = [
     { href: section("about"), label: "About" },
     { href: section("articles"), label: "Articles" },
-    { href: section("Swift-Student-Challenge-2026"), label: "Featured" },
+    { href: "/static/resume.pdf", label: "Résumé" },
     { href: "mailto:komeno@riceset.com", label: "Contact" },
   ]
 
