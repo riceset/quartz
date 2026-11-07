@@ -43,24 +43,10 @@ function notifyNav(url: FullSlug) {
 const cleanupFns: Set<(...args: any[]) => void> = new Set()
 window.addCleanup = (fn) => cleanupFns.add(fn)
 
-function startLoading() {
-  const loadingBar = document.createElement("div")
-  loadingBar.className = "navigation-progress"
-  loadingBar.style.width = "0"
-  if (!document.body.contains(loadingBar)) {
-    document.body.appendChild(loadingBar)
-  }
-
-  setTimeout(() => {
-    loadingBar.style.width = "80%"
-  }, 100)
-}
-
 let isNavigating = false
 let p: DOMParser
 async function _navigate(url: URL, isBack: boolean = false) {
   isNavigating = true
-  startLoading()
   p = p || new DOMParser()
   const contents = await fetchCanonical(url)
     .then((res) => {
