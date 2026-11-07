@@ -5,7 +5,8 @@ const currentTheme: "light" | "dark" =
 
 // Safari paints the area around the page with theme-color. The tags in <head> follow the OS
 // scheme, so point both at the site's chosen theme or the edges keep the old color until reload.
-// SPA navigation swaps the <head> tags, so look them up on every call.
+// SPA navigation swaps the <head> tags, so look them up on every call. iOS Safari can miss an
+// edit to an existing tag's content (notably when the OS appearance flips), so swap in new tags.
 const themeColorTags = () => document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')
 const themeColors = { light: "", dark: "" }
 for (const tag of themeColorTags()) {
@@ -17,7 +18,12 @@ const applyTheme = (theme: "light" | "dark") => {
   document.documentElement.setAttribute("saved-theme", theme)
   document.documentElement.style.colorScheme = theme
   if (themeColors[theme]) {
-    for (const tag of themeColorTags()) tag.content = themeColors[theme]
+    for (const tag of themeColorTags()) {
+      if (tag.content === themeColors[theme]) continue
+      const fresh = tag.cloneNode() as HTMLMetaElement
+      fresh.content = themeColors[theme]
+      tag.replaceWith(fresh)
+    }
   }
 }
 
