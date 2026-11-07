@@ -3,9 +3,22 @@ const storedTheme = localStorage.getItem("theme")
 const currentTheme: "light" | "dark" =
   storedTheme === "light" || storedTheme === "dark" ? storedTheme : userPref
 
+// Safari paints the area around the page with theme-color. The tags in <head> follow the OS
+// scheme, so point both at the site's chosen theme or the edges keep the old color until reload.
+// SPA navigation swaps the <head> tags, so look them up on every call.
+const themeColorTags = () => document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')
+const themeColors = { light: "", dark: "" }
+for (const tag of themeColorTags()) {
+  if (tag.media.includes("light")) themeColors.light = tag.content
+  if (tag.media.includes("dark")) themeColors.dark = tag.content
+}
+
 const applyTheme = (theme: "light" | "dark") => {
   document.documentElement.setAttribute("saved-theme", theme)
   document.documentElement.style.colorScheme = theme
+  if (themeColors[theme]) {
+    for (const tag of themeColorTags()) tag.content = themeColors[theme]
+  }
 }
 
 applyTheme(currentTheme)
@@ -18,6 +31,8 @@ const emitThemeChangeEvent = (theme: "light" | "dark") => {
 }
 
 document.addEventListener("nav", () => {
+  applyTheme(document.documentElement.getAttribute("saved-theme") === "dark" ? "dark" : "light")
+
   const switchTheme = () => {
     const newTheme =
       document.documentElement.getAttribute("saved-theme") === "dark" ? "light" : "dark"
