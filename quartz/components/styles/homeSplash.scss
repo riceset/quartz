@@ -130,10 +130,20 @@ body[data-slug="index"] {
   transition:
     color 0.15s ease,
     text-decoration-color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
 
-  &:hover {
-    color: var(--dark);
-    text-decoration-color: var(--tertiary);
+  // Touch screens keep :hover after a tap, so only pointers that can hover get the underline.
+  @media (hover: hover) {
+    &:hover {
+      color: var(--dark);
+      text-decoration-color: var(--tertiary);
+    }
+  }
+
+  @media (hover: none) {
+    &:hover {
+      color: var(--darkgray);
+    }
   }
 
   &:focus-visible {
@@ -162,6 +172,7 @@ body[data-slug="index"] {
   color: var(--gray);
   background: none;
   transition: color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
 
   // The rail's outline icons; each sets its own fill and stroke.
   & svg {
@@ -169,8 +180,16 @@ body[data-slug="index"] {
     height: 16px;
   }
 
-  &:hover {
-    color: var(--dark);
+  @media (hover: hover) {
+    &:hover {
+      color: var(--dark);
+    }
+  }
+
+  @media (hover: none) {
+    &:hover {
+      color: var(--gray);
+    }
   }
 
   &:focus-visible {
