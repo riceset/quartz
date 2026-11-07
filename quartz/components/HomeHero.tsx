@@ -152,22 +152,20 @@ const homeLinks = [
 const HomeHero: QuartzComponent = (props: QuartzComponentProps) => {
   return (
     <section class="home-hero">
-      <div class="home-banner" aria-hidden="true">
-        <img src="/static/logo-light.svg" alt="" class="home-banner-logo home-banner-logo-light" />
-        <img src="/static/logo-dark.svg" alt="" class="home-banner-logo home-banner-logo-dark" />
-        <span class="home-banner-wordmark">riceset</span>
-      </div>
       <div class="home-hero-inner">
-        <img class="home-avatar" src="/media/index/IMG_3751.jpeg" alt="Thiago Komeno" />
         <div class="home-hero-text">
           <h1 class="home-name">
-            Thiago Komeno
-            <span
-              class="home-title home-title-japanese home-name-japanese"
-              lang="ja"
-              data-nosnippet
-            >
-              米野
+            <img src="/static/logo-light.svg" alt="" class="home-name-logo home-name-logo-light" />
+            <img src="/static/logo-dark.svg" alt="" class="home-name-logo home-name-logo-dark" />
+            <span>
+              Thiago Komeno
+              <span
+                class="home-title home-title-japanese home-name-japanese"
+                lang="ja"
+                data-nosnippet
+              >
+                米野
+              </span>
             </span>
           </h1>
           <p class="home-bio">Japanese-Brazilian Software Developer</p>

@@ -23,7 +23,7 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Bricolage Grotesque",
+        header: { name: "Poppins", weights: [600, 700] },
         body: "Poppins",
         code: "JetBrains Mono",
       },
