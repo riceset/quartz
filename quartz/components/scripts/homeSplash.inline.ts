@@ -1,18 +1,20 @@
-// Redraws the doodle as a field of monospace characters, in the spirit of the
-// ASCII ghost on ghostty.org: the glyphs decode into place, a band of light
-// sweeps across the ink, and the inside of the face ripples softly.
+// Redraws the doodle as a field of monospace characters, after the ASCII ghost on
+// ghostty.org: a dense `$` body with an `@` rim and soft `·~ox` edges, the whole
+// figure floating and turning slowly, re-rasterized frame by frame like a filmed
+// animation.
 
-const INK_RAMP = " .:-=+*#%"
-const FIELD_RAMP = "  ..··::--~"
+const EDGE_RAMP = " ·~ox=+*%"
+const SKIN_RAMP = "  ··~~o"
 const SCRAMBLE = "01<>/\\{}[]=+*#%$&"
 const FRAME_MS = 1000 / 30
-const INTRO_MS = 1400
+const LOOP_MS = 6000 // one turn of the figure and two bobs
+const LOOP_FRAMES = 90 // distinct poses rasterized (and cached) per loop
+const INTRO_MS = 2600
+const SCRAMBLE_MS = 800 // how long each cell flickers before settling
 
-interface Cell {
-  ink: number // 0–1 coverage by the doodle's strokes
-  inside: boolean // enclosed by the face outline
-  reveal: number // ms after start when the cell settles on its final glyph
-  seed: number
+interface Pose {
+  ink: Uint8Array // 0–255 coverage by the doodle's strokes
+  inside: Uint8Array // 1 when enclosed by the face outline
 }
 
 const pick = (ramp: string, value: number) =>
@@ -29,12 +31,18 @@ document.addEventListener("nav", () => {
   const paths = Array.from(doodle.querySelectorAll("path"), (p) => new Path2D(p.getAttribute("d")!))
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
+  let width = 0
+  let height = 0
   let cols = 0
   let rows = 0
   let cellW = 0
   let cellH = 0
   let fontSize = 0
-  let cells: Cell[] = []
+  let poses = new Map<number, Pose>()
+  let seeds = new Float32Array(0)
+  let reveal = new Float32Array(0) // ms after start when each cell settles on its glyph
+  let raster: HTMLCanvasElement | null = null
+  let rctx: CanvasRenderingContext2D | null = null
   let colors = { ink: "", accent: "", field: "" }
   let pointer: { x: number; y: number } | null = null
   let start = performance.now()
@@ -57,48 +65,71 @@ document.addEventListener("nav", () => {
     canvas.width = Math.round(rect.width * dpr)
     canvas.height = Math.round(rect.height * dpr)
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    width = rect.width
+    height = rect.height
 
     // Small glyphs so the doodle reads as a halftone print rather than chunky text.
-    fontSize = Math.max(5, Math.min(8, Math.min(rect.width, rect.height) / 95))
+    fontSize = Math.max(5, Math.min(8, Math.min(width, height) / 95))
     cellW = fontSize * 0.62
     cellH = fontSize * 1.1
-    cols = Math.floor(rect.width / cellW)
-    rows = Math.floor(rect.height / cellH)
+    cols = Math.floor(width / cellW)
+    rows = Math.floor(height / cellH)
 
-    // Rasterize the doodle at 4×4 samples per character cell.
+    raster = document.createElement("canvas")
+    raster.width = cols * 4
+    raster.height = rows * 4
+    rctx = raster.getContext("2d", { willReadFrequently: true })
+    poses = new Map()
+
+    // The glyphs decode into place from the center outward, with some jitter.
+    const cx = cols / 2
+    const cy = rows / 2
+    const maxDist = Math.hypot(cx, cy)
+    seeds = new Float32Array(cols * rows)
+    reveal = new Float32Array(cols * rows)
+    for (let i = 0; i < seeds.length; i++) {
+      seeds[i] = Math.random()
+      const dist = Math.hypot(((i % cols) - cx) * 0.55, Math.floor(i / cols) - cy) / maxDist
+      reveal[i] = (dist * 0.7 + seeds[i] * 0.3) * INTRO_MS
+    }
+  }
+
+  // Rasterizes the doodle in one pose of the loop: bobbing, swaying, and narrowing as
+  // it turns away, the way the ghost does across its frames.
+  const rasterize = (phase: number): Pose => {
     const S = 4
-    const raster = document.createElement("canvas")
-    raster.width = cols * S
-    raster.height = rows * S
-    const rctx = raster.getContext("2d", { willReadFrequently: true })!
-    const scale = Math.min(rect.width / vbW, rect.height / vbH) * 0.9
-    const offsetX = (rect.width - vbW * scale) / 2
-    const offsetY = (rect.height - vbH * scale) / 2
-    rctx.setTransform(S / cellW, 0, 0, S / cellH, 0, 0)
-    rctx.translate(offsetX, offsetY)
-    rctx.scale(scale, scale)
-    rctx.translate(-vbX, -vbY)
-    paths.forEach((path) => rctx.fill(path))
-    const alpha = rctx.getImageData(0, 0, raster.width, raster.height).data
+    const turn = phase * Math.PI * 2
+    const n = cols * rows
+    const r = rctx!
+    r.setTransform(1, 0, 0, 1, 0, 0)
+    r.clearRect(0, 0, raster!.width, raster!.height)
+    const scale = Math.min(width / vbW, height / vbH) * 0.86
+    r.setTransform(S / cellW, 0, 0, S / cellH, 0, 0)
+    r.translate(width / 2, height / 2 + Math.sin(turn * 2) * height * 0.018)
+    r.rotate(Math.sin(turn) * 0.05)
+    r.scale(scale * (0.9 + 0.1 * Math.cos(turn)), scale)
+    r.translate(-vbX - vbW / 2, -vbY - vbH / 2)
+    paths.forEach((path) => r.fill(path))
+    const alpha = r.getImageData(0, 0, raster!.width, raster!.height).data
 
-    const ink = new Float32Array(cols * rows)
+    const ink = new Uint8Array(n)
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < cols; x++) {
         let sum = 0
         for (let sy = 0; sy < S; sy++) {
           for (let sx = 0; sx < S; sx++) {
-            sum += alpha[((y * S + sy) * raster.width + x * S + sx) * 4 + 3]
+            sum += alpha[((y * S + sy) * raster!.width + x * S + sx) * 4 + 3]
           }
         }
-        ink[y * cols + x] = sum / (S * S * 255)
+        ink[y * cols + x] = sum / (S * S)
       }
     }
 
     // Flood-fill the empty cells reachable from the border; whatever is left is inside the face.
-    const outside = new Uint8Array(cols * rows)
+    const outside = new Uint8Array(n)
     const queue: number[] = []
     const visit = (i: number) => {
-      if (!outside[i] && ink[i] < 0.08) {
+      if (!outside[i] && ink[i] < 20) {
         outside[i] = 1
         queue.push(i)
       }
@@ -119,37 +150,39 @@ document.addEventListener("nav", () => {
       if (i >= cols) visit(i - cols)
       if (i < (rows - 1) * cols) visit(i + cols)
     }
+    const inside = new Uint8Array(n)
+    for (let i = 0; i < n; i++) inside[i] = !outside[i] && ink[i] < 20 ? 1 : 0
 
-    const cx = cols / 2
-    const cy = rows / 2
-    const maxDist = Math.hypot(cx, cy)
-    cells = Array.from(ink, (value, i) => {
-      const x = i % cols
-      const y = Math.floor(i / cols)
-      const seed = Math.random()
-      const dist = Math.hypot((x - cx) * 0.55, y - cy) / maxDist
-      return {
-        ink: value,
-        inside: !outside[i] && value < 0.08,
-        reveal: (dist * 0.7 + seed * 0.3) * INTRO_MS,
-        seed,
-      }
-    })
+    return { ink, inside }
+  }
+
+  const poseAt = (index: number) => {
+    let pose = poses.get(index)
+    if (!pose) {
+      pose = rasterize(index / LOOP_FRAMES)
+      poses.set(index, pose)
+    }
+    return pose
   }
 
   const draw = (now: number) => {
-    const elapsed = reduceMotion.matches ? Infinity : now - start
-    const t = reduceMotion.matches ? 0 : now / 1000
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    if (!rctx || cols === 0) return
+    const still = reduceMotion.matches
+    const elapsed = still ? Infinity : now - start
+    const t = still ? 0 : now / 1000
+    const index = still ? 0 : Math.floor(((now - start) / LOOP_MS) * LOOP_FRAMES) % LOOP_FRAMES
+    const { ink, inside } = poseAt(index)
+    // A soft light that swings across the face as the figure turns.
+    const light = Math.sin((index / LOOP_FRAMES) * Math.PI * 2)
+
+    ctx.clearRect(0, 0, width, height)
     ctx.font = `${fontSize}px "JetBrains Mono", ui-monospace, monospace`
     ctx.textBaseline = "top"
 
-    // A diagonal band of light that sweeps across the doodle every few seconds.
-    const sweep = ((t / 4.5) % 1.6) - 0.3
-
-    for (let i = 0; i < cells.length; i++) {
-      const cell = cells[i]
-      if (cell.ink < 0.04 && !cell.inside) continue
+    for (let i = 0; i < ink.length; i++) {
+      const cover = ink[i] / 255
+      const isInside = inside[i] === 1
+      if (cover < 0.04 && !isInside) continue
       const x = i % cols
       const y = Math.floor(i / cols)
 
@@ -163,25 +196,33 @@ document.addEventListener("nav", () => {
       let color: string
       let opacity: number
 
-      if (cell.ink >= 0.04) {
-        const band = Math.max(0, 1 - Math.abs((x / cols + y / rows) / 2 - sweep) / 0.08)
-        const lift = Math.max(band, near)
-        glyph = pick(INK_RAMP, Math.min(1, cell.ink * 1.15 + lift * 0.45))
-        color = lift > 0.35 ? colors.accent : colors.ink
-        opacity = 0.45 + cell.ink * 0.3
+      if (cover >= 0.04) {
+        if (cover >= 0.6) {
+          // Solid body: `$` inside the strokes, `@` where they meet the paper.
+          const rim =
+            (x > 0 && ink[i - 1] < 90) ||
+            (x < cols - 1 && ink[i + 1] < 90) ||
+            (y > 0 && ink[i - cols] < 90) ||
+            (y < rows - 1 && ink[i + cols] < 90)
+          glyph = rim ? "@" : "$"
+        } else {
+          glyph = pick(EDGE_RAMP, cover / 0.6)
+        }
+        color = near > 0.35 ? colors.accent : colors.ink
+        opacity = 0.55 + cover * 0.3
       } else {
-        const wave =
+        const shade =
           0.5 +
-          0.25 * Math.sin(x * 0.32 + y * 0.18 - t * 1.6) +
-          0.25 * Math.sin(y * 0.41 - x * 0.12 + t * 1.1 + cell.seed)
-        glyph = pick(FIELD_RAMP, Math.min(1, wave * 0.9 + near * 0.6))
+          0.3 * light * ((x - cols / 2) / (cols / 4)) +
+          0.2 * Math.sin(x * 0.21 + y * 0.37 + t * 0.9)
+        glyph = pick(SKIN_RAMP, Math.min(1, shade * 0.85 + near * 0.6))
         color = near > 0.2 ? colors.accent : colors.field
-        opacity = 0.35 + near * 0.5
+        opacity = 0.3 + near * 0.5
       }
 
-      if (elapsed < cell.reveal) {
-        if (elapsed < cell.reveal - 450) continue
-        glyph = SCRAMBLE[Math.floor((cell.seed * 97 + now / 60) % SCRAMBLE.length)]
+      if (elapsed < reveal[i]) {
+        if (elapsed < reveal[i] - SCRAMBLE_MS) continue
+        glyph = SCRAMBLE[Math.floor((seeds[i] * 97 + now / 60) % SCRAMBLE.length)]
         color = colors.accent
         opacity = 0.6
       }
