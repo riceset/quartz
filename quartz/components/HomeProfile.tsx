@@ -142,6 +142,9 @@ const talks: Entry[] = [
     place: "Tokyo",
     description:
       "Spoke at a Consulate-General of Japan in São Paulo webinar, sharing my MEXT scholarship experience with prospective students.",
+    links: [
+      { label: "Watch the webinar on YouTube", url: "https://www.youtube.com/watch?v=3_t0S7yOug0" },
+    ],
   },
   {
     date: "Jan 2024",
@@ -158,6 +161,12 @@ const talks: Entry[] = [
     place: "São Paulo",
     description:
       "Produced a Brazilian Portuguese tutorial for 42 São Paulo's YouTube channel, teaching beginners how to use Vim from the basics.",
+    links: [
+      {
+        label: "Watch the tutorial on YouTube",
+        url: "https://www.youtube.com/watch?v=10BSs7UGBtY",
+      },
+    ],
   },
 ]
 
