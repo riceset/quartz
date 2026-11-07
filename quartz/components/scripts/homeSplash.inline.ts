@@ -219,6 +219,8 @@ document.addEventListener("nav", () => {
     run()
   }
   const onPointerMove = (event: PointerEvent) => {
+    // Hover is a mouse effect; ignore touch and pen so taps on phones leave the art alone.
+    if (event.pointerType !== "mouse") return
     const rect = canvas.getBoundingClientRect()
     pointer = { x: (event.clientX - rect.left) / cellW, y: (event.clientY - rect.top) / cellH }
   }
