@@ -15,27 +15,6 @@ $hero-mobile: "(max-width: 767px)";
   width: auto;
   flex-shrink: 0;
   margin-right: 0.5rem;
-  transform-origin: 52% 72%;
-  animation: home-name-logo-nod 2.5s ease-in-out infinite;
-}
-
-@keyframes home-name-logo-nod {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-  35% {
-    transform: rotate(8deg);
-  }
-  62% {
-    transform: rotate(0deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .home-name-logo {
-    animation: none;
-  }
 }
 
 .home-name-logo-dark {
