@@ -302,7 +302,7 @@
 }
 
 .home-exp-role {
-  font-family: var(--headerFont);
+  font-family: "Bricolage Grotesque", var(--headerFont);
   font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.4;
@@ -388,7 +388,7 @@
 }
 
 .home-exp-child-title {
-  font-family: var(--headerFont);
+  font-family: "Bricolage Grotesque", var(--headerFont);
   font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.4;
@@ -419,7 +419,7 @@
 }
 
 .home-edu-institution {
-  font-family: var(--headerFont);
+  font-family: "Bricolage Grotesque", var(--headerFont);
   font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.4;
@@ -467,7 +467,7 @@
 }
 
 .home-award-title {
-  font-family: var(--headerFont);
+  font-family: "Bricolage Grotesque", var(--headerFont);
   font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.4;
@@ -568,7 +568,7 @@
 }
 
 .home-hackathon-title {
-  font-family: var(--headerFont);
+  font-family: "Bricolage Grotesque", var(--headerFont);
   font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.4;
@@ -615,7 +615,7 @@
 }
 
 .home-talk-title {
-  font-family: var(--headerFont);
+  font-family: "Bricolage Grotesque", var(--headerFont);
   font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.4;
@@ -870,17 +870,4 @@
   font-family: var(--codeFont);
   color: var(--gray);
   text-align: right;
-}
-
-// Poppins 600 runs wide, so long titles like "Application Development
-// Engineer" reach the edge on phones. Shrink every 1.05rem title together
-// so the sections keep the same hierarchy.
-@media (max-width: 767px) {
-  .home-exp-role,
-  .home-edu-institution,
-  .home-award-title,
-  .home-hackathon-title,
-  .home-talk-title {
-    font-size: 0.95rem;
-  }
 }

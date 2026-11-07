@@ -199,6 +199,7 @@ The palette resembles warm paper, charcoal drawing ink, blue-gray annotations, a
 - **Display Font:** Instrument Serif (with Georgia and Times New Roman fallbacks)
 - **Body Font:** Poppins (with the system sans-serif stack)
 - **Heading Font:** Poppins at 600/700 (with the system sans-serif stack)
+- **Item Title Font:** Bricolage Grotesque, used only for home-page item titles; it is narrower than Poppins, so long roles fit on phones
 - **Label/Mono Font:** JetBrains Mono
 - **Code Font:** JetBrains Mono (with the system monospace stack)
 - **Japanese Support:** LINE Seed JP and Noto Sans JP, followed by native Japanese system fonts
@@ -211,7 +212,7 @@ The palette resembles warm paper, charcoal drawing ink, blue-gray annotations, a
 - **Display** (400, 2.25rem, 1): Home wordmark and the largest identity moment. Use tight tracking at `-0.02em`.
 - **Headline** (400, 2rem, 1.12): Article titles and reflective home-page statements. Featured-card titles may scale fluidly from 1.6rem to 2.05rem. Italic is reserved for personal, reflective copy such as the About statement.
 - **Section Title** (700, 1.4rem, 1.4): Technical and article section hierarchy in Poppins.
-- **Item Title** (600, 1.05rem, 1.4): Experience roles, schools, awards, talks, and similarly compact records.
+- **Item Title** (600, 1.05rem, 1.4): Experience roles, schools, awards, talks, and similarly compact records, in Bricolage Grotesque.
 - **Body** (400, 1rem, 1.6rem): Long-form prose. Articles must stay within a 720px measure, approximately 65 to 75 characters for typical paragraphs.
 - **Compact Body** (400, 0.85rem to 0.95rem, 1.4 to 1.75): Portfolio descriptions, organizations, summaries, and supporting narrative.
 - **Label** (400, 0.74rem, 1.4): Uppercase section numbers and metadata. Keep it short and structural.
