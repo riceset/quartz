@@ -42,7 +42,7 @@ const appDevEngineer: Localized = {
   en: "Application Development Engineer",
   ja: "アプリ開発エンジニア",
   zh: "應用程式開發工程師",
-  pt: "Engenheiro de desenvolvimento de aplicativos",
+  pt: "Engenheiro de Desenvolvimento de Aplicativos",
 }
 
 const experience: Entry[] = [
@@ -95,10 +95,10 @@ const experience: Entry[] = [
       en: "Full-Stack Software Engineer",
       ja: "フルスタックエンジニア",
       zh: "全端軟體工程師",
-      pt: "Engenheiro de software full-stack",
+      pt: "Engenheiro de Software Full-Stack",
     },
     org: "BaseMe",
-    detail: { en: "Part-time", ja: "アルバイト", zh: "兼職", pt: "Meio período" },
+    detail: { en: "Part-time", ja: "アルバイト", zh: "兼職", pt: "Meio Período" },
     place: tokyo,
     description: {
       en: "Built features for BaseMe’s AI career chat, such as using your notes as context and stopping a reply, and redesigned how company recommendations appear. Also added profile view counts to help students get noticed by recruiters.",
@@ -132,7 +132,7 @@ const experience: Entry[] = [
       en: "Google Student Ambassador",
       ja: "Google 学生アンバサダー",
       zh: "Google 學生大使",
-      pt: "Embaixador estudantil do Google",
+      pt: "Embaixador Estudantil do Google",
     },
     org: "Google Japan",
     place: tokyo,
@@ -168,7 +168,7 @@ const awards: Entry[] = [
       en: "MEXT Undergraduate Scholarship",
       ja: "国費外国人留学生（学部）",
       zh: "日本政府（MEXT）大學部獎學金",
-      pt: "Bolsa MEXT para graduação",
+      pt: "Bolsa MEXT para Graduação",
     },
     org: {
       en: "Ministry of Education of Japan",
@@ -256,7 +256,7 @@ const talks: Entry[] = [
       en: "MEXT Scholarship Speaker",
       ja: "国費留学の体験談",
       zh: "我的 MEXT 留學經驗",
-      pt: "Minha experiência com a bolsa MEXT",
+      pt: "Minha Experiência com a Bolsa MEXT",
     },
     org: {
       en: "Ministry of Foreign Affairs of Japan",
