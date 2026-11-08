@@ -127,6 +127,10 @@ export default (() => {
             />
             <link
               rel="stylesheet"
+              href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400&family=Noto+Serif+TC:wght@400&display=swap"
+            />
+            <link
+              rel="stylesheet"
               href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:wght@400;700&family=La+Belle+Aurore&family=LINE+Seed+JP:wght@400;700&display=swap"
             />
             {cfg.theme.typography.title && (
