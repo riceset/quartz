@@ -9,6 +9,7 @@ import HomeArticles from "./HomeArticles"
 import HomeAbout from "./HomeAbout"
 import HomeSplash from "./HomeSplash"
 import Darkmode from "./Darkmode"
+import LanguagePicker from "./LanguagePicker"
 import RailName from "./RailName"
 import Socials from "./Socials"
 import ReaderMode from "./ReaderMode"
@@ -43,6 +44,7 @@ export {
   TagContent,
   FolderContent,
   Darkmode,
+  LanguagePicker,
   RailName,
   Socials,
   ReaderMode,

@@ -9,11 +9,31 @@ import { unescapeHTML } from "../util/escape"
 import { Date, getDate } from "./Date"
 import { byDateAndAlphabetical } from "./PageList"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { langTags, Localized, siteLangs, SiteLang, T } from "./localized"
+import { ValidLocale } from "../i18n"
 import style from "./styles/homeArticles.scss"
 // @ts-ignore
 import script from "./scripts/homeArticles.inline"
 
 const featuredArticleSlug = "Swift-Student-Challenge-2026"
+// Card dates follow the language picker; article titles and summaries stay in English.
+const dateLocales: Record<SiteLang, ValidLocale> = {
+  en: "en-US",
+  ja: "ja-JP",
+  zh: "zh-TW",
+  pt: "pt-BR",
+}
+// Card labels for tags that are words rather than names; tags like swift or vim stay as is.
+const tagLabels: Record<string, Localized> = {
+  internship: { en: "internship", ja: "インターン", zh: "實習", pt: "estágio" },
+  algorithms: { en: "algorithms", ja: "アルゴリズム", zh: "演算法", pt: "algoritmos" },
+  "bit-manipulation": {
+    en: "bit-manipulation",
+    ja: "ビット演算",
+    zh: "位元運算",
+    pt: "manipulação de bits",
+  },
+}
 // Section pages reached from the home splash; they host components, not writing.
 const sectionSlugs = new Set(["index", "about", "articles"])
 // Extra bottom space for a grid card, growing with how much text it holds. Titles count
@@ -145,7 +165,9 @@ export default (() => {
     return (
       <section class="home-articles" data-nosnippet="true">
         <header class="home-articles-header">
-          <h1 class="home-articles-title">Articles</h1>
+          <h1 class="home-articles-title">
+            <T text={{ en: "Articles", ja: "記事", zh: "文章", pt: "Artigos" }} />
+          </h1>
           <button type="button" class="article-graph global-graph-icon">
             <svg
               class="article-graph-preview"
@@ -186,7 +208,9 @@ export default (() => {
             )}
             <div class="article-card-content">
               <div class="article-card-meta">
-                <span>Featured</span>
+                <span>
+                  <T text={{ en: "Featured", ja: "ピックアップ", zh: "精選", pt: "Destaque" }} />
+                </span>
                 <span aria-hidden="true">·</span>
                 <span class="article-card-meta-brand">
                   <AppleLogo />
@@ -216,9 +240,18 @@ export default (() => {
               <article class="article-card" style={`--card-room: ${room.toFixed(2)}rem`}>
                 <div class="article-card-content">
                   <div class="article-card-meta">
-                    {tag && <span>{tag}</span>}
+                    {tag && (
+                      <span>
+                        <T text={tagLabels[tag] ?? tag} />
+                      </span>
+                    )}
                     {tag && date && <span aria-hidden="true">·</span>}
-                    {date && <Date date={date} locale={cfg.locale} />}
+                    {date &&
+                      siteLangs.map((lang) => (
+                        <span data-text-lang={lang} lang={langTags[lang]}>
+                          <Date date={date} locale={dateLocales[lang]} />
+                        </span>
+                      ))}
                   </div>
                   <h3 class="article-card-title">
                     <a href={href}>{title}</a>
