@@ -331,3 +331,36 @@ article .katex-display {
       0 8px 32px rgba(0, 0, 0, 0.45);
   }
 }
+
+// Match Instrument Serif's editorial role across all localized pages.
+// T() wraps translations in language-tagged spans; some standalone titles
+// carry lang directly, so cover both cases without changing body copy.
+:is(.splash-name, .splash-nav-link, .home-name, .home-about-title,
+  .home-about-copy > h2, .home-articles-title, .article-card-title,
+  .about-section-title, .about-entry-title, .about-language-name)
+  :lang(ja) {
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-style: normal;
+}
+
+:is(.splash-name, .splash-nav-link, .home-name, .home-about-title,
+  .home-about-copy > h2, .home-articles-title, .article-card-title,
+  .about-section-title, .about-entry-title, .about-language-name)
+  :lang(zh-Hant) {
+  font-family: "Noto Serif TC", "Songti TC", "Songti SC", serif;
+  font-style: normal;
+}
+
+:is(.home-name, .home-about-title, .home-about-copy > h2,
+  .home-articles-title, .article-card-title, .about-section-title,
+  .about-entry-title, .about-language-name):lang(ja) {
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-style: normal;
+}
+
+:is(.home-name, .home-about-title, .home-about-copy > h2,
+  .home-articles-title, .article-card-title, .about-section-title,
+  .about-entry-title, .about-language-name):lang(zh-Hant) {
+  font-family: "Noto Serif TC", "Songti TC", "Songti SC", serif;
+  font-style: normal;
+}
