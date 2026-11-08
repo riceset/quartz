@@ -27,6 +27,16 @@ document.addEventListener("nav", () => {
   const ctx = canvas?.getContext("2d")
   if (!splash || !canvas || !doodle || !ctx) return
 
+  // Keep the name and navigation hidden until their webfonts settle. Using
+  // visibility (not display) still triggers font loading and preserves layout.
+  // Reveal the fallback if font loading fails, or if Font Loading API is missing.
+  const revealTypography = () => splash.classList.add("splash-typography-ready")
+  if (document.fonts) {
+    void document.fonts.ready.then(revealTypography, revealTypography)
+  } else {
+    revealTypography()
+  }
+
   const [vbX, vbY, vbW, vbH] = doodle.getAttribute("viewBox")!.split(" ").map(Number)
   const paths = Array.from(doodle.querySelectorAll("path"), (p) => new Path2D(p.getAttribute("d")!))
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
