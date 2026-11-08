@@ -89,8 +89,10 @@ body[data-slug="index"] {
   height: 100%;
 }
 
-// Shown until the script takes over (and for visitors without JS).
+// The SVG supplies paths for the canvas rasterizer, but must never flash
+// before JavaScript draws its first character-based frame.
 .splash-doodle {
+  display: none;
   position: absolute;
   inset: 0;
   margin: auto;
@@ -98,9 +100,12 @@ body[data-slug="index"] {
   height: 70%;
   color: var(--dark);
   opacity: 0.85;
+}
 
-  .splash-ready & {
-    display: none;
+// Preserve the original SVG as a fallback only when scripting is disabled.
+@media (scripting: none) {
+  .splash-doodle {
+    display: block;
   }
 }
 
