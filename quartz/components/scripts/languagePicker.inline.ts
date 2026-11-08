@@ -8,10 +8,10 @@ const languageTags: Record<string, string> = {
 }
 // The notice follows the visitor's saved preference even though articles stay in English.
 const articleLanguageNotice: Record<string, string> = {
-  en: "Articles are available in English only.",
-  ja: "記事は英語でのみ公開しています。",
-  zh: "文章僅提供英文版本。",
-  pt: "Os artigos estão disponíveis apenas em inglês.",
+  en: "English Only",
+  ja: "英語のみ",
+  zh: "僅提供英文版",
+  pt: "Apenas Inglês",
 }
 
 const preferredLang = () => {
