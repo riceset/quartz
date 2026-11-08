@@ -179,8 +179,8 @@ const awards: Entry[] = [
     description: {
       en: "Awarded through embassy recommendation, covering full tuition, living expenses, and travel for undergraduate studies in Japan.",
       ja: "2023年、大使館推薦の国費留学生として来日しました。",
-      zh: "2023 年，我透過日本大使館推薦，獲得 MEXT 大學部獎學金，來到日本留學。",
-      pt: "Recebi a bolsa MEXT por recomendação da embaixada. Ela cobre as taxas universitárias, oferece auxílio mensal para viver no Japão e inclui as passagens aéreas.",
+      zh: "2023 年透過日本大使館推薦，獲得 MEXT 大學部獎學金，並赴日留學。",
+      pt: "Recebi a bolsa MEXT por recomendação da embaixada, com cobertura integral das taxas universitárias, auxílio mensal para viver no Japão e passagens aéreas.",
     },
   },
 ]
