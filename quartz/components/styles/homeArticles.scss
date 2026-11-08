@@ -145,17 +145,41 @@
   font-weight: 400;
   letter-spacing: -0.015em;
   text-wrap: balance;
+  // Same quiet underline as the splash nav and About links.
   & a,
-  & a:visited,
-  & a:hover {
+  & a:visited {
     color: inherit;
     font-weight: inherit;
-    text-decoration: none;
     background: transparent;
     border-radius: 0;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    transition: text-decoration-color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  // Touch screens keep :hover after a tap, so only pointers that can hover get the underline.
+  @media (hover: hover) {
+    & a:hover {
+      color: inherit;
+      background: transparent;
+      text-decoration-color: var(--tertiary);
+    }
+  }
+  // :active lasts only while the finger is down, so it gives tap feedback without sticking.
+  @media (hover: none) {
+    & a:hover {
+      color: inherit;
+      background: transparent;
+    }
+    & a:active {
+      text-decoration-color: var(--tertiary);
+      transition: none;
+    }
   }
   & a:focus-visible {
-    outline: 2px solid var(--secondary);
+    outline: 2px solid var(--tertiary);
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -163,25 +187,6 @@
 .article-featured-title {
   font-size: clamp(1.95rem, 3.7vw, 2.35rem);
   line-height: 1.05;
-}
-// Titles carry no arrow; on pointer devices an underline fades in on hover.
-@media (hover: hover) {
-  .article-featured-title a,
-  .article-entry-title a {
-    text-decoration-line: underline;
-    text-decoration-color: transparent;
-    text-decoration-thickness: 0.2px;
-    text-underline-offset: 0.12em;
-    transition: text-decoration-color 180ms ease;
-  }
-  // Restated because the base `a:hover` shorthand resets thickness to auto.
-  .article-featured-title a:hover,
-  .article-entry-title a:hover {
-    text-decoration-line: underline;
-    text-decoration-color: currentColor;
-    text-decoration-thickness: 0.2px;
-    text-underline-offset: 0.12em;
-  }
 }
 .article-excerpt {
   max-width: 36rem;

@@ -174,6 +174,10 @@ function createRouter() {
 }
 
 createRouter()
+
+// iOS Safari only applies :active to links when a touch listener exists; the
+// tap feedback on touch screens relies on :active since :hover sticks there.
+document.addEventListener("touchstart", () => {}, { passive: true })
 notifyNav(getFullSlug(window))
 
 if (!customElements.get("route-announcer")) {

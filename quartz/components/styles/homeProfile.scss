@@ -146,9 +146,14 @@ $about-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
     }
   }
 
+  // :active lasts only while the finger is down, so it gives tap feedback without sticking.
   @media (hover: none) {
     &:hover {
       color: var(--dark);
+    }
+    &:active {
+      text-decoration-color: var(--tertiary);
+      transition: none;
     }
   }
 

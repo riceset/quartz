@@ -176,9 +176,15 @@ body[data-slug="index"] {
     }
   }
 
+  // :active lasts only while the finger is down, so it gives tap feedback without sticking.
   @media (hover: none) {
     &:hover {
       color: var(--darkgray);
+    }
+    &:active {
+      color: var(--dark);
+      text-decoration-color: var(--tertiary);
+      transition: none;
     }
   }
 
@@ -222,9 +228,14 @@ body[data-slug="index"] {
     }
   }
 
+  // :active lasts only while the finger is down, so it gives tap feedback without sticking.
   @media (hover: none) {
     &:hover {
       color: var(--gray);
+    }
+    &:active {
+      color: var(--dark);
+      transition: none;
     }
   }
 
