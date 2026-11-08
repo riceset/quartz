@@ -19,27 +19,6 @@ $article-space-10: 2.5rem;
   margin: 0 0 $article-space-8;
 }
 
-.home-articles-heading {
-  position: relative;
-  min-width: 0;
-}
-
-// Treat the English-only annotation like a tiny editorial eyebrow. Position it
-// outside the title's layout box so the graph stays centered on "Articles".
-.home-articles-language-note {
-  position: absolute;
-  bottom: calc(100% + 0.4rem);
-  left: 0;
-  margin: 0;
-  color: var(--gray);
-  font-family: var(--codeFont);
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-
 .home-articles-title {
   margin: 0;
   font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
