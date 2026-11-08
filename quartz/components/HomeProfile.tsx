@@ -31,7 +31,8 @@ interface Language {
 const years = (...ys: number[]): Localized => {
   const plain = ys.join(" – ")
   const cjk = ys.map((y) => `${y}年`).join(" – ")
-  return { en: plain, ja: cjk, zh: cjk, pt: plain }
+  const japanese = ys.map((y) => `${y}年`).join("〜")
+  return { en: plain, ja: japanese, zh: cjk, pt: plain }
 }
 
 const tokyo: Localized = { en: "Tokyo", ja: "東京", zh: "東京", pt: "Tóquio" }
@@ -39,7 +40,7 @@ const seoul: Localized = { en: "Seoul", ja: "ソウル", zh: "首爾", pt: "Seul
 const internship: Localized = { en: "Internship", ja: "インターン", zh: "實習", pt: "Estágio" }
 const appDevEngineer: Localized = {
   en: "Application Development Engineer",
-  ja: "アプリケーション開発エンジニア",
+  ja: "アプリ開発エンジニア",
   zh: "應用程式開發工程師",
   pt: "Engenheiro de Desenvolvimento de Aplicativos",
 }
@@ -48,7 +49,7 @@ const experience: Entry[] = [
   {
     date: {
       en: "Aug – Sep 2026",
-      ja: "2026年8月 – 9月",
+      ja: "2026年8月〜9月",
       zh: "2026年8月 – 9月",
       pt: "ago – set 2026",
     },
@@ -59,7 +60,7 @@ const experience: Entry[] = [
     articleUrl: "/LINE-Internship",
     description: {
       en: "Updated LINE’s sticker and emoji screens in UIKit for the Liquid Glass redesign and fixed iOS 26 layout issues in settings, aligning on styling with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
-      ja: "Liquid Glassのデザイン刷新に合わせて、LINEのスタンプ・絵文字画面をUIKitでアップデートし、iOS 26で崩れていた設定画面のレイアウトを修正しました。スタイルはデザイナーと日本語・英語で詰めました。ほかに、コイン履歴のフッターをUIKitからSwiftUIへ移行するプロトタイプも作成しました。",
+      ja: "LINEのスタンプ・絵文字画面をLiquid Glassに合わせてUIKitで改修しました。iOS 26で崩れていた設定画面のレイアウトも修正し、見た目はデザイナーと日本語・英語で相談しながら調整しました。また、コイン履歴のフッターをUIKitからSwiftUIに移すプロトタイプも作りました。",
       zh: "配合 Liquid Glass 改版，用 UIKit 更新了 LINE 的貼圖和表情貼畫面，也修正了設定頁在 iOS 26 上跑版的問題，過程中用英文和日文跟設計師討論樣式。另外還做了一個原型，把代幣紀錄的頁尾從 UIKit 改寫成 SwiftUI。",
       pt: "Atualizei em UIKit as telas de stickers e emojis do LINE para o novo visual Liquid Glass e corrigi problemas de layout das configurações no iOS 26, alinhando o visual com os designers em inglês e japonês. Também fiz um protótipo migrando o rodapé do histórico de moedas de UIKit para SwiftUI.",
     },
@@ -67,7 +68,7 @@ const experience: Entry[] = [
   {
     date: {
       en: "Aug – Sep 2026",
-      ja: "2026年8月 – 9月",
+      ja: "2026年8月〜9月",
       zh: "2026年8月 – 9月",
       pt: "ago – set 2026",
     },
@@ -78,7 +79,7 @@ const experience: Entry[] = [
     articleUrl: "/Sansan-Internship",
     description: {
       en: "Built a proof of concept for on-device Japanese contact search with Apple’s Foundation Models and MeCab, matching natural-language queries to names and companies. Also reworked Eight’s TipKit Premium reminders and expanded its Premium landing page, writing the specs for both.",
-      ja: "AppleのFoundation ModelsとMeCabを使い、自然な文章で氏名や会社名を検索できる、端末内で完結する日本語の名刺検索をPoCとして開発しました。また、EightのTipKitを使ったプレミアム案内を作り直し、プレミアムのランディングページも拡充しました。いずれも仕様書の作成から担当しました。",
+      ja: "AppleのFoundation ModelsとMeCabを使い、端末上で動く日本語の名刺検索を試作しました。自然な文章を入力すると、名前や会社名を探せる仕組みです。また、EightのTipKitを使ったPremiumの案内を見直し、Premiumの紹介ページも拡充しました。この2件は仕様書の作成から担当しました。",
       zh: "用 Apple 的 Foundation Models 和 MeCab 做了一個在裝置端執行的日文名片搜尋概念驗證，可以用自然的句子找到人名和公司。另外也重新設計了 Eight 用 TipKit 做的 Premium 提示，並擴充 Premium 的介紹頁面，兩項都從撰寫規格開始負責。",
       pt: "Desenvolvi uma prova de conceito de busca de cartões de visita em japonês que roda no próprio aparelho, usando o Foundation Models da Apple e o MeCab para encontrar nomes e empresas a partir de frases em linguagem natural. Também reformulei os lembretes do Premium do Eight, feitos com TipKit, e ampliei a landing page do Premium, cuidando das especificações de ambos desde o início.",
     },
@@ -86,13 +87,13 @@ const experience: Entry[] = [
   {
     date: {
       en: "May 2026 – Now",
-      ja: "2026年5月 – 現在",
+      ja: "2026年5月〜現在",
       zh: "2026年5月 – 至今",
       pt: "mai 2026 – atual",
     },
     title: {
       en: "Full-Stack Software Engineer",
-      ja: "フルスタックソフトウェアエンジニア",
+      ja: "フルスタックエンジニア",
       zh: "全端軟體工程師",
       pt: "Engenheiro de Software Full-Stack",
     },
@@ -101,7 +102,7 @@ const experience: Entry[] = [
     place: tokyo,
     description: {
       en: "Built features for BaseMe’s AI career chat, such as using your notes as context and stopping a reply, and redesigned how company recommendations appear. Also added profile view counts to help students get noticed by recruiters.",
-      ja: "BaseMeのAIキャリアチャットで、メモの内容をふまえて回答する機能や回答を途中で止める機能などを実装し、おすすめ企業の見せ方も見直しました。また、学生が採用担当者の目に留まりやすくなるよう、プロフィールの閲覧数を表示する機能を追加しました。",
+      ja: "BaseMeのAIキャリアチャットに、メモの内容を回答に反映する機能や、回答を途中で止める機能を追加しました。おすすめ企業の表示方法も見直しました。また、学生が採用担当者に見つけてもらいやすくなるよう、プロフィールの閲覧数を表示する機能も作りました。",
       zh: "為 BaseMe 的 AI 職涯聊天開發了多項功能，例如讓 AI 參考使用者的筆記來回答、可以中途停止回覆，也重新設計了企業推薦的呈現方式。另外還加上個人頁面的瀏覽次數，讓學生更容易被招募人員注意到。",
       pt: "Desenvolvi funcionalidades para o chat de carreira com IA da BaseMe, como respostas que levam em conta as anotações do usuário e a opção de interromper uma resposta, e redesenhei a forma como as recomendações de empresas aparecem. Também adicionei a contagem de visualizações do perfil, para ajudar estudantes a serem notados por recrutadores.",
     },
@@ -109,7 +110,7 @@ const experience: Entry[] = [
   {
     date: {
       en: "Jan – Apr 2026",
-      ja: "2026年1月 – 4月",
+      ja: "2026年1月〜4月",
       zh: "2026年1月 – 4月",
       pt: "jan – abr 2026",
     },
@@ -120,7 +121,7 @@ const experience: Entry[] = [
     articleUrl: "/MIXI-Internship",
     description: {
       en: "Added country-based access controls to an AI feature in FamilyAlbum that recognizes family members and suggests photos for albums, keeping it to legally approved regions with cached location checks covered by Swift Testing. Also replaced PanModal with native iOS sheets for iOS 26.",
-      ja: "「家族アルバム みてね」の、家族を認識してアルバムに入れる写真を提案するAI機能に、国ごとの利用制限を追加しました。法律上提供できる地域でのみ使えるようにし、キャッシュした位置情報の判定はSwift Testingでテストしました。また、iOS 26対応として、PanModalを標準のシートに置き換えました。",
+      ja: "「家族アルバム みてね」で、家族を認識してアルバム用の写真を提案するAI機能に、国ごとの利用制限を追加しました。法律上、提供できる地域だけで使えるようにし、キャッシュした位置情報を使う判定はSwift Testingでテストしました。また、iOS 26に合わせてPanModalを標準のシートに置き換えました。",
       zh: "FamilyAlbum 有一項會辨識家人、推薦適合放進相簿照片的 AI 功能，我為它加上依國家限制使用的機制，只在法規允許的地區開放，並用 Swift Testing 測試快取的定位判斷。另外也配合 iOS 26，把 PanModal 換成系統原生的 sheet。",
       pt: "Adicionei restrições por país a um recurso de IA do FamilyAlbum que reconhece membros da família e sugere fotos para os álbuns, liberando-o só nas regiões onde ele é permitido por lei. As verificações de localização em cache são testadas com Swift Testing. Também troquei o PanModal pelas sheets nativas do iOS 26.",
     },
@@ -129,7 +130,7 @@ const experience: Entry[] = [
     date: years(2025, 2026),
     title: {
       en: "Google Student Ambassador",
-      ja: "Google学生アンバサダー",
+      ja: "Google 学生アンバサダー",
       zh: "Google 學生大使",
       pt: "Embaixador Estudantil do Google",
     },
@@ -137,7 +138,7 @@ const experience: Entry[] = [
     place: tokyo,
     description: {
       en: "Part of the program’s first cohort, sharing everyday AI use cases with more than 1,000 followers. Helped fellow university students learn to use AI safely and effectively.",
-      ja: "プログラムの1期生として、日常生活でのAIの活用法を1,000人以上のフォロワーに発信し、大学生がAIを安全かつ上手に使えるようサポートしました。",
+      ja: "Google 学生アンバサダーの第1期生として、日常でのAIの使い方を1,000人以上のフォロワーに紹介しました。また、大学生がAIを安全に、うまく活用できるようサポートしました。",
       zh: "作為這個計畫的第一屆大使，向超過 1,000 位追蹤者分享 AI 在日常生活中的用法，也幫助大學同學安全、有效地使用 AI。",
       pt: "Fiz parte da primeira turma do programa, compartilhando usos de IA no dia a dia com mais de 1.000 seguidores. Ajudei outros universitários a usar IA de forma segura e eficaz.",
     },
@@ -149,14 +150,14 @@ const awards: Entry[] = [
     date: years(2026),
     title: {
       en: "Swift Student Challenge Winner",
-      ja: "Swift Student Challenge受賞",
+      ja: "Swift Student Challenge 受賞",
       zh: "Swift Student Challenge 得獎",
       pt: "Vencedor do Swift Student Challenge",
     },
     org: "Apple",
     description: {
       en: "Selected for an app that impressed and inspired Apple with its creativity, technical skill, and thoughtful design.",
-      ja: "創造性と技術力、細やかなデザインでAppleに感銘を与えたアプリとして選ばれました。",
+      ja: "アイデアの独自性や技術力、細部までこだわったデザインが評価され、受賞しました。",
       zh: "以兼具創意、技術實力與用心設計的 App 打動 Apple 而獲選。",
       pt: "Premiado por um app que impressionou a Apple pela criatividade, pela qualidade técnica e pelo design cuidadoso.",
     },
@@ -177,7 +178,7 @@ const awards: Entry[] = [
     },
     description: {
       en: "Awarded through embassy recommendation, covering full tuition, living expenses, and travel for undergraduate studies in Japan.",
-      ja: "大使館推薦で採用され、日本での学部留学にかかる授業料・生活費・渡航費の全額支給を受けています。",
+      ja: "大使館推薦で国費留学生に採用されました。授業料の免除に加え、生活費と渡航費の支給を受けています。",
       zh: "經大使館推薦獲選，全額補助在日本就讀大學的學費、生活費與往返機票。",
       pt: "Concedida por recomendação da embaixada, cobrindo integralmente mensalidades, custo de vida e passagens para a graduação no Japão.",
     },
@@ -224,7 +225,7 @@ const talks: Entry[] = [
     place: { en: "Taipei", ja: "台北", zh: "台北", pt: "Taipé" },
     description: {
       en: "A talk on turning a personal story into a winning Swift Playground, covering how to find an idea only you could build, grow SwiftUI skills under real project constraints, and use attention to detail to raise a submission from good to winning.",
-      ja: "自分自身のストーリーを受賞作のSwift Playgroundに仕上げるまでの道のりを話しました。自分にしか作れないアイデアの見つけ方、実際のプロジェクトの制約の中でSwiftUIのスキルを磨く方法、そして細部へのこだわりで作品を「いい作品」から「受賞作」に引き上げる方法についてお話ししました。",
+      ja: "自分の体験をSwift Playgroundの作品にした過程を紹介しました。自分ならではのアイデアの見つけ方や、制約のある中でSwiftUIのスキルを磨く方法、細部まで工夫して作品の完成度を高めることについて話しました。",
       zh: "分享如何把個人故事變成得獎的 Swift Playground：找到只有自己做得出來的點子、在真實專案的限制下精進 SwiftUI，以及用對細節的講究，讓作品從「不錯」躍升為得獎之作。",
       pt: "Uma palestra sobre como transformar uma história pessoal em um Swift Playground vencedor: como encontrar uma ideia que só você poderia criar, desenvolver habilidades em SwiftUI diante das limitações de um projeto real e usar a atenção aos detalhes para levar um projeto de bom a vencedor.",
     },
@@ -253,7 +254,7 @@ const talks: Entry[] = [
     date: { en: "Apr 2026", ja: "2026年4月", zh: "2026年4月", pt: "abr 2026" },
     title: {
       en: "MEXT Scholarship Speaker",
-      ja: "国費留学体験談スピーカー",
+      ja: "国費留学の体験談",
       zh: "日本政府獎學金分享講者",
       pt: "Palestrante sobre a Bolsa MEXT",
     },
@@ -266,7 +267,7 @@ const talks: Entry[] = [
     place: tokyo,
     description: {
       en: "Spoke at a Consulate-General of Japan in São Paulo webinar, sharing my MEXT scholarship experience with prospective students.",
-      ja: "在サンパウロ日本国総領事館のウェビナーに登壇し、留学を目指す学生に国費留学の経験をお話ししました。",
+      ja: "在サンパウロ日本国総領事館のウェビナーで、国費留学を考えている学生に自分の経験を話しました。",
       zh: "在日本國駐聖保羅總領事館的線上講座中，向有意申請的學生分享我的日本政府獎學金經驗。",
       pt: "Palestrei em um webinar do Consulado-Geral do Japão em São Paulo, compartilhando minha experiência com a bolsa MEXT com futuros candidatos.",
     },
@@ -290,7 +291,7 @@ const talks: Entry[] = [
     place: seoul,
     description: {
       en: "Joined a cross-campus podcast between Innovation Academy and 42 Tokyo, exchanging perspectives on the 42 Network with Korean students.",
-      ja: "Innovation Academyと42 Tokyoをつなぐキャンパス横断のポッドキャストに出演し、韓国の学生と42 Networkについて意見を交わしました。",
+      ja: "Innovation Academyと42 Tokyoの合同ポッドキャストに出演し、韓国の学生と42 Networkについて話しました。",
       zh: "參與 Innovation Academy 與 42 Tokyo 的跨校區 Podcast，和韓國學生交流對 42 Network 的看法。",
       pt: "Participei de um podcast entre os campi da Innovation Academy e da 42 Tokyo, trocando ideias sobre a 42 Network com estudantes coreanos.",
     },
@@ -302,7 +303,7 @@ const talks: Entry[] = [
     place: { en: "São Paulo", ja: "サンパウロ", zh: "聖保羅", pt: "São Paulo" },
     description: {
       en: "Produced a Brazilian Portuguese tutorial for 42 São Paulo’s YouTube channel, teaching beginners how to use Vim from the basics.",
-      ja: "42 São PauloのYouTubeチャンネル向けに、初心者がVimを基礎から学べるブラジルポルトガル語のチュートリアルを制作しました。",
+      ja: "42 São PauloのYouTubeチャンネル向けに、初心者でもVimの基本を学べるポルトガル語の動画を作りました。",
       zh: "為 42 São Paulo 的 YouTube 頻道製作巴西葡萄牙語教學，帶初學者從基礎開始學 Vim。",
       pt: "Produzi um tutorial em português para o canal da 42 São Paulo no YouTube, ensinando iniciantes a usar o Vim desde o básico.",
     },
@@ -331,7 +332,7 @@ const education: Entry[] = [
     },
     org: {
       en: "B.A. Language and Area Studies",
-      ja: "学士（言語・地域研究）",
+      ja: "言語・地域研究（学士課程）",
       zh: "語言與區域研究學士",
       pt: "Bacharelado em Estudos de Línguas e Regiões",
     },
@@ -353,7 +354,7 @@ const education: Entry[] = [
 const languages: Language[] = [
   {
     name: { en: "Portuguese", ja: "ポルトガル語", zh: "葡萄牙文", pt: "Português" },
-    level: { en: "Native", ja: "ネイティブ", zh: "母語", pt: "Nativo" },
+    level: { en: "Native", ja: "母語", zh: "母語", pt: "Nativo" },
   },
   { name: { en: "Japanese", ja: "日本語", zh: "日文", pt: "Japonês" }, level: "C2" },
   { name: { en: "English", ja: "英語", zh: "英文", pt: "Inglês" }, level: "C2" },
