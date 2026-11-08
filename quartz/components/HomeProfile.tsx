@@ -66,7 +66,7 @@ const experience: Entry[] = [
       "Added country-based access controls to an AI feature in FamilyAlbum that recognizes family members and suggests photos for albums, keeping it to legally approved regions with cached location checks covered by Swift Testing. Also replaced PanModal with native iOS sheets for iOS 26.",
   },
   {
-    date: "Aug 2025 – Feb 2026",
+    date: "2025 – 2026",
     title: "Google Student Ambassador",
     org: "Google Japan",
     place: "Tokyo",
@@ -84,6 +84,7 @@ const awards: Entry[] = [
       "Selected for an app that impressed and inspired Apple with its creativity, technical skill, and thoughtful design.",
   },
   {
+    date: "2023",
     title: "MEXT Undergraduate Scholarship",
     org: "Ministry of Education of Japan",
     description:
