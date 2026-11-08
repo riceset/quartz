@@ -121,13 +121,23 @@ $about-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
   transition: text-decoration-color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
 
-  &:hover {
-    color: var(--dark);
-    text-decoration-color: var(--tertiary);
+  // Touch screens keep :hover after a tap, so only pointers that can hover get the underline.
+  @media (hover: hover) {
+    &:hover {
+      color: var(--dark);
+      text-decoration-color: var(--tertiary);
 
-    & .about-arrow {
-      transform: translateX(0.12em);
+      & .about-arrow {
+        transform: translateX(0.12em);
+      }
+    }
+  }
+
+  @media (hover: none) {
+    &:hover {
+      color: var(--dark);
     }
   }
 
