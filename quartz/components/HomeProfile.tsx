@@ -353,7 +353,7 @@ const education: Entry[] = [
 
 const languages: Language[] = [
   {
-    name: { en: "Portuguese", ja: "ポルトガル語", zh: "葡萄牙文", pt: "Português" },
+    name: { en: "Portuguese", ja: "ポルトガル語", zh: "葡文", pt: "Português" },
     level: { en: "Native", ja: "母語", zh: "母語", pt: "Nativo" },
   },
   { name: { en: "Japanese", ja: "日本語", zh: "日文", pt: "Japonês" }, level: "C2" },
