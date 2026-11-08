@@ -6,14 +6,6 @@ const languageTags: Record<string, string> = {
   zh: "zh-Hant",
   pt: "pt-BR",
 }
-// The eyebrow above Articles follows the saved preference, while article content stays English.
-const articleLanguageNotice: Record<string, string> = {
-  en: "English Only",
-  ja: "英語のみ",
-  zh: "僅提供英文版",
-  pt: "Apenas Inglês",
-}
-
 const preferredLang = () => {
   const stored = localStorage.getItem("lang")
   return stored && siteLangs.includes(stored) ? stored : "en"
@@ -46,20 +38,9 @@ const applyLang = (preference: string) => {
   for (const picker of document.querySelectorAll<HTMLElement>(".lang-picker")) {
     const trigger = picker.querySelector<HTMLButtonElement>(".lang-picker-trigger")
     if (!trigger) continue
-    const label = englishOnly
-      ? "English only — articles are available in English"
-      : "Language / 言語 / 語言 / Idioma"
+    const label = "Language / 言語 / 語言 / Idioma"
     trigger.setAttribute("aria-label", label)
     trigger.setAttribute("title", label)
-
-  }
-
-  // This is separate from data-lang: article content is English, but the small
-  // availability label is shown in the language the visitor was using before.
-  const notice = document.querySelector<HTMLElement>("[data-article-language-notice]")
-  if (notice) {
-    notice.textContent = articleLanguageNotice[preference] ?? articleLanguageNotice.en
-    notice.lang = languageTags[preference] ?? "en"
   }
 
   // Attributes set with localizedAttrs (see components/localized.tsx).
