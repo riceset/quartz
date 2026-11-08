@@ -118,19 +118,19 @@ export default (() => {
         {cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && (
           <>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
             <link rel="stylesheet" href={googleFontHref(cfg.theme)} />
             <link
               rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&display=swap"
+              href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700&display=block"
             />
             <link
               rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400&family=Noto+Serif+TC:wght@400&display=swap"
+              href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400&family=Noto+Serif+TC:wght@400&display=block"
             />
             <link
               rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:wght@400;700&family=La+Belle+Aurore&family=LINE+Seed+JP:wght@400;700&display=swap"
+              href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:wght@400;700&family=La+Belle+Aurore&family=LINE+Seed+JP:wght@400;700&display=block"
             />
             {cfg.theme.typography.title && (
               <link rel="stylesheet" href={googleFontSubsetHref(cfg.theme, cfg.pageTitle)} />

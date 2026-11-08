@@ -8,7 +8,7 @@ const RailName: QuartzComponent = ({ displayClass }: QuartzComponentProps) => {
   return (
     <>
       <link
-        href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@500&display=block"
         rel="stylesheet"
       />
       <div class={classNames(displayClass, "rail-name")} aria-hidden="true">

@@ -9,7 +9,7 @@ const PageTitle: QuartzComponent = ({ fileData, cfg, displayClass }: QuartzCompo
   return (
     <>
       <link
-        href="https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@400;600;700&display=block"
         rel="stylesheet"
       />
       <h2 class={classNames(displayClass, "page-title")}>
