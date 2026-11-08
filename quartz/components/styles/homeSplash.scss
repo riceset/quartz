@@ -121,6 +121,18 @@ body[data-slug="index"] {
   }
 }
 
+// Keep the bottom signature invisible during the initial webfont swap.
+// Without JavaScript it remains visible with the system serif fallback.
+@media (scripting: enabled) {
+  .splash-signature {
+    visibility: hidden;
+  }
+
+  .splash.splash-type-ready .splash-signature {
+    visibility: visible;
+  }
+}
+
 .splash-name {
   margin: 0;
   font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
