@@ -6,7 +6,7 @@ import { unified } from "unified"
 import { htmlToJsx } from "../util/jsx"
 import { FilePath, resolveRelative } from "../util/path"
 import { unescapeHTML } from "../util/escape"
-import { Date, getDate } from "./Date"
+import { formatDate, getDate } from "./Date"
 import { byDateAndAlphabetical } from "./PageList"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { langTags, Localized, siteLangs, SiteLang, T } from "./localized"
@@ -23,6 +23,26 @@ const dateLocales: Record<SiteLang, ValidLocale> = {
   zh: "zh-TW",
   pt: "pt-BR",
 }
+// Portuguese months short and without the period, matching the dates on the About page
+// ("5 ago 2026" rather than Intl's "5 de ago. de 2026").
+const ptMonths = [
+  "jan",
+  "fev",
+  "mar",
+  "abr",
+  "mai",
+  "jun",
+  "jul",
+  "ago",
+  "set",
+  "out",
+  "nov",
+  "dez",
+]
+const cardDate = (date: NonNullable<ReturnType<typeof getDate>>, lang: SiteLang) =>
+  lang === "pt"
+    ? `${date.getDate()} ${ptMonths[date.getMonth()]} ${date.getFullYear()}`
+    : formatDate(date, dateLocales[lang])
 // Card labels for tags that are words rather than names; tags like swift or vim stay as is.
 const tagLabels: Record<string, Localized> = {
   internship: { en: "internship", ja: "インターン", zh: "實習", pt: "estágio" },
@@ -249,7 +269,7 @@ export default (() => {
                     {date &&
                       siteLangs.map((lang) => (
                         <span data-text-lang={lang} lang={langTags[lang]}>
-                          <Date date={date} locale={dateLocales[lang]} />
+                          <time datetime={date.toISOString()}>{cardDate(date, lang)}</time>
                         </span>
                       ))}
                   </div>

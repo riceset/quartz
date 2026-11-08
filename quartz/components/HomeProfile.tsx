@@ -51,7 +51,7 @@ const experience: Entry[] = [
     place: { en: "Fukuoka", ja: "福岡", zh: "福岡", pt: "Fukuoka" },
     articleUrl: "/LINE-Internship",
     description: {
-      en: "Updated LINE's sticker and emoji screens in UIKit for the Liquid Glass redesign and fixed iOS 26 layout issues in settings, aligning on styling with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
+      en: "Updated LINE’s sticker and emoji screens in UIKit for the Liquid Glass redesign and fixed iOS 26 layout issues in settings, aligning on styling with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
       ja: "Liquid Glassのデザイン刷新に合わせて、LINEのスタンプ・絵文字画面をUIKitでアップデートし、iOS 26で崩れていた設定画面のレイアウトを修正しました。スタイルはデザイナーと日本語・英語で詰めました。ほかに、コイン履歴のフッターをUIKitからSwiftUIへ移行するプロトタイプも作成しました。",
       zh: "配合 Liquid Glass 改版，用 UIKit 更新了 LINE 的貼圖和表情貼畫面，也修正了設定頁在 iOS 26 上跑版的問題，過程中用英文和日文跟設計師討論樣式。另外還做了一個原型，把代幣紀錄的頁尾從 UIKit 改寫成 SwiftUI。",
       pt: "Atualizei em UIKit as telas de stickers e emojis do LINE para o novo visual Liquid Glass e corrigi problemas de layout das configurações no iOS 26, alinhando o visual com os designers em inglês e japonês. Também fiz um protótipo migrando o rodapé do histórico de moedas de UIKit para SwiftUI.",
@@ -80,7 +80,7 @@ const experience: Entry[] = [
     date: {
       en: "May 2026 – Now",
       ja: "2026年5月 – 現在",
-      zh: "2026年5月至今",
+      zh: "2026年5月 – 至今",
       pt: "mai 2026 – atual",
     },
     title: {
@@ -93,7 +93,7 @@ const experience: Entry[] = [
     detail: { en: "Part-time", ja: "アルバイト", zh: "兼職", pt: "Meio período" },
     place: tokyo,
     description: {
-      en: "Built features for BaseMe's AI career chat, such as using your notes as context and stopping a reply, and redesigned how company recommendations appear. Also added profile view counts to help students get noticed by recruiters.",
+      en: "Built features for BaseMe’s AI career chat, such as using your notes as context and stopping a reply, and redesigned how company recommendations appear. Also added profile view counts to help students get noticed by recruiters.",
       ja: "BaseMeのAIキャリアチャットで、メモの内容をふまえて回答する機能や回答を途中で止める機能などを実装し、おすすめ企業の見せ方も見直しました。また、学生が採用担当者の目に留まりやすくなるよう、プロフィールの閲覧数を表示する機能を追加しました。",
       zh: "為 BaseMe 的 AI 職涯聊天開發了多項功能，例如讓 AI 參考使用者的筆記來回答、可以中途停止回覆，也重新設計了企業推薦的呈現方式。另外還加上個人頁面的瀏覽次數，讓學生更容易被招募人員注意到。",
       pt: "Desenvolvi funcionalidades para o chat de carreira com IA da BaseMe, como respostas que levam em conta as anotações do usuário e a opção de interromper uma resposta, e redesenhei a forma como as recomendações de empresas aparecem. Também adicionei a contagem de visualizações do perfil, para ajudar estudantes a serem notados por recrutadores.",
@@ -122,14 +122,14 @@ const experience: Entry[] = [
     date: "2025 – 2026",
     title: {
       en: "Google Student Ambassador",
-      ja: "Google 学生アンバサダー",
+      ja: "Google学生アンバサダー",
       zh: "Google 學生大使",
       pt: "Embaixador Estudantil do Google",
     },
     org: "Google Japan",
     place: tokyo,
     description: {
-      en: "Part of the program's first cohort, sharing everyday AI use cases with more than 1,000 followers. Helped fellow university students learn to use AI safely and effectively.",
+      en: "Part of the program’s first cohort, sharing everyday AI use cases with more than 1,000 followers. Helped fellow university students learn to use AI safely and effectively.",
       ja: "プログラムの1期生として、日常生活でのAIの活用法を1,000人以上のフォロワーに発信し、大学生がAIを安全かつ上手に使えるようサポートしました。",
       zh: "作為這個計畫的第一屆大使，向超過 1,000 位追蹤者分享 AI 在日常生活中的用法，也幫助大學同學安全、有效地使用 AI。",
       pt: "Fiz parte da primeira turma do programa, compartilhando usos de IA no dia a dia com mais de 1.000 seguidores. Ajudei outros universitários a usar IA de forma segura e eficaz.",
@@ -142,7 +142,7 @@ const awards: Entry[] = [
     date: "2026",
     title: {
       en: "Swift Student Challenge Winner",
-      ja: "Swift Student Challenge 受賞",
+      ja: "Swift Student Challenge受賞",
       zh: "Swift Student Challenge 得獎",
       pt: "Vencedor do Swift Student Challenge",
     },
@@ -233,7 +233,7 @@ const talks: Entry[] = [
       },
       {
         label: {
-          en: "Covered by LY Corporation Tech Blog",
+          en: "Covered by the LY Corporation Tech Blog",
           ja: "LINEヤフー Tech Blogで紹介",
           zh: "LY Corporation 技術部落格報導",
           pt: "Destaque no Tech Blog da LY Corporation",
@@ -246,7 +246,7 @@ const talks: Entry[] = [
     date: { en: "Apr 2026", ja: "2026年4月", zh: "2026年4月", pt: "abr 2026" },
     title: {
       en: "MEXT Scholarship Speaker",
-      ja: "国費留学 体験談スピーカー",
+      ja: "国費留学体験談スピーカー",
       zh: "日本政府獎學金分享講者",
       pt: "Palestrante sobre a Bolsa MEXT",
     },
@@ -294,7 +294,7 @@ const talks: Entry[] = [
     org: "Fora da Norma Podcast",
     place: { en: "São Paulo", ja: "サンパウロ", zh: "聖保羅", pt: "São Paulo" },
     description: {
-      en: "Produced a Brazilian Portuguese tutorial for 42 São Paulo's YouTube channel, teaching beginners how to use Vim from the basics.",
+      en: "Produced a Brazilian Portuguese tutorial for 42 São Paulo’s YouTube channel, teaching beginners how to use Vim from the basics.",
       ja: "42 São PauloのYouTubeチャンネル向けに、初心者がVimを基礎から学べるブラジルポルトガル語のチュートリアルを制作しました。",
       zh: "為 42 São Paulo 的 YouTube 頻道製作巴西葡萄牙語教學，帶初學者從基礎開始學 Vim。",
       pt: "Produzi um tutorial em português para o canal da 42 São Paulo no YouTube, ensinando iniciantes a usar o Vim desde o básico.",
@@ -320,7 +320,7 @@ const education: Entry[] = [
       en: "Tokyo University of Foreign Studies",
       ja: "東京外国語大学",
       zh: "東京外國語大學",
-      pt: "Tokyo University of Foreign Studies",
+      pt: "Universidade de Estudos Estrangeiros de Tóquio",
     },
     org: {
       en: "B.A. Language and Area Studies",
@@ -371,6 +371,13 @@ const cjkFontHref = (family: string, lang: "zh-Hant" | "ko") => {
 
 // ── Component ──────────────────────────────────────────────────────────────
 
+const readWriteUp: Localized = {
+  en: "Read the write-up",
+  ja: "記事を読む",
+  zh: "閱讀文章",
+  pt: "Ler o artigo",
+}
+
 const Section = ({ title, children }: { title: Localized; children: any }) => (
   <section class="about-section">
     <h2 class="about-section-title">
@@ -382,8 +389,8 @@ const Section = ({ title, children }: { title: Localized; children: any }) => (
 
 const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
   // Label each write-up link with the linked article's own title.
-  const articleTitle = (url: string) =>
-    allFiles.find((file) => `/${file.slug}` === url)?.frontmatter?.title ?? "Read the write-up"
+  const articleTitle = (url: string): Localized =>
+    allFiles.find((file) => `/${file.slug}` === url)?.frontmatter?.title ?? readWriteUp
 
   const EntryList = ({ entries }: { entries: Entry[] }) => (
     <ol class="about-entries">
@@ -428,7 +435,7 @@ const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
                 <span class="about-entry-link-label">
                   <T text={{ en: "Write-up", ja: "記事", zh: "文章", pt: "Artigo" }} />
                 </span>
-                {articleTitle(entry.articleUrl)}
+                <T text={articleTitle(entry.articleUrl)} />
                 <span class="about-arrow" aria-hidden="true">
                   {"⁠ →"}
                 </span>

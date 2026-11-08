@@ -8,6 +8,11 @@ const applyLang = (lang: string) => {
   for (const option of document.querySelectorAll<HTMLElement>("[data-lang-option]")) {
     option.setAttribute("aria-checked", String(option.dataset.langOption === lang))
   }
+  // Attributes set with localizedAttrs (see components/localized.tsx).
+  for (const el of document.querySelectorAll<HTMLElement>("[data-l10n]")) {
+    const attrs: Record<string, Record<string, string>> = JSON.parse(el.dataset.l10n!)
+    for (const [name, text] of Object.entries(attrs)) el.setAttribute(name, text[lang] ?? text.en)
+  }
 }
 
 applyLang(currentLang)

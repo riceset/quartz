@@ -1,5 +1,5 @@
 import { QuartzComponent, QuartzComponentConstructor } from "./types"
-import { T } from "./localized"
+import { localizedAttrs, T } from "./localized"
 import style from "./styles/homeAbout.scss"
 
 const HomeAbout: QuartzComponent = () => (
@@ -12,7 +12,14 @@ const HomeAbout: QuartzComponent = () => (
       <figure class="home-about-portrait">
         <img
           src="/static/bottom.jpg"
-          alt="Thiago Komeno outside a Tokyo bookstore"
+          {...localizedAttrs({
+            alt: {
+              en: "Thiago Komeno outside a Tokyo bookstore",
+              ja: "東京の書店の前に立つ米野チアゴ",
+              zh: "米野雅各在東京一家書店外",
+              pt: "Thiago Komeno em frente a uma livraria em Tóquio",
+            },
+          })}
           loading="lazy"
         />
       </figure>
@@ -44,7 +51,7 @@ const HomeAbout: QuartzComponent = () => (
               en: "I work mainly on iOS. Lately, I’ve been exploring on-device AI and the ways software can connect people across languages.",
               ja: "主にiOSアプリを開発しています。最近はオンデバイスAIや、言語の違いを越えて人と人をつなぐソフトウェアの可能性を探っています。",
               zh: "我主要做 iOS 開發。最近也在探索裝置端 AI，以及如何透過軟體跨越語言隔閡，讓人與人產生連結。",
-              pt: "Trabalho principalmente com desenvolvimento iOS. Ultimamente, tenho explorado on-device AI e como o software pode conectar pessoas que falam idiomas diferentes.",
+              pt: "Trabalho principalmente com desenvolvimento iOS. Ultimamente, tenho explorado IA no dispositivo e como o software pode conectar pessoas que falam idiomas diferentes.",
             }}
           />
         </p>
