@@ -3,7 +3,6 @@ import LanguagePickerConstructor from "./LanguagePicker"
 import { Localized, localizedAttrs, T } from "./localized"
 import { doodlePaths, doodleViewBox } from "./doodle"
 import { socialLinks } from "./socialIcons"
-import { WeatherIcons } from "./weatherIcons"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { concatenateResources } from "../util/resources"
 import { resolveRelative, FullSlug } from "../util/path"
@@ -39,11 +38,8 @@ const HomeSplash: QuartzComponent = (props: QuartzComponentProps) => {
   return (
     <section class="splash" data-splash>
       <div class="splash-top">
-        {/* A field-notebook annotation; the script fills in the current time and weather in Tokyo. */}
+        {/* Tokyo local time. */}
         <p class="splash-note">
-          <span class="splash-weather" role="img" data-splash-weather hidden>
-            <WeatherIcons />
-          </span>
           <T text={{ en: "Tokyo", ja: "東京", zh: "東京", pt: "Tóquio" }} />
           <span aria-hidden="true"> · </span>
           <span data-splash-clock>JST</span>

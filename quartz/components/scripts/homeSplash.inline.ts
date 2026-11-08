@@ -289,54 +289,6 @@ document.addEventListener("nav", () => {
   tick()
   const clockTimer = window.setInterval(tick, 15_000)
 
-  // Current conditions from Open-Meteo (free, no key), mapped from WMO weather codes to
-  // the icons rendered in the markup. On failure the icon simply stays hidden.
-  const weather = splash.querySelector<HTMLElement>("[data-splash-weather]")
-  type Label = Record<string, string>
-  const weatherKind = (code: number, isDay: boolean): [string, Label] => {
-    if (code === 0)
-      return [
-        isDay ? "clear" : "clear-night",
-        { en: "Clear", ja: "晴れ", zh: "晴", pt: "Céu limpo" },
-      ]
-    if (code <= 2)
-      return [
-        isDay ? "partly" : "partly-night",
-        { en: "Partly cloudy", ja: "晴れ時々曇り", zh: "晴時多雲", pt: "Parcialmente nublado" },
-      ]
-    if (code === 3) return ["cloudy", { en: "Cloudy", ja: "曇り", zh: "陰", pt: "Nublado" }]
-    if (code === 45 || code === 48) return ["fog", { en: "Fog", ja: "霧", zh: "霧", pt: "Neblina" }]
-    if (code >= 51 && code <= 57)
-      return ["drizzle", { en: "Drizzle", ja: "霧雨", zh: "毛毛雨", pt: "Garoa" }]
-    if ((code >= 71 && code <= 77) || code === 85 || code === 86)
-      return ["snow", { en: "Snow", ja: "雪", zh: "雪", pt: "Neve" }]
-    if (code >= 95)
-      return ["storm", { en: "Thunderstorm", ja: "雷雨", zh: "雷雨", pt: "Tempestade" }]
-    return ["rain", { en: "Rain", ja: "雨", zh: "雨", pt: "Chuva" }]
-  }
-  const updateWeather = async () => {
-    if (!weather) return
-    try {
-      const res = await fetch(
-        "https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&current=weather_code,is_day",
-      )
-      if (!res.ok) return
-      const { current } = await res.json()
-      const [icon, label] = weatherKind(current.weather_code, current.is_day === 1)
-      weather.querySelectorAll<SVGElement>("[data-weather-icon]").forEach((svg) => {
-        svg.toggleAttribute("hidden", svg.dataset.weatherIcon !== icon)
-      })
-      // data-l10n lets the language picker relabel it when the language changes.
-      const lang = document.documentElement.getAttribute("data-lang") ?? "en"
-      weather.dataset.l10n = JSON.stringify({ "aria-label": label, title: label })
-      weather.setAttribute("aria-label", label[lang] ?? label.en)
-      weather.title = label[lang] ?? label.en
-      weather.hidden = false
-    } catch {}
-  }
-  updateWeather()
-  const weatherTimer = window.setInterval(updateWeather, 15 * 60_000)
-
   readColors()
   layout()
   start = performance.now()
@@ -347,7 +299,6 @@ document.addEventListener("nav", () => {
   window.addCleanup(() => {
     cancelAnimationFrame(frame)
     window.clearInterval(clockTimer)
-    window.clearInterval(weatherTimer)
     resizeObserver.disconnect()
     document.removeEventListener("themechange", onTheme)
     document.removeEventListener("visibilitychange", run)
