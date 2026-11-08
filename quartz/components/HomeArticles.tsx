@@ -16,6 +16,12 @@ import script from "./scripts/homeArticles.inline"
 const featuredArticleSlug = "Swift-Student-Challenge-2026"
 // Section pages reached from the home splash; they host components, not writing.
 const sectionSlugs = new Set(["index", "about", "articles"])
+// Extra bottom space for a grid card, growing with how much text it holds. Titles count
+// double since they're set large. Short cards get none; the wordiest get up to 4rem.
+const cardRoom = (title: string, summary: string) => {
+  const weight = title.length * 2 + summary.length
+  return Math.min(4, Math.max(0, (weight - 160) * 0.05))
+}
 const summaryProcessor = unified()
   .use(remarkParse)
   .use(remarkMath)
@@ -204,15 +210,10 @@ export default (() => {
             const tag = page.frontmatter?.tags?.[0]
             const summary = getSummary(page.description, page.frontmatter?.summary, title)
             const href = resolveRelative(fileData.slug!, page.slug!)
-            const cover = page.frontmatter?.cardImage as string | undefined
+            const room = cardRoom(title, summary)
 
             return (
-              <article class={cover ? "article-card" : "article-card article-card-text"}>
-                {cover && (
-                  <span class="article-card-cover" aria-hidden="true">
-                    <img src={cover} alt="" />
-                  </span>
-                )}
+              <article class="article-card" style={`--card-room: ${room.toFixed(2)}rem`}>
                 <div class="article-card-content">
                   <div class="article-card-meta">
                     {tag && <span>{tag}</span>}
