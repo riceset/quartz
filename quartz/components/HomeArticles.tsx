@@ -153,9 +153,12 @@ export default (() => {
     return (
       <section class="home-articles" data-nosnippet="true">
         <header class="home-articles-header">
-          <h1 class="home-articles-title">
-            Articles
-          </h1>
+          <div class="home-articles-heading">
+            <p class="home-articles-language-note" data-article-language-notice lang="en">
+              English Only
+            </p>
+            <h1 class="home-articles-title">Articles</h1>
+          </div>
           <button type="button" class="article-graph global-graph-icon">
             <svg
               class="article-graph-preview"

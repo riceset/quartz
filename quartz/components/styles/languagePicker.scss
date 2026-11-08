@@ -126,22 +126,6 @@
   }
 }
 
-.lang-picker-note {
-  display: none;
-  margin: 0.2rem 0.35rem 0.15rem;
-  padding: 0.55rem 0.3rem 0.25rem;
-  border-top: 1px solid var(--lightgray);
-  color: var(--gray);
-  font-family: var(--bodyFont);
-  font-size: 0.7rem;
-  line-height: 1.4;
-  white-space: normal;
-}
-
-:root[data-english-only="true"] .lang-picker-note {
-  display: block;
-}
-
 .lang-picker-check {
   width: 0.875rem;
   height: 0.875rem;
