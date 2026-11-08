@@ -3,13 +3,13 @@ import script from "./scripts/languagePicker.inline"
 import styles from "./styles/languagePicker.scss"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { classNames } from "../util/lang"
-import { langTags, T } from "./localized"
+import { T } from "./localized"
 
 const options = [
-  { value: "en", label: "英文", code: "EN" },
-  { value: "ja", label: "日文", code: "JA" },
-  { value: "zh", label: "中文", code: "ZH" },
-  { value: "pt", label: "葡萄牙文", code: "PT" },
+  { value: "en", label: { en: "English", ja: "英語", zh: "英文", pt: "Inglês" }, code: "EN" },
+  { value: "ja", label: { en: "Japanese", ja: "日本語", zh: "日文", pt: "Japonês" }, code: "JA" },
+  { value: "zh", label: { en: "Chinese", ja: "中国語", zh: "中文", pt: "Chinês" }, code: "ZH" },
+  { value: "pt", label: { en: "Portuguese", ja: "ポルトガル語", zh: "葡萄牙文", pt: "Português" }, code: "PT" },
 ] as const
 
 // The trigger shows the current language code in mono, like the site's other annotations;
@@ -49,8 +49,8 @@ const LanguagePicker: QuartzComponent = ({ displayClass }: QuartzComponentProps)
           >
             <path d="M20 6 9 17l-5-5"></path>
           </svg>
-          <span class="lang-picker-label" lang={langTags[value]}>
-            {label}
+          <span class="lang-picker-label">
+            <T text={label} />
           </span>
           <span class="lang-picker-code" aria-hidden="true">
             {code}
