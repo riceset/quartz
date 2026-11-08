@@ -109,6 +109,19 @@ body[data-slug="index"] {
   }
 }
 
+// Reserve the footer's layout from the first paint, but do not show
+// fallback serif glyphs while the webfonts are loading (prevents FOUT).
+// If scripting is disabled the normal, readable fallback type remains visible.
+@media (scripting: enabled) {
+  .splash-signature {
+    visibility: hidden;
+  }
+
+  .splash.splash-typography-ready .splash-signature {
+    visibility: visible;
+  }
+}
+
 .splash-bottom {
   display: flex;
   align-items: flex-end;
