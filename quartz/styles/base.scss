@@ -296,7 +296,7 @@ a {
       body[data-page-type="content"] & .sidebar.left,
       body[data-page-type="tag"] & .sidebar.left {
         --toolbar-control-size: 2.25rem;
-        --toolbar-icon-size: 22px;
+        --toolbar-icon-size: 19px;
         position: sticky;
         top: calc(env(safe-area-inset-top) + 0.75rem);
         z-index: 10;
