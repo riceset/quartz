@@ -15,7 +15,8 @@ $article-space-10: 2.5rem;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  margin-bottom: $article-space-8;
+  // Overrides the global header margin, so only the section's margin sets the space above.
+  margin: 0 0 $article-space-8;
 }
 
 .home-articles-title {
@@ -284,6 +285,10 @@ $article-space-10: 2.5rem;
 }
 
 @media all and (max-width: 620px) {
+  .home-articles {
+    margin-top: $article-space-10;
+  }
+
   .article-card-meta-logo {
     top: 0;
   }
