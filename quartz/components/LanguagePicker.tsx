@@ -57,7 +57,7 @@ const LanguagePicker: QuartzComponent = ({ displayClass }: QuartzComponentProps)
           </span>
         </button>
       ))}
-      <p class="lang-picker-note">Articles are available in English only.</p>
+      <p class="lang-picker-note">English Only</p>
     </div>
   </div>
 )
