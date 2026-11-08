@@ -167,8 +167,11 @@ a {
   max-width: calc(#{map.get($breakpoints, desktop)} + 300px);
   margin: 0 auto;
   & article {
+    // Between body headings and the section-page titles, so long titles still wrap
+    // in a few lines on phones.
     & > h1 {
-      font-size: 2rem;
+      font-size: clamp(2.25rem, 5vw, 3rem);
+      line-height: 1.05;
     }
 
     & li:has(> input[type="checkbox"]) {
