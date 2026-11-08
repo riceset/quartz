@@ -172,7 +172,7 @@ body[data-slug="index"] {
   @media (hover: hover) {
     &:hover {
       color: var(--dark);
-      text-decoration-color: var(--tertiary);
+      text-decoration-color: var(--dark);
     }
   }
 
@@ -183,7 +183,7 @@ body[data-slug="index"] {
     }
     &:active {
       color: var(--dark);
-      text-decoration-color: var(--tertiary);
+      text-decoration-color: var(--dark);
       transition: none;
     }
   }

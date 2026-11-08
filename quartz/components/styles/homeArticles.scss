@@ -164,7 +164,7 @@
     & a:hover {
       color: inherit;
       background: transparent;
-      text-decoration-color: var(--tertiary);
+      text-decoration-color: var(--dark);
     }
   }
   // :active lasts only while the finger is down, so it gives tap feedback without sticking.
@@ -174,7 +174,7 @@
       background: transparent;
     }
     & a:active {
-      text-decoration-color: var(--tertiary);
+      text-decoration-color: var(--dark);
       transition: none;
     }
   }
