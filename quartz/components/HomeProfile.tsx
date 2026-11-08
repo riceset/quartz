@@ -360,7 +360,7 @@ const languages: Language[] = [
   { name: { en: "English", ja: "英語", zh: "英文", pt: "Inglês" }, level: "C2" },
   { name: { en: "Spanish", ja: "スペイン語", zh: "西班牙文", pt: "Espanhol" }, level: "C1" },
   { name: { en: "Mandarin", ja: "中国語", zh: "中文", pt: "Mandarim" }, level: "B1" },
-  { name: { en: "French", ja: "フランス語", zh: "法文", pt: "Francês" }, level: "A1" },
+  { name: { en: "French", ja: "仏語", zh: "法文", pt: "Francês" }, level: "A1" },
 ]
 
 // Request only the glyphs these entries use: a full CJK family is several megabytes.
