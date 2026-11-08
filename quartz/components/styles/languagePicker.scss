@@ -37,6 +37,29 @@
   }
 }
 
+// Anchor the tiny lock to the EN letters, not the button edge. Keeping the
+// language code centered makes the mobile pill and desktop rail feel balanced.
+.lang-picker-value {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+.lang-picker-lock {
+  position: absolute;
+  top: -0.28rem;
+  left: calc(100% - 0.29rem);
+  display: none;
+  width: 0.53rem;
+  height: 0.53rem;
+  color: currentColor;
+  pointer-events: none;
+}
+
+:root[data-english-only="true"] .lang-picker-lock {
+  display: block;
+}
+
 // Frosted glass, matching the desktop rail. Opens below and right-aligned by default
 // (mobile bar, splash); the rail overrides this to open beside it.
 .lang-picker-menu {
