@@ -12,7 +12,7 @@ $article-space-10: 2.5rem;
 
 .home-articles-header {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
   // Overrides the global header margin, so only the section's margin sets the space above.
@@ -20,17 +20,23 @@ $article-space-10: 2.5rem;
 }
 
 .home-articles-heading {
+  position: relative;
   min-width: 0;
 }
 
+// Treat the English-only annotation like a tiny editorial eyebrow. Position it
+// outside the title's layout box so the graph stays centered on "Articles".
 .home-articles-language-note {
-  margin: 0 0 0.55rem;
+  position: absolute;
+  bottom: calc(100% + 0.4rem);
+  left: 0;
+  margin: 0;
   color: var(--gray);
   font-family: var(--codeFont);
-  font-size: 0.7rem;
+  font-size: 0.625rem;
   font-weight: 500;
   letter-spacing: 0.04em;
-  line-height: 1.3;
+  line-height: 1.2;
   white-space: nowrap;
 }
 
