@@ -262,21 +262,34 @@ a {
         margin: 0.75rem 0 0;
         padding: 0.4rem 0.85rem;
         border-radius: 999px;
-        background-color: rgba(255, 255, 255, 0.72);
-        backdrop-filter: saturate(180%) blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.6);
         box-shadow:
           inset 0 1px 0 rgba(255, 255, 255, 0.7),
           0 8px 32px rgba(27, 33, 48, 0.12);
+
+        // The glass sits on a layer behind the bar's contents: a backdrop-filter on the bar
+        // itself would stop the language menu inside it from blurring the page.
+        &::before {
+          content: "";
+          position: absolute;
+          inset: -1px;
+          z-index: -1;
+          border-radius: inherit;
+          background-color: rgba(255, 255, 255, 0.72);
+          backdrop-filter: saturate(180%) blur(20px);
+        }
       }
 
       :root[saved-theme="dark"] body[data-page-type="content"] & .sidebar.left,
       :root[saved-theme="dark"] body[data-page-type="tag"] & .sidebar.left {
-        background-color: rgba(22, 22, 23, 0.72);
         border-color: rgba(255, 255, 255, 0.08);
         box-shadow:
           inset 0 1px 0 rgba(255, 255, 255, 0.06),
           0 8px 32px rgba(0, 0, 0, 0.45);
+
+        &::before {
+          background-color: rgba(22, 22, 23, 0.72);
+        }
       }
     }
 

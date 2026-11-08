@@ -100,6 +100,16 @@ article .katex-display {
       margin-left: auto;
       margin-right: -0.25rem;
     }
+
+    // The language menu takes the bar's own tint, so the two read as one piece of glass.
+    & .lang-picker-menu {
+      background-color: rgba(255, 255, 255, 0.72);
+    }
+  }
+
+  :root[saved-theme="dark"] body[data-page-type="content"] .sidebar.left .lang-picker-menu,
+  :root[saved-theme="dark"] body[data-page-type="tag"] .sidebar.left .lang-picker-menu {
+    background-color: rgba(22, 22, 23, 0.72);
   }
 }
 
