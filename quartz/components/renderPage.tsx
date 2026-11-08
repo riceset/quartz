@@ -264,6 +264,9 @@ export function renderPage(
     <html lang={lang} dir={direction}>
       <Head {...componentData} />
       <body data-slug={slug} data-page-type={pageType}>
+        {/* Safari 26+ samples fixed viewport edges for its browser toolbar tint. */}
+        <div aria-hidden="true" class="safari-chrome-sample safari-chrome-sample--top" />
+        <div aria-hidden="true" class="safari-chrome-sample safari-chrome-sample--bottom" />
         <div id="quartz-root" class="page">
           <Body {...componentData}>
             {LeftComponent}
