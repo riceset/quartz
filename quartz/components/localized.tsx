@@ -8,6 +8,13 @@ export const langTags: Record<SiteLang, string> = { en: "en", ja: "ja", zh: "zh-
 
 export type Localized = string | Record<SiteLang, string>
 
+// Attributes (alt, aria-label, title) can't be switched by CSS, so render the English value
+// and let the picker's script swap in the chosen language from data-l10n.
+export const localizedAttrs = (attrs: Record<string, Record<SiteLang, string>>) => ({
+  ...Object.fromEntries(Object.entries(attrs).map(([name, text]) => [name, text.en])),
+  "data-l10n": JSON.stringify(attrs),
+})
+
 // Render every translation; custom.scss shows only the one matching the picker's choice
 // (`data-lang` on <html>), so switching needs no rebuild or reload.
 export const T = ({ text }: { text: Localized }) =>

@@ -292,15 +292,27 @@ document.addEventListener("nav", () => {
   // Current conditions from Open-Meteo (free, no key), mapped from WMO weather codes to
   // the icons rendered in the markup. On failure the icon simply stays hidden.
   const weather = splash.querySelector<HTMLElement>("[data-splash-weather]")
-  const weatherKind = (code: number, isDay: boolean): [string, string] => {
-    if (code === 0) return [isDay ? "clear" : "clear-night", "Clear"]
-    if (code <= 2) return [isDay ? "partly" : "partly-night", "Partly cloudy"]
-    if (code === 3) return ["cloudy", "Cloudy"]
-    if (code === 45 || code === 48) return ["fog", "Fog"]
-    if (code >= 51 && code <= 57) return ["drizzle", "Drizzle"]
-    if ((code >= 71 && code <= 77) || code === 85 || code === 86) return ["snow", "Snow"]
-    if (code >= 95) return ["storm", "Thunderstorm"]
-    return ["rain", "Rain"]
+  type Label = Record<string, string>
+  const weatherKind = (code: number, isDay: boolean): [string, Label] => {
+    if (code === 0)
+      return [
+        isDay ? "clear" : "clear-night",
+        { en: "Clear", ja: "晴れ", zh: "晴", pt: "Céu limpo" },
+      ]
+    if (code <= 2)
+      return [
+        isDay ? "partly" : "partly-night",
+        { en: "Partly cloudy", ja: "晴れ時々曇り", zh: "晴時多雲", pt: "Parcialmente nublado" },
+      ]
+    if (code === 3) return ["cloudy", { en: "Cloudy", ja: "曇り", zh: "陰天", pt: "Nublado" }]
+    if (code === 45 || code === 48) return ["fog", { en: "Fog", ja: "霧", zh: "霧", pt: "Neblina" }]
+    if (code >= 51 && code <= 57)
+      return ["drizzle", { en: "Drizzle", ja: "霧雨", zh: "毛毛雨", pt: "Garoa" }]
+    if ((code >= 71 && code <= 77) || code === 85 || code === 86)
+      return ["snow", { en: "Snow", ja: "雪", zh: "下雪", pt: "Neve" }]
+    if (code >= 95)
+      return ["storm", { en: "Thunderstorm", ja: "雷雨", zh: "雷雨", pt: "Tempestade" }]
+    return ["rain", { en: "Rain", ja: "雨", zh: "下雨", pt: "Chuva" }]
   }
   const updateWeather = async () => {
     if (!weather) return
@@ -314,8 +326,11 @@ document.addEventListener("nav", () => {
       weather.querySelectorAll<SVGElement>("[data-weather-icon]").forEach((svg) => {
         svg.toggleAttribute("hidden", svg.dataset.weatherIcon !== icon)
       })
-      weather.setAttribute("aria-label", label)
-      weather.title = label
+      // data-l10n lets the language picker relabel it when the language changes.
+      const lang = document.documentElement.getAttribute("data-lang") ?? "en"
+      weather.dataset.l10n = JSON.stringify({ "aria-label": label, title: label })
+      weather.setAttribute("aria-label", label[lang] ?? label.en)
+      weather.title = label[lang] ?? label.en
       weather.hidden = false
     } catch {}
   }

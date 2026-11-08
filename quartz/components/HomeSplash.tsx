@@ -1,6 +1,6 @@
 import DarkmodeConstructor from "./Darkmode"
 import LanguagePickerConstructor from "./LanguagePicker"
-import { Localized, T } from "./localized"
+import { Localized, localizedAttrs, T } from "./localized"
 import { doodlePaths, doodleViewBox } from "./doodle"
 import { socialLinks } from "./socialIcons"
 import { WeatherIcons } from "./weatherIcons"
@@ -77,7 +77,12 @@ const HomeSplash: QuartzComponent = (props: QuartzComponentProps) => {
           <h1 class="splash-name">
             <T text={name} />
           </h1>
-          <nav class="splash-nav" aria-label="Sections">
+          <nav
+            class="splash-nav"
+            {...localizedAttrs({
+              "aria-label": { en: "Sections", ja: "ページ", zh: "頁面", pt: "Seções" },
+            })}
+          >
             {navLinks.map(({ href, label }) => (
               <a class="splash-nav-link" href={href}>
                 <T text={label} />
