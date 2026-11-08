@@ -52,10 +52,42 @@ const applyLang = (preference: string) => {
 
 applyLang(preferredLang())
 
+// Browsers fetch a webfont (and each unicode-range slice of the CJK fonts) only once
+// visible text needs it, so switching language used to wait on downloads. Once idle,
+// load exactly the faces and characters the hidden translations on this page use.
+const warmTranslationFonts = () => {
+  if (!document.fonts) return
+  const textByFont = new Map<string, Set<string>>()
+  for (const root of document.querySelectorAll<HTMLElement>("[data-text-lang]")) {
+    if (root.getClientRects().length > 0) continue
+    for (const el of [root, ...root.querySelectorAll<HTMLElement>("*")]) {
+      let text = ""
+      for (const node of el.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE) text += node.textContent
+      }
+      if (!text.trim()) continue
+      const style = getComputedStyle(el)
+      const font = `${style.fontStyle} ${style.fontWeight} 16px ${style.fontFamily}`
+      const chars = textByFont.get(font) ?? new Set<string>()
+      for (const char of text) chars.add(char)
+      textByFont.set(font, chars)
+    }
+  }
+  for (const [font, chars] of textByFont) {
+    void document.fonts.load(font, [...chars].join("")).catch(() => {})
+  }
+}
+
+const whenIdle = (fn: () => void) =>
+  "requestIdleCallback" in window
+    ? requestIdleCallback(fn, { timeout: 3000 })
+    : setTimeout(fn, 1500)
+
 document.addEventListener("nav", () => {
   // Always derive the active language from the saved preference, not the previous page:
   // returning to Home/About restores Japanese, Chinese or Portuguese automatically.
   applyLang(preferredLang())
+  whenIdle(warmTranslationFonts)
 
   for (const picker of document.querySelectorAll<HTMLElement>(".lang-picker")) {
     const trigger = picker.querySelector<HTMLButtonElement>(".lang-picker-trigger")!
@@ -69,7 +101,8 @@ document.addEventListener("nav", () => {
 
     const focusOption = (index: number) => {
       const enabled = enabledOptions()
-      if (enabled.length) enabled[((index % enabled.length) + enabled.length) % enabled.length].focus()
+      if (enabled.length)
+        enabled[((index % enabled.length) + enabled.length) % enabled.length].focus()
     }
 
     // detail is 0 for keyboard activation; leave pointer users without a focus ring.
