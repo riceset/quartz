@@ -37,30 +37,6 @@
   }
 }
 
-// Center the label and the compact lock together instead of offsetting the
-// icon from the button; this keeps the mobile pill and desktop rail balanced.
-.lang-picker-value {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.06rem;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.lang-picker-lock {
-  display: none;
-  flex: none;
-  width: 0.47rem;
-  height: 0.47rem;
-  color: currentColor;
-  pointer-events: none;
-}
-
-:root[data-english-only="true"] .lang-picker-lock {
-  display: block;
-}
-
 // Frosted glass, matching the desktop rail. Opens below and right-aligned by default
 // (mobile bar, splash); the rail overrides this to open beside it.
 .lang-picker-menu {
