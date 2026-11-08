@@ -304,15 +304,8 @@ document.addEventListener("nav", () => {
   start = performance.now()
   splash.classList.add("splash-ready")
 
-  // Don't paint the name or navigation in a larger fallback serif before
-  // Instrument Serif (or the selected CJK serif) finishes loading.
-  // Waiting for fonts.ready also handles failed font requests gracefully.
-  const showTypography = () => splash.classList.add("splash-type-ready")
   if (document.fonts) {
-    void document.fonts.ready.then(showTypography, showTypography)
     void document.fonts.ready.then(run, run)
-  } else {
-    showTypography()
   }
   run()
 
