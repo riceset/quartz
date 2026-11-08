@@ -1,5 +1,5 @@
 ---
-title: Understanding Signals in Linux
+title: "Understanding Signals in Linux"
 date: 2022-08-12
 description: "A concise introduction to Linux process IDs and signals, including how to send signals and handle them safely in C."
 tags:
@@ -8,7 +8,7 @@ tags:
 
 # Understanding Signals in Linux
 
-## What is a process ID?
+## What Is a Process ID?
 
 A process ID a.k.a. `PID` is literally what the name says, it is a number to uniquely identify a running process. You can print your program’s `PID` in C using the `getpid()` function included on the header file `unistd.h`.
 
@@ -32,11 +32,11 @@ PID: 12345
 > [!note] Note
 > `12345` is a PID for an arbitrary process.
 
-## What is a signal?
+## What Is a Signal?
 
 A signal is a one-way message to inform that something important happened sent by a process to a process, the kernel to the process, or a process to itself. Some examples of signals are `SIGINT` and `SIGSTOP` mapped to `ctrl-C` and `ctrl-Z` respectively on **Unix-like Operating Systems.**
 
-## Sending signals:
+## Sending Signals
 
 You can send a signal with the command `kill` through the command line specifying as the first parameter the signal you want to send, and as the second parameter the PID of the process you want to send it to.
 
@@ -52,7 +52,7 @@ kill(12345, SIGINT);
 
 ---
 
-## Handling signals:
+## Handling Signals
 
 You can use the `signal()` function in C to handle a specific signal defined as the first parameter in the `signal()` function call, and pass the address of a function you would like to run when the specified signal is received.
 

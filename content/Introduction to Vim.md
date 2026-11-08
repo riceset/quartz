@@ -1,7 +1,7 @@
 ---
-title: Introduction to Vim
+title: "Introduction to Vim"
 date: 2022-02-06
-description: "A practical guide to Vim's modes, movement, editing commands, search, macros, marks, tabs, and other essentials for working efficiently."
+description: "A practical guide to Vim’s modes, movement, editing commands, search, macros, marks, tabs, and other essentials for working efficiently."
 tags:
   - vim
 ---
@@ -10,7 +10,7 @@ tags:
 
 Vim is one of the most powerful text editors you can think of. In this article, I will introduce you some basic and useful Vim commands.
 
-## Vim modes
+## Vim Modes
 
 There are two main modes in Vim. Normal Mode and Insert Mode.
 In Insert Mode you can type on the document as in any other text editor. In Normal Mode you can execute commands to navigate through the file or modify it.
@@ -25,7 +25,7 @@ To enter insert mode you just have to type `i` or `a` while on Normal Mode. If y
 
 There is also `o` that allows you to insert text on the next line.
 
-### Uppercased versions
+### Uppercased Versions
 
 `I` (Shift-i) will put you on insert mode on the beginning of the line.
 `A` (Shift-a) will put you on insert mode on the end of the line.
@@ -55,7 +55,7 @@ But, there is a more efficient ways of exiting Vim. You type `ZZ` (shift-zz) to 
 - `K` Move up.
 - `L` Move to the right.
 
-### Movement word per word
+### Movement Word per Word
 
 - `w` Move to the next word.
 - `W` Move to the next word (separated by whitespace).
@@ -66,7 +66,7 @@ But, there is a more efficient ways of exiting Vim. You type `ZZ` (shift-zz) to 
 
 You can use all of these commands with a count. e.g. `5w` to move the cursor 5 words forward.
 
-### Moving the cursor
+### Moving the Cursor
 
 - `H` Put the cursor on the top.
 - `M` Put the cursor on the middle.
@@ -75,19 +75,19 @@ You can use all of these commands with a count. e.g. `5w` to move the cursor 5 w
 > [!tip] Mnemonic
 > High, Middle, Low.
 
-### Movement by paragraph
+### Movement by Paragraph
 
 - `{` Move the cursor a paragraph up.
 - `}` Move the cursor a paragraph down.
 
-## Movement through the line
+## Movement through the Line
 
-### Including whitespace
+### Including Whitespace
 
 `0` Go to the beginning of the line.
 `$` Go to the end of the line.
 
-### Not including whitespace
+### Not Including Whitespace
 
 `^` Go to the beginning of the line.
 `g_` Go to the end of the line.
@@ -121,14 +121,14 @@ The quick brown fox jumps over the lazy dog.
          ^
 ```
 
-## Moving the screen
+## Moving the Screen
 - `zt` Put the current line on the top of the screen.
 - `zz` Put the current line on the middle of the screen.
 - `zb` Put the current line on the bottom of the screen.
 
 ---
 
-## Deleting text
+## Deleting Text
 
 To delete text, you can use the `d` followed by what you want to delete.
 (You can use all of the following commands with `c` instead of `d` to delete and CHANGE what you just deleted. In other words, it deletes and puts you on Insert Mode.)
@@ -137,7 +137,7 @@ To delete text, you can use the `d` followed by what you want to delete.
 
 In Vim you can specify the number of times to execute a command. For example, you can delete a line with `dd` and `5dd` for deleting 5 lines at once. It also works for other commands like `5dap`, `5daw`, etc.
 
-### Some delete commands
+### Some Delete Commands
 
 - `diw` Delete a word.
 - `daw` Delete a word w/ surrounding whitespace.
@@ -229,7 +229,7 @@ Rerun the last executed command on Normal Mode.
 ## Indentation
 Indent the current line using `<` and `>`.
 
-## Running a Shell command
+## Running a Shell Command
 Use `:!` to run a Shell command.
 e.g. `:! ls` to run `ls`.
 

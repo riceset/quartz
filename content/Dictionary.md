@@ -1,7 +1,7 @@
 ---
 title: "Building a Mandarin Dictionary: Part 1"
 date: 2025-11-17
-description: "The first part of building a SwiftUI dictionary app from Taiwan's MOE data, covering the JSON structure, a SQLite schema, and a first stroke-count search."
+description: "The first part of building a SwiftUI dictionary app from Taiwan’s MOE data, covering the JSON structure, a SQLite schema, and a first stroke-count search."
 tags:
   - swift
 ---
@@ -15,11 +15,11 @@ Recently, I had the idea to start building my new app: a Mandarin dictionary spe
 
 ## The Problem with Existing Tools
 
-I have been learning Taiwanese Mandarin for 4 years now as a hobby, using tools like Anki and YouTube, along with some books I got from my Taiwanese friends. I noticed that there aren't many good Mandarin dictionaries available on iOS apart from [Pleco](https://www.pleco.com/). While [Pleco](https://www.pleco.com/) is useful, it is primarily a bilingual dictionary, meaning it translates terms from English to Chinese and vice versa.
+I have been learning Taiwanese Mandarin for 4 years now as a hobby, using tools like Anki and YouTube, along with some books I got from my Taiwanese friends. I noticed that there aren’t many good Mandarin dictionaries available on iOS apart from [Pleco](https://www.pleco.com/). While [Pleco](https://www.pleco.com/) is useful, it is primarily a bilingual dictionary, meaning it translates terms from English to Chinese and vice versa.
 
 I really prefer using monolingual dictionaries. Reading definitions in Chinese (made for native speakers) is a great way of challenging myself and practicing my Chinese skills even more. My only workaround was to use a tool like Gemini, asking it to define a word using Chinese, but I wanted to use a dedicated, real dictionary.
 
-I researched the most popular online dictionaries for Taiwanese Mandarin, and every time I looked it up, one dictionary consistently came up: The MOE Taiwanese Dictionary, published by the Taiwanese Government. I started using their website, but I wanted a native iOS app. Unfortunately, the apps available on the App Store that used this data hadn't been updated in over 10 years.
+I researched the most popular online dictionaries for Taiwanese Mandarin, and every time I looked it up, one dictionary consistently came up: The MOE Taiwanese Dictionary, published by the Taiwanese Government. I started using their website, but I wanted a native iOS app. Unfortunately, the apps available on the App Store that used this data hadn’t been updated in over 10 years.
 
 This led me to want to build a modern application using SwiftUI. Luckily, I found a GitHub repository containing the dictionary data in JSON format and started with the development of the app.
 
@@ -43,20 +43,20 @@ At this point, the variable `items` is a Python object representing the JSON f
 > [!note] Why UTF-8?
 > All files are stored as bytes on disk so to read then we need to decode those bytes. UTF-8 is a common text encoding used to represent all Unicode characters. Without specifying it, Python might use a default encoding which can vary by system and reading non-ASCII characters could produce wrong characters.
 
-Now, let's get some random elements from the middle of the list:
+Now, let’s get some random elements from the middle of the list:
 
 ```python
 samples = random.sample(items[len(items)//4 : 3*len(items)//4], 3)
 ```
 
-To understand this line, let's suppose our JSON has 100 entries:
+To understand this line, let’s suppose our JSON has 100 entries:
 
 1. `len(items) // 4`: Floor divides 100 (list length) by 4 to get the index $1/4$ into the list. $$ \left\lfloor \frac{100}{4} \right\rfloor = \left\lfloor 25 \right\rfloor = 25 $$
 2. `3*len(items)//4`: Multiplies 100 (list length) by 3 and then floor divides by 4 giving the index $3/4$ into the list. $$ \left\lfloor \frac{3 \cdot 100}{4} \right\rfloor = \left\lfloor \frac{300}{4} \right\rfloor = \left\lfloor 75 \right\rfloor = 75 $$
 3. Slice `items[start:end]`: In our case the slice is `items[25:75]` which represents a list ranging elements with indexes 25 through 74. (see: slicing)
 4. `random.sample(sequence, k)`: Where `k` is the number of elements to get from the `sequence`. In our case, we are getting 3 elements. $$ S = x_{25}, x_{26}, \dots, x_{74} $$ By running this script, we can get three random entries to analyze.
 
-Now, let's try to imagine how each entry structure is going to look like. I will use the character "行" as an example:
+Now, let’s try to imagine how each entry structure is going to look like. I will use the character "行" as an example:
 
 ```json
 {
@@ -184,7 +184,7 @@ erDiagram
 
 ## Database Implementation: SQLite
 
-Now, we can start defining a relational database schema in SQLite. First, we establish a connection to our database file `dictionary.db`, using Python's `sqlite3` module. The connection object can be seen as an open pipe or session to the database, and the cursor acts as the tool we use to send SQL commands through that connection. We will use it to execute SQL statements like creating tables and inserting data:
+Now, we can start defining a relational database schema in SQLite. First, we establish a connection to our database file `dictionary.db`, using Python’s `sqlite3` module. The connection object can be seen as an open pipe or session to the database, and the cursor acts as the tool we use to send SQL commands through that connection. We will use it to execute SQL statements like creating tables and inserting data:
 
 ```python
 import sqlite3
@@ -237,7 +237,7 @@ CREATE TABLE definition (
 
 With the schema already defined, we need to put the data from the JSON file into our SQLite tables:
 
-First, let's open the JSON file using UTF-8 encoding and use `json.load()` to parse the file into a Python object (a list of dictionaries in this case):
+First, let’s open the JSON file using UTF-8 encoding and use `json.load()` to parse the file into a Python object (a list of dictionaries in this case):
 
 ```python
 with open("dict-revised.json", encoding="utf-8") as f:
@@ -327,7 +327,7 @@ Now, for the definitions:
 
 2. `json.dumps()` turns the list into a string.
 3. `[]` is specified inside the `d.get()` to ensure an empty list is returned if `example` or `quote` are missing instead of `None`.
-4. `ensure_ascii=False` is usable to keep the Unicode characters and not ASCII only. So that Chinese characters don't get converted into things like: `\u76f4\u884c`.
+4. `ensure_ascii=False` is usable to keep the Unicode characters and not ASCII only. So that Chinese characters don’t get converted into things like: `\u76f4\u884c`.
 
 ```python
 for d in het.get("definitions", []):
@@ -391,15 +391,15 @@ struct Definition: Identifiable {
 ```
 
 > [!important] What are @Table and @Column?
-> `@Table` is used to map the struct in Swift to the corresponding table in the database. `@Column` is used when the name of a property into a table in Swift and the database column don't match.
+> `@Table` is used to map the struct in Swift to the corresponding table in the database. `@Column` is used when the name of a property into a table in Swift and the database column don’t match.
 
 ### App.swift
 
-In the app's entry point structure marked with `@main` we can define an initializer and call the `prepareDependencies` function:
+In the app’s entry point structure marked with `@main` we can define an initializer and call the `prepareDependencies` function:
 
-1. `prepareDependencies` is a function used to configure global dependencies at the app's entry point.
+1. `prepareDependencies` is a function used to configure global dependencies at the app’s entry point.
 2. It takes a closure that receives a dependency container (the first parameter `$0`)
-3. We use `Bundle.main.path` to retrieve the dictionary database file's path and assign it to the `dbPath` variable. We force unwrap it here because the results of `Bundle.main.path` is optional as the file may not exist. But in our case, the dictionary file is crucial for the app so if it cannot be opened the app will just crash.
+3. We use `Bundle.main.path` to retrieve the dictionary database file’s path and assign it to the `dbPath` variable. We force unwrap it here because the results of `Bundle.main.path` is optional as the file may not exist. But in our case, the dictionary file is crucial for the app so if it cannot be opened the app will just crash.
 
 ```swift
 prepareDependencies {
@@ -449,7 +449,7 @@ class DictionaryModel {
 > [!info] Why a class?
 > Because all views should share the same instance.
 
-Inside the ViewModel, we are going to declare a variable to represent the connection to the database and tell SwiftUI to ignore changes to this property as the database connection itself doesn't need to trigger view updates:
+Inside the ViewModel, we are going to declare a variable to represent the connection to the database and tell SwiftUI to ignore changes to this property as the database connection itself doesn’t need to trigger view updates:
 
 ```swift
 @ObservationIgnored
@@ -511,7 +511,7 @@ errorMessage = nil
 4. `await` signals it is an asynchronous operation meaning that the function suspends here while waiting for the database.
 5. `db` is the database connection handle.
 6. `try Entry` starts building a query on the `Entry` table
-7. `.where` adds a filter condition like SQL's `WHERE` clause
+7. `.where` adds a filter condition like SQL’s `WHERE` clause
 8. Here, `$0` represents an entry object.
 9. `.order` is similar to SQL `ORDER BY`. Here, we are accessing the `.\title` key path to the title property.
 10. `.fetchAll` actually runs the query.
@@ -588,7 +588,7 @@ sequenceDiagram
 
 ## Views
 
-Let's start with a tab view. A tab view is just an interface that appears at the bottom of most iOS apps, and it helps us to display navigation and action buttons. Here, we will start with just two simple pages: the home screen view and the search view.
+Let’s start with a tab view. A tab view is just an interface that appears at the bottom of most iOS apps, and it helps us to display navigation and action buttons. Here, we will start with just two simple pages: the home screen view and the search view.
 
 ```swift
 struct TabViewSearch: View {
@@ -613,7 +613,7 @@ For the home view, I just implemented a dummy view for the moment:
 
 ![Home](/media/dictionary/home.png)
 
-Let's start building the `SearchView()` for searching by stroke count. Here, we are going to use a pattern of having one main view switching between different states. Let's start by defining some `@State` variables:
+Let’s start building the `SearchView()` for searching by stroke count. Here, we are going to use a pattern of having one main view switching between different states. Let’s start by defining some `@State` variables:
 
 1. `model` holds the `ViewModel` instance to communicate with the model/data
 2. `searchText` stores what the user types in the search bar
@@ -629,7 +629,7 @@ struct SearchView: View {
 }
 ```
 
-Inside the body, let's add a `NavigationStack`:
+Inside the body, let’s add a `NavigationStack`:
 
 ```swift
 var body: some View {
@@ -678,7 +678,7 @@ graph TD
     H -->|No| J[SearchResultsListView]
 ```
 
-### State 1: No search input
+### State 1: No Search Input
 
 ![Empty](/media/dictionary/empty.png)
 
@@ -703,7 +703,7 @@ struct EmptySearchStateView: View {
 > [!note] What is ContentUnavailableView()?
 > A built-in view to display empty states. It displays a custom centered icon with a title and a description.
 
-### State 2: Database query in progress
+### State 2: Database Query in Progress
 
 ![Loading](/media/dictionary/loading.png)
 
@@ -724,7 +724,7 @@ struct LoadingStateView: View {
 > [!note] What is ProgressView()?
 > A built-in view for displaying a loading indicator (a spinner)
 
-### State 3: An error occurred
+### State 3: An Error Occurred
 
 ![Error](/media/dictionary/error.png)
 
@@ -748,7 +748,7 @@ struct ErrorStateView: View {
 }
 ```
 
-### State 4: Search completed but no results found
+### State 4: Search Completed but No Results Found
 
 ![No results](/media/dictionary/no-results.png)
 
@@ -772,7 +772,7 @@ struct NoResultsStateView: View {
 }
 ```
 
-### State 5: Search completed with results
+### State 5: Search Completed with Results
 
 ![Results](/media/dictionary/results.png)
 
@@ -826,7 +826,7 @@ struct CharacterListRow: View {
 }
 ```
 
-### The character detail view
+### The Character Detail View
 
 ![Details](/media/dictionary/details.png)
 
@@ -930,6 +930,6 @@ sequenceDiagram
     View->>View: Shows SearchResultsListView
 ```
 
-## What's Next
+## What’s Next
 
-That is where the app stands at the end of part one: the dictionary data lives in SQLite, and the first SwiftUI screens can search it by stroke count and show each character's details. The app is not finished yet, and I will pick up from here in part two.
+That is where the app stands at the end of part one: the dictionary data lives in SQLite, and the first SwiftUI screens can search it by stroke count and show each character’s details. The app is not finished yet, and I will pick up from here in part two.

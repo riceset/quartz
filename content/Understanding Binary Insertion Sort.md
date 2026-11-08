@@ -1,7 +1,7 @@
 ---
-title: Understanding Binary Insertion Sort
+title: "Understanding Binary Insertion Sort"
 date: 2024-12-24
-description: "How Binary Insertion Sort combines binary search with insertion sort, with C++ implementation details and a step-by-step example."
+description: "How binary insertion sort combines binary search with insertion sort, with C++ implementation details and a step-by-step example."
 tags:
   - algorithms
 ---
@@ -74,7 +74,7 @@ $$
 A = [6, 5, 3]
 $$
 
-### Step by step
+### Step by Step
 
 Consider the following `for` loop that is the main part of the algorithm:
 
@@ -121,7 +121,7 @@ for (int i = 1; i < size; i++)
 }
 ```
 
-##### Inside `binarySearch()`:
+##### Inside `binarySearch()`
 
 Values:
 
@@ -148,7 +148,7 @@ if (key > arr[mid])
 return (binarySearch(arr, key, low, mid - 1));
 ```
 
-##### Back to `binaryInsertionSort()`:
+##### Back to `binaryInsertionSort()`
 
 Now, we got to know the value for the `insertionIndex`:
 
@@ -176,7 +176,7 @@ for (int i = 1; i < size; i++)
 ```
 
 In the first iteration, `j` gets the value of 0 and as $0 \geq 0$, we enter the loop.
-Then, the array's element at index 1 gets the value of the array's element at index 0.
+Then, the array’s element at index 1 gets the value of the array’s element at index 0.
 $$
 A = [6, 6, 3]
 $$
@@ -217,7 +217,7 @@ insertionIndex = ?
 
 Now, we are going to enter `binarySearch()` again to retrieve the index for inserting the `key`:
 
-##### Inside `binarySearch()`:
+##### Inside `binarySearch()`
 
 Values:
 
@@ -329,7 +329,7 @@ if (key > arr[mid])
 return (binarySearch(arr, key, low, mid - 1));
 ```
 
-##### Back to `binaryInsertionSort()`:
+##### Back to `binaryInsertionSort()`
 
 Now, we got to know the value for the `insertionIndex`:
 
@@ -357,11 +357,11 @@ for (int i = 1; i < size; i++)
 ```
 
 In the first iteration, `j` gets the value of 1 and as $1 \geq 0$, we enter the loop.
-Then, the array's element at index 2 gets the value of the array's element at index 1.
+Then, the array’s element at index 2 gets the value of the array’s element at index 1.
 $$
 A = [5, 6, 6]
 $$
-`j` gets decremented to 0 and the condition is checked again. It checks as true as $0 \geq 0$. Then, inside the loop, the array's second element gets the value of the array's first element.
+`j` gets decremented to 0 and the condition is checked again. It checks as true as $0 \geq 0$. Then, inside the loop, the array’s second element gets the value of the array’s first element.
 $$
 A = [5, 5, 6]
 $$

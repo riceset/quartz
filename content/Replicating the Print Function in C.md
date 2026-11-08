@@ -1,5 +1,5 @@
 ---
-title: Replicating the Print Function in C
+title: "Replicating the Print Function in C"
 date: 2024-02-17
 description: "A from-scratch C implementation of printf using variadic arguments, format parsing, custom output functions, and basic error handling."
 tags:
@@ -10,7 +10,7 @@ tags:
 
 `printf()` is one of the most useful functions in almost every programming language. In this project, we are going to learn how to implement this function in C using variadic parameters.
 
-## What is a variadic function?
+## What Is a Variadic Function?
 
 A variadic function, just like `printf()` is a function that can receive an indeterminate number of parameters.
 
@@ -23,7 +23,7 @@ int my_printf(char *fmt, ...);
 > [!note] Note
 > The three dots (`...`) also called **ellipsis** indicates that a function is variadic. A variadic function in C requires at least one parameter, in this case the format string.
 
-## Getting started
+## Getting Started
 
 The first thing we are going to do is to include the `stdarg` header file:
 
@@ -31,7 +31,7 @@ The first thing we are going to do is to include the `stdarg` header file:
 #include <stdarg.h>
 ```
 
-Now, inside `my_printf()` function let's declare a variable to store the variadic parameters:
+Now, inside `my_printf()` function let’s declare a variable to store the variadic parameters:
 
 ```c
 va_list args;
@@ -48,9 +48,9 @@ va_start(args, fmt);
 > [!note] Note
 > Just like when using something like `malloc()` with `free()`, `va_start()` requires us to use `va_end()` after handling the list.
 
-## Looping through the format string
+## Looping through the Format String
 
-Now, let's create a loop through the format string and print the current character or the current argument if a `%` is found:
+Now, let’s create a loop through the format string and print the current character or the current argument if a `%` is found:
 
 ```c
 for (i = 0; fmt[i] != '\0'; i++)
@@ -71,7 +71,7 @@ for (i = 0; fmt[i] != '\0'; i++)
 > [!note] Note
 > Here we are passing the address of `i` because we are going to modify it into `put_fmt()` and we want to keep this modification in the caller function (`my_printf()` in this case)
 
-### Implementing our own `putchar()`
+### Implementing Our Own `putchar()`
 
 To print a single character to the standard output, we have to use the `write()` function passing the file descriptor we want to write (in this case, standard output), the character we want to print and its size. We are also going to increment the size variable that corresponds to the number of characters `my_printf()` printed:
 
@@ -83,7 +83,7 @@ void my_putchar(int c)
 }
 ```
 
-## Printing the format string
+## Printing the Format String
 
 In this example, we are only going to support the following formats:
 
@@ -115,7 +115,7 @@ switch (c)
 }
 ```
 
-### When the argument parameter is a string:
+### When the Argument Parameter Is a String
 
 ```c
 void my_putstr(char *str, size_t *size)
@@ -132,7 +132,7 @@ void my_putstr(char *str, size_t *size)
 
 Here, we just loop through the string parameter and print each character. If `str == NULL` we print the string `(null)` just like the original `printf()` from `stdio.h`
 
-### When the argument parameter is a decimal number:
+### When the Argument Parameter Is a Decimal Number
 
 First, we declare a string containing all the decimal characters:
 
@@ -185,7 +185,7 @@ Imagine we want to print the number `42`:
 7. The caller function returns.
 8. 42 got printed to the standard output successfully.
 
-### When the argument parameter is a hexadecimal number:
+### When the Argument Parameter Is a Hexadecimal Number
 
 The hexadecimal version is really similar but it does not support negative numbers because `%x` treats every number as `unsigned`:
 
@@ -207,7 +207,7 @@ void my_puthex(unsigned int n, size_t *size)
 }
 ```
 
-## Optional error handling
+## Optional Error Handling
 
 When using the original `printf()`, you will notice that if you pass a parameter that does not match the format specifier (e.g., passing a string when the format specifier is `%d`), the compiler will issue a warning.
 

@@ -1,7 +1,7 @@
 ---
-title: The Dining Philosophers Problem
+title: "The Dining Philosophers Problem"
 date: 2024-02-17
-description: "A detailed C implementation of the Dining Philosophers problem, covering mutexes, threads, fork assignment, timing, supervision, and shutdown."
+description: "A detailed C implementation of the Dining Philosophers Problem, covering mutexes, threads, fork assignment, timing, supervision, and shutdown."
 tags:
   - algorithms
 ---
@@ -15,7 +15,7 @@ The **Dining Philosophers Problem** is a computer science problem formulated in 
 
 There are one or more philosophers sitting around a table, with a large bowl of spaghetti placed in the middle. In order for a philosopher to eat, they need to use both their left and right forks simultaneously. There are as many forks as there are philosophers. Additionally, the philosophers cannot communicate with each other.
 
-## Organizing data
+## Organizing Data
 
 ```mermaid
 flowchart TB
@@ -110,7 +110,7 @@ typedef struct s_philo
 }   t_philo;
 ```
 
-## Starting the dinner party
+## Starting the Dinner Party
 
 Before actually start creating threads and running the philosopher routines we have to prepare the dinner party. By preparing the dinner party I mean doing some input error checking and variable initialization.
 
@@ -144,7 +144,7 @@ void	initialize_exit_status(t_dinner *dinner)
 }
 ```
 
-After that, I check the user's input and throw an error in the following cases:
+After that, I check the user’s input and throw an error in the following cases:
 
 - If the number of args is less than 4 and more than 5
 - If there are non-alphabetic characters
@@ -232,10 +232,10 @@ static void	handle_mutex_init_failure(t_dinner *dinner, int i)
 }
 ```
 
-Now, let's initialize the philosophers array:
+Now, let’s initialize the philosophers array:
 
 Where:
-- The philosopher's `id` starts at 1
+- The philosopher’s `id` starts at 1
 - `times_eaten` is initialized to 0
 - `dinner` is a pointer back to the `dinner` main data structure
 - `last_meal_time` is initialized to the current time
@@ -261,7 +261,7 @@ void	initialize_philosophers(t_dinner *dinner)
 }
 ```
 
-### Determining if a philosopher is left or right handed
+### Determining If a Philosopher Is Left- or Right-Handed
 
 ```c
 void	assign_forks(t_philo *philo)
@@ -282,7 +282,7 @@ static bool	philosopher_is_left_handed(t_philo *philo)
 }
 ```
 
-### Assigning forks
+### Assigning Forks
 
 ```c
 static void	assign_left_fork_first(t_philo *philo)
@@ -298,9 +298,9 @@ static void	assign_right_fork_first(t_philo *philo)
 }
 ```
 
-So the first philosopher's left fork will be the `i` in the forks array and their right fork will be the `i + 1` fork.
+So the first philosopher’s left fork will be the `i` in the forks array and their right fork will be the `i + 1` fork.
 
-The modulo operation here is used to make the last philosopher's right fork be the first fork in the array. This way we can make the table circular by making the last fork be the first fork:
+The modulo operation here is used to make the last philosopher’s right fork be the first fork in the array. This way we can make the table circular by making the last fork be the first fork:
 
 let the number of philosophers be $n$ and the current philosopher id be $i + 1$:
 
@@ -312,7 +312,7 @@ Imagine we have 3 philosophers:
 
 First iteration:
 
-The philosopher's left fork will be $i$, or $0$ and their right fork will be $1$:
+The philosopher’s left fork will be $i$, or $0$ and their right fork will be $1$:
 
 $$
 \begin{align*}
@@ -330,7 +330,7 @@ ID: 1 L: 0 R: 1
 
 Second iteration:
 
-Now $i = 1$ so the second philosopher's left fork will be $1$ and their right fork will be $2$:
+Now $i = 1$ so the second philosopher’s left fork will be $1$ and their right fork will be $2$:
 
 $$
 \begin{align*}
@@ -350,7 +350,7 @@ Third iteration:
 
 Now $i = 2$ and since we are running this loop until $i < n$ this is the last iteration:
 
-So the third philosopher's left fork will be $2$ and their right fork will be $0$:
+So the third philosopher’s left fork will be $2$ and their right fork will be $0$:
 
 $$
 \begin{align*}
@@ -366,7 +366,7 @@ Output:
 ID: 3 L: 2 R: 0
 ```
 
-## Displaying the timestamps
+## Displaying the Timestamps
 
 In this project, we are required to use the `gettimeofday()` function for displaying time in microseconds ($\mu s$)
 
@@ -405,7 +405,7 @@ time_t get_time_in_ms(void)
 }
 ```
 
-## Displaying and returning errors
+## Displaying and Returning Errors
 
 In case of any error in this program, the error message will be displayed with a print statement protected by a mutex and return an error code.
 
@@ -449,7 +449,7 @@ enum						e_exit_status
 };
 ```
 
-## Printing the philosopher status
+## Printing the Philosopher Status
 
 There are 5 kinds of messages a philosopher can print:
 
@@ -459,7 +459,7 @@ There are 5 kinds of messages a philosopher can print:
 4. When a philosopher is thinking
 4. When a philosopher takes a fork
 
-So let's define these messages that will be printed as string macros:
+So let’s define these messages that will be printed as string macros:
 
 ```c
 # define MSG_DEAD "died"
@@ -515,7 +515,7 @@ static void	print_in_required_format(t_philo *philo, char *action)
 }
 ```
 
-## Working with threads
+## Working with Threads
 
 Now that we finished preparing the `dinner`, we can start the dinner by getting the current time (the dinner start time) and create threads for each philosopher. To create a thread we need to use the `pthread_create()` function.
 
@@ -617,7 +617,7 @@ Now, if there are more than 1 philosopher, we repeat the routine of `eat()`, `re
 	}
 ```
 
-## The routine
+## The Routine
 
 ### eat()
 
@@ -768,14 +768,14 @@ if (thinking_duration > 600)
 	thinking_duration = 200;
 ```
 
-## The supervisor
+## The Supervisor
 
-Back to the `start_dinner()` function, after creating threads for each philosopher, we are going to create one extra thread for the supervisor. The supervisor's roles is to update the `end` variable that gets changed if a philosopher dies or if all the philosophers ate at least `min_meals` times.
+Back to the `start_dinner()` function, after creating threads for each philosopher, we are going to create one extra thread for the supervisor. The supervisor’s roles is to update the `end` variable that gets changed if a philosopher dies or if all the philosophers ate at least `min_meals` times.
 
 > [!info] info
 > The supervisor only gets created if there are more than 1 philosophers.
 
-### The supervisor routine
+### The Supervisor Routine
 
 ```c
 void	*supervisor_routine(void *arg)
