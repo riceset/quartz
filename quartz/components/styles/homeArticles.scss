@@ -12,11 +12,26 @@ $article-space-10: 2.5rem;
 
 .home-articles-header {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 1.5rem;
   // Overrides the global header margin, so only the section's margin sets the space above.
   margin: 0 0 $article-space-8;
+}
+
+.home-articles-heading {
+  min-width: 0;
+}
+
+.home-articles-language-note {
+  margin: 0 0 0.55rem;
+  color: var(--gray);
+  font-family: var(--codeFont);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  white-space: nowrap;
 }
 
 .home-articles-title {
