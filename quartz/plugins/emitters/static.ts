@@ -1,6 +1,7 @@
 import { FilePath, QUARTZ, joinSegments } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 import fs from "fs"
+import sharp from "sharp"
 import { glob } from "../../util/glob"
 import { dirname } from "path"
 
@@ -17,6 +18,19 @@ export const Static: QuartzEmitterPlugin = () => ({
       await fs.promises.mkdir(dirname(dest), { recursive: true })
       await fs.promises.copyFile(src, dest)
       yield dest
+
+      // Keep the original for compatibility, but serve a much smaller WebP
+      // on the About page. Generating it at build time avoids checking in
+      // a second large image and keeps local builds/deploys consistent.
+      if (fp === "bottom.jpg") {
+        const optimized = joinSegments(outputStaticPath, "bottom.webp") as FilePath
+        await sharp(src)
+          .rotate()
+          .resize({ width: 960, withoutEnlargement: true })
+          .webp({ quality: 80, effort: 6 })
+          .toFile(optimized)
+        yield optimized
+      }
     }
   },
   async *partialEmit() {},
