@@ -9,52 +9,13 @@ import { unescapeHTML } from "../util/escape"
 import { formatDate, getDate } from "./Date"
 import { byDateAndAlphabetical } from "./PageList"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import { langTags, Localized, siteLangs, SiteLang, T } from "./localized"
-import { ValidLocale } from "../i18n"
 import { QuartzPluginData } from "../plugins/vfile"
 import style from "./styles/homeArticles.scss"
 // @ts-ignore
 import script from "./scripts/homeArticles.inline"
 
 const featuredArticleSlug = "Swift-Student-Challenge-2026"
-// Card dates and summaries follow the language picker; article titles stay in English.
-const dateLocales: Record<SiteLang, ValidLocale> = {
-  en: "en-US",
-  ja: "ja-JP",
-  zh: "zh-TW",
-  pt: "pt-BR",
-}
-// Portuguese months short and without the period, matching the dates on the About page
-// ("5 ago 2026" rather than Intl's "5 de ago. de 2026").
-const ptMonths = [
-  "jan",
-  "fev",
-  "mar",
-  "abr",
-  "mai",
-  "jun",
-  "jul",
-  "ago",
-  "set",
-  "out",
-  "nov",
-  "dez",
-]
-const cardDate = (date: NonNullable<ReturnType<typeof getDate>>, lang: SiteLang) =>
-  lang === "pt"
-    ? `${date.getDate()} ${ptMonths[date.getMonth()]} ${date.getFullYear()}`
-    : formatDate(date, dateLocales[lang])
-// Card labels for tags that are words rather than names; tags like swift or vim stay as is.
-const tagLabels: Record<string, Localized> = {
-  internship: { en: "internship", ja: "インターン", zh: "實習", pt: "estágio" },
-  algorithms: { en: "algorithms", ja: "アルゴリズム", zh: "演算法", pt: "algoritmos" },
-  "bit-manipulation": {
-    en: "bit-manipulation",
-    ja: "ビット演算",
-    zh: "位元運算",
-    pt: "manipulação de bits",
-  },
-}
+// Dates and summaries stay in English, just like the articles themselves.
 // Section pages reached from the home splash; they host components, not writing.
 const sectionSlugs = new Set(["index", "about", "articles"])
 // Extra bottom space for a grid card, growing with how much text it holds. Titles count
@@ -90,16 +51,10 @@ const cleanExcerpt = (description: string | undefined, title: string) => {
   return withoutRepeatedTitle.replace(/^[\s.:–—-]+/, "").trim()
 }
 
-// Translated summaries live in each article's frontmatter as `summaries: { ja, zh, pt }`;
-// a language without one falls back to English.
-const getSummary = (page: QuartzPluginData, title: string): Localized => {
+// The listing always uses the English summary (or a cleaned excerpt as a fallback).
+const getSummary = (page: QuartzPluginData, title: string): string => {
   const summary = page.frontmatter?.summary
-  const en = typeof summary === "string" ? summary : cleanExcerpt(page.description, title)
-  const summaries = page.frontmatter?.summaries as Partial<Record<SiteLang, string>> | undefined
-  if (!en || !summaries) return en
-  return Object.fromEntries(
-    siteLangs.map((lang) => [lang, lang === "en" ? en : (summaries[lang] ?? en)]),
-  ) as Record<SiteLang, string>
+  return typeof summary === "string" ? summary : cleanExcerpt(page.description, title)
 }
 
 // A small, deterministic force layout of the article graph (articles linked directly and
@@ -174,19 +129,10 @@ const renderSummary = (summary: string) => {
   return htmlToJsx("article-summary.md" as FilePath, tree)
 }
 
-// Summaries can hold math and code, so each translation is rendered whole rather than through T.
-const Excerpt = ({ summary }: { summary: Localized }) =>
-  typeof summary === "string" ? (
-    <div class="article-card-excerpt">{renderSummary(summary)}</div>
-  ) : (
-    <>
-      {siteLangs.map((lang) => (
-        <div class="article-card-excerpt" data-text-lang={lang} lang={langTags[lang]}>
-          {renderSummary(summary[lang])}
-        </div>
-      ))}
-    </>
-  )
+// Summaries can contain math and code, so render the original Markdown.
+const Excerpt = ({ summary }: { summary: string }) => (
+  <div class="article-card-excerpt">{renderSummary(summary)}</div>
+)
 
 export default (() => {
   const HomeArticles: QuartzComponent = (props: QuartzComponentProps) => {
@@ -208,7 +154,7 @@ export default (() => {
       <section class="home-articles" data-nosnippet="true">
         <header class="home-articles-header">
           <h1 class="home-articles-title">
-            <T text={{ en: "Articles", ja: "記事", zh: "文章", pt: "Artigos" }} />
+            Articles
           </h1>
           <button type="button" class="article-graph global-graph-icon">
             <svg
@@ -251,7 +197,7 @@ export default (() => {
             <div class="article-card-content">
               <div class="article-card-meta">
                 <span>
-                  <T text={{ en: "Featured", ja: "ピックアップ", zh: "精選", pt: "Destaque" }} />
+                  Featured
                 </span>
                 <span aria-hidden="true">·</span>
                 <span class="article-card-meta-brand">
@@ -274,7 +220,7 @@ export default (() => {
             const tag = page.frontmatter?.tags?.[0]
             const summary = getSummary(page, title)
             const href = resolveRelative(fileData.slug!, page.slug!)
-            const room = cardRoom(title, typeof summary === "string" ? summary : summary.en)
+            const room = cardRoom(title, summary)
 
             return (
               <article class="article-card" style={`--card-room: ${room.toFixed(2)}rem`}>
@@ -282,16 +228,11 @@ export default (() => {
                   <div class="article-card-meta">
                     {tag && (
                       <span>
-                        <T text={tagLabels[tag] ?? tag} />
+                        {tag}
                       </span>
                     )}
                     {tag && date && <span aria-hidden="true">·</span>}
-                    {date &&
-                      siteLangs.map((lang) => (
-                        <span data-text-lang={lang} lang={langTags[lang]}>
-                          <time datetime={date.toISOString()}>{cardDate(date, lang)}</time>
-                        </span>
-                      ))}
+                    {date && <time datetime={date.toISOString()}>{formatDate(date, "en-US")}</time>}
                   </div>
                   <h3 class="article-card-title">
                     <a href={href}>{title}</a>
