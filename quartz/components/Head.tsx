@@ -111,7 +111,8 @@ export default (() => {
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="color-scheme" content="light dark" />
-        <meta name="theme-color" content="#faf8f8" />
+        <meta name="theme-color" content="#faf8f8" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)" />
         <meta name="msapplication-TileColor" content="#faf8f8" />
         <meta name="msapplication-TileImage" content={msTileIconPath} />
         <meta name="robots" content="max-image-preview:large" />
