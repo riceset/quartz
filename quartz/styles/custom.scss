@@ -371,12 +371,3 @@ article .katex-display {
   font-family: "Noto Serif TC", "Songti TC", "Songti SC", serif;
   font-style: normal;
 }
-
-// On English-only article pages, mute EN to signal that the language is fixed.
-// Keep the trigger interactive so visitors can read the explanation in their
-// saved language. Match the desktop rail's specificity without !important.
-:root[data-english-only="true"] .lang-picker-trigger,
-:root[data-english-only="true"] body[data-page-type="content"] .page > #quartz-body .sidebar.left .lang-picker-trigger,
-:root[data-english-only="true"] body[data-page-type="tag"] .page > #quartz-body .sidebar.left .lang-picker-trigger {
-  color: var(--gray);
-}

@@ -37,21 +37,22 @@
   }
 }
 
-// Anchor the tiny lock to the EN letters, not the button edge. Keeping the
-// language code centered makes the mobile pill and desktop rail feel balanced.
+// Center the label and the compact lock together instead of offsetting the
+// icon from the button; this keeps the mobile pill and desktop rail balanced.
 .lang-picker-value {
-  position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.06rem;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .lang-picker-lock {
-  position: absolute;
-  top: -0.28rem;
-  left: calc(100% - 0.29rem);
   display: none;
-  width: 0.53rem;
-  height: 0.53rem;
+  flex: none;
+  width: 0.47rem;
+  height: 0.47rem;
   color: currentColor;
   pointer-events: none;
 }
