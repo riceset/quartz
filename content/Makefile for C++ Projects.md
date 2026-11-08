@@ -1,16 +1,16 @@
 ---
-title: Writing Makefile for C++ Projects
+title: "Writing a Makefile for C++ Projects"
 date: 2024-04-18
 description: "A step-by-step guide to writing a C++ Makefile with variables, compiler flags, build rules, cleanup targets, and .PHONY declarations."
 tags:
   - c++
 ---
 
-# Writing Makefile for C++ Projects
+# Writing a Makefile for C++ Projects
 
-## Setting variables
+## Setting Variables
 
-Let's start by setting some basic variables:
+Let’s start by setting some basic variables:
 
 ```makefile
 # The program name:
@@ -27,7 +27,7 @@ CXX = c++
 Here, we are setting the compilation flags used in École 42's C++ modules.
 
 More specifically:
-- `-Wall`: Enable all compiler's warning messages
+- `-Wall`: Enable all compiler’s warning messages
 - `-Wextra`: Enable extra warning messages that are not turned on by `-Wall`
 - `-Werror`: Turn all warning messages into errors
 - `-std=c++98`: Specify the C++ version to conform
@@ -36,7 +36,7 @@ More specifically:
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 ```
 
-## Specifying the source files
+## Specifying the Source Files
 
 In the `SRCS` variable we can specify all the `.cpp` files used in the project. These are the files that are going to be compiled into object files (`.o`) and then combined into an executable file.
 
@@ -49,7 +49,7 @@ INCLUDES = main.hpp
 > [!note] Notes on OBJS
 > The `OBJS` variable is a special computed variable that takes all the values from the `SRCS` variable that has the `.cpp` extension and turns into a `.o` file.
 
-## Defining some basic rules
+## Defining Some Basic Rules
 
 When writing a Makefile we usually define 4 basic rules. Those are:
 
@@ -74,7 +74,7 @@ fclean: clean
 re: fclean all
 ```
 
-Let's analyze each line here.
+Let’s analyze each line here.
 
 ### all
 To compile the program we just have to run `make all` but as `all` is the first rule that is getting specified, simply running `make` will execute `make all`.
@@ -83,7 +83,7 @@ To compile the program we just have to run `make all` but as `all` is the first 
 all: $(NAME)
 ```
 
-As we can see here, `all` depends on the creation of `$(NAME)` which is the program name, in other words the executable file. At this point, we don't have the executable file yet, so `make` searches for a rule that creates `$(NAME)`:
+As we can see here, `all` depends on the creation of `$(NAME)` which is the program name, in other words the executable file. At this point, we don’t have the executable file yet, so `make` searches for a rule that creates `$(NAME)`:
 
 ```makefile
 $(NAME): $(OBJS)
@@ -107,7 +107,7 @@ c++ -Wall -Wextra -Werror -std=c++98 main.o other.o -o program
 
 This is the actual command that gets executed.
 
-### Creating object files
+### Creating Object Files
 
 This is the rule used to create object files. It basically says: For any C++ file, generate an object file. It also depends on the `INCLUDES` so if any header file changes, all object files are going to get regenerated. Then it compiles each `.cpp` file (represented by the automatic variable `$<` here) to an object file (with the `-c` flag) and outputs a file with the same name but with the `.o` extension. Here `$@` represents each `.o` file:
 

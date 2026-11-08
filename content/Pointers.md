@@ -1,5 +1,5 @@
 ---
-title: Introduction to Pointers in C
+title: "Introduction to Pointers in C"
 date: 2021-06-09
 description: "An introduction to C pointers through memory addresses, the address-of operator, dereferencing, and a small practical example."
 tags:
@@ -30,7 +30,7 @@ Output:
 4
 ```
 
-## The address-of operator (&)
+## The Address-of Operator (&)
 
 The address-of operator is just an operator we place before some variable name to get that variable’s address in memory. We print this address using the `%p` format specifier to get the address in hexadecimal.
 
@@ -45,7 +45,7 @@ Output:
 0x7ffee7ea278c
 ```
 
-## The concept of a pointer
+## The Concept of a Pointer
 
 A pointer is just a variable that holds the address in memory of some other variable.
 
@@ -69,7 +69,7 @@ You can also declare a pointer variable and assign it a value at the same line.
 int *pointer = &num;
 ```
 
-## Dereferencing a pointer
+## Dereferencing a Pointer
 
 Dereferencing a pointer means accessing or manipulating data stored at an address in memory through a pointer variable.
 

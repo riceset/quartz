@@ -1,5 +1,5 @@
 ---
-title: Understanding the Orthodox Canonical Class Form
+title: "Understanding the Orthodox Canonical Class Form"
 date: 2024-08-15
 description: "A walkthrough of the constructors, copy behavior, assignment operator, and destructor that define the Orthodox Canonical Class Form in C++."
 tags:
@@ -33,7 +33,7 @@ public:
 };
 ```
 
-### Default Constructor
+## Default Constructor
 
 The **Default Constructor** is a special member function in a class that initializes an object with **default values** during the object’s instantiation.
 
@@ -60,7 +60,7 @@ int main(void) {
 }
 ```
 
-### Parameterized Constructor
+## Parameterized Constructor
 
 The **Parameterized Constructor** initializes an object with **specific values** provided as arguments during the object’s instantiation.
 
@@ -87,7 +87,7 @@ int main(void) {
 }
 ```
 
-### Copy Constructor
+## Copy Constructor
 
 The **Copy Constructor** initializes a new object as a copy of an existing object. This is useful when passing an object by value or when we need to duplicate an object.
 
@@ -115,7 +115,7 @@ int main(void) {
 }
 ```
 
-### Assignment Operator
+## Assignment Operator
 
 The **Assignment Operator** assigns the value of one object to another already-existing object. Here, we need to handle deep copying and self-assignment.
 
@@ -155,7 +155,7 @@ int main() {
 }
 ```
 
-### Destructor
+## Destructor
 
 The **Destructor** is called when an object goes out of scope or is explicitly deleted. It is used to clean up resources such as memory or file handles.
 

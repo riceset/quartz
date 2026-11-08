@@ -304,15 +304,15 @@ document.addEventListener("nav", () => {
         isDay ? "partly" : "partly-night",
         { en: "Partly cloudy", ja: "晴れ時々曇り", zh: "晴時多雲", pt: "Parcialmente nublado" },
       ]
-    if (code === 3) return ["cloudy", { en: "Cloudy", ja: "曇り", zh: "陰天", pt: "Nublado" }]
+    if (code === 3) return ["cloudy", { en: "Cloudy", ja: "曇り", zh: "陰", pt: "Nublado" }]
     if (code === 45 || code === 48) return ["fog", { en: "Fog", ja: "霧", zh: "霧", pt: "Neblina" }]
     if (code >= 51 && code <= 57)
       return ["drizzle", { en: "Drizzle", ja: "霧雨", zh: "毛毛雨", pt: "Garoa" }]
     if ((code >= 71 && code <= 77) || code === 85 || code === 86)
-      return ["snow", { en: "Snow", ja: "雪", zh: "下雪", pt: "Neve" }]
+      return ["snow", { en: "Snow", ja: "雪", zh: "雪", pt: "Neve" }]
     if (code >= 95)
       return ["storm", { en: "Thunderstorm", ja: "雷雨", zh: "雷雨", pt: "Tempestade" }]
-    return ["rain", { en: "Rain", ja: "雨", zh: "下雨", pt: "Chuva" }]
+    return ["rain", { en: "Rain", ja: "雨", zh: "雨", pt: "Chuva" }]
   }
   const updateWeather = async () => {
     if (!weather) return

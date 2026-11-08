@@ -27,6 +27,13 @@ interface Language {
   level: Localized
 }
 
+// Year-only dates; Japanese and Chinese mark each year with 年, like the month dates.
+const years = (...ys: number[]): Localized => {
+  const plain = ys.join(" – ")
+  const cjk = ys.map((y) => `${y}年`).join(" – ")
+  return { en: plain, ja: cjk, zh: cjk, pt: plain }
+}
+
 const tokyo: Localized = { en: "Tokyo", ja: "東京", zh: "東京", pt: "Tóquio" }
 const seoul: Localized = { en: "Seoul", ja: "ソウル", zh: "首爾", pt: "Seul" }
 const internship: Localized = { en: "Internship", ja: "インターン", zh: "實習", pt: "Estágio" }
@@ -119,7 +126,7 @@ const experience: Entry[] = [
     },
   },
   {
-    date: "2025 – 2026",
+    date: years(2025, 2026),
     title: {
       en: "Google Student Ambassador",
       ja: "Google学生アンバサダー",
@@ -139,7 +146,7 @@ const experience: Entry[] = [
 
 const awards: Entry[] = [
   {
-    date: "2026",
+    date: years(2026),
     title: {
       en: "Swift Student Challenge Winner",
       ja: "Swift Student Challenge受賞",
@@ -155,7 +162,7 @@ const awards: Entry[] = [
     },
   },
   {
-    date: "2023",
+    date: years(2023),
     title: {
       en: "MEXT Undergraduate Scholarship",
       ja: "国費外国人留学生（学部）",
@@ -234,7 +241,7 @@ const talks: Entry[] = [
       {
         label: {
           en: "Covered by the LY Corporation Tech Blog",
-          ja: "LINEヤフー Tech Blogで紹介",
+          ja: "LINEヤフーのTech Blogで紹介",
           zh: "LY Corporation 技術部落格報導",
           pt: "Destaque no Tech Blog da LY Corporation",
         },
@@ -315,7 +322,7 @@ const talks: Entry[] = [
 
 const education: Entry[] = [
   {
-    date: "2024 – 2028",
+    date: years(2024, 2028),
     title: {
       en: "Tokyo University of Foreign Studies",
       ja: "東京外国語大学",
@@ -331,7 +338,7 @@ const education: Entry[] = [
     place: tokyo,
   },
   {
-    date: "2022 – 2025",
+    date: years(2022, 2025),
     title: "École 42",
     org: {
       en: "Computer Software Engineering",

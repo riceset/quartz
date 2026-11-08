@@ -1,18 +1,18 @@
 ---
-title: "What I built at Sansan"
+title: "What I Built at Sansan"
 date: 2026-09-28
 description: "What I learned in a two-month iOS internship at Sansan, from writing specs before code to testing Apple’s on-device models for Japanese card search."
 tags:
   - internship
 ---
 
-# What I built at Sansan
+# What I Built at Sansan
 
 In August and September of 2026, I worked at [Sansan](https://jp.corp-sansan.com/) on the iOS team for [**Eight**](https://8card.net/), a business card app. Eight scans a paper business card (`名刺`) and keeps it as contact data, so the people you have met become a list you can search.
 
 I was there two days a week. As an international student I am allowed to work 28 hours a week in total, and I was splitting those hours with a second internship at LINE, which I wrote about in [[LINE Internship|Six Weeks Building at LINE]].
 
-**The thread through my tasks is that the work was decided before the code: in two documents for the tickets, and in a list of things to stop asking the model to do for the proof of concept.** My first two tasks were tickets in the premium registration flow, the screens through which a user signs up for Eight Premium, the paid plan, and that is where I learned how the team builds things. My last task was a **proof of concept (PoC)** evaluating Apple's on-device [Foundation Models](https://developer.apple.com/documentation/foundationmodels) framework, with Japanese search as the test case. For the two tickets, no code was written until two documents had been drafted and reviewed in Japanese, and that is where this story starts.
+**The thread through my tasks is that the work was decided before the code: in two documents for the tickets, and in a list of things to stop asking the model to do for the proof of concept.** My first two tasks were tickets in the premium registration flow, the screens through which a user signs up for Eight Premium, the paid plan, and that is where I learned how the team builds things. My last task was a **proof of concept (PoC)** evaluating Apple’s on-device [Foundation Models](https://developer.apple.com/documentation/foundationmodels) framework, with Japanese search as the test case. For the two tickets, no code was written until two documents had been drafted and reviewed in Japanese, and that is where this story starts.
 
 ## What I Worked On
 
@@ -145,7 +145,7 @@ The reply to my first report was the longest one I received. I had written that 
 
 ### The Problem
 
-Eight's premium landing page is the page in the premium registration flow that presents Eight Premium. It is a web page shown inside the app in a **web view**, a browser window embedded in an app screen. It had a **toolbar**, a bar of buttons along the bottom edge, with back, forward and reload buttons. On a landing page none of those three buttons is necessary, and the space could go to more of the web view's content, the part that explains the premium benefits.
+Eight’s premium landing page is the page in the premium registration flow that presents Eight Premium. It is a web page shown inside the app in a **web view**, a browser window embedded in an app screen. It had a **toolbar**, a bar of buttons along the bottom edge, with back, forward and reload buttons. On a landing page none of those three buttons is necessary, and the space could go to more of the web view’s content, the part that explains the premium benefits.
 
 <figure style="margin: 1.5rem 0;">
   <img src="/media/sansan-internship/premium-web-view.png" alt="Side-by-side comparison of the Eight Premium onboarding screen, showing the Get Eight Premium interface on two iPhones." style="display: block; width: 100%; height: auto; border-radius: 8px;" />
@@ -191,10 +191,10 @@ Entity is the data the arrows carry, so it has no box of its own. The View talks
 
 ### The Implementation Policy
 
-The screen is built with [UIKit](https://developer.apple.com/documentation/uikit), Apple's framework for writing iOS screens in code, and laid out with [SnapKit](https://github.com/SnapKit/SnapKit), a small library that shortens UIKit's layout rules. After saying where the change lived, I spent most of the document on what it did not touch:
+The screen is built with [UIKit](https://developer.apple.com/documentation/uikit), Apple’s framework for writing iOS screens in code, and laid out with [SnapKit](https://github.com/SnapKit/SnapKit), a small library that shortens UIKit’s layout rules. After saying where the change lived, I spent most of the document on what it did not touch:
 
-- No change to the local database's **schema**, the shape of the data the app stores on the phone, and so no **migration**, the step that converts already-stored data into a new shape
-- No change to the **API**, the calls the app makes to Eight's servers
+- No change to the local database’s **schema**, the shape of the data the app stores on the phone, and so no **migration**, the step that converts already-stored data into a new shape
+- No change to the **API**, the calls the app makes to Eight’s servers
 - No change to the toolbar used on other screens
 - No new or changed analytics
 - No effect on restoring the phone from a backup
@@ -211,7 +211,7 @@ override public func viewWillAppear(_ animated: Bool) {
 }
 ```
 
-Deleting the toolbar satisfies the first statement of the specification, not the second. The **safe area** is the part of the screen not covered by the hardware, by the system, or by bars the app itself shows: at the top, the camera cutout (the notch, or the Dynamic Island on newer iPhones) and the status bar with the clock and battery; at the bottom, the **home indicator**, the thin bar you swipe up on; and any bars the app shows, here the navigation bar at the top and the toolbar at the bottom. Pinning a view to the safe area keeps its content clear of all of those. The web view was pinned to it at the top and at the bottom. With the toolbar gone, the safe area's bottom edge moves down, but only as far as the home indicator, so a web view still pinned to it stops short of the bottom and leaves a blank strip there:
+Deleting the toolbar satisfies the first statement of the specification, not the second. The **safe area** is the part of the screen not covered by the hardware, by the system, or by bars the app itself shows: at the top, the camera cutout (the notch, or the Dynamic Island on newer iPhones) and the status bar with the clock and battery; at the bottom, the **home indicator**, the thin bar you swipe up on; and any bars the app shows, here the navigation bar at the top and the toolbar at the bottom. Pinning a view to the safe area keeps its content clear of all of those. The web view was pinned to it at the top and at the bottom. With the toolbar gone, the safe area’s bottom edge moves down, but only as far as the home indicator, so a web view still pinned to it stops short of the bottom and leaves a blank strip there:
 
 | | Before | Toolbar deleted only | After |
 | --- | --- | --- | --- |
@@ -219,7 +219,7 @@ Deleting the toolbar satisfies the first statement of the specification, not the
 | Middle | Web view, pinned to the safe area | Web view, still pinned to the safe area | Web view, to the edge of the screen |
 | Bottom | Toolbar: back, forward, reload | Blank strip above the home indicator | Home indicator over the page |
 
-For the second statement, no blank padding, the web view's bottom edge has to be released from the safe area to the edge of the screen. That is the second edit:
+For the second statement, no blank padding, the web view’s bottom edge has to be released from the safe area to the edge of the screen. That is the second edit:
 
 ```swift
 // Before
@@ -242,7 +242,7 @@ I did not know that any of it was "no" until I went and checked. What the docume
 
 ### The Problem
 
-Eight's profile screen has a diamond icon in the navigation bar. The icon leads to the premium screen, and a **popover**, a small box that floats over the screen and points at a control, points at it with the text *"Eight Premium: 7-day free trial"* (in Japanese in the app). The popover is a **tip** built with Apple's [TipKit](https://developer.apple.com/documentation/tipkit) framework, and "the tip" is what this article calls it from here. The tip appeared at most once every 30 days. The ticket asked for it to be shown once per **calendar day** instead, that is, at most once between one midnight and the next, and to stop showing it at all to anyone who had already tapped the icon while the tip was pointing at it.
+Eight’s profile screen has a diamond icon in the navigation bar. The icon leads to the premium screen, and a **popover**, a small box that floats over the screen and points at a control, points at it with the text *"Eight Premium: 7-day free trial"* (in Japanese in the app). The popover is a **tip** built with Apple’s [TipKit](https://developer.apple.com/documentation/tipkit) framework, and "the tip" is what this article calls it from here. The tip appeared at most once every 30 days. The ticket asked for it to be shown once per **calendar day** instead, that is, at most once between one midnight and the next, and to stop showing it at all to anyone who had already tapped the icon while the tip was pointing at it.
 
 | Rule                                        | Before                               | After                                                      |
 | ------------------------------------------- | ------------------------------------ | ---------------------------------------------------------- |
@@ -252,7 +252,7 @@ Eight's profile screen has a diamond icon in the navigation bar. The icon leads 
 | Saved on the device                         | Last displayed date                  | Last displayed date **and** a flag that the tip was tapped |
 |                                             |                                      |                                                            |
 
-That table is my own summary of the first of the PBI's two acceptance criteria, AC1. AC2 was a single sentence asking that the new rule still work as-is once the app adopts [Liquid Glass](https://developer.apple.com/documentation/technologyoverviews/liquid-glass), the design material Apple introduced in iOS 26. Nobody can verify a sentence like that, because "works as-is" names nothing to check, so the specification restated it as two lines that somebody can check:
+That table is my own summary of the first of the PBI’s two acceptance criteria, AC1. AC2 was a single sentence asking that the new rule still work as-is once the app adopts [Liquid Glass](https://developer.apple.com/documentation/technologyoverviews/liquid-glass), the design material Apple introduced in iOS 26. Nobody can verify a sentence like that, because "works as-is" names nothing to check, so the specification restated it as two lines that somebody can check:
 
 - The display rule produces the same result under the existing design and under Liquid Glass
 - The display rule does not consider which design is active
@@ -261,7 +261,7 @@ The function in Making the Rule Testable is the check for both.
 
 ### Where the Display Rule Lives
 
-TipKit is Apple's framework for hints like this one. A tip is a type that describes its own content, and the framework presents it as a popover pointing at a view. The tip itself is small:
+TipKit is Apple’s framework for hints like this one. A tip is a type that describes its own content, and the framework presents it as a popover pointing at a view. The tip itself is small:
 
 ```swift
 struct PremiumTip: Tip {
@@ -273,7 +273,7 @@ struct PremiumTip: Tip {
 
 TipKit can also decide *when* a tip shows, with rules of its own and one display frequency for the whole app. This tip does not use that. The app decides for itself when to show it.
 
-The reason is that TipKit keeps its own record of what it has shown, and the app cannot read or change that record while it runs. TipKit answers "should this tip display now?" but not "when did it last display?", and its one reset takes effect only at the next launch. A test for "shown yesterday, so show today" has nowhere to put yesterday's date. So the app keeps the last displayed date and the tap flag itself, where a test can set them.
+The reason is that TipKit keeps its own record of what it has shown, and the app cannot read or change that record while it runs. TipKit answers "should this tip display now?" but not "when did it last display?", and its one reset takes effect only at the next launch. A test for "shown yesterday, so show today" has nowhere to put yesterday’s date. So the app keeps the last displayed date and the tap flag itself, where a test can set them.
 
 In VIPER terms, the rule became a function in the Entity layer with no dependencies. The Interactor reads the two saved values and calls it, and the View shows the popover and works out whether a tap on the icon was a tap on the tip.
 
@@ -369,7 +369,7 @@ func staysHiddenAfterTap(shownDaysAgo: Int?) {
 }
 ```
 
-That is four cases: never displayed, displayed today, yesterday, and thirty days ago, the old rule's interval. Pinning the calendar to GMT means the cases name the same instants on a machine in Tokyo and on a machine anywhere else.
+That is four cases: never displayed, displayed today, yesterday, and thirty days ago, the old rule’s interval. Pinning the calendar to GMT means the cases name the same instants on a machine in Tokyo and on a machine anywhere else.
 
 One more test shows why the rule takes a `Calendar` at all:
 
@@ -414,7 +414,7 @@ The rule answers `false` for one calendar and `true` for the other, which is onl
 
 ### Counting a Tap on the Tip
 
-So far, the ticket's first half, the daily rule. The second half, never showing the tip again after a tap, is not about dates. It is about touches.
+So far, the ticket’s first half, the daily rule. The second half, never showing the tip again after a tap, is not about dates. It is about touches.
 
 The tip is a popover, and a popover is not only the box on screen. UIKit also lays an invisible view over the rest of the screen, underneath the box, and that view exists to catch the next touch outside the popover and close it. That is why a popover normally spends the first tap on closing itself. The touch stops at the invisible view and never reaches what is underneath.
 
@@ -431,7 +431,7 @@ With that line in place, there are three things the user can tap while the tip i
 | --- | --- |
 | Anywhere else on the screen | The invisible view catches the touch. UIKit closes the tip, and nothing underneath is pressed |
 | The tip itself | Nothing. The tip has no button in it, and a touch on the tip is not a touch outside it |
-| The premium button | The touch passes through to the button, and the button's **handler**, the code that runs when it is tapped, runs. UIKit does not close the tip, so the handler has to |
+| The premium button | The touch passes through to the button, and the button’s **handler**, the code that runs when it is tapped, runs. UIKit does not close the tip, so the handler has to |
 
 The last row is where the problem is. The handler is told the same thing whether the tip was on screen or not, because a tap on the button is a tap on the button. Nothing in it mentions the tip.
 
@@ -484,7 +484,7 @@ private var isShowingTip: Bool {
 
 A view that is on screen belongs to a window, the root view that holds everything on screen, and a view that has been removed does not, no matter who removed it. (`viewIfLoaded` is `view` without the side effect of loading it.) This version is correct, and it was replaced in review by one that does not need to look into the view hierarchy at all.
 
-**Third version.** The one I kept goes back to the first version's check and fixes the reference instead. The TipKit popover has a `presentationDelegate`, a **delegate** being an object it tells about presentation events. It is set to the profile screen's view controller, and when UIKit closes the popover it calls the delegate's `presentationControllerDidDismiss(_:)`. That is where the reference is cleared. UIKit does not make that call when the app closes the popover itself, so `closeTip()` still clears the reference on that path.
+**Third version.** The one I kept goes back to the first version’s check and fixes the reference instead. The TipKit popover has a `presentationDelegate`, a **delegate** being an object it tells about presentation events. It is set to the profile screen’s view controller, and when UIKit closes the popover it calls the delegate’s `presentationControllerDidDismiss(_:)`. That is where the reference is cleared. UIKit does not make that call when the app closes the popover itself, so `closeTip()` still clears the reference on that path.
 
 ```swift
 // Third version, the one I kept
@@ -519,7 +519,7 @@ Now the reference tells the truth no matter who closed the tip, and `isShowingTi
 | Version | `isShowingTip` asks | Wrong when | Outcome |
 | --- | --- | --- | --- |
 | 1 | Is our reference to the popover set? | UIKit closed the tip and the reference stayed | Wrong |
-| 2 | Is the popover's view in a window? | Never, but it has to look into the view hierarchy | Replaced in review |
+| 2 | Is the popover’s view in a window? | Never, but it has to look into the view hierarchy | Replaced in review |
 | 3 | Is our reference set? UIKit clears it through the delegate when it closes the tip | — | Kept |
 
 ### What the Second Task Taught Me
@@ -650,7 +650,7 @@ A **part of speech** is the grammatical class of a piece of text: noun, verb, pa
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | A list of phrases to delete                                                                                                                                                         | A list of over a hundred phrases, deleted wherever they appeared in a value, longest first           | Almost every phrasing that was not on the list came out wrong                                                                                                                         | A list cannot keep up with how people phrase things                            |
 | A character rule for particles                                                                                                                                                      | Treat `の`, `が` and the like between kanji, katakana or Latin characters as a particle, and cut there | It cut the place names `丸の内`, `霞が関`, `井の頭` and `自由が丘` in two, so the app searched for `丸` ("circle") and `内` ("inside") instead, and it let the verb phrase `受け取ったネビュラ` through whole | A character is not a particle. I needed to know what each piece of the text is |
-| Apple's [`NLTokenizer`](https://developer.apple.com/documentation/naturallanguage/nltokenizer) and [`NLTagger`](https://developer.apple.com/documentation/naturallanguage/nltagger) | Cut the value into tokens and ask for the part of speech of each                                     | `NLTokenizer` only cuts. `NLTagger` has no part-of-speech scheme for Japanese, and every token comes back `OtherWord`                                                                 | Not usable for Japanese, and even noun and verb would have been too coarse     |
+| Apple’s [`NLTokenizer`](https://developer.apple.com/documentation/naturallanguage/nltokenizer) and [`NLTagger`](https://developer.apple.com/documentation/naturallanguage/nltagger) | Cut the value into tokens and ask for the part of speech of each                                     | `NLTokenizer` only cuts. `NLTagger` has no part-of-speech scheme for Japanese, and every token comes back `OtherWord`                                                                 | Not usable for Japanese, and even noun and verb would have been too coarse     |
 | [MeCab](https://taku910.github.io/mecab/) with IPADic                                                                                                                               | Analyze each value on its own; a particle, verb or auxiliary verb inside makes it a phrase           | All four place names stay whole. `受け取ったネビュラ` splits into a verb, an auxiliary verb and `ネビュラ`                                                                                         | This is what the PoC uses, with two gaps described below                       |
 
 MeCab is a **morphological analyzer** for Japanese: it splits text into its smallest meaningful units and labels each one with its part of speech (`品詞`) and a finer sub-category. Both the split and the labels come from the dictionary it runs with, here **IPADic**, the standard word list that tells MeCab which strings are words and what each one is. MeCab can only keep whole a word its dictionary lists, which is why `丸の内` stays one word and `桜が丘` does not.
@@ -702,9 +702,9 @@ So a value written entirely in hiragana counts as a phrase only if it is nothing
 
 **`名刺` only says what the user is looking for.** It is on a short list of words the app sets aside: words for a person or a company in general, legal forms printed on almost every card, names of fields on the card, and words about the search itself, such as `名刺`, rather than anything printed on a card.
 
-None of these picks a person out. Most are never a value on a card at all, and the legal forms are the opposite, printed on almost every card. Either way, a match on them is noise. Search is a **substring match**: a card matches if the word appears anywhere inside a field's text. So `人` would find someone whose department is `人事部` ("personnel department"), where those characters are not the word `人` at all; there `人` is the first half of `人事` ("personnel"), read differently and inseparable from it. The name the model returned, `人`, is dropped for the same reason.
+None of these picks a person out. Most are never a value on a card at all, and the legal forms are the opposite, printed on almost every card. Either way, a match on them is noise. Search is a **substring match**: a card matches if the word appears anywhere inside a field’s text. So `人` would find someone whose department is `人事部` ("personnel department"), where those characters are not the word `人` at all; there `人` is the first half of `人事` ("personnel"), read differently and inseparable from it. The name the model returned, `人`, is dropped for the same reason.
 
-**`交換` is a noun that forms a verb with `する`.** Many Japanese nouns pair with `する` ("to do") to make a verb, here `交換する`, "to exchange", with `する` carrying the tense and the noun staying a noun. IPADic marks such nouns `サ変接続`, meaning they connect to `する`, and that is the sub-category the app reads. The app drops one of these nouns only when a form of `する` actually follows it. Here `し` comes right after `交換`, so `交換した` is something the user did, and that is not written on anyone's card. When nothing follows, the noun stays: `営業` ("sales") in `営業部` ("sales department") is a department name, and IPADic gives that same mark to `営業`, `開発` ("development"), `企画` ("planning") and much of the rest of the vocabulary of a business card, so the rule has to be this narrow. It still has a blind spot. Someone who types `営業している人` ("a person who does sales") loses `営業`, even though `営業部` is on the cards.
+**`交換` is a noun that forms a verb with `する`.** Many Japanese nouns pair with `する` ("to do") to make a verb, here `交換する`, "to exchange", with `する` carrying the tense and the noun staying a noun. IPADic marks such nouns `サ変接続`, meaning they connect to `する`, and that is the sub-category the app reads. The app drops one of these nouns only when a form of `する` actually follows it. Here `し` comes right after `交換`, so `交換した` is something the user did, and that is not written on anyone’s card. When nothing follows, the noun stays: `営業` ("sales") in `営業部` ("sales department") is a department name, and IPADic gives that same mark to `営業`, `開発` ("development"), `企画` ("planning") and much of the rest of the vocabulary of a business card, so the rule has to be this narrow. It still has a blind spot. Someone who types `営業している人` ("a person who does sales") loses `営業`, even though `営業部` is on the cards.
 
 | Value | After the noun | What happens |
 | --- | --- | --- |
@@ -741,7 +741,7 @@ flowchart TD
 
 `企業` and `人` are on that list and are dropped, which leaves `大阪` twice. The app keeps one copy and searches for `大阪` once, as an address, which is where the invented cards I used for the evaluation have it.
 
-Back to `去年名刺を交換した丸の内の人`. After these checks only `丸の内` is left, still labeled a company by the model. From here on that label is only a starting point. Which fields the word is actually searched in is decided by the user's own cards.
+Back to `去年名刺を交換した丸の内の人`. After these checks only `丸の内` is left, still labeled a company by the model. From here on that label is only a starting point. Which fields the word is actually searched in is decided by the user’s own cards.
 
 ### Letting the Cards Decide the Field
 
@@ -753,10 +753,10 @@ The model is good at splitting a sentence into words, but it often puts a word u
 | `マーケと営業の人` ("someone in marketing and sales")             | `マーケ` and `営業` under company names       | department       |
 | `山口さん` ("Yamaguchi-san")                                   | `山口` under company names                 | name             |
 
-So instead of trying to make the model choose better, the app looks at the user's own cards. If `部長` appears in the job-title field of cards this user already has, it is very likely a job title. In `去年名刺を交換した丸の内の人`, `丸の内` appears only in addresses on the invented cards I used for the evaluation, so it is searched as an address alone, even though the model said company. If the cards have never seen a word, it is searched where the model's label points: the name field for a name, company names and addresses for a company, job titles and departments for a title.
+So instead of trying to make the model choose better, the app looks at the user’s own cards. If `部長` appears in the job-title field of cards this user already has, it is very likely a job title. In `去年名刺を交換した丸の内の人`, `丸の内` appears only in addresses on the invented cards I used for the evaluation, so it is searched as an address alone, even though the model said company. If the cards have never seen a word, it is searched where the model’s label points: the name field for a name, company names and addresses for a company, job titles and departments for a title.
 
 > [!note]
-> One rule of Japanese usage overrides the cards: a word followed by an **honorific** like `さん` (roughly "Mr." or "Ms."), as in `山口さん`, is a person, whatever the cards say. The app checks this against the text the user typed, with a short list of suffixes such as `さん`, `様` and `先生`, rather than with the dictionary. It cannot rely on the dictionary here, because after a hiragana surname like `はやし` IPADic misreads the whole thing and `さん` never comes out as a unit. IPADic does label `さん` as `名詞,接尾,人名`, a suffix that attaches to a person's name, and the app uses that label for something else: keeping `さん` out of the search word when a phrase is cut into nouns.
+> One rule of Japanese usage overrides the cards: a word followed by an **honorific** like `さん` (roughly "Mr." or "Ms."), as in `山口さん`, is a person, whatever the cards say. The app checks this against the text the user typed, with a short list of suffixes such as `さん`, `様` and `先生`, rather than with the dictionary. It cannot rely on the dictionary here, because after a hiragana surname like `はやし` IPADic misreads the whole thing and `さん` never comes out as a unit. IPADic does label `さん` as `名詞,接尾,人名`, a suffix that attaches to a person’s name, and the app uses that label for something else: keeping `さん` out of the search word when a phrase is cut into nouns.
 
 Here is a query where all three labels are right, `藤原食品でマネージャーをやっている中原さん` ("Nakahara-san, who works as a manager at Fujiwara Foods"). The model returns this:
 
@@ -785,13 +785,13 @@ When two cards match the same number of conditions, the app orders them by how c
 
 ### What Did Not Work
 
-I tried letting the model call [tools](https://developer.apple.com/documentation/foundationmodels/expanding-generation-with-tool-calling). A tool is a small Swift function the model can ask for while it answers, to look something up in the user's data. Every search got slower, including searches that had no use for a tool.
+I tried letting the model call [tools](https://developer.apple.com/documentation/foundationmodels/expanding-generation-with-tool-calling). A tool is a small Swift function the model can ask for while it answers, to look something up in the user’s data. Every search got slower, including searches that had no use for a tool.
 
-The time goes into the model, not into the tools. Each tool's name and description is part of the text the model reads before every answer, whether it calls the tool or not. Each call it does make is one more round of answering, over a longer conversation. And one of those lookups needed no model at all: the cards already decide which field a word belongs in. So I removed the tools.
+The time goes into the model, not into the tools. Each tool’s name and description is part of the text the model reads before every answer, whether it calls the tool or not. Each call it does make is one more round of answering, over a longer conversation. And one of those lookups needed no model at all: the cards already decide which field a word belongs in. So I removed the tools.
 
 ### What the Third Task Taught Me
 
-Dates go to Swift because the model gets them wrong. Invented words are caught by a check against the text the model was given, pieces of sentences are caught by MeCab, and the field each word belongs in is decided by the user's own cards instead of by the model's guess. The one time I let the model do more, by giving it tools, every search got slower.
+Dates go to Swift because the model gets them wrong. Invented words are caught by a check against the text the model was given, pieces of sentences are caught by MeCab, and the field each word belongs in is decided by the user’s own cards instead of by the model’s guess. The one time I let the model do more, by giving it tools, every search got slower.
 
 What is left for the model is the one thing none of that can do, which is reading a sentence and saying which parts of it are worth searching for. It ended up as one step inside a pipeline.
 

@@ -8,7 +8,7 @@ tags:
 
 # Six Weeks Building at LINE
 
-In August 2026, I joined LY Corporation through its six-week [SWE-6-55](https://www.lycorp.co.jp/ja/recruit/newgrads/internship/detail/SWE-6-55/) software engineering internship. The position focused on iOS and Android feature development and bug fixes for stickers and emoji in [LINE](https://www.lycorp.co.jp/ja/service/), a communication app for messages, voice calls, and video calls that also connects people with services, businesses, and information. By March 2026, LINE had [100 million monthly active users in Japan, equivalent to 81.3% of the country's population](https://www.lycorp.co.jp/ja/company/global). Working on a product embedded in daily life at that scale made even small interface changes feel consequential.
+In August 2026, I joined LY Corporation through its six-week [SWE-6-55](https://www.lycorp.co.jp/ja/recruit/newgrads/internship/detail/SWE-6-55/) software engineering internship. The position focused on iOS and Android feature development and bug fixes for stickers and emoji in [LINE](https://www.lycorp.co.jp/ja/service/), a communication app for messages, voice calls, and video calls that also connects people with services, businesses, and information. By March 2026, LINE had [100 million monthly active users in Japan, equivalent to 81.3% of the country’s population](https://www.lycorp.co.jp/ja/company/global). Working on a product embedded in daily life at that scale made even small interface changes feel consequential.
 
 ## Traveling to Fukuoka for My First Day
 
@@ -50,13 +50,13 @@ I joined the division responsible for **stickers**, **emoji**, and **coins**. Ov
 | -------------------------------------- | --------------- | --------------- |
 | Updating the **Download all** button   | Stickers, Emoji | A design update |
 | Fixing the language settings layout    | Stickers        | A bug fix       |
-| Rewriting a screen's footer in SwiftUI | Coins           | A rewrite       |
+| Rewriting a screen’s footer in SwiftUI | Coins           | A rewrite       |
 
 I was working **14 hours a week**. As an international student in Japan, I needed to keep my combined working hours within my 28-hour weekly limit, and I was dividing that time between LINE and another internship.
 
 ## Updating the Download All Button
 
-My first task was part of LINE's update for **Liquid Glass**, the translucent, light-refracting material Apple introduced in iOS 26. I refer to the app's Liquid Glass appearance as **the new design** throughout this post; it is only ever active on iOS 26 and above. In the sticker section of LINE's settings there is a **My Stickers** screen where users can see what they own. It has two tabs, **Stickers** and **Emoji**, and each tab has a large **Download all** button at the bottom that downloads everything at once. The two tabs are built by two separate view controllers, which is why this task ended up touching _two_ files.
+My first task was part of LINE’s update for **Liquid Glass**, the translucent, light-refracting material Apple introduced in iOS 26. I refer to the app’s Liquid Glass appearance as **the new design** throughout this post; it is only ever active on iOS 26 and above. In the sticker section of LINE’s settings there is a **My Stickers** screen where users can see what they own. It has two tabs, **Stickers** and **Emoji**, and each tab has a large **Download all** button at the bottom that downloads everything at once. The two tabs are built by two separate view controllers, which is why this task ended up touching _two_ files.
 
 <figure style="margin: 1.5rem 0;">
   <img src="/media/line-internship/download-button-before.png" alt="The original Download all button on the Stickers and Emoji tabs" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
@@ -65,11 +65,11 @@ My first task was part of LINE's update for **Liquid Glass**, the translucent, l
 
 My mentor sent me a JIRA ticket containing a reference image from the designer. The image showed how the button should ideally look after the update, and my first step was to understand how to reproduce that appearance in **UIKit**.
 
-After looking into the available APIs, I found Apple's [`UIButton.Configuration.prominentGlass()`](<https://developer.apple.com/documentation/uikit/uibutton/configuration-swift.struct/prominentglass()>), which creates a button configuration with a prominent Liquid Glass style.
+After looking into the available APIs, I found Apple’s [`UIButton.Configuration.prominentGlass()`](<https://developer.apple.com/documentation/uikit/uibutton/configuration-swift.struct/prominentglass()>), which creates a button configuration with a prominent Liquid Glass style.
 
 ### Finding the Button in the Codebase
 
-Before changing the appearance, I had to find the code responsible for the button. This was my first time working in LINE's codebase. Even though I knew exactly which button I was looking at in the app, finding its implementation and understanding how it was connected to the screen took some exploration.
+Before changing the appearance, I had to find the code responsible for the button. This was my first time working in LINE’s codebase. Even though I knew exactly which button I was looking at in the app, finding its implementation and understanding how it was connected to the screen took some exploration.
 
 I used AI tools to help identify the relevant files and explain the surrounding code. Once I had a likely candidate, I wanted to verify that modifying it would affect the button I was seeing in the app. For that, I started with a small experiment: **changing its color**. From there, I looked more closely at how the button was created, added to the screen, and connected to its behavior. I also discussed my understanding with my mentor. Breaking the exploration into **smaller steps** helped me move forward without needing to understand the entire codebase first.
 
@@ -79,19 +79,19 @@ My next step was to create a new button and connect it in place of the existing 
 
 That experiment was successful as well. My own button appeared in the app, and I connected it to the existing tap handler. Once that was working, I applied the prominent Liquid Glass configuration.
 
-The effect was working, but the colors were still the API's defaults, not LINE's. I used the configuration's `baseBackgroundColor` and `baseForegroundColor` properties to set the base colors to green and white. These properties provide the colors that the button configuration uses as the _starting point_ for its background and foreground appearance ([Apple Developer](https://developer.apple.com/documentation/uikit/uibutton/configuration-swift.struct)).
+The effect was working, but the colors were still the API’s defaults, not LINE’s. I used the configuration’s `baseBackgroundColor` and `baseForegroundColor` properties to set the base colors to green and white. These properties provide the colors that the button configuration uses as the _starting point_ for its background and foreground appearance ([Apple Developer](https://developer.apple.com/documentation/uikit/uibutton/configuration-swift.struct)).
 
-I also adjusted the area surrounding the button. The original button sat above a solid background that appeared white or black depending on the app's appearance. For the prototype, I made that container transparent:
+I also adjusted the area surrounding the button. The original button sat above a solid background that appeared white or black depending on the app’s appearance. For the prototype, I made that container transparent:
 
 ```swift
 buttonContainer.backgroundColor = .clear
 ```
 
-This removed the solid background behind the button while keeping the button's own glass appearance. The result was a green button floating above the content:
+This removed the solid background behind the button while keeping the button’s own glass appearance. The result was a green button floating above the content:
 
 <figure style="margin: 1.5rem 0;">
   <img src="/media/line-internship/liquid-glass-prototype.png" alt="The first Liquid Glass prototype beside the version using LINE's colors and a clear surrounding background" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
-  <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">The first Liquid Glass prototype, followed by the version using LINE's colors and a clear surrounding background.</figcaption>
+  <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">The first Liquid Glass prototype, followed by the version using LINE’s colors and a clear surrounding background.</figcaption>
 </figure>
 
 The prototype was only used when the new design was enabled. I also updated the configuration for the _ready-to-download_ and _downloading_ states, since the button needed to switch between offering a download and allowing the user to cancel it.
@@ -100,7 +100,7 @@ At this point, I had a working prototype inside the actual screen. However, comp
 
 ### Discussing the Text Color with the Design Team
 
-The design showed **solid white** text inside the button. In my build, the title came out softer, blending into the button's material instead of sitting on top of it as opaque white. It is visible in the screenshot above: "Download all (10)" reads as translucent against the green.
+The design showed **solid white** text inside the button. In my build, the title came out softer, blending into the button’s material instead of sitting on top of it as opaque white. It is visible in the screenshot above: "Download all (10)" reads as translucent against the green.
 
 The relevant configuration looked like this:
 
@@ -150,7 +150,7 @@ private enum Design {
 
 Deriving the value keeps the relationship between the height and the radius explicit, so the two cannot drift apart if the height ever changes.
 
-I then applied that value to the button's layer. A layer's [`cornerRadius`](https://developer.apple.com/documentation/quartzcore/calayer/cornerradius) property controls the rounding of its background and border.
+I then applied that value to the button’s layer. A layer’s [`cornerRadius`](https://developer.apple.com/documentation/quartzcore/calayer/cornerradius) property controls the rounding of its background and border.
 
 ```swift
 if !isNewDesignEnabled {
@@ -195,7 +195,7 @@ I did not add new unit tests for this change. The pull request documented the vi
 
 After submitting the pull request, I received three comments from reviewers.
 
-**The first** came from my mentor, who suggested using [`UIButton.Configuration.CornerStyle.capsule`](https://developer.apple.com/documentation/uikit/uibutton/configuration-swift.struct/cornerstyle-swift.enum) instead of setting `cornerRadius` directly on the button's layer. I looked into it, but concluded that it would not work here. The existing button component was not styling itself through `UIButton.Configuration`: it sets its own corner radius and content insets directly in its initializer, and nothing in the style it was being given assigns a configuration. It does have an optional configuration-based appearance path, but that is off by default and was not turned on for this button. Introducing `CornerStyle.capsule` would mean fighting the way the component already configures its appearance. My mentor agreed with the reasoning, and the comment was resolved.
+**The first** came from my mentor, who suggested using [`UIButton.Configuration.CornerStyle.capsule`](https://developer.apple.com/documentation/uikit/uibutton/configuration-swift.struct/cornerstyle-swift.enum) instead of setting `cornerRadius` directly on the button’s layer. I looked into it, but concluded that it would not work here. The existing button component was not styling itself through `UIButton.Configuration`: it sets its own corner radius and content insets directly in its initializer, and nothing in the style it was being given assigns a configuration. It does have an optional configuration-based appearance path, but that is off by default and was not turned on for this button. Introducing `CornerStyle.capsule` would mean fighting the way the component already configures its appearance. My mentor agreed with the reasoning, and the comment was resolved.
 
 **The second** comment concerned a change I had included alongside the `cornerRadius` update. I had set the background of the button container to `.clear`, drawing that inference from the design files. A reviewer noted that the designer had not explicitly requested it. I explained my reasoning and attached screenshots from the design reference to show where I had drawn the inference. Since the files showed the area both with and without transparency, I followed up with the designer directly. They wanted the background to stay opaque for now, so I reverted the change and updated the pull request screenshots.
 
@@ -207,7 +207,7 @@ The merged pull request ended up adding **eight lines across two files**. Lookin
 
 I had used AI to help navigate unfamiliar code, checked my understanding through small experiments, replaced an existing component with a prototype, and discussed a visual difference with the design team. Although the prototype was not the final implementation, it was what let us evaluate the original direction and decide how to proceed.
 
-The task also shaped how I wanted to use AI in an unfamiliar project. It helped me find relevant code and form an initial understanding, but changing the button's color, running the app, and talking through the implementation with my mentor were what let me _verify_ that understanding.
+The task also shaped how I wanted to use AI in an unfamiliar project. It helped me find relevant code and form an initial understanding, but changing the button’s color, running the app, and talking through the implementation with my mentor were what let me _verify_ that understanding.
 
 ## Fixing the Language Settings Layout
 
@@ -224,15 +224,15 @@ After looking at the layout, I found **three separate problems** behind that one
 
 | Fix                                  | Problem                                                                 | Role                               |
 | ------------------------------------ | ----------------------------------------------------------------------- | ---------------------------------- |
-| Remove the 44-point width constraint | The iOS 26 switch needed more room than the cell reserved               | Correct the switch's layout size   |
+| Remove the 44-point width constraint | The iOS 26 switch needed more room than the cell reserved               | Correct the switch’s layout size   |
 | Use the shared 16-point padding      | This row used a different margin from comparable settings rows          | Put the whole row on the same grid |
-| Add the 4-point trailing adjustment  | The switch's scale transform created invisible space around its artwork | Align the switch's visible edge    |
+| Add the 4-point trailing adjustment  | The switch’s scale transform created invisible space around its artwork | Align the switch’s visible edge    |
 
-All three live in **Auto Layout**, UIKit's layout system. A constraint relates the position or size of one view to another. Auto Layout uses those constraints to reserve a rectangle for each view, but the artwork drawn inside that rectangle can still be smaller or larger. That difference between layout space and visible artwork caused two of the three problems.
+All three live in **Auto Layout**, UIKit’s layout system. A constraint relates the position or size of one view to another. Auto Layout uses those constraints to reserve a rectangle for each view, but the artwork drawn inside that rectangle can still be smaller or larger. That difference between layout space and visible artwork caused two of the three problems.
 
 ### 1. Letting the Switch Use Its Own Width
 
-A control's **intrinsic size** is the size it reports it would naturally like to be. In the builds I measured, the switch changed from **51 × 31** points in the previous design to **63 × 28** points with the iOS 26 design enabled.
+A control’s **intrinsic size** is the size it reports it would naturally like to be. In the builds I measured, the switch changed from **51 × 31** points in the previous design to **63 × 28** points with the iOS 26 design enabled.
 
 <figure style="margin: 1.5rem 0;">
   <img src="/media/line-internship/language-settings-designs.png" alt="The language settings screen with the new design disabled and enabled" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
@@ -254,11 +254,11 @@ Removing those three lines fixed the iOS 26 regression. On its own, however, it 
 
 ### 2. Putting the Row on the Standard Grid
 
-The row was pinned to `layoutMarginsGuide`, which produced a **20-point** margin on my test device. The comparable settings cells I inspected used the app's shared **16-point** horizontal padding instead. That explained why both the language names and the controls in this screen began further inward.
+The row was pinned to `layoutMarginsGuide`, which produced a **20-point** margin on my test device. The comparable settings cells I inspected used the app’s shared **16-point** horizontal padding instead. That explained why both the language names and the controls in this screen began further inward.
 
 Replacing the system-provided margin with the shared padding moved the whole row onto the same grid as the surrounding settings screens. Unlike the switch-width problem, this inconsistency existed before iOS 26.
 
-### 3. Compensating for the Switch's Transform
+### 3. Compensating for the Switch’s Transform
 
 One final difference remained. The switch component used by these rows is drawn with a **0.76 scale transform**. Auto Layout calculates its position using the full, untransformed size, so it still reserves 63 points even though the visible artwork is only $63 \times 0.76 = 47.88$ points wide. Because that artwork is centered, it leaves **7.56 points** of invisible space on each side:
 
@@ -266,9 +266,9 @@ $$
 \frac{63 - 47.88}{2} = 7.56 \text{ pt}
 $$
 
-The switch is the last item in the row's horizontal stack view, so its untransformed trailing edge lines up with the row's trailing edge. Moving the row's `trailingAnchor` therefore moves the entire switch without changing its width.
+The switch is the last item in the row’s horizontal stack view, so its untransformed trailing edge lines up with the row’s trailing edge. Moving the row’s `trailingAnchor` therefore moves the entire switch without changing its width.
 
-Comparable switch rows already applied a **4-point** outward adjustment for this scaled component, so I reused the same value. The transform still leaves 7.56 points of empty space inside the switch's layout rectangle. The adjustment simply moves that rectangle 4 points outward, leaving the visible artwork about **3.56 points inside the normal 16-point margin line**:
+Comparable switch rows already applied a **4-point** outward adjustment for this scaled component, so I reused the same value. The transform still leaves 7.56 points of empty space inside the switch’s layout rectangle. The adjustment simply moves that rectangle 4 points outward, leaving the visible artwork about **3.56 points inside the normal 16-point margin line**:
 
 $$
 7.56 - 4 = 3.56 \text{ pt}
@@ -306,7 +306,7 @@ $0.trailingAnchor.constraint(
 ),
 ```
 
-Put differently, the three changes corrected three different things: the **44-point removal** fixed the switch's layout size, the **16-point padding** aligned the row, and the **4-point adjustment** aligned the visible switch artwork.
+Put differently, the three changes corrected three different things: the **44-point removal** fixed the switch’s layout size, the **16-point padding** aligned the row, and the **4-point adjustment** aligned the visible switch artwork.
 
 <figure style="margin: 1.5rem 0;">
   <img src="/media/line-internship/language-settings-alignment-fix.png" alt="The language settings screen before and after the alignment fix" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
@@ -322,7 +322,7 @@ The pull request described each of the three issues separately, along with the r
 I raised two things for QA:
 
 - **Varying environments.** The previous margin came from the system and could vary by device or layout configuration, so a range of screen widths needed checking.
-- **A known trade-off.** The 4-point adjustment is applied to the row's stack view, not to the switch itself, and a row can end with a download button or a loading spinner instead of a switch. Those two shift slightly to the right along with it.
+- **A known trade-off.** The 4-point adjustment is applied to the row’s stack view, not to the switch itself, and a row can end with a download button or a loading spinner instead of a switch. Those two shift slightly to the right along with it.
 
 ### What the Second Task Taught Me
 
@@ -330,17 +330,17 @@ What I found interesting about this task was that the bug report described **one
 
 The other thing I took from it is how much the existing code had already told me. The 4-point adjustment and the 16-point padding were both conventions I found by reading how _other_ settings cells solved the same problem, not values I worked out myself. Like the first task, this one went through review and was merged.
 
-## Rewriting a Screen's Footer in SwiftUI
+## Rewriting a Screen’s Footer in SwiftUI
 
-My last task was the largest, and it moved me to a different area of the division. The **coin history** screen shows a user's coin balance at the top and, below it, two tabs of history: **Purchase history** and **Coin usage history**. Each tab is a list, and the area underneath the list changes depending on the situation. It can be a loading spinner, a button that fetches an older range of entries, a short message when there is nothing to show, that message paired with the same button, or the message paired with a different button that sends the user off to buy coins.
+My last task was the largest, and it moved me to a different area of the division. The **coin history** screen shows a user’s coin balance at the top and, below it, two tabs of history: **Purchase history** and **Coin usage history**. Each tab is a list, and the area underneath the list changes depending on the situation. It can be a loading spinner, a button that fetches an older range of entries, a short message when there is nothing to show, that message paired with the same button, or the message paired with a different button that sends the user off to buy coins.
 
 That area was written in UIKit, and my task was to rewrite it in **SwiftUI**. The screen around it stays in UIKit, so this was not only about writing a SwiftUI view but about connecting one back _into_ a UIKit screen. My own experience was mostly with SwiftUI, so a good part of this task was learning the UIKit side well enough to make the two meet.
 
 ### What I Had to Learn First
 
-Five pieces of UIKit stood between me and the rewrite, all of them things SwiftUI had let me ignore: how UIKit splits a view's job in two, what a view is made of, how a view reports its own size, why cells are recycled, and how this screen was already reacting to state.
+Five pieces of UIKit stood between me and the rewrite, all of them things SwiftUI had let me ignore: how UIKit splits a view’s job in two, what a view is made of, how a view reports its own size, why cells are recycled, and how this screen was already reacting to state.
 
-#### From SwiftUI's View Declaration to UIKit's View and Controller
+#### From SwiftUI’s View Declaration to UIKit’s View and Controller
 
 In SwiftUI, a `View` declares what the interface should look like for its current inputs. When observed state changes, the framework evaluates that declaration again. In this UIKit screen, presentation and coordination were split across two types:
 
@@ -419,13 +419,13 @@ tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
 let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 ```
 
-The consequence is that a dequeued cell may have been showing something completely different a moment ago, so you are responsible for **fully configuring it every time**. You cannot assume it is blank. The row's data is not stored in the cell either. It lives in the ViewModel, and the cell is only a temporary container for displaying it.
+The consequence is that a dequeued cell may have been showing something completely different a moment ago, so you are responsible for **fully configuring it every time**. You cannot assume it is blank. The row’s data is not stored in the cell either. It lives in the ViewModel, and the cell is only a temporary container for displaying it.
 
 #### How the Screen Already Reacted to State
 
 The screen was already wired up with **Combine** before I touched it. Understanding that wiring was important before getting started.
 
-**Combine** is Apple's framework for reacting to values that change over time. Instead of asking _"what is the value right now?"_, you subscribe to a publisher and get notified automatically whenever it changes.
+**Combine** is Apple’s framework for reacting to values that change over time. Instead of asking _"what is the value right now?"_, you subscribe to a publisher and get notified automatically whenever it changes.
 
 `@Published` turns a property into two things at once:
 
@@ -436,7 +436,7 @@ viewModel.viewState   // the current value, read it directly
 viewModel.$viewState  // the publisher, subscribe to it for changes
 ```
 
-The `$` prefix reaches the property wrapper's `projectedValue`, which for `@Published` is that publisher. A new subscriber receives whatever the property holds at the moment it subscribes, then every change after that.
+The `$` prefix reaches the property wrapper’s `projectedValue`, which for `@Published` is that publisher. A new subscriber receives whatever the property holds at the moment it subscribes, then every change after that.
 
 Combine models data flow like plumbing. A **publisher** is the source, producing values over time. **Operators** in the middle transform or filter them. A **sink** is the endpoint that consumes them. Data flows in one direction:
 
@@ -535,12 +535,12 @@ My decision was to put every _visible_ case in the `tableFooterView` slot instea
 
 ### Bridging SwiftUI into UIKit
 
-UIKit's view hierarchy is made of `UIView` objects, and a SwiftUI `View` is not one: it is a _value_ describing what should be drawn. A table view therefore cannot hold a SwiftUI view directly. That is where [`UIHostingController`](https://developer.apple.com/documentation/swiftui/uihostingcontroller) comes in.
+UIKit’s view hierarchy is made of `UIView` objects, and a SwiftUI `View` is not one: it is a _value_ describing what should be drawn. A table view therefore cannot hold a SwiftUI view directly. That is where [`UIHostingController`](https://developer.apple.com/documentation/swiftui/uihostingcontroller) comes in.
 
 In UIKit, a `UIViewController` manages a screen, or a self-contained piece of one. Not every view needs its own: the footer I was replacing was a bare `UIView` with no controller behind it. For this footer I used `UIHostingController`, a view controller designed to manage a SwiftUI hierarchy and expose it through a UIKit `view`.
 
 - A UIKit view can stand on its own or be managed by a `UIViewController`.
-- The hosted SwiftUI footer is managed by a `UIHostingController`, and the table receives that controller's `UIView`.
+- The hosted SwiftUI footer is managed by a `UIHostingController`, and the table receives that controller’s `UIView`.
 
 Same role, different contents. It is a bridge:
 
@@ -558,7 +558,7 @@ let hostingController = UIHostingController(rootView: MySwiftUIView(...))
 
 #### View Controller Containment
 
-Embedding a `UIHostingController` means nesting one view controller inside another, and UIKit needs to be told about that relationship _explicitly_. Formal containment lets UIKit coordinate appearance transitions, trait changes, rotation, and other container behavior. Merely inserting the child's view is not enough.
+Embedding a `UIHostingController` means nesting one view controller inside another, and UIKit needs to be told about that relationship _explicitly_. Formal containment lets UIKit coordinate appearance transitions, trait changes, rotation, and other container behavior. Merely inserting the child’s view is not enough.
 
 The sequence is to establish containment, place and size the view, then complete the move:
 
@@ -574,7 +574,7 @@ hostingController.view.removeFromSuperview()
 hostingController.removeFromParent()
 ```
 
-I only needed the _adding_ half of that sequence. One hosting controller is created when the screen loads, and it lives as long as the screen does, so I attach it once and never detach it. The controller stays and only its **view** moves in and out of the table's footer slot:
+I only needed the _adding_ half of that sequence. One hosting controller is created when the screen loads, and it lives as long as the screen does, so I attach it once and never detach it. The controller stays and only its **view** moves in and out of the table’s footer slot:
 
 ```swift
 // something to show: same controller, a new SwiftUI view
@@ -585,7 +585,7 @@ tableView.tableFooterView = hostingController.view
 tableView.tableFooterView = nil
 ```
 
-Assigning a new `rootView` hands the same controller different SwiftUI content to draw. Assigning or clearing `tableFooterView` controls whether that content is visible. If the new state changes the footer's height, its view also has to be measured and its frame height updated.
+Assigning a new `rootView` hands the same controller different SwiftUI content to draw. Assigning or clearing `tableFooterView` controls whether that content is visible. If the new state changes the footer’s height, its view also has to be measured and its frame height updated.
 
 ### Keeping the SwiftUI View Passive
 

@@ -1,6 +1,6 @@
 ---
-title: The XOR Swap
-date: 02-05-2024
+title: "The XOR Swap"
+date: 2024-02-05
 description: "A mathematical and practical explanation of swapping two values with XOR, without allocating a temporary variable."
 summary: 'A mathematical and practical explanation of swapping two values with $\operatorname{XOR}$, without allocating a temporary variable.'
 tags:
@@ -100,4 +100,4 @@ x_2 &= 010
 \end{align*}
 $$
 
-Thus, after applying the $\text{XOR}$ swap algorithm, $x_0$ (originally $101$) has been swapped with $y_0$ (originally $010$), demonstrating the algorithm's effectiveness with a practical example.
+Thus, after applying the $\text{XOR}$ swap algorithm, $x_0$ (originally $101$) has been swapped with $y_0$ (originally $010$), demonstrating the algorithm’s effectiveness with a practical example.
