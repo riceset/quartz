@@ -3,29 +3,18 @@ const storedTheme = localStorage.getItem("theme")
 const currentTheme: "light" | "dark" =
   storedTheme === "light" || storedTheme === "dark" ? storedTheme : userPref
 
-// Safari's surrounding UI is controlled by the browser, not transparent page CSS.
-// Keep its tint aligned with the actual page background, including manual theme changes.
-// This script runs before DOM ready: only touch <head> and <html>, never document.body.
+// Keep Safari's requested chrome tint in sync with the site theme. The script runs
+// before DOM ready, so only access <html> and the already-parsed <head>.
+// Safari ultimately controls toolbar rendering; the page canvas uses var(--light).
 const themeColors = { light: "#faf8f8", dark: "#161618" }
 
 const applyTheme = (theme: "light" | "dark") => {
   document.documentElement.setAttribute("saved-theme", theme)
   document.documentElement.style.colorScheme = theme
 
-  // Replace OS-specific theme-color tags with one authoritative tag.
-  // Re-query after Quartz SPA navigation, which can replace the page head.
-  const tags = [...document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')]
-  const primary = tags[0]
-  if (primary) {
-    primary.removeAttribute("media")
-    primary.content = themeColors[theme]
-    for (const duplicate of tags.slice(1)) duplicate.remove()
-  } else {
-    const tag = document.createElement("meta")
-    tag.name = "theme-color"
-    tag.content = themeColors[theme]
-    document.head.appendChild(tag)
-  }
+  // Quartz SPA navigation can replace <head>, so always resolve the current tag.
+  const tag = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
+  if (tag) tag.content = themeColors[theme]
 }
 
 applyTheme(currentTheme)
@@ -49,9 +38,10 @@ document.addEventListener("nav", () => {
   }
 
   const themeChange = (e: MediaQueryListEvent) => {
+    // A manual selection takes priority; follow the OS only without an override.
+    if (localStorage.getItem("theme") === "light" || localStorage.getItem("theme") === "dark") return
     const newTheme = e.matches ? "dark" : "light"
     applyTheme(newTheme)
-    localStorage.setItem("theme", newTheme)
     emitThemeChangeEvent(newTheme)
   }
 
