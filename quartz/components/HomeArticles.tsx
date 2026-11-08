@@ -140,7 +140,6 @@ export default (() => {
       : allArticles
     const featuredTitle = featuredArticle?.frontmatter?.title ?? "Untitled"
     const featuredSummary = featuredArticle ? getSummary(featuredArticle, featuredTitle) : ""
-    const featuredDate = featuredArticle?.dates ? getDate(cfg, featuredArticle) : null
 
     if (allArticles.length === 0) return null
     const graph = graphPreview(allArticles)
@@ -180,7 +179,6 @@ export default (() => {
           </button>
         </header>
 
-
         {featuredArticle && (
           <article class="article-featured">
             {featuredArticle.firstImage && (
@@ -191,23 +189,17 @@ export default (() => {
             <div class="article-featured-copy">
               <p class="article-featured-meta">
                 <span>Featured</span>
-                <span aria-hidden="true" class="article-featured-divider">·</span>
+                <span aria-hidden="true" class="article-featured-divider">
+                  ·
+                </span>
                 <span class="article-featured-brand">
                   <AppleLogo />
                   Apple
                 </span>
               </p>
               <h2 class="article-featured-title">
-                <a href={resolveRelative(fileData.slug!, featuredArticle.slug!)}>
-                  {featuredTitle}
-                  <span aria-hidden="true" class="article-title-arrow">↗</span>
-                </a>
+                <a href={resolveRelative(fileData.slug!, featuredArticle.slug!)}>{featuredTitle}</a>
               </h2>
-              {featuredDate && (
-                <time class="article-featured-date" datetime={featuredDate.toISOString()}>
-                  {formatDate(featuredDate, "en-US")}
-                </time>
-              )}
               {featuredSummary && <Excerpt summary={featuredSummary} />}
             </div>
           </article>
@@ -222,17 +214,14 @@ export default (() => {
             return (
               <li class="article-index-item">
                 <article class="article-entry">
-                  <p class="article-entry-date">
+                  <p class="article-entry-meta">
                     {date && <time datetime={date.toISOString()}>{formatDate(date, "en-US")}</time>}
+                    {tag && <span class="article-entry-tag">{tag}</span>}
                   </p>
                   <div class="article-entry-body">
                     <h3 class="article-entry-title">
-                      <a href={href}>
-                        {title}
-                        <span class="article-title-arrow" aria-hidden="true">↗</span>
-                      </a>
+                      <a href={href}>{title}</a>
                     </h3>
-                    {tag && <p class="article-entry-tag">{tag}</p>}
                     {summary && <Excerpt summary={summary} />}
                   </div>
                 </article>

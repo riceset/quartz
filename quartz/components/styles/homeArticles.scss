@@ -1,5 +1,7 @@
 // A typographic writing index, following the visual language of About.
-.home-articles { margin-top: 3rem; }
+.home-articles {
+  margin-top: 3rem;
+}
 
 .home-articles-header {
   display: flex;
@@ -51,70 +53,101 @@
     stroke: var(--gray);
     stroke-width: 1;
   }
-  .article-graph:hover & line { stroke: var(--tertiary); }
-  .article-graph:hover & circle:not(.article-graph-tag) { fill: var(--secondary); }
+  .article-graph:hover & line {
+    stroke: var(--tertiary);
+  }
+  .article-graph:hover & circle:not(.article-graph-tag) {
+    fill: var(--secondary);
+  }
 }
 
 // Lead story mirrors About's split image/copy opening, without a card.
 .article-featured {
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  align-items: center;
-  gap: 2rem;
+  align-items: stretch;
+  gap: 2.5rem;
   margin-bottom: 3.5rem;
 }
+// The photo spans the copy column from the meta line to the end of the summary;
+// it is taken out of flow so the text alone sets the row height.
 .article-featured-image {
-  aspect-ratio: 4 / 3;
+  position: relative;
   display: block;
+  min-height: 14rem;
   margin: 0;
   overflow: hidden;
   border-radius: 8px;
   background: var(--lightgray);
+  // Override the global img margin, which pushed the photo down inside its frame.
   & img {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
     height: 100%;
+    margin: 0;
     object-fit: cover;
     border-radius: 0;
   }
 }
-.article-featured-copy { min-width: 0; }
+.article-featured-copy {
+  min-width: 0;
+}
+// Metadata keeps the label voice of the former article cards.
+%article-meta {
+  color: color-mix(in srgb, var(--darkgray) 72%, var(--gray) 28%);
+  font-family: var(--headerFont);
+  font-size: 0.68rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.065em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  & time {
+    color: inherit;
+  }
+}
 .article-featured-meta {
+  @extend %article-meta;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.45rem;
   margin: 0 0 0.8rem;
-  color: var(--gray);
-  font-family: var(--codeFont);
-  font-size: 0.68rem;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  line-height: 1.4;
-  text-transform: uppercase;
 }
-.article-featured-divider { color: var(--lightgray); }
+.article-featured-divider {
+  color: var(--lightgray);
+}
 .article-featured-brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.28em;
   color: inherit;
 }
+// Matched to the cap height of the label, raised slightly to sit level with "Apple".
 .article-featured-meta-logo {
-  width: 0.65em;
-  height: 0.8em;
+  position: relative;
+  top: -0.07em;
+  display: inline-block;
+  width: 0.67em;
+  height: 0.82em;
+  overflow: visible;
   flex: none;
 }
 
 // Same serif voice as the About headings and entries.
-.article-featured-title, .article-entry-title {
+.article-featured-title,
+.article-entry-title {
   margin: 0;
   color: var(--dark);
   font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
   font-weight: 400;
   letter-spacing: -0.015em;
   text-wrap: balance;
-  & a, & a:visited, & a:hover {
+  & a,
+  & a:visited,
+  & a:hover {
     color: inherit;
     font-weight: inherit;
     text-decoration: none;
@@ -131,31 +164,23 @@
   font-size: clamp(1.95rem, 3.7vw, 2.35rem);
   line-height: 1.05;
 }
-.article-featured-date {
-  display: block;
-  margin-top: 0.9rem;
-  color: var(--gray);
-  font-family: var(--codeFont);
-  font-size: 0.72rem;
-  font-variant-numeric: tabular-nums;
-  line-height: 1.4;
-}
-.article-title-arrow {
-  display: inline-block;
-  margin-left: 0.35em;
-  color: var(--gray);
-  font-family: var(--bodyFont);
-  font-size: 0.5em;
-  font-style: normal;
-  font-weight: 400;
-  vertical-align: 0.2em;
-  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), color 180ms ease;
-}
+// Titles carry no arrow; on pointer devices an underline fades in on hover.
 @media (hover: hover) {
-  .article-featured-title a:hover .article-title-arrow,
-  .article-entry-title a:hover .article-title-arrow {
-    color: var(--dark);
-    transform: translate(0.12em, -0.12em);
+  .article-featured-title a,
+  .article-entry-title a {
+    text-decoration-line: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 0.2px;
+    text-underline-offset: 0.12em;
+    transition: text-decoration-color 180ms ease;
+  }
+  // Restated because the base `a:hover` shorthand resets thickness to auto.
+  .article-featured-title a:hover,
+  .article-entry-title a:hover {
+    text-decoration-line: underline;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 0.2px;
+    text-underline-offset: 0.12em;
   }
 }
 .article-excerpt {
@@ -175,14 +200,18 @@
     white-space: normal;
     overflow-wrap: anywhere;
   }
-  & .katex { font-size: 1em; }
+  & .katex {
+    font-size: 1em;
+  }
   & a {
     color: var(--dark);
     text-decoration: underline;
     text-underline-offset: 0.15em;
   }
 }
-.article-featured .article-excerpt { margin-top: 0.75rem; }
+.article-featured .article-excerpt {
+  margin-top: 1rem;
+}
 
 // Like the About timeline: an aligned date gutter and open text rows.
 .article-index {
@@ -194,58 +223,85 @@
   border-top: 1px solid var(--lightgray);
   list-style: none;
 }
-.article-index-item { min-width: 0; margin: 0; padding: 0; }
+.article-index-item {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
 .article-entry {
   display: grid;
   grid-template-columns: 8.5rem minmax(0, 1fr);
   column-gap: 1.5rem;
-  align-items: start;
+  align-items: baseline;
 }
-.article-entry-date {
+// Date and category share the gutter, in the same label style as the featured meta.
+.article-entry-meta {
+  @extend %article-meta;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
   margin: 0;
-  padding-top: 0.4rem;
-  color: var(--gray);
-  font-family: var(--codeFont);
-  font-size: 0.72rem;
-  font-variant-numeric: tabular-nums;
-  line-height: 1.4;
-  & time { color: inherit; }
 }
-.article-entry-body { min-width: 0; }
+.article-entry-tag {
+  color: var(--gray);
+}
+.article-entry-body {
+  min-width: 0;
+}
 .article-entry-title {
   font-size: 1.5rem;
   line-height: 1.14;
 }
-.article-entry-tag {
-  margin: 0.4rem 0 0;
-  color: var(--gray);
-  font-family: var(--codeFont);
-  font-size: 0.7rem;
-  line-height: 1.4;
-  text-transform: lowercase;
-}
 
 @media all and (max-width: 620px) {
-  .home-articles { margin-top: 2.5rem; }
+  .home-articles {
+    margin-top: 2.5rem;
+  }
   .article-featured {
     grid-template-columns: 1fr;
     align-items: start;
     gap: 1.5rem;
     margin-bottom: 3rem;
   }
-  .article-featured-title { font-size: 2rem; }
-  .article-index { gap: 2rem; padding-top: 2rem; }
-  // On phones the title leads, with metadata below (same as About).
-  .article-entry { display: flex; flex-direction: column; }
-  .article-entry-body { display: contents; }
-  .article-entry-title { order: 1; font-size: 1.5rem; }
-  .article-entry-tag { order: 2; }
-  .article-entry-date { order: 3; padding: 0; margin-top: 0.25rem; }
-  .article-entry .article-excerpt { order: 4; margin-top: 0.7rem; }
+  .article-featured-image {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+  .article-featured-meta-logo {
+    top: 0;
+  }
+  .article-featured-title {
+    font-size: 2rem;
+  }
+  .article-index {
+    gap: 2rem;
+    padding-top: 2rem;
+  }
+  // On phones the metadata becomes a single line above the title.
+  .article-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .article-entry-meta {
+    flex-direction: row;
+    gap: 0.45rem;
+    & time + .article-entry-tag::before {
+      content: "·";
+      margin-right: 0.45rem;
+      color: var(--lightgray);
+    }
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .article-title-arrow { transition: none; }
+  .article-featured-title a,
+  .article-entry-title a {
+    transition: none;
+  }
   .article-graph-preview {
-    & line, & circle { transition: none; }
+    & line,
+    & circle {
+      transition: none;
+    }
   }
 }
