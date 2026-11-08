@@ -6,6 +6,14 @@ const languageTags: Record<string, string> = {
   zh: "zh-Hant",
   pt: "pt-BR",
 }
+// The notice follows the visitor's saved preference even though articles stay in English.
+const articleLanguageNotice: Record<string, string> = {
+  en: "Articles are available in English only.",
+  ja: "記事は英語でのみ公開しています。",
+  zh: "文章僅提供英文版本。",
+  pt: "Os artigos estão disponíveis apenas em inglês.",
+}
+
 const preferredLang = () => {
   const stored = localStorage.getItem("lang")
   return stored && siteLangs.includes(stored) ? stored : "en"
@@ -43,6 +51,12 @@ const applyLang = (preference: string) => {
       : "Language / 言語 / 語言 / Idioma"
     trigger.setAttribute("aria-label", label)
     trigger.setAttribute("title", label)
+
+    const notice = picker.querySelector<HTMLElement>(".lang-picker-note")
+    if (notice) {
+      notice.textContent = articleLanguageNotice[preference] ?? articleLanguageNotice.en
+      notice.lang = languageTags[preference] ?? "en"
+    }
   }
 
   // Attributes set with localizedAttrs (see components/localized.tsx).

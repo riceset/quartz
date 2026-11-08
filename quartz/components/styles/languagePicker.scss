@@ -7,7 +7,6 @@
 // Sized like the theme toggle so the two read as one pair of controls; the code is set in
 // mono to match the site's annotations (dates, "Tokyo · JST").
 .lang-picker-trigger {
-  position: relative;
   display: inline-grid;
   place-items: center;
   width: var(--toolbar-control-size, 2rem);
@@ -36,22 +35,6 @@
     outline: 2px solid var(--tertiary);
     outline-offset: 2px;
   }
-}
-
-// A small lock accompanies EN without widening the pill or desktop rail.
-.lang-picker-lock {
-  position: absolute;
-  top: -0.16rem;
-  right: -0.2rem;
-  display: none;
-  width: 0.66rem;
-  height: 0.66rem;
-  color: var(--gray);
-  pointer-events: none;
-}
-
-:root[data-english-only="true"] .lang-picker-lock {
-  display: block;
 }
 
 // Frosted glass, matching the desktop rail. Opens below and right-aligned by default
