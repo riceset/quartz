@@ -60,7 +60,7 @@ const experience: Entry[] = [
     articleUrl: "/LINE-Internship",
     description: {
       en: "Updated LINE’s sticker and emoji screens in UIKit for the Liquid Glass redesign and fixed iOS 26 layout issues in settings, aligning on styling with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
-      ja: "LINEのスタンプ・絵文字画面をLiquid Glassに合わせてUIKitで改修しました。iOS 26で崩れていた設定画面のレイアウトも修正し、見た目はデザイナーと日本語・英語で相談しながら調整しました。また、コイン履歴のフッターをUIKitからSwiftUIに移すプロトタイプも作りました。",
+      ja: "LINEのスタンプ・絵文字画面をLiquid Glassに合わせてUIKitで改修しました。iOS 26で崩れていた設定画面のレイアウトも修正し、デザインは、日本語と英語でデザイナーと相談しながら調整しました。また、コイン履歴のフッターをUIKitからSwiftUIに移すプロトタイプも作りました。",
       zh: "配合 Liquid Glass 改版，用 UIKit 更新了 LINE 的貼圖和表情貼畫面，也修正了設定頁在 iOS 26 上跑版的問題，過程中用英文和日文跟設計師討論樣式。另外還做了一個原型，把代幣紀錄的頁尾從 UIKit 改寫成 SwiftUI。",
       pt: "Atualizei as telas de stickers e emojis do LINE em UIKit para o novo visual Liquid Glass e corrigi problemas de layout nas configurações do iOS 26. Alinhei os detalhes visuais com designers em inglês e japonês. Também criei um protótipo para migrar o rodapé do histórico de moedas de UIKit para SwiftUI.",
     },
@@ -121,7 +121,7 @@ const experience: Entry[] = [
     articleUrl: "/MIXI-Internship",
     description: {
       en: "Added country-based access controls to an AI feature in FamilyAlbum that recognizes family members and suggests photos for albums, keeping it to legally approved regions with cached location checks covered by Swift Testing. Also replaced PanModal with native iOS sheets for iOS 26.",
-      ja: "「家族アルバム みてね」で、家族を認識してアルバム用の写真を提案するAI機能に、国ごとの利用制限を追加しました。法律上、提供できる地域だけで使えるようにし、キャッシュした位置情報を使う判定はSwift Testingでテストしました。また、iOS 26に合わせてPanModalを標準のシートに置き換えました。",
+      ja: "「家族アルバム みてね」で、家族を認識してアルバム用の写真を提案するAI機能に、国ごとの利用制限を追加しました。法律上、提供できる地域だけで使えるようにし、キャッシュを使った地域判定はSwift Testingでテストしました。また、iOS 26に合わせてPanModalを標準のシートに置き換えました。",
       zh: "FamilyAlbum 有一項會辨識家人、推薦適合放進相簿照片的 AI 功能，我為它加上依國家限制使用的機制，只在法規允許的地區開放，並用 Swift Testing 測試快取的定位判斷。另外也配合 iOS 26，把 PanModal 換成系統原生的 sheet。",
       pt: "No FamilyAlbum, implementei restrições por país em um recurso de IA que reconhece familiares e sugere fotos para álbuns, permitindo seu uso apenas onde a legislação autoriza. Usei Swift Testing para testar as verificações de localização armazenadas em cache. Também substituí o PanModal pelas sheets nativas do iOS 26.",
     },
@@ -311,7 +311,7 @@ const talks: Entry[] = [
       {
         label: {
           en: "Watch the tutorial on YouTube",
-          ja: "YouTubeでチュートリアルを見る",
+          ja: "YouTubeで解説動画を見る",
           zh: "在 YouTube 觀看教學",
           pt: "Assistir ao tutorial no YouTube",
         },
