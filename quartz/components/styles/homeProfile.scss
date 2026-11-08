@@ -70,6 +70,12 @@ $about-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   letter-spacing: -0.01em;
   color: var(--dark);
   text-wrap: balance;
+
+  // Instrument Serif has no CJK, so Chinese falls to a Ming-style serif with the same
+  // high-contrast stroke; Latin words in the title stay in Instrument Serif.
+  &:lang(zh-Hant) {
+    font-family: "Instrument Serif", "Noto Serif TC", serif;
+  }
 }
 
 .about-entry-org {
@@ -77,6 +83,11 @@ $about-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   font-size: 0.85rem;
   line-height: 1.5;
   color: var(--darkgray);
+
+  // Poppins has no Hangul; Noto Sans KR's round, even strokes sit closest to it.
+  &:lang(ko) {
+    font-family: Poppins, "Noto Sans KR", sans-serif;
+  }
 }
 
 .about-entry-sep {
