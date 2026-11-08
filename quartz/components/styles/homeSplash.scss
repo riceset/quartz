@@ -240,3 +240,12 @@ body[data-slug="index"] {
     transition: none;
   }
 }
+
+// Instrument Serif has no CJK glyphs. Load a consistent Traditional Chinese
+// serif instead of relying on different macOS/iOS fallback fonts.
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400&display=swap");
+
+.splash-name [lang="zh-Hant"],
+.splash-nav-link [lang="zh-Hant"] {
+  font-family: "Noto Serif TC", "Songti TC", "Songti SC", serif;
+}
