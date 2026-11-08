@@ -57,13 +57,6 @@ article .katex-display {
   color: var(--dark);
 }
 
-// Article pages only have an English version. Muting EN signals that the language
-// is fixed while leaving the control interactive so the localized explanation
-// and disabled language options remain discoverable.
-:root[data-english-only="true"] body .page > #quartz-body .sidebar.left .lang-picker-trigger {
-  color: var(--gray);
-}
-
 // --------------------------------------------------------------------------
 // Mobile floating bar: logo left, theme toggle right
 // --------------------------------------------------------------------------
