@@ -17,6 +17,16 @@ body[data-slug="LINE-Internship"] article {
   }
 }
 
+// Language picker: translated copy renders once per language (see components/localized.tsx);
+// show only the chosen one. English is the default, including before scripts run.
+:root:not([data-lang="ja"]):not([data-lang="zh"]):not([data-lang="pt"])
+  [data-text-lang]:not([data-text-lang="en"]),
+:root[data-lang="ja"] [data-text-lang]:not([data-text-lang="ja"]),
+:root[data-lang="zh"] [data-text-lang]:not([data-text-lang="zh"]),
+:root[data-lang="pt"] [data-text-lang]:not([data-text-lang="pt"]) {
+  display: none !important;
+}
+
 body[data-slug="LINE-Internship"] article code.mermaid > svg,
 body[data-slug="Sansan-Internship"] article code.mermaid > svg {
   justify-self: center;
@@ -83,9 +93,12 @@ article .katex-display {
       display: none !important;
     }
 
-    // Push the theme-toggle to the right edge of the bar.
-    & .darkmode {
+    // Push the language picker and theme toggle to the right edge of the bar. The
+    // negative margin offsets the moon/sun's built-in inset so the gap between the two
+    // glyphs reads like the rest of the bar's spacing.
+    & .lang-picker {
       margin-left: auto;
+      margin-right: -0.25rem;
     }
   }
 }
@@ -191,12 +204,15 @@ article .katex-display {
         width: auto;
       }
 
-      // Theme toggle joins the bottom cluster (sits above the social icons)
-      // by absorbing the remaining vertical space above it.
+      // The language picker leads the bottom cluster (above the theme toggle and
+      // social icons) by absorbing the remaining vertical space above it.
+      & .lang-picker {
+        margin-top: auto;
+      }
+
       & .darkmode {
         width: 1.75rem;
         height: 1.75rem;
-        margin-top: auto;
         color: var(--dark);
         transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
 
@@ -210,8 +226,36 @@ article .katex-display {
         }
       }
 
-      // Socials follow the theme toggle (which carries the margin-top: auto
-      // that pushes the whole cluster to the bottom). The ::before draws a
+      // Sized like the theme toggle below it.
+      & .lang-picker-trigger {
+        width: 1.75rem;
+        height: 1.75rem;
+        color: var(--dark);
+        font-size: 1.03rem;
+        transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+
+      // In the rail the menu opens beside it, bottom-aligned with the trigger, clear of
+      // the rail's edge.
+      & .lang-picker-menu {
+        top: auto;
+        right: auto;
+        bottom: -0.3rem;
+        left: calc(100% + 1.6rem);
+        transform-origin: bottom left;
+        transform: scale(0.96) translateX(-4px);
+      }
+
+      & .lang-picker[data-open] > .lang-picker-menu {
+        transform: none;
+      }
+
+      // Socials follow the theme toggle (the language picker above it carries
+      // the margin-top: auto that pushes the whole cluster to the bottom). The ::before draws a
       // thin divider between the theme toggle and the social icons.
       & .rail-socials {
         display: flex;

@@ -49,6 +49,22 @@ body[data-slug="index"] {
   }
 }
 
+.splash-controls {
+  display: flex;
+  align-items: center;
+
+  & .lang-picker-trigger {
+    width: 2rem;
+    height: 2rem;
+    color: var(--darkgray);
+    font-size: 0.74rem;
+
+    &:hover {
+      color: var(--dark);
+    }
+  }
+}
+
 // Mono annotation, like the date and location labels elsewhere on the site.
 .splash-note {
   margin: 0;
@@ -56,6 +72,23 @@ body[data-slug="index"] {
   font-size: 0.74rem;
   font-variant-numeric: tabular-nums;
   color: var(--gray);
+}
+
+// Sized to the mono text so the icon reads as part of the annotation.
+.splash-weather {
+  display: inline-flex;
+  margin-right: 0.4em;
+  vertical-align: -0.15em;
+
+  &[hidden],
+  & [hidden] {
+    display: none;
+  }
+
+  & .weather-icon {
+    width: 1.1em;
+    height: 1.1em;
+  }
 }
 
 .splash-stage {

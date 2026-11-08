@@ -289,6 +289,39 @@ document.addEventListener("nav", () => {
   tick()
   const clockTimer = window.setInterval(tick, 15_000)
 
+  // Current conditions from Open-Meteo (free, no key), mapped from WMO weather codes to
+  // the icons rendered in the markup. On failure the icon simply stays hidden.
+  const weather = splash.querySelector<HTMLElement>("[data-splash-weather]")
+  const weatherKind = (code: number, isDay: boolean): [string, string] => {
+    if (code === 0) return [isDay ? "clear" : "clear-night", "Clear"]
+    if (code <= 2) return [isDay ? "partly" : "partly-night", "Partly cloudy"]
+    if (code === 3) return ["cloudy", "Cloudy"]
+    if (code === 45 || code === 48) return ["fog", "Fog"]
+    if (code >= 51 && code <= 57) return ["drizzle", "Drizzle"]
+    if ((code >= 71 && code <= 77) || code === 85 || code === 86) return ["snow", "Snow"]
+    if (code >= 95) return ["storm", "Thunderstorm"]
+    return ["rain", "Rain"]
+  }
+  const updateWeather = async () => {
+    if (!weather) return
+    try {
+      const res = await fetch(
+        "https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&current=weather_code,is_day",
+      )
+      if (!res.ok) return
+      const { current } = await res.json()
+      const [icon, label] = weatherKind(current.weather_code, current.is_day === 1)
+      weather.querySelectorAll<SVGElement>("[data-weather-icon]").forEach((svg) => {
+        svg.toggleAttribute("hidden", svg.dataset.weatherIcon !== icon)
+      })
+      weather.setAttribute("aria-label", label)
+      weather.title = label
+      weather.hidden = false
+    } catch {}
+  }
+  updateWeather()
+  const weatherTimer = window.setInterval(updateWeather, 15 * 60_000)
+
   readColors()
   layout()
   start = performance.now()
@@ -299,6 +332,7 @@ document.addEventListener("nav", () => {
   window.addCleanup(() => {
     cancelAnimationFrame(frame)
     window.clearInterval(clockTimer)
+    window.clearInterval(weatherTimer)
     resizeObserver.disconnect()
     document.removeEventListener("themechange", onTheme)
     document.removeEventListener("visibilitychange", run)

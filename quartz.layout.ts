@@ -73,6 +73,10 @@ export const defaultContentPageLayout: PageLayout = {
       condition: (props) => props.fileData.slug !== "index",
     }),
     Component.ConditionalRender({
+      component: Component.LanguagePicker(),
+      condition: (props) => props.fileData.slug !== "index",
+    }),
+    Component.ConditionalRender({
       component: Component.Darkmode(),
       condition: (props) => props.fileData.slug !== "index",
     }),
@@ -90,6 +94,7 @@ export const defaultListPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
+    Component.LanguagePicker(),
     Component.Darkmode(),
     Component.DesktopOnly(Component.Socials()),
   ],

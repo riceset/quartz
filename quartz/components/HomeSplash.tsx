@@ -1,6 +1,9 @@
 import DarkmodeConstructor from "./Darkmode"
+import LanguagePickerConstructor from "./LanguagePicker"
+import { Localized, T } from "./localized"
 import { doodlePaths, doodleViewBox } from "./doodle"
 import { socialLinks } from "./socialIcons"
+import { WeatherIcons } from "./weatherIcons"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { concatenateResources } from "../util/resources"
 import { resolveRelative, FullSlug } from "../util/path"
@@ -9,25 +12,46 @@ import style from "./styles/homeSplash.scss"
 import script from "./scripts/homeSplash.inline"
 
 const SplashDarkmode = DarkmodeConstructor()
+const SplashLanguagePicker = LanguagePickerConstructor()
+
+const name: Localized = {
+  en: "Thiago Komeno",
+  ja: "米野チアゴ",
+  zh: "米野雅各",
+  pt: "Thiago Komeno",
+}
 
 const HomeSplash: QuartzComponent = (props: QuartzComponentProps) => {
   const section = (slug: string) => resolveRelative(props.fileData.slug!, slug as FullSlug)
-  const navLinks = [
-    { href: section("about"), label: "About" },
-    { href: section("articles"), label: "Articles" },
-    { href: "/static/Thiago-Komeno.pdf", label: "Résumé" },
-    { href: "mailto:komeno@riceset.com", label: "Contact" },
+  const navLinks: { href: string; label: Localized }[] = [
+    { href: section("about"), label: { en: "About", ja: "自己紹介", zh: "關於我", pt: "Sobre" } },
+    { href: section("articles"), label: { en: "Articles", ja: "記事", zh: "文章", pt: "Artigos" } },
+    {
+      href: "/static/Thiago-Komeno.pdf",
+      label: { en: "Résumé", ja: "履歴書", zh: "履歷", pt: "Currículo" },
+    },
+    {
+      href: "mailto:komeno@riceset.com",
+      label: { en: "Contact", ja: "連絡先", zh: "聯絡", pt: "Contato" },
+    },
   ]
 
   return (
     <section class="splash" data-splash>
       <div class="splash-top">
-        {/* A field-notebook annotation; the script fills in the current time in Tokyo. */}
+        {/* A field-notebook annotation; the script fills in the current time and weather in Tokyo. */}
         <p class="splash-note">
-          Tokyo<span aria-hidden="true"> · </span>
+          <span class="splash-weather" role="img" data-splash-weather hidden>
+            <WeatherIcons />
+          </span>
+          <T text={{ en: "Tokyo", ja: "東京", zh: "東京", pt: "Tóquio" }} />
+          <span aria-hidden="true"> · </span>
           <span data-splash-clock>JST</span>
         </p>
-        <SplashDarkmode {...props} />
+        <div class="splash-controls">
+          <SplashLanguagePicker {...props} />
+          <SplashDarkmode {...props} />
+        </div>
       </div>
 
       <div class="splash-stage">
@@ -50,11 +74,13 @@ const HomeSplash: QuartzComponent = (props: QuartzComponentProps) => {
 
       <div class="splash-bottom">
         <div class="splash-signature">
-          <h1 class="splash-name">Thiago Komeno</h1>
+          <h1 class="splash-name">
+            <T text={name} />
+          </h1>
           <nav class="splash-nav" aria-label="Sections">
             {navLinks.map(({ href, label }) => (
               <a class="splash-nav-link" href={href}>
-                {label}
+                <T text={label} />
               </a>
             ))}
           </nav>
@@ -82,7 +108,10 @@ const HomeSplash: QuartzComponent = (props: QuartzComponentProps) => {
   )
 }
 
-HomeSplash.beforeDOMLoaded = SplashDarkmode.beforeDOMLoaded
+HomeSplash.beforeDOMLoaded = concatenateResources(
+  SplashDarkmode.beforeDOMLoaded,
+  SplashLanguagePicker.beforeDOMLoaded,
+)
 HomeSplash.afterDOMLoaded = script
-HomeSplash.css = concatenateResources(style, SplashDarkmode.css)
+HomeSplash.css = concatenateResources(style, SplashDarkmode.css, SplashLanguagePicker.css)
 export default (() => HomeSplash) satisfies QuartzComponentConstructor
