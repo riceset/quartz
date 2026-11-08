@@ -2,6 +2,10 @@
 title: "Introduction to Pointers in C"
 date: 2021-06-09
 description: "An introduction to C pointers through memory addresses, the address-of operator, dereferencing, and a small practical example."
+summaries:
+  ja: 'メモリアドレス、アドレス演算子、間接参照、そして小さな実例を通して、C言語のポインタを紹介します。'
+  zh: '透過記憶體位址、取址運算子、解參考和一個小小的實例，認識 C 語言的指標。'
+  pt: 'Uma introdução aos ponteiros em C por meio de endereços de memória, do operador de endereço, da desreferenciação e de um pequeno exemplo prático.'
 tags:
   - c
 ---

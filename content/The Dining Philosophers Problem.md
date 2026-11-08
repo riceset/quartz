@@ -2,6 +2,10 @@
 title: "The Dining Philosophers Problem"
 date: 2024-02-17
 description: "A detailed C implementation of the Dining Philosophers Problem, covering mutexes, threads, fork assignment, timing, supervision, and shutdown."
+summaries:
+  ja: '食事する哲学者の問題をC言語で詳しく実装します。ミューテックス、スレッド、フォークの割り当て、タイミング、監視、終了処理を扱います。'
+  zh: '用 C 語言詳細實作哲學家就餐問題，涵蓋互斥鎖、執行緒、叉子分配、計時、監控和結束處理。'
+  pt: 'Uma implementação detalhada do Problema do Jantar dos Filósofos em C, abordando mutexes, threads, distribuição dos garfos, temporização, supervisão e encerramento.'
 tags:
   - algorithms
 ---

@@ -3,6 +3,10 @@ title: "Understanding Insertion Sort"
 date: 2024-12-22
 description: "A clear explanation of insertion sort, from its C++ implementation and O(n²) complexity to a step-by-step walkthrough of each insertion."
 summary: 'A clear explanation of insertion sort, from its C++ implementation and $O(n^2)$ complexity to a step-by-step walkthrough of each insertion.'
+summaries:
+  ja: '挿入ソートを、C++での実装と$O(n^2)$の計算量から、一回ずつの挿入を追う解説まで、わかりやすく説明します。'
+  zh: '清楚說明插入排序，從 C++ 實作與 $O(n^2)$ 的複雜度，到逐步拆解每一次插入。'
+  pt: 'Uma explicação clara do insertion sort, da implementação em C++ e da complexidade $O(n^2)$ a um passo a passo de cada inserção.'
 tags:
   - algorithms
 ---

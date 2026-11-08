@@ -2,6 +2,10 @@
 title: "Building a Mandarin Dictionary: Part 1"
 date: 2025-11-17
 description: "The first part of building a SwiftUI dictionary app from Taiwan’s MOE data, covering the JSON structure, a SQLite schema, and a first stroke-count search."
+summaries:
+  ja: '台湾教育部のデータでSwiftUIの辞書アプリを作るシリーズの第1回。JSONの構造、SQLiteのスキーマ、最初の画数検索を扱います。'
+  zh: '用臺灣教育部的資料打造 SwiftUI 辭典 App 的第一篇，介紹 JSON 結構、SQLite 資料表設計，以及第一版的筆畫搜尋。'
+  pt: 'A primeira parte da criação de um app de dicionário em SwiftUI com os dados do Ministério da Educação de Taiwan, cobrindo a estrutura do JSON, um esquema SQLite e uma primeira busca por número de traços.'
 tags:
   - swift
 ---

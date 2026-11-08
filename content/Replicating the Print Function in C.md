@@ -2,6 +2,10 @@
 title: "Replicating the Print Function in C"
 date: 2024-02-17
 description: "A from-scratch C implementation of printf using variadic arguments, format parsing, custom output functions, and basic error handling."
+summaries:
+  ja: '可変長引数、書式の解析、独自の出力関数、基本的なエラー処理を使い、C言語でprintfを一から実装します。'
+  zh: '從零開始用 C 語言實作 printf，運用可變參數、格式解析、自訂輸出函式和基本的錯誤處理。'
+  pt: 'Uma implementação do zero do printf em C, com argumentos variádicos, análise do formato, funções de saída próprias e tratamento básico de erros.'
 tags:
   - c
 ---

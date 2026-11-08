@@ -3,6 +3,10 @@ title: "The XOR Swap"
 date: 2024-02-05
 description: "A mathematical and practical explanation of swapping two values with XOR, without allocating a temporary variable."
 summary: 'A mathematical and practical explanation of swapping two values with $\operatorname{XOR}$, without allocating a temporary variable.'
+summaries:
+  ja: '一時変数を使わずに、$\operatorname{XOR}$で2つの値を入れ替える方法を、数学と実践の両面から解説します。'
+  zh: '從數學與實作兩方面，說明如何不配置暫存變數，用 $\operatorname{XOR}$ 交換兩個值。'
+  pt: 'Uma explicação matemática e prática de como trocar dois valores com $\operatorname{XOR}$, sem alocar uma variável temporária.'
 tags:
   - bit-manipulation
 ---

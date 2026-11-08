@@ -3,6 +3,10 @@ title: "Understanding Casts in C++"
 date: 2024-09-07
 description: "A guide to implicit conversion and C++ casts, including static_cast, dynamic_cast, reinterpret_cast, upcasting, and downcasting."
 summary: "A guide to implicit conversion and C++ casts, including `static_cast`, `dynamic_cast`, `reinterpret_cast`, upcasting, and downcasting."
+summaries:
+  ja: "暗黙の型変換とC++のキャストを、`static_cast`、`dynamic_cast`、`reinterpret_cast`、アップキャスト、ダウンキャストまで解説するガイド。"
+  zh: "介紹隱式轉換與 C++ 的轉型，包括 `static_cast`、`dynamic_cast`、`reinterpret_cast`、向上轉型和向下轉型。"
+  pt: "Um guia sobre conversão implícita e casts em C++, incluindo `static_cast`, `dynamic_cast`, `reinterpret_cast`, upcasting e downcasting."
 tags:
   - c++
 ---

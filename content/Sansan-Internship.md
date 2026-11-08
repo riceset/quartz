@@ -2,6 +2,10 @@
 title: "What I Built at Sansan"
 date: 2026-09-28
 description: "What I learned in a two-month iOS internship at Sansan, from writing specs before code to testing Apple’s on-device models for Japanese card search."
+summaries:
+  ja: 'Sansanでの2か月間のiOSインターンシップで学んだこと。コードの前に仕様書を書くことから、日本語の名刺検索でAppleのオンデバイスモデルを試すことまで。'
+  zh: '我在 Sansan 兩個月 iOS 實習中學到的事，從先寫規格再寫程式，到測試 Apple 的裝置端模型來做日文名片搜尋。'
+  pt: 'O que aprendi em um estágio de iOS de dois meses na Sansan, desde escrever especificações antes do código até testar os modelos on-device da Apple para a busca de cartões de visita em japonês.'
 tags:
   - internship
 ---

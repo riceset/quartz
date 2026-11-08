@@ -2,6 +2,10 @@
 title: "My Internship Experience at MIXI"
 date: 2026-04-11
 description: "Lessons from my first iOS internship in Japan, covering team communication, large-codebase navigation, Scrum, and shipping production changes."
+summaries:
+  ja: "日本で初めて参加したiOSインターンシップで学んだこと。チームでのコミュニケーション、大規模なコードベースの読み方、スクラム、本番環境への変更のリリースについて。"
+  zh: "我在日本第一次 iOS 實習學到的事，包括團隊溝通、在大型程式碼庫中找路、Scrum，以及把修改發布到正式環境。"
+  pt: "Lições do meu primeiro estágio de iOS no Japão, sobre comunicação em equipe, navegação em uma base de código grande, Scrum e entrega de mudanças em produção."
 tags:
   - internship
 ---

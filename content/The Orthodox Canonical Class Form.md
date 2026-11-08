@@ -2,6 +2,10 @@
 title: "Understanding the Orthodox Canonical Class Form"
 date: 2024-08-15
 description: "A walkthrough of the constructors, copy behavior, assignment operator, and destructor that define the Orthodox Canonical Class Form in C++."
+summaries:
+  ja: 'C++のOrthodox Canonical Class Formを構成するコンストラクタ、コピーの挙動、代入演算子、デストラクタを順に解説します。'
+  zh: '逐一說明構成 C++ Orthodox Canonical Class Form 的建構子、複製行為、指派運算子和解構子。'
+  pt: 'Um passo a passo pelos construtores, pelo comportamento de cópia, pelo operador de atribuição e pelo destrutor que definem a Orthodox Canonical Class Form em C++.'
 tags:
   - c++
 ---
