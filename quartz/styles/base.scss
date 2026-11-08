@@ -26,6 +26,46 @@ body {
   color: var(--darkgray);
 }
 
+// Safari 26/27 tints the status/toolbar areas from fixed elements at the viewport
+// edges, not from theme-color. Keep invisible, theme-aware sampling surfaces at
+// both ends; background-clip:text prevents painting a visible strip.
+// The 11px threshold and one-frame geometry refresh follow tested WebKit behavior.
+.safari-chrome-sample {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 2147483647;
+  height: 0;
+  border: 0;
+  outline: 0;
+  pointer-events: none;
+  background-color: var(--light);
+  -webkit-background-clip: text;
+  background-clip: text;
+  box-shadow: none;
+  transition: none;
+}
+
+.safari-chrome-sample--top {
+  top: 0;
+}
+
+.safari-chrome-sample--bottom {
+  bottom: 0;
+}
+
+@supports (-webkit-touch-callout: none) {
+  @media (hover: none) and (pointer: coarse) {
+    .safari-chrome-sample {
+      height: 11px;
+    }
+
+    :root[data-safari-chrome-refresh] .safari-chrome-sample {
+      height: 12px;
+    }
+  }
+}
+
 .text-highlight {
   background-color: var(--textHighlight);
   padding: 0 0.1rem;
