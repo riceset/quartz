@@ -2,6 +2,10 @@
 title: "Understanding Binary Insertion Sort"
 date: 2024-12-24
 description: "How binary insertion sort combines binary search with insertion sort, with C++ implementation details and a step-by-step example."
+summaries:
+  ja: '二分挿入ソートが二分探索と挿入ソートをどう組み合わせるのかを、C++での実装の詳細と具体例を一歩ずつ追いながら解説します。'
+  zh: '說明二分插入排序如何結合二分搜尋與插入排序，附上 C++ 實作細節和逐步範例。'
+  pt: 'Como o binary insertion sort combina a busca binária com o insertion sort, com detalhes da implementação em C++ e um exemplo passo a passo.'
 tags:
   - algorithms
 ---

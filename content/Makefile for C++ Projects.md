@@ -2,6 +2,10 @@
 title: "Writing a Makefile for C++ Projects"
 date: 2024-04-18
 description: "A step-by-step guide to writing a C++ Makefile with variables, compiler flags, build rules, cleanup targets, and .PHONY declarations."
+summaries:
+  ja: '変数、コンパイラフラグ、ビルドルール、クリーンアップ用ターゲット、.PHONY宣言を使ってC++のMakefileを書く手順を、一つずつ解説します。'
+  zh: '一步步教你撰寫 C++ 的 Makefile，包括變數、編譯器旗標、建置規則、清理目標和 .PHONY 宣告。'
+  pt: 'Um guia passo a passo para escrever um Makefile de C++ com variáveis, flags do compilador, regras de build, alvos de limpeza e declarações .PHONY.'
 tags:
   - c++
 ---

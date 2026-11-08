@@ -2,6 +2,10 @@
 title: "The Story Behind My Swift Student Challenge Winning Submission"
 date: 2026-07-08
 description: "A three-minute SwiftUI journey inspired by my grandfather’s diaries, exploring memory, immigration, and the shift from historical to modern Japanese."
+summaries:
+  ja: "祖父の日記に着想を得た3分間のSwiftUI体験。記憶、移民、そして歴史的な日本語から現代の日本語への移り変わりをたどります。"
+  zh: "一段受祖父日記啟發的三分鐘 SwiftUI 旅程，探索記憶、移民，以及日文從古典到現代的轉變。"
+  pt: "Uma jornada de três minutos em SwiftUI inspirada nos diários do meu avô, explorando memória, imigração e a passagem do japonês histórico para o moderno."
 tags:
   - swift
   - apple

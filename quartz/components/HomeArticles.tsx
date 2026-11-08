@@ -11,12 +11,13 @@ import { byDateAndAlphabetical } from "./PageList"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { langTags, Localized, siteLangs, SiteLang, T } from "./localized"
 import { ValidLocale } from "../i18n"
+import { QuartzPluginData } from "../plugins/vfile"
 import style from "./styles/homeArticles.scss"
 // @ts-ignore
 import script from "./scripts/homeArticles.inline"
 
 const featuredArticleSlug = "Swift-Student-Challenge-2026"
-// Card dates follow the language picker; article titles and summaries stay in English.
+// Card dates and summaries follow the language picker; article titles stay in English.
 const dateLocales: Record<SiteLang, ValidLocale> = {
   en: "en-US",
   ja: "ja-JP",
@@ -89,8 +90,17 @@ const cleanExcerpt = (description: string | undefined, title: string) => {
   return withoutRepeatedTitle.replace(/^[\s.:–—-]+/, "").trim()
 }
 
-const getSummary = (description: string | undefined, summary: unknown, title: string): string =>
-  typeof summary === "string" ? summary : cleanExcerpt(description, title)
+// Translated summaries live in each article's frontmatter as `summaries: { ja, zh, pt }`;
+// a language without one falls back to English.
+const getSummary = (page: QuartzPluginData, title: string): Localized => {
+  const summary = page.frontmatter?.summary
+  const en = typeof summary === "string" ? summary : cleanExcerpt(page.description, title)
+  const summaries = page.frontmatter?.summaries as Partial<Record<SiteLang, string>> | undefined
+  if (!en || !summaries) return en
+  return Object.fromEntries(
+    siteLangs.map((lang) => [lang, lang === "en" ? en : (summaries[lang] ?? en)]),
+  ) as Record<SiteLang, string>
+}
 
 // A small, deterministic force layout of the article graph (articles linked directly and
 // through their tags, like the full graph view), drawn at build time beside the title.
@@ -164,6 +174,20 @@ const renderSummary = (summary: string) => {
   return htmlToJsx("article-summary.md" as FilePath, tree)
 }
 
+// Summaries can hold math and code, so each translation is rendered whole rather than through T.
+const Excerpt = ({ summary }: { summary: Localized }) =>
+  typeof summary === "string" ? (
+    <div class="article-card-excerpt">{renderSummary(summary)}</div>
+  ) : (
+    <>
+      {siteLangs.map((lang) => (
+        <div class="article-card-excerpt" data-text-lang={lang} lang={langTags[lang]}>
+          {renderSummary(summary[lang])}
+        </div>
+      ))}
+    </>
+  )
+
 export default (() => {
   const HomeArticles: QuartzComponent = (props: QuartzComponentProps) => {
     const { allFiles, fileData, cfg } = props
@@ -175,9 +199,7 @@ export default (() => {
       ? allArticles.filter((page) => page.slug !== featuredArticle.slug)
       : allArticles
     const featuredTitle = featuredArticle?.frontmatter?.title ?? "Untitled"
-    const featuredSummary = featuredArticle
-      ? getSummary(featuredArticle.description, featuredArticle.frontmatter?.summary, featuredTitle)
-      : ""
+    const featuredSummary = featuredArticle ? getSummary(featuredArticle, featuredTitle) : ""
 
     if (allArticles.length === 0) return null
     const graph = graphPreview(allArticles)
@@ -240,9 +262,7 @@ export default (() => {
               <h2 class="article-card-title">
                 <a href={resolveRelative(fileData.slug!, featuredArticle.slug!)}>{featuredTitle}</a>
               </h2>
-              {featuredSummary && (
-                <div class="article-card-excerpt">{renderSummary(featuredSummary)}</div>
-              )}
+              {featuredSummary && <Excerpt summary={featuredSummary} />}
             </div>
           </article>
         )}
@@ -252,9 +272,9 @@ export default (() => {
             const title = page.frontmatter?.title ?? "Untitled"
             const date = page.dates ? getDate(cfg, page) : null
             const tag = page.frontmatter?.tags?.[0]
-            const summary = getSummary(page.description, page.frontmatter?.summary, title)
+            const summary = getSummary(page, title)
             const href = resolveRelative(fileData.slug!, page.slug!)
-            const room = cardRoom(title, summary)
+            const room = cardRoom(title, typeof summary === "string" ? summary : summary.en)
 
             return (
               <article class="article-card" style={`--card-room: ${room.toFixed(2)}rem`}>
@@ -276,7 +296,7 @@ export default (() => {
                   <h3 class="article-card-title">
                     <a href={href}>{title}</a>
                   </h3>
-                  {summary && <div class="article-card-excerpt">{renderSummary(summary)}</div>}
+                  {summary && <Excerpt summary={summary} />}
                 </div>
               </article>
             )

@@ -2,6 +2,10 @@
 title: "Six Weeks Building at LINE"
 date: 2026-10-01
 description: "What I learned in a six-week iOS internship at LINE, from refining Liquid Glass screens in UIKit to bridging SwiftUI into a production screen."
+summaries:
+  ja: "LINEでの6週間のiOSインターンシップで学んだこと。UIKitでのLiquid Glass画面の改善から、本番画面へのSwiftUIの組み込みまで。"
+  zh: "我在 LINE 六週 iOS 實習中學到的事，從用 UIKit 打磨 Liquid Glass 畫面，到把 SwiftUI 接進正式上線的畫面。"
+  pt: "O que aprendi em um estágio de iOS de seis semanas no LINE, desde refinar telas com Liquid Glass em UIKit até integrar SwiftUI a uma tela em produção."
 tags:
   - internship
 ---

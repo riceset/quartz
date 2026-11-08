@@ -2,6 +2,10 @@
 title: "Understanding Signals in Linux"
 date: 2022-08-12
 description: "A concise introduction to Linux process IDs and signals, including how to send signals and handle them safely in C."
+summaries:
+  ja: "LinuxのプロセスIDとシグナルを簡潔に紹介し、C言語でシグナルを送る方法と安全に処理する方法を解説します。"
+  zh: "簡明介紹 Linux 的行程 ID 與訊號，包括如何在 C 語言中傳送訊號並安全地處理。"
+  pt: "Uma introdução concisa aos IDs de processo e sinais no Linux, incluindo como enviar sinais e tratá-los com segurança em C."
 tags:
   - linux
 ---

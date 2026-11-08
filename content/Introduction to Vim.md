@@ -2,6 +2,10 @@
 title: "Introduction to Vim"
 date: 2022-02-06
 description: "A practical guide to Vim’s modes, movement, editing commands, search, macros, marks, tabs, and other essentials for working efficiently."
+summaries:
+  ja: 'Vimのモード、移動、編集コマンド、検索、マクロ、マーク、タブなど、効率よく作業するための基本をまとめた実践ガイド。'
+  zh: 'Vim 實用指南，涵蓋模式、移動、編輯指令、搜尋、巨集、標記、分頁等高效工作的必備知識。'
+  pt: 'Um guia prático dos modos do Vim, movimentação, comandos de edição, busca, macros, marcas, abas e outros recursos essenciais para trabalhar com eficiência.'
 tags:
   - vim
 ---
