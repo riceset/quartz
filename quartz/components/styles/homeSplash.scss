@@ -18,8 +18,10 @@ body[data-slug="index"] {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
   height: 100dvh;
-  padding: var(--splash-gutter) var(--splash-gutter)
-    max(var(--splash-gutter), env(safe-area-inset-bottom));
+  padding: max(var(--splash-gutter), env(safe-area-inset-top))
+    max(var(--splash-gutter), env(safe-area-inset-right))
+    max(var(--splash-gutter), env(safe-area-inset-bottom))
+    max(var(--splash-gutter), env(safe-area-inset-left));
   box-sizing: border-box;
   background-color: var(--light);
   color: var(--dark);

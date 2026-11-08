@@ -212,7 +212,10 @@ a {
     }
 
     @media all and ($mobile) {
-      padding: 0 1rem;
+      // viewport-fit=cover lets the page run under the status bar and the landscape notch, so
+      // keep the content inside the safe area.
+      padding: env(safe-area-inset-top) max(1rem, env(safe-area-inset-right)) 0
+        max(1rem, env(safe-area-inset-left));
     }
     @media all and ($mobile) {
       margin: 0 auto;
@@ -255,7 +258,7 @@ a {
         --toolbar-control-size: 2.25rem;
         --toolbar-icon-size: 22px;
         position: sticky;
-        top: 0.75rem;
+        top: calc(env(safe-area-inset-top) + 0.75rem);
         z-index: 10;
         gap: 0.5rem;
         min-height: 4.25rem;
