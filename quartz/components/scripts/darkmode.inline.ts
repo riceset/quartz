@@ -3,27 +3,28 @@ const storedTheme = localStorage.getItem("theme")
 const currentTheme: "light" | "dark" =
   storedTheme === "light" || storedTheme === "dark" ? storedTheme : userPref
 
-// Safari paints the area around the page with theme-color. The tags in <head> follow the OS
-// scheme, so point both at the site's chosen theme or the edges keep the old color until reload.
-// SPA navigation swaps the <head> tags, so look them up on every call. iOS Safari can miss an
-// edit to an existing tag's content (notably when the OS appearance flips), so swap in new tags.
-const themeColorTags = () => document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')
-const themeColors = { light: "", dark: "" }
-for (const tag of themeColorTags()) {
-  if (tag.media.includes("light")) themeColors.light = tag.content
-  if (tag.media.includes("dark")) themeColors.dark = tag.content
-}
+// Safari's surrounding UI is controlled by the browser, not transparent page CSS.
+// Keep its tint aligned with the actual page background, including manual theme changes.
+// This script runs before DOM ready: only touch <head> and <html>, never document.body.
+const themeColors = { light: "#faf8f8", dark: "#161618" }
 
 const applyTheme = (theme: "light" | "dark") => {
   document.documentElement.setAttribute("saved-theme", theme)
   document.documentElement.style.colorScheme = theme
-  if (themeColors[theme]) {
-    for (const tag of themeColorTags()) {
-      if (tag.content === themeColors[theme]) continue
-      const fresh = tag.cloneNode() as HTMLMetaElement
-      fresh.content = themeColors[theme]
-      tag.replaceWith(fresh)
-    }
+
+  // Replace OS-specific theme-color tags with one authoritative tag.
+  // Re-query after Quartz SPA navigation, which can replace the page head.
+  const tags = [...document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')]
+  const primary = tags[0]
+  if (primary) {
+    primary.removeAttribute("media")
+    primary.content = themeColors[theme]
+    for (const duplicate of tags.slice(1)) duplicate.remove()
+  } else {
+    const tag = document.createElement("meta")
+    tag.name = "theme-color"
+    tag.content = themeColors[theme]
+    document.head.appendChild(tag)
   }
 }
 
