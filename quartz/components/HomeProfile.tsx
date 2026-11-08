@@ -61,7 +61,7 @@ const experience: Entry[] = [
     description: {
       en: "Updated LINE’s sticker and emoji screens in UIKit for the Liquid Glass redesign and fixed iOS 26 layout issues in settings, aligning on styling with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
       ja: "LINEのスタンプ・絵文字画面をLiquid Glassに合わせてUIKitで改修しました。iOS 26で崩れていた設定画面のレイアウトも修正し、デザインは、日本語と英語でデザイナーと相談しながら調整しました。また、コイン履歴のフッターをUIKitからSwiftUIに移すプロトタイプも作りました。",
-      zh: "我用 UIKit 更新了 LINE 的貼圖和表情貼畫面，配合 Liquid Glass 的新設計，也修正了 iOS 26 上設定頁面的排版問題。過程中用日文和英文與設計師討論視覺細節。另外，我還做了將代幣紀錄頁尾從 UIKit 改成 SwiftUI 的原型。",
+      zh: "我用 UIKit 配合 Liquid Glass 的新設計，更新 LINE 的貼圖和表情貼畫面，也修正了 iOS 26 上設定頁面的排版問題。過程中用日文和英文跟設計師討論視覺細節。另外也做了一個原型，嘗試把代幣紀錄頁面的底部從 UIKit 改成 SwiftUI。",
       pt: "Atualizei as telas de stickers e emojis do LINE em UIKit para o novo visual Liquid Glass e corrigi problemas de layout nas configurações do iOS 26. Conversei com designers em inglês e japonês para acertar os detalhes visuais. Também criei um protótipo para migrar o rodapé do histórico de moedas de UIKit para SwiftUI.",
     },
   },
@@ -80,7 +80,7 @@ const experience: Entry[] = [
     description: {
       en: "Built a proof of concept for on-device Japanese contact search with Apple’s Foundation Models and MeCab, matching natural-language queries to names and companies. Also reworked Eight’s TipKit Premium reminders and expanded its Premium landing page, writing the specs for both.",
       ja: "AppleのFoundation ModelsとMeCabを使い、端末上で動く日本語の名刺検索を試作しました。自然な文章を入力すると、名前や会社名を探せる仕組みです。また、EightのTipKitを使ったPremiumの案内を見直し、Premiumの紹介ページも拡充しました。この2件は仕様書の作成から担当しました。",
-      zh: "我用 Apple 的 Foundation Models 和 MeCab 做了日文名片搜尋的概念驗證，讓使用者能直接在裝置上，用自然語句搜尋姓名和公司。我也重新設計了 Eight 透過 TipKit 顯示的 Premium 方案提醒，並擴充 Premium 方案的介紹頁面。這兩項的規格書也由我撰寫。",
+      zh: "我用 Apple 的 Foundation Models 和 MeCab 做了日文名片搜尋的概念驗證，讓使用者能用自然語句搜尋姓名和公司，整個過程都在裝置上完成。我也重新設計了 Eight 透過 TipKit 顯示的 Premium 方案提醒，並擴充 Premium 方案的介紹頁面。這兩項工作的規格書也由我撰寫。",
       pt: "Desenvolvi uma prova de conceito de busca de cartões de visita em japonês que roda no próprio aparelho, usando o Foundation Models da Apple e o MeCab para encontrar nomes e empresas a partir de frases em linguagem natural. Também reformulei os lembretes do plano premium do Eight, feitos com TipKit, e ampliei a landing page do plano premium, cuidando das especificações de ambos.",
     },
   },
@@ -122,7 +122,7 @@ const experience: Entry[] = [
     description: {
       en: "Added country-based access controls to an AI feature in FamilyAlbum that recognizes family members and suggests photos for albums, keeping it to legally approved regions with cached location checks covered by Swift Testing. Also replaced PanModal with native iOS sheets for iOS 26.",
       ja: "「家族アルバム みてね」で、家族を認識してアルバム用の写真を提案するAI機能に、国ごとの利用制限を追加しました。法律上、提供できる地域だけで使えるようにし、キャッシュを使った地域判定はSwift Testingでテストしました。また、iOS 26に合わせてPanModalを標準のシートに置き換えました。",
-      zh: "在 FamilyAlbum，我為一項能辨識家人、推薦相簿照片的 AI 功能加入了國家／地區使用限制，確保只有法規允許的地區能使用。我也用 Swift Testing 測試快取的所在地判斷邏輯，並因應 iOS 26，把 PanModal 換成 iOS 原生的 sheet。",
+      zh: "在 FamilyAlbum，我為一項能辨識家人、推薦相簿照片的 AI 功能加入了國家／地區使用限制，確保只有法規允許的地區能使用。我也用 Swift Testing 測試透過快取的位置資訊判斷所在地區的邏輯，並因應 iOS 26，把 PanModal 換成 iOS 原生的 sheet。",
       pt: "No FamilyAlbum, implementei restrições por país em um recurso de IA que reconhece familiares e sugere fotos para álbuns, permitindo seu uso apenas onde a legislação autoriza. Usei Swift Testing para testar as verificações de localização armazenadas em cache. Também substituí o PanModal pelas sheets nativas do iOS 26.",
     },
   },
@@ -158,7 +158,7 @@ const awards: Entry[] = [
     description: {
       en: "Selected for an app that impressed and inspired Apple with its creativity, technical skill, and thoughtful design.",
       ja: "アイデアの独自性や技術力、細部までこだわったデザインが評価され、受賞しました。",
-      zh: "我的 App 在創意、技術與設計細節上獲得 Apple 肯定，也讓我獲選為 Swift Student Challenge 得獎者。",
+      zh: "我的作品在創意、技術實作和設計細節上獲得 Apple 肯定，並在 Swift Student Challenge 中得獎。",
       pt: "Fui premiado por um app que chamou a atenção da Apple pela criatividade, qualidade técnica e cuidado com o design.",
     },
   },
