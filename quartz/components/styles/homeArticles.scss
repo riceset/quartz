@@ -78,32 +78,29 @@ $article-space-10: 2.5rem;
   }
 }
 
-// Masonry: cards keep their natural height and flow down up to three columns.
+// Masonry: two wide columns of text cards. Wordier cards get extra room at the bottom
+// (--card-room, set per card from its text length) so they don't feel packed.
 .article-card-grid {
-  columns: 3 15rem;
-  column-gap: $article-space-4;
+  columns: 2 18rem;
+  column-gap: $article-space-6;
 
   & > .article-card {
     break-inside: avoid;
-    margin-bottom: $article-space-4;
+    margin-bottom: $article-space-6;
   }
-}
 
-// In the masonry grid every photo gets the same 3:2 frame; the column rhythm comes from
-// mixing photo cards with text-only ones.
-.article-card-grid .article-card-cover {
-  min-height: 0;
-
-  & > img {
-    aspect-ratio: 3 / 2;
-    height: auto;
-    min-height: 0;
+  & .article-card-content {
+    padding: $article-space-8;
+    padding-bottom: calc(#{$article-space-8} + var(--card-room, 0rem));
   }
-}
 
-// Cards without a photo get more breathing room so the text isn't tight to the border.
-.article-card-text .article-card-content {
-  padding: $article-space-6;
+  & .article-card-title {
+    font-size: clamp(1.6rem, 3vw, 1.9rem);
+  }
+
+  & .article-card-excerpt {
+    font-size: 0.88rem;
+  }
 }
 
 .article-card {
@@ -293,6 +290,11 @@ $article-space-10: 2.5rem;
 
   .article-card-grid {
     columns: 1;
+
+    & .article-card-content {
+      padding: $article-space-6;
+      padding-bottom: calc(#{$article-space-6} + var(--card-room, 0rem));
+    }
   }
 
   .article-card-featured {
