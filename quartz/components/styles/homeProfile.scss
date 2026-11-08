@@ -138,7 +138,7 @@ $about-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   @media (hover: hover) {
     &:hover {
       color: var(--dark);
-      text-decoration-color: var(--tertiary);
+      text-decoration-color: var(--dark);
 
       & .about-arrow {
         transform: translateX(0.12em);
@@ -152,7 +152,7 @@ $about-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
       color: var(--dark);
     }
     &:active {
-      text-decoration-color: var(--tertiary);
+      text-decoration-color: var(--dark);
       transition: none;
     }
   }
