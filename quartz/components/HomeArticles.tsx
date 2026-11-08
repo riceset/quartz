@@ -18,12 +18,6 @@ const featuredArticleSlug = "Swift-Student-Challenge-2026"
 // Dates and summaries stay in English, just like the articles themselves.
 // Section pages reached from the home splash; they host components, not writing.
 const sectionSlugs = new Set(["index", "about", "articles"])
-// Extra bottom space for a grid card, growing with how much text it holds. Titles count
-// double since they're set large. Short cards get none; the wordiest get up to 4rem.
-const cardRoom = (title: string, summary: string) => {
-  const weight = title.length * 2 + summary.length
-  return Math.min(4, Math.max(0, (weight - 160) * 0.05))
-}
 const summaryProcessor = unified()
   .use(remarkParse)
   .use(remarkMath)
@@ -32,7 +26,7 @@ const summaryProcessor = unified()
 
 const AppleLogo = () => (
   <svg
-    class="article-card-meta-logo"
+    class="article-featured-meta-logo"
     viewBox="0 0 814 1000"
     fill="currentColor"
     aria-hidden="true"
@@ -131,7 +125,7 @@ const renderSummary = (summary: string) => {
 
 // Summaries can contain math and code, so render the original Markdown.
 const Excerpt = ({ summary }: { summary: string }) => (
-  <div class="article-card-excerpt">{renderSummary(summary)}</div>
+  <div class="article-excerpt">{renderSummary(summary)}</div>
 )
 
 export default (() => {
@@ -141,11 +135,12 @@ export default (() => {
       .filter((page) => !sectionSlugs.has(page.slug!) && !page.slug?.startsWith("notes/"))
       .sort(byDateAndAlphabetical(cfg))
     const featuredArticle = allArticles.find((page) => page.slug === featuredArticleSlug)
-    const gridArticles = featuredArticle
+    const otherArticles = featuredArticle
       ? allArticles.filter((page) => page.slug !== featuredArticle.slug)
       : allArticles
     const featuredTitle = featuredArticle?.frontmatter?.title ?? "Untitled"
     const featuredSummary = featuredArticle ? getSummary(featuredArticle, featuredTitle) : ""
+    const featuredDate = featuredArticle?.dates ? getDate(cfg, featuredArticle) : null
 
     if (allArticles.length === 0) return null
     const graph = graphPreview(allArticles)
@@ -185,62 +180,66 @@ export default (() => {
           </button>
         </header>
 
+
         {featuredArticle && (
-          <article class="article-card article-card-featured">
+          <article class="article-featured">
             {featuredArticle.firstImage && (
-              <span class="article-card-cover" aria-hidden="true">
-                <img src={featuredArticle.firstImage} alt="" loading="eager" />
-              </span>
+              <figure class="article-featured-image" aria-hidden="true">
+                <img src={featuredArticle.firstImage} alt="" loading="eager" decoding="async" />
+              </figure>
             )}
-            <div class="article-card-content">
-              <div class="article-card-meta">
-                <span>
-                  Featured
-                </span>
-                <span aria-hidden="true">·</span>
-                <span class="article-card-meta-brand">
+            <div class="article-featured-copy">
+              <p class="article-featured-meta">
+                <span>Featured</span>
+                <span aria-hidden="true" class="article-featured-divider">·</span>
+                <span class="article-featured-brand">
                   <AppleLogo />
                   Apple
                 </span>
-              </div>
-              <h2 class="article-card-title">
-                <a href={resolveRelative(fileData.slug!, featuredArticle.slug!)}>{featuredTitle}</a>
+              </p>
+              <h2 class="article-featured-title">
+                <a href={resolveRelative(fileData.slug!, featuredArticle.slug!)}>
+                  {featuredTitle}
+                  <span aria-hidden="true" class="article-title-arrow">↗</span>
+                </a>
               </h2>
+              {featuredDate && (
+                <time class="article-featured-date" datetime={featuredDate.toISOString()}>
+                  {formatDate(featuredDate, "en-US")}
+                </time>
+              )}
               {featuredSummary && <Excerpt summary={featuredSummary} />}
             </div>
           </article>
         )}
-
-        <div class="article-card-grid">
-          {gridArticles.map((page) => {
+        <ol class="article-index">
+          {otherArticles.map((page) => {
             const title = page.frontmatter?.title ?? "Untitled"
             const date = page.dates ? getDate(cfg, page) : null
             const tag = page.frontmatter?.tags?.[0]
             const summary = getSummary(page, title)
             const href = resolveRelative(fileData.slug!, page.slug!)
-            const room = cardRoom(title, summary)
-
             return (
-              <article class="article-card" style={`--card-room: ${room.toFixed(2)}rem`}>
-                <div class="article-card-content">
-                  <div class="article-card-meta">
-                    {tag && (
-                      <span>
-                        {tag}
-                      </span>
-                    )}
-                    {tag && date && <span aria-hidden="true">·</span>}
+              <li class="article-index-item">
+                <article class="article-entry">
+                  <p class="article-entry-date">
                     {date && <time datetime={date.toISOString()}>{formatDate(date, "en-US")}</time>}
+                  </p>
+                  <div class="article-entry-body">
+                    <h3 class="article-entry-title">
+                      <a href={href}>
+                        {title}
+                        <span class="article-title-arrow" aria-hidden="true">↗</span>
+                      </a>
+                    </h3>
+                    {tag && <p class="article-entry-tag">{tag}</p>}
+                    {summary && <Excerpt summary={summary} />}
                   </div>
-                  <h3 class="article-card-title">
-                    <a href={href}>{title}</a>
-                  </h3>
-                  {summary && <Excerpt summary={summary} />}
-                </div>
-              </article>
+                </article>
+              </li>
             )
           })}
-        </div>
+        </ol>
       </section>
     )
   }
