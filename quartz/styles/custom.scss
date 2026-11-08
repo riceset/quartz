@@ -101,6 +101,13 @@ article .katex-display {
       margin-right: -0.25rem;
     }
 
+    // Keep the language code understated next to the larger serif wordmark.
+    // The 2.25rem touch target remains unchanged.
+    & .lang-picker-trigger {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
     // The language menu takes the bar's own tint, so the two read as one piece of glass.
     & .lang-picker-menu {
       background-color: rgba(255, 255, 255, 0.72);
