@@ -6,10 +6,10 @@ import { classNames } from "../util/lang"
 import { langTags, T } from "./localized"
 
 const options = [
-  { value: "en", label: "English", code: "EN" },
-  { value: "ja", label: "日本語", code: "JA" },
-  { value: "zh", label: "繁體中文", code: "ZH" },
-  { value: "pt", label: "Português", code: "PT" },
+  { value: "en", label: "英文", code: "EN" },
+  { value: "ja", label: "日文", code: "JA" },
+  { value: "zh", label: "中文", code: "ZH" },
+  { value: "pt", label: "葡萄牙文", code: "PT" },
 ] as const
 
 // The trigger shows the current language code in mono, like the site's other annotations;
