@@ -102,7 +102,7 @@ const experience: Entry[] = [
     place: tokyo,
     description: {
       en: "Built features for BaseMe’s AI career chat, such as using your notes as context and stopping a reply, and redesigned how company recommendations appear. Also added profile view counts to help students get noticed by recruiters.",
-      ja: "BaseMeのAIキャリアチャットに、メモの内容を回答に反映する機能や、回答を途中で止める機能を追加しました。おすすめ企業の表示方法も見直しました。また、学生が採用担当者に見つけてもらいやすくなるよう、プロフィールの閲覧数を表示する機能も作りました。",
+      ja: "BaseMeのAIキャリアチャットに、メモの内容を回答に反映する機能や、回答を途中で止める機能を追加しました。おすすめ企業の表示方法も見直しました。また、学生が自分のプロフィールへの反応を確認できるよう、閲覧数を表示する機能も追加しました。",
       zh: "為 BaseMe 的 AI 職涯聊天開發了多項功能，例如讓 AI 參考使用者的筆記來回答、可以中途停止回覆，也重新設計了企業推薦的呈現方式。另外還加上個人頁面的瀏覽次數，讓學生更容易被招募人員注意到。",
       pt: "Desenvolvi recursos para o chat de carreira com IA da BaseMe, como respostas que usam as anotações do usuário como contexto e a opção de interromper uma resposta. Também redesenhei a forma como as empresas recomendadas aparecem e adicionei um contador de visualizações ao perfil para ajudar estudantes a chamar a atenção de recrutadores.",
     },
@@ -225,7 +225,7 @@ const talks: Entry[] = [
     place: { en: "Taipei", ja: "台北", zh: "台北", pt: "Taipé" },
     description: {
       en: "A talk on turning a personal story into a winning Swift Playground, covering how to find an idea only you could build, grow SwiftUI skills under real project constraints, and use attention to detail to raise a submission from good to winning.",
-      ja: "自分の体験をSwift Playgroundの作品にした過程を紹介しました。自分ならではのアイデアの見つけ方や、制約のある中でSwiftUIのスキルを磨く方法、細部まで工夫して作品の完成度を高めることについて話しました。",
+      ja: "自分の経験をもとにSwift Playgroundをつくり、受賞するまでの過程を紹介しました。自分ならではのアイデアの見つけ方や、制約のある中でSwiftUIのスキルを磨く方法、細部まで工夫して作品の完成度を高めることについて話しました。",
       zh: "分享如何把個人故事變成得獎的 Swift Playground：找到只有自己做得出來的點子、在真實專案的限制下精進 SwiftUI，以及用對細節的講究，讓作品從「不錯」躍升為得獎之作。",
       pt: "Compartilhei como transformei uma história pessoal em um Swift Playground premiado. Falei sobre encontrar uma ideia própria, aprimorar minhas habilidades em SwiftUI mesmo com as limitações de um projeto real e cuidar dos detalhes que fizeram diferença no resultado.",
     },
@@ -472,7 +472,7 @@ const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
       <Section title={{ en: "Experience", ja: "経歴", zh: "經歷", pt: "Experiência" }}>
         <EntryList entries={experience} />
       </Section>
-      <Section title={{ en: "Awards", ja: "受賞", zh: "獎項", pt: "Prêmios" }}>
+      <Section title={{ en: "Awards", ja: "受賞・奨学金", zh: "獎項", pt: "Prêmios" }}>
         <EntryList entries={awards} />
       </Section>
       <Section title={{ en: "Hackathons", ja: "ハッカソン", zh: "黑客松", pt: "Hackathons" }}>
