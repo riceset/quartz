@@ -9,6 +9,9 @@ interface Entry {
   date?: string
   title: string
   org: string
+  // BCP 47 tags for a title or org not written in English, so CJK picks up its webfont.
+  titleLang?: string
+  orgLang?: string
   detail?: string
   place?: string
   description?: string
@@ -123,6 +126,7 @@ const talks: Entry[] = [
   {
     date: "Jul 2026",
     title: "如何贏得 Swift Student Challenge",
+    titleLang: "zh-Hant",
     org: "iPlayground Taiwan",
     place: "Taipei",
     description:
@@ -150,6 +154,7 @@ const talks: Entry[] = [
     date: "Jan 2024",
     title: "The 42 Live Radio Show",
     org: "이노베이션 아카데미",
+    orgLang: "ko",
     place: "Seoul",
     description:
       "Joined a cross-campus podcast between Innovation Academy and 42 Tokyo, exchanging perspectives on the 42 Network with Korean students.",
@@ -194,6 +199,18 @@ const languages: Language[] = [
   { name: "French", level: "A1" },
 ]
 
+// Request only the glyphs these entries use: a full CJK family is several megabytes.
+const allEntries = [...experience, ...awards, ...hackathons, ...talks, ...education]
+const cjkFontHref = (family: string, lang: "zh-Hant" | "ko") => {
+  const text = allEntries
+    .flatMap((entry) => [
+      entry.titleLang === lang ? entry.title : "",
+      entry.orgLang === lang ? entry.org : "",
+    ])
+    .join("")
+  return `https://fonts.googleapis.com/css2?family=${family}&text=${encodeURIComponent(text)}&display=swap`
+}
+
 // ── Component ──────────────────────────────────────────────────────────────
 
 const Section = ({ title, children }: { title: string; children: any }) => (
@@ -217,8 +234,10 @@ const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
             {entry.place && <span>{entry.place}</span>}
           </p>
           <div class="about-entry-body">
-            <h3 class="about-entry-title">{entry.title}</h3>
-            <p class="about-entry-org">
+            <h3 class="about-entry-title" lang={entry.titleLang}>
+              {entry.title}
+            </h3>
+            <p class="about-entry-org" lang={entry.orgLang}>
               {entry.org}
               {entry.detail && (
                 <>
@@ -257,6 +276,8 @@ const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
     // data-nosnippet: keep these body sections out of Google search snippets so the
     // snippet falls back to the meta description instead of stitching fragments.
     <div class="home-profile" data-nosnippet>
+      <link rel="stylesheet" href={cjkFontHref("Noto+Serif+TC", "zh-Hant")} />
+      <link rel="stylesheet" href={cjkFontHref("Noto+Sans+KR", "ko")} />
       <Section title="Experience">
         <EntryList entries={experience} />
       </Section>
