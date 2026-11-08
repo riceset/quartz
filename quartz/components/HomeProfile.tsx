@@ -62,7 +62,7 @@ const experience: Entry[] = [
       en: "Updated LINE’s sticker and emoji screens in UIKit for the Liquid Glass redesign and fixed iOS 26 layout issues in settings, aligning on styling with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
       ja: "LINEのスタンプ・絵文字画面をLiquid Glassに合わせてUIKitで改修しました。iOS 26で崩れていた設定画面のレイアウトも修正し、デザインは、日本語と英語でデザイナーと相談しながら調整しました。また、コイン履歴のフッターをUIKitからSwiftUIに移すプロトタイプも作りました。",
       zh: "配合 Liquid Glass 改版，用 UIKit 更新了 LINE 的貼圖和表情貼畫面，也修正了設定頁在 iOS 26 上跑版的問題，過程中用英文和日文跟設計師討論樣式。另外還做了一個原型，把代幣紀錄的頁尾從 UIKit 改寫成 SwiftUI。",
-      pt: "Atualizei as telas de stickers e emojis do LINE em UIKit para o novo visual Liquid Glass e corrigi problemas de layout nas configurações do iOS 26. Alinhei os detalhes visuais com designers em inglês e japonês. Também criei um protótipo para migrar o rodapé do histórico de moedas de UIKit para SwiftUI.",
+      pt: "Atualizei as telas de stickers e emojis do LINE em UIKit para o novo visual Liquid Glass e corrigi problemas de layout nas configurações do iOS 26. Conversei com designers em inglês e japonês para acertar os detalhes visuais. Também criei um protótipo para migrar o rodapé do histórico de moedas de UIKit para SwiftUI.",
     },
   },
   {
@@ -180,7 +180,7 @@ const awards: Entry[] = [
       en: "Awarded through embassy recommendation, covering full tuition, living expenses, and travel for undergraduate studies in Japan.",
       ja: "大使館推薦で国費留学生に採用されました。授業料の免除に加え、生活費と渡航費の支給を受けています。",
       zh: "經大使館推薦獲選，全額補助在日本就讀大學的學費、生活費與往返機票。",
-      pt: "Recebi a bolsa MEXT por recomendação da embaixada, com cobertura das mensalidades, despesas de vida e passagens para cursar a graduação no Japão.",
+      pt: "Recebi a bolsa MEXT por recomendação da embaixada. Ela cobre as taxas universitárias, oferece auxílio mensal para viver no Japão e inclui as passagens aéreas.",
     },
   },
 ]
