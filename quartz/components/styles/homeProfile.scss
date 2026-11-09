@@ -98,7 +98,8 @@ $about-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
 
 .about-entry-sep {
   margin: 0 0.5em;
-  color: var(--lightgray);
+  color: var(--gray);
+  font-weight: 700;
 }
 
 .about-entry-detail {

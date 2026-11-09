@@ -18,6 +18,8 @@ interface Entry {
   place?: Localized
   description?: Localized
   articleUrl?: string
+  // Replaces the linked article's title, for titles too long to show.
+  articleLabel?: Localized
   // External follow-ups listed under the description, e.g. a recording or press.
   links?: { label: Localized; url: string }[]
 }
@@ -142,8 +144,35 @@ const experience: Entry[] = [
       zh: "我是 Google 學生大使計畫的第一屆成員，向超過 1,000 位追蹤者分享日常生活中的 AI 用法，也協助其他大學生學會安全、有效地使用 AI。",
       pt: "Fiz parte da primeira turma de embaixadores estudantis do Google, compartilhando formas de usar IA no dia a dia com mais de 1.000 seguidores. Também ajudei outros universitários a usar IA com segurança e de forma prática.",
     },
+    links: [
+      {
+        label: {
+          en: "Article by Google Gemini",
+          ja: "Google Geminiのnoteで紹介",
+          zh: "Google Gemini 的介紹文章",
+          pt: "Artigo do Google Gemini",
+        },
+        url: "https://note.com/google_gemini/n/nae4c7e7952f7",
+      },
+      {
+        label: {
+          en: "TV news coverage on YouTube",
+          ja: "YouTubeでテレビ報道を見る",
+          zh: "在 YouTube 看電視新聞報導",
+          pt: "Reportagem de TV no YouTube",
+        },
+        url: "https://www.youtube.com/watch?v=1IyzO2LOErc",
+      },
+    ],
   },
 ]
+
+const readWriteUp: Localized = {
+  en: "Read the write-up",
+  ja: "記事を読む",
+  zh: "閱讀文章",
+  pt: "Ler o artigo",
+}
 
 const awards: Entry[] = [
   {
@@ -161,6 +190,8 @@ const awards: Entry[] = [
       zh: "我的作品在創意、技術實作和設計細節上獲得 Apple 肯定，並在 Swift Student Challenge 中得獎。",
       pt: "Fui premiado por um app que chamou a atenção da Apple pela criatividade, qualidade técnica e cuidado com o design.",
     },
+    articleUrl: "/Swift-Student-Challenge-2026",
+    articleLabel: "Swift Student Challenge",
   },
   {
     date: years(2023),
@@ -182,6 +213,17 @@ const awards: Entry[] = [
       zh: "2023 年透過日本大使館推薦，獲得 MEXT 大學部獎學金，並赴日留學。",
       pt: "Recebi a bolsa MEXT por recomendação da embaixada, com cobertura integral das taxas universitárias, auxílio mensal para viver no Japão e passagens aéreas.",
     },
+    links: [
+      {
+        label: {
+          en: "Covered by Brasil Nippou",
+          ja: "ブラジル日報で紹介",
+          zh: "Brasil Nippou 報導",
+          pt: "Destaque no Brasil Nippou",
+        },
+        url: "https://brasilnippou.com/ja/articles/230329-24colonia",
+      },
+    ],
   },
 ]
 
@@ -199,6 +241,17 @@ const hackathons: Entry[] = [
     org: "Tokyo AI",
     detail: { en: "1st Place", ja: "優勝", zh: "第一名", pt: "1º lugar" },
     place: tokyo,
+    links: [
+      {
+        label: {
+          en: "Group photo on Instagram",
+          ja: "Instagramで集合写真を見る",
+          zh: "Instagram 上的大合照",
+          pt: "Foto em grupo no Instagram",
+        },
+        url: "https://www.instagram.com/p/DZ_XJXogen8/",
+      },
+    ],
   },
   {
     date: { en: "Apr 2026", ja: "2026年4月", zh: "2026 年 4 月", pt: "abr 2026" },
@@ -206,6 +259,17 @@ const hackathons: Entry[] = [
     org: { en: "Mercari", ja: "メルカリ", zh: "Mercari", pt: "Mercari" },
     detail: { en: "Winner", ja: "受賞", zh: "得獎", pt: "Vencedor" },
     place: tokyo,
+    links: [
+      {
+        label: {
+          en: "Group photo on X",
+          ja: "Xで集合写真を見る",
+          zh: "X 上的大合照",
+          pt: "Foto em grupo no X",
+        },
+        url: "https://x.com/HR_mixi/status/2042940019481223188",
+      },
+    ],
   },
   {
     date: { en: "Sep 2024", ja: "2024年9月", zh: "2024 年 9 月", pt: "set 2024" },
@@ -213,6 +277,17 @@ const hackathons: Entry[] = [
     org: "SUTD & 42 Asia",
     detail: { en: "2nd Place", ja: "準優勝", zh: "第二名", pt: "2º lugar" },
     place: seoul,
+    links: [
+      {
+        label: {
+          en: "Covered by the 42 Network blog",
+          ja: "42 Networkのブログで紹介",
+          zh: "42 Network 部落格報導",
+          pt: "Destaque no blog da 42 Network",
+        },
+        url: "https://www.42network.org/blog/42-in-asia-bridging-innovation-and-collaboration-across-borders/",
+      },
+    ],
   },
 ]
 
@@ -389,13 +464,6 @@ const cjkFontHref = (family: string, lang: "zh-Hant" | "ko") => {
 
 // ── Component ──────────────────────────────────────────────────────────────
 
-const readWriteUp: Localized = {
-  en: "Read the write-up",
-  ja: "記事を読む",
-  zh: "閱讀文章",
-  pt: "Ler o artigo",
-}
-
 const Section = ({ title, children }: { title: Localized; children: any }) => (
   <section class="about-section">
     <h2 class="about-section-title">
@@ -453,7 +521,7 @@ const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
                 <span class="about-entry-link-label">
                   <T text={{ en: "Write-up", ja: "記事", zh: "文章", pt: "Artigo" }} />
                 </span>
-                <T text={articleTitle(entry.articleUrl)} />
+                <T text={entry.articleLabel ?? articleTitle(entry.articleUrl)} />
                 <span class="about-arrow" aria-hidden="true">
                   {"⁠ →"}
                 </span>
