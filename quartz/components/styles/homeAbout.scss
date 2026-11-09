@@ -23,10 +23,26 @@
 }
 
 .home-about-portrait {
+  position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
   margin: 0;
-  border-radius: 8px;
+  // A plain 8px arc reads as a clipped corner at this size. A larger radius with
+  // continuous curvature (where supported) eases into the edge like iOS corners.
+  border-radius: 16px;
+  corner-shape: superellipse(1.5);
+
+  // Hairline inner edge: softens the dark photo against the light page so the
+  // curve doesn't look stair-stepped.
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    corner-shape: inherit;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+    pointer-events: none;
+  }
 
   & > img {
     display: block;
