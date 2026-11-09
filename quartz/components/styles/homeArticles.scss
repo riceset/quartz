@@ -117,7 +117,7 @@
   margin: 0 0 0.8rem;
 }
 .article-featured-divider {
-  color: var(--lightgray);
+  color: var(--gray);
 }
 .article-featured-brand {
   display: inline-flex;
@@ -294,7 +294,7 @@
     & time + .article-entry-tag::before {
       content: "·";
       margin-right: 0.45rem;
-      color: var(--lightgray);
+      color: var(--gray);
     }
   }
 }
