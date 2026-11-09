@@ -7,9 +7,9 @@ import { T } from "./localized"
 
 const options = [
   { value: "en", label: { en: "English", ja: "英語", zh: "英文", pt: "Inglês" }, code: "EN" },
+  { value: "pt", label: { en: "Portuguese", ja: "葡語", zh: "葡文", pt: "Português" }, code: "PT" },
   { value: "ja", label: { en: "Japanese", ja: "日本語", zh: "日文", pt: "Japonês" }, code: "JA" },
   { value: "zh", label: { en: "Mandarin", ja: "中国語", zh: "中文", pt: "Mandarim" }, code: "ZH" },
-  { value: "pt", label: { en: "Portuguese", ja: "ポルトガル語", zh: "葡文", pt: "Português" }, code: "PT" },
 ] as const
 
 // The trigger shows the current language code in mono, like the site's other annotations;

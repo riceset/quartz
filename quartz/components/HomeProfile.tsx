@@ -438,12 +438,12 @@ const education: Entry[] = [
 
 const languages: Language[] = [
   {
-    name: { en: "Portuguese", ja: "ポルトガル語", zh: "葡萄牙文", pt: "Português" },
+    name: { en: "Portuguese", ja: "葡語", zh: "葡萄牙文", pt: "Português" },
     level: { en: "Native", ja: "母語", zh: "母語", pt: "Nativo" },
   },
   { name: { en: "Japanese", ja: "日本語", zh: "日文", pt: "Japonês" }, level: "C2" },
   { name: { en: "English", ja: "英語", zh: "英文", pt: "Inglês" }, level: "C2" },
-  { name: { en: "Spanish", ja: "スペイン語", zh: "西班牙文", pt: "Espanhol" }, level: "C1" },
+  { name: { en: "Spanish", ja: "西語", zh: "西班牙文", pt: "Espanhol" }, level: "C1" },
   { name: { en: "Mandarin", ja: "中国語", zh: "中文", pt: "Mandarim" }, level: "B1" },
   { name: { en: "French", ja: "仏語", zh: "法文", pt: "Francês" }, level: "A1" },
 ]
