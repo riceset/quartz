@@ -134,6 +134,12 @@
     }
   }
 
+  // The Japanese line is 16 full-width glyphs; scale it to the column so it never wraps.
+  html[data-lang="ja"] .home-about-copy > h2 {
+    font-size: min(1.7rem, calc((100vw - 2rem) / 16.5));
+    white-space: nowrap;
+  }
+
   .home-about-signature {
     margin-top: 2rem;
   }

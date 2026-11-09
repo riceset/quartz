@@ -112,6 +112,13 @@ $about-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   font-size: 0.85rem;
   line-height: 1.65;
   color: var(--darkgray);
+  // Avoid stranding a few characters, like "した。", on the last line.
+  text-wrap: pretty;
+
+  // Break Japanese between phrases, not mid-word.
+  &:lang(ja) {
+    word-break: auto-phrase;
+  }
 }
 
 .about-entry-link,

@@ -186,7 +186,7 @@ const awards: Entry[] = [
     org: "Apple",
     description: {
       en: "Selected for an app that impressed and inspired Apple with its creativity, technical skill, and thoughtful design.",
-      ja: "アイデアの独自性や技術力、細部までこだわったデザインが評価され、受賞しました。",
+      ja: "アイデアの独自性や技術力、細部までこだわったデザインがAppleに評価され、受賞しました。",
       zh: "我的作品在創意、技術實作和設計細節上獲得 Apple 肯定，並在 Swift Student Challenge 中得獎。",
       pt: "Fui premiado por um app que chamou a atenção da Apple pela criatividade, qualidade técnica e cuidado com o design.",
     },
