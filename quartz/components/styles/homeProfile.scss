@@ -71,10 +71,16 @@ $about-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   color: var(--dark);
   text-wrap: balance;
 
-  // Instrument Serif has no CJK, so Chinese falls to a Ming-style serif with the same
-  // high-contrast stroke; Latin words in the title stay in Instrument Serif.
-  &:lang(zh-Hant) {
+  // Keep Latin glyphs in Instrument Serif even inside mixed-script titles.
+  // Only CJK characters fall back to their corresponding Mincho/Ming font.
+  // The localized spans carry their own lang attribute, so style those spans
+  // rather than applying a CJK font to the entire heading.
+  & [data-text-lang="zh"] {
     font-family: "Instrument Serif", "Noto Serif TC", serif;
+  }
+
+  & [data-text-lang="ja"] {
+    font-family: "Instrument Serif", "Noto Serif JP", serif;
   }
 }
 
