@@ -15,7 +15,7 @@ const SplashLanguagePicker = LanguagePickerConstructor()
 
 const name: Localized = {
   en: "Thiago Komeno",
-  ja: "米野チアゴ",
+  ja: "米野ティアゴ",
   zh: "米野雅各",
   pt: "Thiago Komeno",
 }
