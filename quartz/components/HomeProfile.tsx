@@ -303,7 +303,12 @@ const talks: Entry[] = [
   },
   {
     date: { en: "Apr 2023", ja: "2023年4月", zh: "2023 年 4 月", pt: "abr 2023" },
-    title: "Vim na Prática",
+    title: {
+      en: "Vim in Practice",
+      ja: "実践Vim",
+      zh: "Vim 實戰",
+      pt: "Vim na Prática",
+    },
     org: "Fora da Norma Podcast",
     place: { en: "São Paulo", ja: "サンパウロ", zh: "聖保羅", pt: "São Paulo" },
     description: {
