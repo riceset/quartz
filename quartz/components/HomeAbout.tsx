@@ -15,7 +15,7 @@ const HomeAbout: QuartzComponent = () => (
           {...localizedAttrs({
             alt: {
               en: "Portrait of Thiago Komeno",
-              ja: "米野ティアゴのポートレート",
+              ja: "米野ティアゴの写真",
               zh: "米野雅各的肖像",
               pt: "Retrato de Thiago Komeno",
             },
@@ -41,7 +41,7 @@ const HomeAbout: QuartzComponent = () => (
           <T
             text={{
               en: "My projects often begin with something close to me: a family story, a language I’m learning, or a tool I kept wishing existed. From there, I build experiences that feel natural to both the platform and the person using them.",
-              ja: "家族の歴史や学んでいる言語、日常で欲しいと思ったツールなど、身近な経験が開発のきっかけになることが多いです。そこから、プラットフォームの特性を活かし、使う人にとって自然で直感的な体験を創っています。",
+              ja: "家族の話や学んでいる言語、こんなツールがあればと思ったことが、開発のきっかけになることが多いです。プラットフォームの特性を活かし、使う人が自然に使えるものを目指しています。",
               zh: "我的作品常常從身邊的事開始：家人的故事、正在學的語言，或是一個一直希望有人做出來的工具。從這些想法出發，我致力做出符合平台使用習慣、也讓人用起來自然順手的東西。",
               pt: "Meus projetos costumam nascer de coisas próximas de mim: uma história da minha família, um idioma que estou aprendendo ou alguma ferramenta que eu queria que existisse. A partir dessas ideias, busco criar experiências que aproveitem as características de cada plataforma e sejam naturais e intuitivas para quem as usa.",
             }}
@@ -51,7 +51,7 @@ const HomeAbout: QuartzComponent = () => (
           <T
             text={{
               en: "I work mainly on iOS. Lately, I’ve been exploring on-device AI and the ways software can connect people across languages.",
-              ja: "主にiOSアプリを開発しています。最近はオンデバイスAIや、ソフトウェアが言語の壁を越えて人と人をつなぐ可能性を探っています。",
+              ja: "主にiOSアプリを開発しています。最近はオンデバイスAIや、言葉の違う人同士をソフトウェアでつなぐ方法を探っています。",
               zh: "我主要做 iOS 開發。最近也在探索裝置端 AI，以及如何透過軟體，讓說不同語言的人更容易交流。",
               pt: "Desenvolvo principalmente para iOS. Ultimamente, tenho explorado on-device AI e como o software pode aproximar pessoas que falam idiomas diferentes.",
             }}

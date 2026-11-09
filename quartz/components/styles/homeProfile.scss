@@ -115,9 +115,11 @@ $about-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   // Avoid stranding a few characters, like "した。", on the last line.
   text-wrap: pretty;
 
-  // Break Japanese between phrases, not mid-word.
+  // Fill Japanese lines to the column edge. Phrase-based wrapping
+  // (`word-break: auto-phrase`, or BudouX) moves long phrases down whole and
+  // leaves gaps at the ends of lines.
   &:lang(ja) {
-    word-break: auto-phrase;
+    text-wrap: wrap;
   }
 }
 

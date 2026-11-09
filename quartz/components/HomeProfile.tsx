@@ -66,7 +66,7 @@ const experience: Entry[] = [
     place: tokyo,
     description: {
       en: "Built features for BaseMe’s AI career chat, such as using your notes as context and stopping a reply, and redesigned how company recommendations appear. Also added profile view counts to help students get noticed by recruiters.",
-      ja: "BaseMeのAIキャリアチャットに、メモの内容を回答に反映する機能や、回答を途中で止める機能を追加しました。おすすめ企業の表示方法も見直しました。また、学生が自分のプロフィールへの反応を確認できるよう、閲覧数を表示する機能も追加しました。",
+      ja: "BaseMeのAIキャリアチャットに、メモの内容を回答に反映する機能や、回答を途中で止められる機能を追加しました。おすすめ企業の表示方法も見直しました。また、学生が自分のプロフィールの閲覧数を確認できる機能も追加しました。",
       zh: "我為 BaseMe 的 AI 職涯聊天加入了幾項功能，讓 AI 能參考使用者的筆記回答，也能隨時停止生成回覆。我還重新設計了推薦企業的呈現方式，並加入個人檔案的瀏覽次數，幫助學生更容易被招募人員看見。",
       pt: "Desenvolvi recursos para o chat de carreira com IA da BaseMe, como respostas que usam as anotações do usuário como contexto e a opção de interromper uma resposta. Também redesenhei a forma como as empresas recomendadas aparecem e adicionei um contador de visualizações ao perfil para ajudar estudantes a chamar a atenção de recrutadores.",
     },
@@ -85,7 +85,7 @@ const experience: Entry[] = [
     articleUrl: "/LINE-Internship",
     description: {
       en: "Updated LINE’s sticker and emoji screens in UIKit for the Liquid Glass redesign and fixed iOS 26 layout issues in settings, aligning on styling with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
-      ja: "LINEのスタンプ・絵文字画面をLiquid Glassに合わせてUIKitで改修しました。iOS 26で崩れていた設定画面のレイアウトも修正し、デザインは、日本語と英語でデザイナーと相談しながら調整しました。また、コイン履歴のフッターをUIKitからSwiftUIに移すプロトタイプも作りました。",
+      ja: "LINEのスタンプ・絵文字設定画面をLiquid Glassのデザインに合わせてUIKitで改修し、iOS 26で発生したレイアウトの問題も修正しました。デザイナーと日本語・英語でやり取りしながら、UIの細部まで仕上げました。また、コイン履歴画面のフッターをUIKitからSwiftUIへ移すプロトタイプも作りました。",
       zh: "我用 UIKit 配合 Liquid Glass 的新設計，更新 LINE 的貼圖和表情貼畫面，也修正了 iOS 26 上設定頁面的排版問題。過程中用日文和英文跟設計師討論視覺細節。另外也做了一個原型，嘗試把代幣紀錄頁面的底部從 UIKit 改成 SwiftUI。",
       pt: "Atualizei as telas de stickers e emojis do LINE em UIKit para o novo visual Liquid Glass e corrigi problemas de layout nas configurações do iOS 26. Conversei com designers em inglês e japonês para acertar os detalhes visuais. Também criei um protótipo para migrar o rodapé do histórico de moedas de UIKit para SwiftUI.",
     },
@@ -104,7 +104,7 @@ const experience: Entry[] = [
     articleUrl: "/Sansan-Internship",
     description: {
       en: "Built a proof of concept for on-device Japanese contact search with Apple’s Foundation Models and MeCab, matching natural-language queries to names and companies. Also reworked Eight’s TipKit Premium reminders and expanded its Premium landing page, writing the specs for both.",
-      ja: "AppleのFoundation ModelsとMeCabを使い、端末上で動く日本語の名刺検索を試作しました。自然な文章を入力すると、名前や会社名を探せる仕組みです。また、EightのTipKitを使ったPremiumの案内を見直し、Premiumの紹介ページも拡充しました。この2件は仕様書の作成から担当しました。",
+      ja: "AppleのFoundation ModelsとMeCabを使い、端末上で動く日本語の名刺検索の概念実証を開発しました。自然言語で入力すると、名前や会社名を探せる仕組みです。また、EightではTipKitを使ったプレミアムプランの案内の表示ルールを見直し、紹介画面の不要なツールバーを取り除いてWebページの表示領域を広げました。どちらも仕様書の作成から担当しました。",
       zh: "我用 Apple 的 Foundation Models 和 MeCab 做了日文名片搜尋的概念驗證，讓使用者能用自然語句搜尋姓名和公司，整個過程都在裝置上完成。我也重新設計了 Eight 透過 TipKit 顯示的 Premium 方案提醒，並擴充 Premium 方案的介紹頁面。這兩項工作的規格書也由我撰寫。",
       pt: "Desenvolvi uma prova de conceito de busca de cartões de visita em japonês que roda no próprio aparelho, usando o Foundation Models da Apple e o MeCab para encontrar nomes e empresas a partir de frases em linguagem natural. Também reformulei os lembretes do plano premium do Eight, feitos com TipKit, e ampliei a landing page do plano premium, cuidando das especificações de ambos.",
     },
@@ -123,7 +123,7 @@ const experience: Entry[] = [
     articleUrl: "/MIXI-Internship",
     description: {
       en: "Added country-based access controls to an AI feature in FamilyAlbum that recognizes family members and suggests photos for albums, keeping it to legally approved regions with cached location checks covered by Swift Testing. Also replaced PanModal with native iOS sheets for iOS 26.",
-      ja: "「家族アルバム みてね」で、家族を認識してアルバム用の写真を提案するAI機能に、国ごとの利用制限を追加しました。法律上、提供できる地域だけで使えるようにし、キャッシュを使った地域判定はSwift Testingでテストしました。また、iOS 26に合わせてPanModalを標準のシートに置き換えました。",
+      ja: "「家族アルバム みてね」で、家族を認識してアルバム用の写真を提案するAI機能に、国ごとの利用制限を追加しました。法的に提供可能な地域に利用を限定し、キャッシュを使った地域判定はSwift Testingでテストしました。また、iOS 26に合わせてPanModalをiOS標準のシートに置き換えました。",
       zh: "在 FamilyAlbum，我為一項能辨識家人、推薦相簿照片的 AI 功能加入了國家／地區使用限制，確保只有法規允許的地區能使用。我也用 Swift Testing 測試透過快取的位置資訊判斷所在地區的邏輯，並因應 iOS 26，把 PanModal 換成 iOS 原生的 sheet。",
       pt: "No FamilyAlbum, implementei restrições por país em um recurso de IA que reconhece familiares e sugere fotos para álbuns, permitindo seu uso apenas onde a legislação autoriza. Usei Swift Testing para testar as verificações de localização armazenadas em cache. Também substituí o PanModal pelas sheets nativas do iOS 26.",
     },
@@ -140,7 +140,7 @@ const experience: Entry[] = [
     place: tokyo,
     description: {
       en: "Part of the program’s first cohort, sharing everyday AI use cases with more than 1,000 followers. Helped fellow university students learn to use AI safely and effectively.",
-      ja: "Google 学生アンバサダーの第1期生として、日常でのAIの使い方を1,000人以上のフォロワーに紹介しました。また、大学生がAIを安全に、うまく活用できるようサポートしました。",
+      ja: "Google 学生アンバサダーの第1期生として、1,000人以上のフォロワーに向けて、日常でのAIの使い方を発信しました。また、大学生がAIを安全にうまく活用できるよう支援しました。",
       zh: "我是 Google 學生大使計畫的第一屆成員，向超過 1,000 位追蹤者分享日常生活中的 AI 用法，也協助其他大學生學會安全、有效地使用 AI。",
       pt: "Fiz parte da primeira turma de embaixadores estudantis do Google, compartilhando formas de usar IA no dia a dia com mais de 1.000 seguidores. Também ajudei outros universitários a usar IA com segurança e de forma prática.",
     },
@@ -186,7 +186,7 @@ const awards: Entry[] = [
     org: "Apple",
     description: {
       en: "Selected for an app that impressed and inspired Apple with its creativity, technical skill, and thoughtful design.",
-      ja: "アイデアの独自性や技術力、細部までこだわったデザインがAppleに評価され、受賞しました。",
+      ja: "アイデアの独自性や技術力、細部までこだわったデザインがAppleに評価されました。",
       zh: "我的作品在創意、技術實作和設計細節上獲得 Apple 肯定，並在 Swift Student Challenge 中得獎。",
       pt: "Fui premiado por um app que chamou a atenção da Apple pela criatividade, qualidade técnica e cuidado com o design.",
     },
@@ -209,7 +209,7 @@ const awards: Entry[] = [
     },
     description: {
       en: "Awarded through embassy recommendation, covering full tuition, living expenses, and travel for undergraduate studies in Japan.",
-      ja: "2023年、大使館推薦の国費留学生として来日しました。",
+      ja: "大使館推薦で国費留学生（学部）に選ばれ、2023年に来日しました。",
       zh: "2023 年透過日本大使館推薦，獲得 MEXT 大學部獎學金，並赴日留學。",
       pt: "Recebi a bolsa MEXT por recomendação da embaixada, com cobertura integral das taxas universitárias, auxílio mensal para viver no Japão e passagens aéreas.",
     },
@@ -305,7 +305,7 @@ const talks: Entry[] = [
     place: { en: "Taipei", ja: "台北", zh: "台北", pt: "Taipé" },
     description: {
       en: "A talk on turning a personal story into a winning Swift Playground, covering how to find an idea only you could build, grow SwiftUI skills under real project constraints, and use attention to detail to raise a submission from good to winning.",
-      ja: "自分の経験をもとにSwift Playgroundをつくり、受賞するまでの過程を紹介しました。自分ならではのアイデアの見つけ方や、制約のある中でSwiftUIのスキルを磨く方法、細部まで工夫して作品の完成度を高めることについて話しました。",
+      ja: "自身の経験からSwift Playgroundを制作し、受賞するまでを紹介しました。アイデアの見つけ方、制約の中でのSwiftUIの学び方、完成度を高めるために工夫した点について話しました。",
       zh: "我分享了如何把自己的故事做成得獎的 Swift Playground，也談到怎麼找到自己獨特的題材、在專案限制下磨練 SwiftUI，以及如何透過細節提升作品的完成度，讓作品更有機會得獎。",
       pt: "Compartilhei como transformei uma história pessoal em um Swift Playground premiado. Falei sobre encontrar uma ideia própria, aprimorar minhas habilidades em SwiftUI mesmo com as limitações de um projeto real e cuidar dos detalhes que fizeram diferença no resultado.",
     },
@@ -347,7 +347,7 @@ const talks: Entry[] = [
     place: tokyo,
     description: {
       en: "Spoke at a Consulate-General of Japan in São Paulo webinar, sharing my MEXT scholarship experience with prospective students.",
-      ja: "在サンパウロ日本国総領事館のウェビナーで、国費留学を考えている学生に自分の経験を話しました。",
+      ja: "在サンパウロ日本国総領事館のウェビナーで、国費留学を考えている学生に、留学経験を紹介しました。",
       zh: "我在日本駐聖保羅總領事館舉辦的線上講座中，向考慮申請 MEXT 獎學金的學生分享自己的留學經驗。",
       pt: "Participei de um webinar do Consulado-Geral do Japão em São Paulo para contar minha experiência com a bolsa MEXT a estudantes interessados em estudar no Japão.",
     },
@@ -371,7 +371,7 @@ const talks: Entry[] = [
     place: seoul,
     description: {
       en: "Joined a cross-campus podcast between Innovation Academy and 42 Tokyo, exchanging perspectives on the 42 Network with Korean students.",
-      ja: "Innovation Academyと42 Tokyoの合同ポッドキャストに出演し、韓国の学生と42 Networkについて話しました。",
+      ja: "Innovation Academyと42 Tokyoによるポッドキャストに出演し、韓国の学生と42 Networkについて話しました。",
       zh: "我參加了 Innovation Academy 和 42 Tokyo 合作的 Podcast，和韓國學生聊了彼此對 42 Network 的看法。",
       pt: "Participei de um podcast entre a Innovation Academy e a 42 Tokyo, em que conversei com estudantes coreanos sobre a 42 Network.",
     },
@@ -388,7 +388,7 @@ const talks: Entry[] = [
     place: { en: "São Paulo", ja: "サンパウロ", zh: "聖保羅", pt: "São Paulo" },
     description: {
       en: "Produced a Brazilian Portuguese tutorial for 42 São Paulo’s YouTube channel, teaching beginners how to use Vim from the basics.",
-      ja: "42 São PauloのYouTubeチャンネル向けに、初心者でもVimの基本を学べるポルトガル語の動画を作りました。",
+      ja: "42 São Pauloのポッドキャスト「Fora da Norma」で、ポルトガル語のVim入門動画を制作し、出演しました。",
       zh: "我為 42 São Paulo 的 YouTube 頻道做了一支巴西葡萄牙語的 Vim 入門影片，帶初學者從零開始學習。",
       pt: "Produzi um vídeo em português brasileiro para o canal da 42 São Paulo no YouTube, ensinando Vim do zero.",
     },
@@ -438,12 +438,12 @@ const education: Entry[] = [
 
 const languages: Language[] = [
   {
-    name: { en: "Portuguese", ja: "葡語", zh: "葡萄牙文", pt: "Português" },
+    name: { en: "Portuguese", ja: "ポルトガル語", zh: "葡萄牙文", pt: "Português" },
     level: { en: "Native", ja: "母語", zh: "母語", pt: "Nativo" },
   },
   { name: { en: "Japanese", ja: "日本語", zh: "日文", pt: "Japonês" }, level: "C2" },
   { name: { en: "English", ja: "英語", zh: "英文", pt: "Inglês" }, level: "C2" },
-  { name: { en: "Spanish", ja: "西語", zh: "西班牙文", pt: "Espanhol" }, level: "C1" },
+  { name: { en: "Spanish", ja: "スペイン語", zh: "西班牙文", pt: "Espanhol" }, level: "C1" },
   { name: { en: "Mandarin", ja: "中国語", zh: "中文", pt: "Mandarim" }, level: "B1" },
   { name: { en: "French", ja: "仏語", zh: "法文", pt: "Francês" }, level: "A1" },
 ]
