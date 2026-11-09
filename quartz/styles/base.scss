@@ -204,7 +204,7 @@ a {
 }
 
 .page {
-  max-width: calc(#{map.get($breakpoints, desktop)} + 300px);
+  max-width: 1500px;
   margin: 0 auto;
   & article {
     // Between body headings and the section-page titles, so long titles still wrap
