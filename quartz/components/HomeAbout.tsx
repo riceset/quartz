@@ -11,13 +11,13 @@ const HomeAbout: QuartzComponent = () => (
     <div class="home-about-layout">
       <figure class="home-about-portrait">
         <img
-          src="/static/bottom-hq.webp"
+          src="/static/portrait-centered.webp"
           {...localizedAttrs({
             alt: {
-              en: "Thiago Komeno outside a Tokyo bookstore",
-              ja: "東京の書店の前に立つ米野ティアゴ",
-              zh: "米野雅各在東京一家書店門口",
-              pt: "Thiago Komeno em frente a uma livraria em Tóquio",
+              en: "Portrait of Thiago Komeno",
+              ja: "米野ティアゴのポートレート",
+              zh: "米野雅各的肖像",
+              pt: "Retrato de Thiago Komeno",
             },
           })}
           loading="eager"
