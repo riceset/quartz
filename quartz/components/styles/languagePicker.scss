@@ -140,10 +140,13 @@
   font-family: var(--codeFont);
   font-size: 0.68rem;
   letter-spacing: 0.04em;
-  color: var(--gray);
+  // Dimmed body text instead of --gray: the glass picks up whatever is behind it, and
+  // light mode's --gray vanishes once a dark photo tints the menu toward mid-gray.
+  color: var(--darkgray);
+  opacity: 0.7;
 
   [aria-checked="true"] > & {
-    color: var(--darkgray);
+    opacity: 1;
   }
 }
 
