@@ -302,7 +302,7 @@ const talks: Entry[] = [
     },
     titleLang: "en",
     org: "iPlayground Taiwan",
-    place: { en: "Taipei", ja: "台北", zh: "台北", pt: "Taipé" },
+    place: { en: "Taipei", ja: "台北", zh: "臺北", pt: "Taipei" },
     description: {
       en: "A talk on turning a personal story into a winning Swift Playground, covering how to find an idea only you could build, grow SwiftUI skills under real project constraints, and use attention to detail to raise a submission from good to winning.",
       ja: "自身の経験からSwift Playgroundを制作し、受賞するまでを紹介しました。アイデアの見つけ方、制約の中でのSwiftUIの学び方、完成度を高めるために工夫した点について話しました。",
