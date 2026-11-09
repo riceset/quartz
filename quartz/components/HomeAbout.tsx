@@ -15,7 +15,7 @@ const HomeAbout: QuartzComponent = () => (
           {...localizedAttrs({
             alt: {
               en: "Thiago Komeno outside a Tokyo bookstore",
-              ja: "東京の書店の前に立つ米野チアゴ",
+              ja: "東京の書店の前に立つ米野ティアゴ",
               zh: "米野雅各在東京一家書店門口",
               pt: "Thiago Komeno em frente a uma livraria em Tóquio",
             },
