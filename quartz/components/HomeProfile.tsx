@@ -219,8 +219,12 @@ const hackathons: Entry[] = [
 const talks: Entry[] = [
   {
     date: { en: "Jul 2026", ja: "2026年7月", zh: "2026 年 7 月", pt: "jul 2026" },
-    title: "如何贏得 Swift Student Challenge",
-    titleLang: "zh-Hant",
+    title: {
+      en: "How to Win the Swift Student Challenge",
+      ja: "How to Win the Swift Student Challenge",
+      zh: "如何贏得 Swift Student Challenge",
+      pt: "How to Win the Swift Student Challenge",
+    },
     org: "iPlayground Taiwan",
     place: { en: "Taipei", ja: "台北", zh: "台北", pt: "Taipé" },
     description: {
