@@ -50,6 +50,29 @@ const appDevEngineer: Localized = {
 const experience: Entry[] = [
   {
     date: {
+      en: "May 2026 – Now",
+      ja: "2026年5月〜現在",
+      zh: "2026 年 5 月至今",
+      pt: "mai 2026 – atual",
+    },
+    title: {
+      en: "Full-Stack Software Engineer",
+      ja: "フルスタックエンジニア",
+      zh: "全端軟體工程師",
+      pt: "Engenheiro de Software Full-Stack",
+    },
+    org: "BaseMe",
+    detail: { en: "Part-time", ja: "アルバイト", zh: "兼職", pt: "Meio Período" },
+    place: tokyo,
+    description: {
+      en: "Built features for BaseMe’s AI career chat, such as using your notes as context and stopping a reply, and redesigned how company recommendations appear. Also added profile view counts to help students get noticed by recruiters.",
+      ja: "BaseMeのAIキャリアチャットに、メモの内容を回答に反映する機能や、回答を途中で止める機能を追加しました。おすすめ企業の表示方法も見直しました。また、学生が自分のプロフィールへの反応を確認できるよう、閲覧数を表示する機能も追加しました。",
+      zh: "我為 BaseMe 的 AI 職涯聊天加入了幾項功能，讓 AI 能參考使用者的筆記回答，也能隨時停止生成回覆。我還重新設計了推薦企業的呈現方式，並加入個人檔案的瀏覽次數，幫助學生更容易被招募人員看見。",
+      pt: "Desenvolvi recursos para o chat de carreira com IA da BaseMe, como respostas que usam as anotações do usuário como contexto e a opção de interromper uma resposta. Também redesenhei a forma como as empresas recomendadas aparecem e adicionei um contador de visualizações ao perfil para ajudar estudantes a chamar a atenção de recrutadores.",
+    },
+  },
+  {
+    date: {
       en: "Aug – Sep 2026",
       ja: "2026年8月〜9月",
       zh: "2026 年 8–9 月",
@@ -84,29 +107,6 @@ const experience: Entry[] = [
       ja: "AppleのFoundation ModelsとMeCabを使い、端末上で動く日本語の名刺検索を試作しました。自然な文章を入力すると、名前や会社名を探せる仕組みです。また、EightのTipKitを使ったPremiumの案内を見直し、Premiumの紹介ページも拡充しました。この2件は仕様書の作成から担当しました。",
       zh: "我用 Apple 的 Foundation Models 和 MeCab 做了日文名片搜尋的概念驗證，讓使用者能用自然語句搜尋姓名和公司，整個過程都在裝置上完成。我也重新設計了 Eight 透過 TipKit 顯示的 Premium 方案提醒，並擴充 Premium 方案的介紹頁面。這兩項工作的規格書也由我撰寫。",
       pt: "Desenvolvi uma prova de conceito de busca de cartões de visita em japonês que roda no próprio aparelho, usando o Foundation Models da Apple e o MeCab para encontrar nomes e empresas a partir de frases em linguagem natural. Também reformulei os lembretes do plano premium do Eight, feitos com TipKit, e ampliei a landing page do plano premium, cuidando das especificações de ambos.",
-    },
-  },
-  {
-    date: {
-      en: "May 2026 – Now",
-      ja: "2026年5月〜現在",
-      zh: "2026 年 5 月至今",
-      pt: "mai 2026 – atual",
-    },
-    title: {
-      en: "Full-Stack Software Engineer",
-      ja: "フルスタックエンジニア",
-      zh: "全端軟體工程師",
-      pt: "Engenheiro de Software Full-Stack",
-    },
-    org: "BaseMe",
-    detail: { en: "Part-time", ja: "アルバイト", zh: "兼職", pt: "Meio Período" },
-    place: tokyo,
-    description: {
-      en: "Built features for BaseMe’s AI career chat, such as using your notes as context and stopping a reply, and redesigned how company recommendations appear. Also added profile view counts to help students get noticed by recruiters.",
-      ja: "BaseMeのAIキャリアチャットに、メモの内容を回答に反映する機能や、回答を途中で止める機能を追加しました。おすすめ企業の表示方法も見直しました。また、学生が自分のプロフィールへの反応を確認できるよう、閲覧数を表示する機能も追加しました。",
-      zh: "我為 BaseMe 的 AI 職涯聊天加入了幾項功能，讓 AI 能參考使用者的筆記回答，也能隨時停止生成回覆。我還重新設計了推薦企業的呈現方式，並加入個人檔案的瀏覽次數，幫助學生更容易被招募人員看見。",
-      pt: "Desenvolvi recursos para o chat de carreira com IA da BaseMe, como respostas que usam as anotações do usuário como contexto e a opção de interromper uma resposta. Também redesenhei a forma como as empresas recomendadas aparecem e adicionei um contador de visualizações ao perfil para ajudar estudantes a chamar a atenção de recrutadores.",
     },
   },
   {
