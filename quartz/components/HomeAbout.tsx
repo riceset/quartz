@@ -32,7 +32,7 @@ const HomeAbout: QuartzComponent = () => (
             text={{
               en: "I like building things that feel native.",
               ja: "プラットフォームになじむ体験をつくるのが好きです。",
-              zh: "打造貼合平台的體驗。",
+              zh: "我喜歡打造貼合平台的體驗。",
               pt: "Gosto de criar experiências nativas.",
             }}
           />
