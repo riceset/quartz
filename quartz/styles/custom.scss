@@ -136,6 +136,10 @@ article .katex-display {
   body[data-page-type="content"] .page > #quartz-body,
   body[data-page-type="tag"] .page > #quartz-body {
     grid-template-columns: 6rem 1fr 0;
+    // Gutters between the rail and the article, and off the right edge. They grow with
+    // the viewport (about 60px at 1024px, up to 96px) like most portfolio layouts do.
+    column-gap: clamp(2rem, 6vw, 6rem);
+    padding-right: clamp(2rem, 6vw, 6rem);
 
     & .sidebar.right {
       display: none;
@@ -147,7 +151,7 @@ article .katex-display {
     & .center,
     & footer {
       min-width: 0;
-      max-width: 720px;
+      max-width: 700px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -316,6 +320,22 @@ article .katex-display {
         width: 1.5rem;
         height: 1.5rem;
       }
+    }
+  }
+
+  // The about page sets a photo beside its intro, which the prose cap squeezes; give
+  // it a wider column. Experience descriptions keep their own 36rem measure.
+  body[data-page-type="content"] .page > #quartz-body {
+    & .center:has(.home-profile),
+    & .center:has(.home-profile) ~ footer {
+      max-width: 920px;
+    }
+
+    // The articles index is a list of cards, not prose, so it can run wider than the
+    // ~70-character measure the article pages keep.
+    & .center:has(.home-articles),
+    & .center:has(.home-articles) ~ footer {
+      max-width: 800px;
     }
   }
 
