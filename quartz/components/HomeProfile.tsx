@@ -84,7 +84,7 @@ const experience: Entry[] = [
     place: { en: "Fukuoka", ja: "福岡", zh: "福岡", pt: "Fukuoka" },
     articleUrl: "/LINE-Internship",
     description: {
-      en: "Updated LINE’s sticker and emoji screens in UIKit for the Liquid Glass redesign and fixed iOS 26 layout issues in settings, aligning on styling with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
+      en: "Updated LINE’s sticker and emoji settings screens in UIKit for the Liquid Glass redesign and fixed layout issues that appeared in iOS 26, refining the details with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
       ja: "LINEのスタンプ・絵文字設定画面をLiquid Glassのデザインに合わせてUIKitで改修し、iOS 26で発生したレイアウトの問題も修正しました。デザイナーと日本語・英語でやり取りしながら、UIの細部まで仕上げました。また、コイン履歴画面のフッターをUIKitからSwiftUIへ移すプロトタイプも作りました。",
       zh: "我配合 Liquid Glass 的新設計，用 UIKit 改版 LINE 的貼圖與表情貼設定畫面，也修正了在 iOS 26 上出現的排版問題。過程中用日文和英文與設計師溝通，把 UI 的細節一一調整到位。另外，我也做了一個原型，把代幣紀錄畫面的底部區塊從 UIKit 移到 SwiftUI。",
       pt: "Reformulei em UIKit as telas de configuração de stickers e emojis do LINE para o novo design Liquid Glass e corrigi problemas de layout que surgiram no iOS 26. Trabalhei com os designers em japonês e inglês para acertar cada detalhe da interface. Também criei um protótipo para migrar o rodapé da tela de histórico de moedas de UIKit para SwiftUI.",
@@ -103,7 +103,7 @@ const experience: Entry[] = [
     place: tokyo,
     articleUrl: "/Sansan-Internship",
     description: {
-      en: "Built a proof of concept for on-device Japanese contact search with Apple’s Foundation Models and MeCab, matching natural-language queries to names and companies. Also reworked Eight’s TipKit Premium reminders and expanded its Premium landing page, writing the specs for both.",
+      en: "Built a proof of concept for on-device Japanese contact search with Apple’s Foundation Models and MeCab, matching natural-language queries to names and companies. At Eight, also revised when its TipKit Premium tips appear and removed an unneeded toolbar from the Premium screen to give its web page more room, writing the specs for both.",
       ja: "AppleのFoundation ModelsとMeCabを使い、端末上で動く日本語の名刺検索の概念実証を開発しました。自然言語で入力すると、名前や会社名を探せる仕組みです。また、EightではTipKitを使ったプレミアムプランの案内の表示ルールを見直し、紹介画面の不要なツールバーを取り除いてWebページの表示領域を広げました。どちらも仕様書の作成から担当しました。",
       zh: "我用 Apple 的 Foundation Models 和 MeCab，開發了在裝置上執行的日文名片搜尋概念驗證，只要用自然語言輸入，就能找到姓名或公司名稱。在 Eight，我重新檢視了透過 TipKit 顯示的 Premium 方案提示的顯示規則，並移除介紹畫面中多餘的工具列，讓網頁的顯示範圍更大。這兩項工作都是從撰寫規格書開始由我負責。",
       pt: "Desenvolvi uma prova de conceito de busca de cartões de visita em japonês que roda no próprio aparelho, usando o Foundation Models da Apple e o MeCab. Basta escrever em linguagem natural para encontrar nomes e empresas. No Eight, revisei as regras de exibição dos avisos do plano premium feitos com TipKit e removi uma barra de ferramentas desnecessária da tela de apresentação do plano, deixando mais espaço para a página web. Cuidei dos dois projetos desde a escrita das especificações.",
@@ -387,7 +387,7 @@ const talks: Entry[] = [
     org: "Fora da Norma Podcast",
     place: { en: "São Paulo", ja: "サンパウロ", zh: "聖保羅", pt: "São Paulo" },
     description: {
-      en: "Produced a Brazilian Portuguese tutorial for 42 São Paulo’s YouTube channel, teaching beginners how to use Vim from the basics.",
+      en: "Produced and presented a Brazilian Portuguese introduction to Vim for Fora da Norma, 42 São Paulo’s podcast.",
       ja: "42 São Pauloのポッドキャスト「Fora da Norma」で、ポルトガル語のVim入門動画を制作し、出演しました。",
       zh: "我在 42 São Paulo 的 Podcast《Fora da Norma》中，製作並主講了一支葡萄牙語的 Vim 入門影片。",
       pt: "Produzi e apresentei um vídeo de introdução ao Vim em português para o podcast Fora da Norma, da 42 São Paulo.",
