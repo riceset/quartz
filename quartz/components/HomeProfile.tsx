@@ -225,6 +225,7 @@ const talks: Entry[] = [
       zh: "如何贏得 Swift Student Challenge",
       pt: "How to Win the Swift Student Challenge",
     },
+    titleLang: "en",
     org: "iPlayground Taiwan",
     place: { en: "Taipei", ja: "台北", zh: "台北", pt: "Taipé" },
     description: {
@@ -290,8 +291,8 @@ const talks: Entry[] = [
   {
     date: { en: "Jan 2024", ja: "2024年1月", zh: "2024 年 1 月", pt: "jan 2024" },
     title: "The 42 Live Radio Show",
-    org: "이노베이션 아카데미",
-    orgLang: "ko",
+    org: "Innovation Academy",
+    orgLang: "en",
     place: seoul,
     description: {
       en: "Joined a cross-campus podcast between Innovation Academy and 42 Tokyo, exchanging perspectives on the 42 Network with Korean students.",
