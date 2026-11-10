@@ -197,9 +197,9 @@ const awards: Entry[] = [
     date: years(2023),
     title: {
       en: "MEXT Undergraduate Scholarship",
-      ja: "国費外国人留学生（学部）",
-      zh: "日本政府（文部科學省）獎學金（學部留學生）",
-      pt: "Bolsa MEXT para Graduação",
+      ja: "国費外国人留学生",
+      zh: "日本政府獎學金",
+      pt: "Bolsa MEXT (Graduação)",
     },
     org: {
       en: "Ministry of Education of Japan",
