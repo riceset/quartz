@@ -68,7 +68,7 @@ const experience: Entry[] = [
       en: "Built features for BaseMe’s AI career chat, such as using your notes as context and stopping a reply, and redesigned how company recommendations appear. Also added profile view counts to help students get noticed by recruiters.",
       ja: "BaseMeのAIキャリアチャットに、メモの内容を回答に反映する機能や、回答を途中で止められる機能を追加しました。おすすめ企業の表示方法も見直しました。また、学生が自分のプロフィールの閲覧数を確認できる機能も追加しました。",
       zh: "我為 BaseMe 的 AI 職涯聊天加入了讓回答參考筆記內容的功能，以及可以中途停止回答的功能，也重新調整了推薦企業的呈現方式。另外，我還加入了讓學生查看自己個人檔案瀏覽次數的功能。",
-      pt: "No chat de carreira com IA da BaseMe, adicionei recursos para que as respostas levem em conta as anotações do usuário e para interromper uma resposta no meio. Também revisei a forma como as empresas recomendadas são exibidas. Além disso, criei um recurso para que os estudantes vejam quantas visualizações o próprio perfil recebeu.",
+      pt: "No assistente de carreira com IA da BaseMe, fiz com que as respostas levassem em conta as anotações dos estudantes e adicionei a opção de interromper respostas em andamento. Também implementei o novo design da seção de empresas recomendadas e incluí a contagem de visualizações nos perfis dos estudantes.",
     },
   },
   {
@@ -87,7 +87,7 @@ const experience: Entry[] = [
       en: "Updated LINE’s sticker and emoji settings screens in UIKit for the Liquid Glass redesign and fixed layout issues that appeared in iOS 26, refining the details with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
       ja: "LINEのスタンプ・絵文字設定画面をLiquid Glassのデザインに合わせてUIKitで改修し、iOS 26で発生したレイアウトの問題も修正しました。デザイナーと日本語・英語でやり取りしながら、UIの細部まで仕上げました。また、コイン履歴画面のフッターをUIKitからSwiftUIへ移すプロトタイプも作りました。",
       zh: "我配合 Liquid Glass 的新設計，用 UIKit 改版 LINE 的貼圖與表情貼設定畫面，也修正了在 iOS 26 上出現的排版問題。過程中用日文和英文與設計師溝通，把 UI 的細節一一調整到位。另外，我也做了一個原型，把代幣紀錄畫面的底部區塊從 UIKit 移到 SwiftUI。",
-      pt: "Reformulei em UIKit as telas de configuração de stickers e emojis do LINE para o novo design Liquid Glass e corrigi problemas de layout que surgiram no iOS 26. Trabalhei com os designers em japonês e inglês para acertar cada detalhe da interface. Também criei um protótipo para migrar o rodapé da tela de histórico de moedas de UIKit para SwiftUI.",
+      pt: "Adaptei as telas de configuração de stickers e emojis do LINE ao design Liquid Glass usando UIKit e corrigi problemas de layout que surgiram no iOS 26. Conversei com os designers em japonês e inglês para ajustar os detalhes da interface. Também criei um protótipo para migrar o rodapé da tela de histórico de moedas de UIKit para SwiftUI.",
     },
   },
   {
@@ -106,7 +106,7 @@ const experience: Entry[] = [
       en: "Built a proof of concept for on-device Japanese contact search with Apple’s Foundation Models and MeCab, matching natural-language queries to names and companies. At Eight, also revised when its TipKit Premium tips appear and removed an unneeded toolbar from the Premium screen to give its web page more room, writing the specs for both.",
       ja: "AppleのFoundation ModelsとMeCabを使い、端末上で動く日本語の名刺検索の概念実証を開発しました。自然言語で入力すると、名前や会社名を探せる仕組みです。また、EightではTipKitを使ったプレミアムプランの案内の表示ルールを見直し、紹介画面の不要なツールバーを取り除いてWebページの表示領域を広げました。どちらも仕様書の作成から担当しました。",
       zh: "我用 Apple 的 Foundation Models 和 MeCab，開發了在裝置上執行的日文名片搜尋概念驗證，只要用自然語言輸入，就能找到姓名或公司名稱。在 Eight，我重新檢視了透過 TipKit 顯示的 Premium 方案提示的顯示規則，並移除介紹畫面中多餘的工具列，讓網頁的顯示範圍更大。這兩項工作都是從撰寫規格書開始由我負責。",
-      pt: "Desenvolvi uma prova de conceito de busca de cartões de visita em japonês que roda no próprio aparelho, usando o Foundation Models da Apple e o MeCab. Basta escrever em linguagem natural para encontrar nomes e empresas. No Eight, revisei as regras de exibição dos avisos do plano premium feitos com TipKit e removi uma barra de ferramentas desnecessária da tela de apresentação do plano, deixando mais espaço para a página web. Cuidei dos dois projetos desde a escrita das especificações.",
+      pt: "Desenvolvi uma prova de conceito para buscar cartões de visita a partir de queries em japonês, usando o framework Foundation Models da Apple e o MeCab no próprio aparelho. A busca interpreta frases em linguagem natural para encontrar contatos por nome ou empresa. No Eight, revisei as regras de exibição de um aviso sobre o plano premium criado com TipKit e removi a barra de ferramentas da tela de apresentação do plano, ampliando o espaço disponível para a página web. Escrevi as especificações dessas duas mudanças antes de implementá-las.",
     },
   },
   {
@@ -125,7 +125,7 @@ const experience: Entry[] = [
       en: "Added country-based access controls to an AI feature in FamilyAlbum that recognizes family members and suggests photos for albums, keeping it to legally approved regions with cached location checks covered by Swift Testing. Also replaced PanModal with native iOS sheets for iOS 26.",
       ja: "「家族アルバム みてね」で、家族を認識してアルバム用の写真を提案するAI機能に、国ごとの利用制限を追加しました。法的に提供可能な地域に利用を限定し、キャッシュを使った地域判定はSwift Testingでテストしました。また、iOS 26に合わせてPanModalをiOS標準のシートに置き換えました。",
       zh: "在 FamilyAlbum，我為一項能辨識家人、推薦相簿照片的 AI 功能加入了國家／地區使用限制，確保只有法規允許的地區能使用。我也用 Swift Testing 測試透過快取的位置資訊判斷所在地區的邏輯，並因應 iOS 26，把 PanModal 換成 iOS 原生的 sheet。",
-      pt: "No FamilyAlbum, implementei restrições por país em um recurso de IA que reconhece familiares e sugere fotos para álbuns, permitindo seu uso apenas onde a legislação autoriza. Usei Swift Testing para testar as verificações de localização armazenadas em cache. Também substituí o PanModal pelas sheets nativas do iOS 26.",
+      pt: "No FamilyAlbum, implementei restrições por país em um recurso de IA que identifica familiares nas fotos e sugere imagens para álbuns. O recurso só pode ser usado nos países onde pode ser oferecido legalmente. Testei a verificação do país com Swift Testing e usei cache para evitar consultas repetidas. Também substituí o PanModal pelas sheets nativas do iOS 26.",
     },
   },
   {
@@ -188,7 +188,7 @@ const awards: Entry[] = [
       en: "Selected for an app that impressed and inspired Apple with its creativity, technical skill, and thoughtful design.",
       ja: "アイデアの独自性や技術力、細部までこだわったデザインがAppleに評価されました。",
       zh: "作品的創意、技術能力，以及講究細節的設計獲得了 Apple 的肯定。",
-      pt: "A originalidade da ideia, a qualidade técnica e o cuidado com cada detalhe do design foram reconhecidos pela Apple.",
+      pt: "Fui premiado pela Apple no Swift Student Challenge por um app que desenvolvi a partir de uma ideia original, com atenção aos detalhes da implementação e do design.",
     },
     articleUrl: "/Swift-Student-Challenge-2026",
     articleLabel: "Swift Student Challenge",
@@ -211,7 +211,7 @@ const awards: Entry[] = [
       en: "Awarded through embassy recommendation, covering full tuition, living expenses, and travel for undergraduate studies in Japan.",
       ja: "大使館推薦で国費留学生（学部）に選ばれ、2023年に来日しました。",
       zh: "2023 年透過日本大使館推薦，獲得 MEXT 大學部獎學金，並赴日留學。",
-      pt: "Fui selecionado por recomendação da embaixada como bolsista do governo japonês (MEXT) para a graduação e vim para o Japão em 2023.",
+      pt: "Fui selecionado para a bolsa MEXT de graduação após receber a recomendação da embaixada.",
     },
     links: [
       {
@@ -305,9 +305,9 @@ const talks: Entry[] = [
     place: { en: "Taipei", ja: "台北", zh: "臺北", pt: "Taipei" },
     description: {
       en: "A talk on turning a personal story into a winning Swift Playground, covering how to find an idea only you could build, grow SwiftUI skills under real project constraints, and use attention to detail to raise a submission from good to winning.",
-      ja: "自身の経験からSwift Playgroundを制作し、受賞するまでを紹介しました。アイデアの見つけ方、制約の中でのSwiftUIの学び方、完成度を高めるために工夫した点について話しました。",
+      ja: "Swift Student Challengeで受賞したSwift Playgroundを題材に、自分の経験からアイデアを見つけ、SwiftUIで試行錯誤しながら作品を作り上げた過程を紹介しました。",
       zh: "我分享了從自身經驗出發製作 Swift Playground、一路到得獎的過程，也談到如何找到點子、如何在限制中學習 SwiftUI，以及為了提升作品完成度所下的功夫。",
-      pt: "Contei como criei um Swift Playground a partir da minha própria experiência até ser premiado. Falei sobre como encontrar ideias, como aprender SwiftUI dentro das limitações do projeto e o que fiz para deixar o trabalho mais bem acabado.",
+      pt: "Mostrei como uma experiência pessoal deu origem a um Swift Playground premiado. Falei sobre a escolha da ideia, os desafios de desenvolver em SwiftUI e os detalhes que fizeram diferença na versão final.",
     },
     links: [
       {
@@ -347,7 +347,7 @@ const talks: Entry[] = [
     place: tokyo,
     description: {
       en: "Spoke at a Consulate-General of Japan in São Paulo webinar, sharing my MEXT scholarship experience with prospective students.",
-      ja: "在サンパウロ日本国総領事館のウェビナーで、国費留学を考えている学生に、留学経験を紹介しました。",
+      ja: "在サンパウロ日本国総領事館のウェビナーで、国費留学を考えている学生に自分の経験を話しました。",
       zh: "我在日本駐聖保羅總領事館舉辦的線上講座中，向考慮申請 MEXT 獎學金的學生分享自己的留學經驗。",
       pt: "Participei de um webinar do Consulado-Geral do Japão em São Paulo para contar minha experiência com a bolsa MEXT a estudantes interessados em estudar no Japão.",
     },
@@ -371,7 +371,7 @@ const talks: Entry[] = [
     place: seoul,
     description: {
       en: "Joined a cross-campus podcast between Innovation Academy and 42 Tokyo, exchanging perspectives on the 42 Network with Korean students.",
-      ja: "Innovation Academyと42 Tokyoによるポッドキャストに出演し、韓国の学生と42 Networkについて話しました。",
+      ja: "Innovation Academyと42 Tokyoのポッドキャストに出演し、韓国の学生と42 Networkについて話しました。",
       zh: "我參加了 Innovation Academy 和 42 Tokyo 合作的 Podcast，和韓國學生聊了彼此對 42 Network 的看法。",
       pt: "Participei de um podcast entre a Innovation Academy e a 42 Tokyo, em que conversei com estudantes coreanos sobre a 42 Network.",
     },
