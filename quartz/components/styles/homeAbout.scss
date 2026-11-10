@@ -140,6 +140,12 @@
     white-space: nowrap;
   }
 
+  // The Chinese line is 17 full-width glyphs, punctuation included.
+  html[data-lang="zh"] .home-about-copy > h2 {
+    font-size: min(1.7rem, calc((100vw - 2rem) / 17));
+    white-space: nowrap;
+  }
+
   .home-about-signature {
     margin-top: 2rem;
   }
