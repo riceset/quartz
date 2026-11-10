@@ -58,7 +58,7 @@ const experience: Entry[] = [
     title: {
       en: "Full-Stack Software Engineer",
       ja: "フルスタックエンジニア",
-      zh: "全端軟體工程師",
+      zh: "全端工程師",
       pt: "Engenheiro de Software Full-Stack",
     },
     org: "BaseMe",
@@ -67,7 +67,7 @@ const experience: Entry[] = [
     description: {
       en: "Built features for BaseMe’s AI career chat, such as using your notes as context and stopping a reply, and redesigned how company recommendations appear. Also added profile view counts to help students get noticed by recruiters.",
       ja: "BaseMeのAIキャリアチャットで、学生のメモを回答に反映する機能と、回答を途中で止められる機能を追加しました。おすすめ企業の表示も新しいデザインに合わせて変更しました。また、学生が自分のプロフィールの閲覧数を確認できるようにしました。",
-      zh: "我為 BaseMe 的 AI 職涯聊天加入了讓回答參考筆記內容的功能，以及可以中途停止回答的功能，也重新調整了推薦企業的呈現方式。另外，我還加入了讓學生查看自己個人檔案瀏覽次數的功能。",
+      zh: "為 BaseMe 的 AI 職涯聊天新增兩項功能：回答時參考學生的筆記，以及讓學生能中途停止生成回答。也依新版設計調整推薦企業區塊，並讓學生能查看自己個人檔案的瀏覽次數。",
       pt: "No assistente de carreira com IA da BaseMe, fiz com que as respostas levassem em conta as anotações dos estudantes e adicionei a opção de interromper respostas em andamento. Também implementei o novo design da seção de empresas recomendadas e incluí a contagem de visualizações nos perfis dos estudantes.",
     },
   },
@@ -86,7 +86,7 @@ const experience: Entry[] = [
     description: {
       en: "Updated LINE’s sticker and emoji settings screens in UIKit for the Liquid Glass redesign and fixed layout issues that appeared in iOS 26, refining the details with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
       ja: "LINEのスタンプ・絵文字設定画面をLiquid Glassのデザインに合わせてUIKitで改修し、iOS 26で発生したレイアウトの問題も修正しました。デザイナーと日本語・英語で相談しながら、UIの細かな部分も調整しました。また、コイン履歴画面のフッターをUIKitからSwiftUIへ移行するためのプロトタイプも作成しました。",
-      zh: "我配合 Liquid Glass 的新設計，用 UIKit 改版 LINE 的貼圖與表情貼設定畫面，也修正了在 iOS 26 上出現的排版問題。過程中用日文和英文與設計師溝通，把 UI 的細節一一調整到位。另外，我也做了一個原型，把代幣紀錄畫面的底部區塊從 UIKit 移到 SwiftUI。",
+      zh: "配合 Liquid Glass 的設計，以 UIKit 更新 LINE 的貼圖與表情貼設定畫面，並修正 iOS 26 的版面問題。與設計師以日文和英文討論畫面細節，依討論結果調整 UI。另外，也製作了將代幣紀錄畫面的底部區塊由 UIKit 改用 SwiftUI 的原型。",
       pt: "Adaptei as telas de configuração de stickers e emojis do LINE ao design Liquid Glass usando UIKit e corrigi problemas de layout que surgiram no iOS 26. Conversei com os designers em japonês e inglês para ajustar os detalhes da interface. Também criei um protótipo para migrar o rodapé da tela de histórico de moedas de UIKit para SwiftUI.",
     },
   },
@@ -105,7 +105,7 @@ const experience: Entry[] = [
     description: {
       en: "Built a proof of concept for on-device Japanese contact search with Apple’s Foundation Models and MeCab, matching natural-language queries to names and companies. At Eight, also revised when its TipKit Premium tips appear and removed an unneeded toolbar from the Premium screen to give its web page more room, writing the specs for both.",
       ja: "AppleのFoundation ModelsとMeCabを使い、端末上で動く日本語の名刺検索の概念実証を開発しました。自然言語で入力すると、名前や会社名を探せる仕組みです。また、EightではTipKitを使ったプレミアムプランの案内の表示ルールを見直し、紹介画面の不要なツールバーを取り除いてWebページの表示領域を広げました。どちらも仕様書の作成から担当しました。",
-      zh: "我用 Apple 的 Foundation Models 和 MeCab，開發了在裝置上執行的日文名片搜尋概念驗證，只要用自然語言輸入，就能找到姓名或公司名稱。在 Eight，我重新檢視了透過 TipKit 顯示的 Premium 方案提示的顯示規則，並移除介紹畫面中多餘的工具列，讓網頁的顯示範圍更大。這兩項工作都是從撰寫規格書開始由我負責。",
+      zh: "使用 Apple 的 Foundation Models 和 MeCab，開發了在裝置端執行的概念驗證，讓使用者能用日文句子搜尋名片。在 Eight，調整了以 TipKit 呈現的 Premium 方案提示規則，也移除 Premium 介紹畫面中不必要的工具列，讓網頁有更多顯示空間。負責兩項修改的實作與規格書。",
       pt: "Desenvolvi uma prova de conceito para buscar cartões de visita a partir de queries em japonês, usando o framework Foundation Models da Apple e o MeCab no próprio aparelho. A busca interpreta frases em linguagem natural para encontrar contatos por nome ou empresa. No Eight, revisei as regras de exibição de um aviso sobre o plano premium criado com TipKit e removi a barra de ferramentas da tela de apresentação do plano, ampliando o espaço disponível para a página web. Escrevi as especificações dessas duas mudanças antes de implementá-las.",
     },
   },
@@ -124,7 +124,7 @@ const experience: Entry[] = [
     description: {
       en: "For FamilyAlbum, I restricted an AI feature that identifies family members in photos and suggests photos for albums to countries where it could legally be offered. I cached country lookup results to avoid repeated API calls and used Swift Testing to cover allowed, blocked, and unknown-country cases. I also replaced PanModal with native iOS sheets after it ran into issues on iOS 26.",
       ja: "「家族アルバム みてね」では、写真に写った家族を認識してアルバム用の写真を提案するAI機能について、法的な要件に合わせて利用できる国を制限しました。国の判定結果をキャッシュしてAPIへの問い合わせを減らし、対応国・非対応国・国を判定できない場合の動作をSwift Testingでテストしました。また、iOS 26で不具合が出ていたPanModalをiOS標準のシートに置き換えました。",
-      zh: "在「家家相簿」（FamilyAlbum），我為 AI 照片推薦功能加入國別使用限制。這項功能會辨識照片中的家人，推薦適合放進相簿的照片；加入限制後，只會在法規允許的國家提供。我將國家判定結果存入快取，避免重複呼叫 API，並用 Swift Testing 測試可使用、不可使用及無法判定國家的情況。PanModal 在 iOS 26 出現問題後，我也將相關畫面改用 iOS 原生的 sheet。",
+      zh: "在「家家相簿」（FamilyAlbum），為 AI 照片推薦功能加入國別使用限制。這項功能會辨識照片中的家人，推薦適合放進相簿的照片；加入限制後，只會在法規允許的國家提供。將國家判定結果存入快取，以減少重複呼叫 API，並用 Swift Testing 測試可使用、不可使用及無法判定國家的情況。PanModal 在 iOS 26 出現問題後，也將相關畫面改用 iOS 原生的 sheet。",
       pt: "No FamilyAlbum, implementei restrições por país para um recurso de IA que identifica familiares nas fotos e sugere imagens para álbuns. O recurso ficou limitado aos países onde podia ser oferecido legalmente. Armazenei em cache o resultado da verificação do país para evitar consultas repetidas à API e usei Swift Testing para testar os casos de acesso permitido, negado e país não identificado. Também substituí o PanModal pelas sheets nativas do iOS depois que ele apresentou problemas no iOS 26.",
     },
   },
@@ -141,7 +141,7 @@ const experience: Entry[] = [
     description: {
       en: "Part of the program’s first cohort, sharing everyday AI use cases with more than 1,000 followers. Helped fellow university students learn to use AI safely and effectively.",
       ja: "Google 学生アンバサダーの第1期生として、1,000人以上のフォロワーに向けて、日常でのAIの使い方を発信しました。また、大学生がAIを安全にうまく活用できるよう支援しました。",
-      zh: "我是 Google 學生大使計畫的第一屆成員，向超過 1,000 位追蹤者分享日常生活中的 AI 用法，也協助其他大學生學會安全、有效地使用 AI。",
+      zh: "作為 Google 學生大使計畫的首屆成員，向超過 1,000 名追蹤者分享日常生活中如何使用 AI，也協助大學生更安全、有效地使用 AI。",
       pt: "Fiz parte da primeira turma de embaixadores estudantis do Google, compartilhando formas de usar IA no dia a dia com mais de 1.000 seguidores. Também ajudei outros universitários a usar IA com segurança e de forma prática.",
     },
     links: [
@@ -158,7 +158,7 @@ const experience: Entry[] = [
         label: {
           en: "TV news coverage on YouTube",
           ja: "YouTubeでテレビ報道を見る",
-          zh: "在 YouTube 看電視新聞報導",
+          zh: "觀看電視新聞報導（YouTube）",
           pt: "Reportagem de TV no YouTube",
         },
         url: "https://www.youtube.com/watch?v=1IyzO2LOErc",
@@ -187,7 +187,7 @@ const awards: Entry[] = [
     description: {
       en: "Selected for an app that impressed and inspired Apple with its creativity, technical skill, and thoughtful design.",
       ja: "アイデアの独自性や技術力、細部までこだわったデザインがAppleに評価されました。",
-      zh: "憑自己構想並開發的 app，獲 Apple 選為 Swift Student Challenge 得獎者。從技術實作到設計細節，都花了不少心思。",
+      zh: "從 0 到 1 自己構想並開發的 app，獲 Apple 選為 Swift Student Challenge 得獎者。從技術實作到設計細節都用心琢磨，打造完整流暢的使用者體驗。",
       pt: "Fui premiado pela Apple no Swift Student Challenge por um app que desenvolvi a partir de uma ideia original, com atenção aos detalhes da implementação e do design.",
     },
     articleUrl: "/Swift-Student-Challenge-2026",

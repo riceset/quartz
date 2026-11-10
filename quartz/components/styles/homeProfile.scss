@@ -263,7 +263,8 @@ $about-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
     & > span + span::before {
       content: "·";
       margin: 0 0.5em;
-      color: var(--lightgray);
+      color: var(--gray);
+      font-weight: 700;
     }
   }
 
