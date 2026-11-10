@@ -187,7 +187,7 @@ const awards: Entry[] = [
     description: {
       en: "Selected for an app that impressed and inspired Apple with its creativity, technical skill, and thoughtful design.",
       ja: "アイデアの独自性や技術力、細部までこだわったデザインがAppleに評価されました。",
-      zh: "作品的創意、技術能力，以及講究細節的設計獲得了 Apple 的肯定。",
+      zh: "憑自己構想並開發的 app，獲 Apple 選為 Swift Student Challenge 得獎者。從技術實作到設計細節，都花了不少心思。",
       pt: "Fui premiado pela Apple no Swift Student Challenge por um app que desenvolvi a partir de uma ideia original, com atenção aos detalhes da implementação e do design.",
     },
     articleUrl: "/Swift-Student-Challenge-2026",
@@ -198,7 +198,7 @@ const awards: Entry[] = [
     title: {
       en: "MEXT Undergraduate Scholarship",
       ja: "国費外国人留学生（学部）",
-      zh: "日本政府（MEXT）大學部獎學金",
+      zh: "日本政府（文部科學省）獎學金（學部留學生）",
       pt: "Bolsa MEXT para Graduação",
     },
     org: {
@@ -210,7 +210,7 @@ const awards: Entry[] = [
     description: {
       en: "Awarded through embassy recommendation, covering full tuition, living expenses, and travel for undergraduate studies in Japan.",
       ja: "大使館推薦で国費留学生（学部）に選ばれ、2023年に来日しました。",
-      zh: "2023 年透過日本大使館推薦，獲得 MEXT 大學部獎學金，並赴日留學。",
+      zh: "2023 年經日本大使館推薦，獲得獎學金並赴日留學。",
       pt: "Fui selecionado para a bolsa MEXT de graduação após receber a recomendação da embaixada.",
     },
     links: [
@@ -306,7 +306,7 @@ const talks: Entry[] = [
     description: {
       en: "A talk on turning a personal story into a winning Swift Playground, covering how to find an idea only you could build, grow SwiftUI skills under real project constraints, and use attention to detail to raise a submission from good to winning.",
       ja: "Swift Student Challengeで受賞したSwift Playgroundを題材に、自分の経験からアイデアを見つけ、SwiftUIで試行錯誤しながら作品を作り上げた過程を紹介しました。",
-      zh: "我分享了從自身經驗出發製作 Swift Playground、一路到得獎的過程，也談到如何找到點子、如何在限制中學習 SwiftUI，以及為了提升作品完成度所下的功夫。",
+      zh: "我分享了如何從自己的經歷找到靈感，做出在 Swift Student Challenge 得獎的 Swift Playground，也談了用 SwiftUI 開發時的嘗試，以及反覆調整作品細節的過程。",
       pt: "Mostrei como uma experiência pessoal deu origem a um Swift Playground premiado. Falei sobre a escolha da ideia, os desafios de desenvolver em SwiftUI e os detalhes que fizeram diferença na versão final.",
     },
     links: [
@@ -348,7 +348,7 @@ const talks: Entry[] = [
     description: {
       en: "Spoke at a Consulate-General of Japan in São Paulo webinar, sharing my MEXT scholarship experience with prospective students.",
       ja: "在サンパウロ日本国総領事館のウェビナーで、国費留学を考えている学生に自分の経験を話しました。",
-      zh: "我在日本駐聖保羅總領事館舉辦的線上講座中，向考慮申請 MEXT 獎學金的學生分享自己的留學經驗。",
+      zh: "在日本駐聖保羅總領事館舉辦的線上講座中，向有意申請 MEXT 獎學金的學生分享留學經驗。",
       pt: "Participei de um webinar do Consulado-Geral do Japão em São Paulo para contar minha experiência com a bolsa MEXT a estudantes interessados em estudar no Japão.",
     },
     links: [
@@ -372,7 +372,7 @@ const talks: Entry[] = [
     description: {
       en: "Joined a cross-campus podcast between Innovation Academy and 42 Tokyo, exchanging perspectives on the 42 Network with Korean students.",
       ja: "Innovation Academyと42 Tokyoのポッドキャストに出演し、韓国の学生と42 Networkについて話しました。",
-      zh: "我參加了 Innovation Academy 和 42 Tokyo 合作的 Podcast，和韓國學生聊了彼此對 42 Network 的看法。",
+      zh: "參與 Innovation Academy 與 42 Tokyo 合作的 Podcast 節目，和韓國學生交流對 42 Network 的看法。",
       pt: "Participei de um podcast entre a Innovation Academy e a 42 Tokyo, em que conversei com estudantes coreanos sobre a 42 Network.",
     },
   },
@@ -389,7 +389,7 @@ const talks: Entry[] = [
     description: {
       en: "Produced and presented a Brazilian Portuguese introduction to Vim for Fora da Norma, 42 São Paulo’s podcast.",
       ja: "42 São Pauloのポッドキャスト「Fora da Norma」で、Vim入門動画を制作し、ポルトガル語で解説しました。",
-      zh: "我在 42 São Paulo 的 Podcast《Fora da Norma》中，製作並主講了一支葡萄牙語的 Vim 入門影片。",
+      zh: "為 42 São Paulo 的 Podcast 節目《Fora da Norma》製作 Vim 入門影片，並以葡萄牙語講解。",
       pt: "Produzi e apresentei um vídeo de introdução ao Vim em português para o podcast Fora da Norma, da 42 São Paulo.",
     },
     links: [
