@@ -66,7 +66,7 @@ const experience: Entry[] = [
     place: tokyo,
     description: {
       en: "Built features for BaseMe’s AI career chat, such as using your notes as context and stopping a reply, and redesigned how company recommendations appear. Also added profile view counts to help students get noticed by recruiters.",
-      ja: "BaseMeのAIキャリアチャットに、メモの内容を回答に反映する機能や、回答を途中で止められる機能を追加しました。おすすめ企業の表示方法も見直しました。また、学生が自分のプロフィールの閲覧数を確認できる機能も追加しました。",
+      ja: "BaseMeのAIキャリアチャットで、学生のメモを回答に反映する機能と、回答を途中で止められる機能を追加しました。おすすめ企業の表示も新しいデザインに合わせて変更しました。また、学生が自分のプロフィールの閲覧数を確認できるようにしました。",
       zh: "我為 BaseMe 的 AI 職涯聊天加入了讓回答參考筆記內容的功能，以及可以中途停止回答的功能，也重新調整了推薦企業的呈現方式。另外，我還加入了讓學生查看自己個人檔案瀏覽次數的功能。",
       pt: "No assistente de carreira com IA da BaseMe, fiz com que as respostas levassem em conta as anotações dos estudantes e adicionei a opção de interromper respostas em andamento. Também implementei o novo design da seção de empresas recomendadas e incluí a contagem de visualizações nos perfis dos estudantes.",
     },
@@ -85,7 +85,7 @@ const experience: Entry[] = [
     articleUrl: "/LINE-Internship",
     description: {
       en: "Updated LINE’s sticker and emoji settings screens in UIKit for the Liquid Glass redesign and fixed layout issues that appeared in iOS 26, refining the details with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
-      ja: "LINEのスタンプ・絵文字設定画面をLiquid Glassのデザインに合わせてUIKitで改修し、iOS 26で発生したレイアウトの問題も修正しました。デザイナーと日本語・英語でやり取りしながら、UIの細部まで仕上げました。また、コイン履歴画面のフッターをUIKitからSwiftUIへ移すプロトタイプも作りました。",
+      ja: "LINEのスタンプ・絵文字設定画面をLiquid Glassのデザインに合わせてUIKitで改修し、iOS 26で発生したレイアウトの問題も修正しました。デザイナーと日本語・英語で相談しながら、UIの細かな部分も調整しました。また、コイン履歴画面のフッターをUIKitからSwiftUIへ移行するためのプロトタイプも作成しました。",
       zh: "我配合 Liquid Glass 的新設計，用 UIKit 改版 LINE 的貼圖與表情貼設定畫面，也修正了在 iOS 26 上出現的排版問題。過程中用日文和英文與設計師溝通，把 UI 的細節一一調整到位。另外，我也做了一個原型，把代幣紀錄畫面的底部區塊從 UIKit 移到 SwiftUI。",
       pt: "Adaptei as telas de configuração de stickers e emojis do LINE ao design Liquid Glass usando UIKit e corrigi problemas de layout que surgiram no iOS 26. Conversei com os designers em japonês e inglês para ajustar os detalhes da interface. Também criei um protótipo para migrar o rodapé da tela de histórico de moedas de UIKit para SwiftUI.",
     },
@@ -122,10 +122,10 @@ const experience: Entry[] = [
     place: tokyo,
     articleUrl: "/MIXI-Internship",
     description: {
-      en: "Added country-based access controls to an AI feature in FamilyAlbum that recognizes family members and suggests photos for albums, keeping it to legally approved regions with cached location checks covered by Swift Testing. Also replaced PanModal with native iOS sheets for iOS 26.",
-      ja: "「家族アルバム みてね」で、家族を認識してアルバム用の写真を提案するAI機能に、国ごとの利用制限を追加しました。法的に提供可能な地域に利用を限定し、キャッシュを使った地域判定はSwift Testingでテストしました。また、iOS 26に合わせてPanModalをiOS標準のシートに置き換えました。",
-      zh: "在 FamilyAlbum，我為一項能辨識家人、推薦相簿照片的 AI 功能加入了國家／地區使用限制，確保只有法規允許的地區能使用。我也用 Swift Testing 測試透過快取的位置資訊判斷所在地區的邏輯，並因應 iOS 26，把 PanModal 換成 iOS 原生的 sheet。",
-      pt: "No FamilyAlbum, implementei restrições por país em um recurso de IA que identifica familiares nas fotos e sugere imagens para álbuns. O recurso só pode ser usado nos países onde pode ser oferecido legalmente. Testei a verificação do país com Swift Testing e usei cache para evitar consultas repetidas. Também substituí o PanModal pelas sheets nativas do iOS 26.",
+      en: "For FamilyAlbum, I restricted an AI feature that identifies family members in photos and suggests photos for albums to countries where it could legally be offered. I cached country lookup results to avoid repeated API calls and used Swift Testing to cover allowed, blocked, and unknown-country cases. I also replaced PanModal with native iOS sheets after it ran into issues on iOS 26.",
+      ja: "「家族アルバム みてね」では、写真に写った家族を認識してアルバム用の写真を提案するAI機能について、法的な要件に合わせて利用できる国を制限しました。国の判定結果をキャッシュしてAPIへの問い合わせを減らし、対応国・非対応国・国を判定できない場合の動作をSwift Testingでテストしました。また、iOS 26で不具合が出ていたPanModalをiOS標準のシートに置き換えました。",
+      zh: "在「家家相簿」（FamilyAlbum），我為 AI 照片推薦功能加入國別使用限制。這項功能會辨識照片中的家人，推薦適合放進相簿的照片；加入限制後，只會在法規允許的國家提供。我將國家判定結果存入快取，避免重複呼叫 API，並用 Swift Testing 測試可使用、不可使用及無法判定國家的情況。PanModal 在 iOS 26 出現問題後，我也將相關畫面改用 iOS 原生的 sheet。",
+      pt: "No FamilyAlbum, implementei restrições por país para um recurso de IA que identifica familiares nas fotos e sugere imagens para álbuns. O recurso ficou limitado aos países onde podia ser oferecido legalmente. Armazenei em cache o resultado da verificação do país para evitar consultas repetidas à API e usei Swift Testing para testar os casos de acesso permitido, negado e país não identificado. Também substituí o PanModal pelas sheets nativas do iOS depois que ele apresentou problemas no iOS 26.",
     },
   },
   {
