@@ -129,10 +129,18 @@
   .home-about-copy {
     padding-top: 0;
 
+    // Latin glyphs aren't fixed-width, so the divisor is the English line's
+    // measured width in Instrument Serif Italic (≈13.24em), rounded up.
     & > h2 {
       margin-bottom: 1rem;
-      font-size: 1.7rem;
+      font-size: min(1.7rem, calc((100vw - 2rem) / 13.5));
+      white-space: nowrap;
     }
+  }
+
+  // The Portuguese line measures ≈12.77em.
+  html[data-lang="pt"] .home-about-copy > h2 {
+    font-size: min(1.7rem, calc((100vw - 2rem) / 13));
   }
 
   // The Japanese line is 17 full-width glyphs, punctuation included; scale it to
