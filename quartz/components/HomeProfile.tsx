@@ -388,7 +388,7 @@ const talks: Entry[] = [
     place: { en: "São Paulo", ja: "サンパウロ", zh: "聖保羅", pt: "São Paulo" },
     description: {
       en: "Produced and presented a Brazilian Portuguese introduction to Vim for Fora da Norma, 42 São Paulo’s podcast.",
-      ja: "42 São Pauloのポッドキャスト「Fora da Norma」で、ポルトガル語のVim入門動画を制作し、出演しました。",
+      ja: "42 São Pauloのポッドキャスト「Fora da Norma」で、Vim入門動画を制作し、ポルトガル語で解説しました。",
       zh: "我在 42 São Paulo 的 Podcast《Fora da Norma》中，製作並主講了一支葡萄牙語的 Vim 入門影片。",
       pt: "Produzi e apresentei um vídeo de introdução ao Vim em português para o podcast Fora da Norma, da 42 São Paulo.",
     },
