@@ -121,7 +121,8 @@
   }
 
   .home-about-layout {
-    grid-template-columns: 1fr;
+    // minmax(0, …) so a nowrap heading can't widen the column and stretch the portrait.
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
   }
 
@@ -134,9 +135,10 @@
     }
   }
 
-  // The Japanese line is 16 full-width glyphs; scale it to the column so it never wraps.
+  // The Japanese line is 17 full-width glyphs, punctuation included; scale it to
+  // the column so it never wraps.
   html[data-lang="ja"] .home-about-copy > h2 {
-    font-size: min(1.7rem, calc((100vw - 2rem) / 16.5));
+    font-size: min(1.7rem, calc((100vw - 2rem) / 17));
     white-space: nowrap;
   }
 
