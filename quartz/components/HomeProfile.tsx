@@ -29,12 +29,12 @@ interface Language {
   level: Localized
 }
 
-// Year-only dates; Japanese and Chinese mark each year with 年, like the month dates.
+// Year-only dates use the same range separators as month dates.
 const years = (...ys: number[]): Localized => {
   const plain = ys.join(" – ")
-  const cjk = ys.length === 1 ? `${ys[0]} 年` : `${ys.join("–")} 年`
+  const chinese = ys.map((y) => `${y} 年`).join("至 ")
   const japanese = ys.map((y) => `${y}年`).join("〜")
-  return { en: plain, ja: japanese, zh: cjk, pt: plain }
+  return { en: plain, ja: japanese, zh: chinese, pt: plain }
 }
 
 const tokyo: Localized = { en: "Tokyo", ja: "東京", zh: "東京", pt: "Tóquio" }
@@ -50,7 +50,7 @@ const appDevEngineer: Localized = {
 const experience: Entry[] = [
   {
     date: {
-      en: "May 2026 – Now",
+      en: "May 2026 – Present",
       ja: "2026年5月〜現在",
       zh: "2026 年 5 月至今",
       pt: "mai 2026 – atual",
@@ -62,7 +62,7 @@ const experience: Entry[] = [
       pt: "Engenheiro de Software Full-Stack",
     },
     org: "BaseMe",
-    detail: { en: "Part-time", ja: "アルバイト", zh: "兼職", pt: "Meio Período" },
+    detail: { en: "Part-time", ja: "アルバイト", zh: "兼職", pt: "Meio período" },
     place: tokyo,
     description: {
       en: "Built features for BaseMe’s AI career chat, such as using your notes as context and stopping a reply, and redesigned how company recommendations appear. Also added profile view counts to help students get noticed by recruiters.",
@@ -84,7 +84,7 @@ const experience: Entry[] = [
     place: { en: "Fukuoka", ja: "福岡", zh: "福岡", pt: "Fukuoka" },
     articleUrl: "/LINE-Internship",
     description: {
-      en: "Updated LINE’s sticker and emoji settings screens in UIKit for the Liquid Glass redesign and fixed layout issues that appeared in iOS 26, refining the details with designers in English and Japanese. Also prototyped migrating the currency-history footer from UIKit to SwiftUI.",
+      en: "Updated LINE’s sticker and emoji settings screens in UIKit for the Liquid Glass redesign and fixed layout issues that appeared in iOS 26, refining the details with designers in English and Japanese. Also prototyped migrating the coin history screen footer from UIKit to SwiftUI.",
       ja: "LINEのスタンプ・絵文字設定画面をLiquid Glassのデザインに合わせてUIKitで改修し、iOS 26で発生したレイアウトの問題も修正しました。デザイナーと日本語・英語で相談しながら、UIの細かな部分も調整しました。また、コイン履歴画面のフッターをUIKitからSwiftUIへ移行するためのプロトタイプも作成しました。",
       zh: "配合 Liquid Glass 的設計，以 UIKit 更新 LINE 的貼圖與表情貼設定畫面，並修正 iOS 26 的版面問題。與設計師以日文和英文討論畫面細節，依討論結果調整 UI。另外，也製作了將代幣紀錄畫面的底部區塊由 UIKit 改用 SwiftUI 的原型。",
       pt: "Adaptei as telas de configuração de stickers e emojis do LINE ao design Liquid Glass usando UIKit e corrigi problemas de layout que surgiram no iOS 26. Conversei com os designers em japonês e inglês para ajustar os detalhes da interface. Também criei um protótipo para migrar o rodapé da tela de histórico de moedas de UIKit para SwiftUI.",
@@ -128,7 +128,6 @@ const experience: Entry[] = [
       pt: "No FamilyAlbum, implementei restrições por país para um recurso de IA que identifica familiares nas fotos e sugere imagens para álbuns. O recurso ficou limitado aos países onde podia ser oferecido legalmente. Armazenei em cache o resultado da verificação do país para evitar consultas repetidas à API e usei Swift Testing para testar os casos de acesso permitido, negado e país não identificado. Também substituí o PanModal pelas sheets nativas do iOS depois que ele apresentou problemas no iOS 26.",
     },
   },
-
 ]
 
 const readWriteUp: Localized = {
@@ -215,7 +214,7 @@ const community: Entry[] = [
     place: tokyo,
     description: {
       en: "Member of the frontend team at Waseda University's Google-supported student developer community.",
-      ja: "早稲田大学のGoogleが支援する学生デベロッパーコミュニティで、フロントエンドチームのメンバーとして活動しています。",
+      ja: "Googleが支援する早稲田大学の学生デベロッパーコミュニティで、フロントエンドチームのメンバーとして活動しています。",
       zh: "在 Google 支持的早稻田大學學生開發者社群中，擔任前端團隊成員。",
       pt: "Faço parte da equipe de front-end da comunidade estudantil de desenvolvedores da Universidade Waseda, apoiada pelo Google.",
     },
@@ -238,7 +237,7 @@ const community: Entry[] = [
       en: "Ambassador Program",
       ja: "アンバサダープログラム",
       zh: "大使計畫",
-      pt: "Programa de Embaixadores",
+      pt: "Programa de embaixadores",
     },
     place: tokyo,
     description: {
@@ -366,7 +365,7 @@ const talks: Entry[] = [
         label: {
           en: "Covered by the LY Corporation Tech Blog",
           ja: "LINEヤフーのTech Blogで紹介",
-          zh: "LY Corporation 技術部落格的介紹文章",
+          zh: "LY Corporation 技術部落格報導",
           pt: "Destaque no Tech Blog da LY Corporation",
         },
         url: "https://techblog.lycorp.co.jp/zh-hant/TWC-2026-iPlayground-Apple-Developer-Conference",
@@ -415,7 +414,7 @@ const talks: Entry[] = [
     description: {
       en: "Joined a cross-campus podcast between Innovation Academy and 42 Tokyo, exchanging perspectives on the 42 Network with Korean students.",
       ja: "Innovation Academyと42 Tokyoのポッドキャストに出演し、韓国の学生と42 Networkについて話しました。",
-      zh: "參與 Innovation Academy 與 42 Tokyo 合作的 Podcast 節目，和韓國學生交流對 42 Network 的看法。",
+      zh: "參與 Innovation Academy 與 42 Tokyo 合作的 podcast 節目，和韓國學生交流對 42 Network 的看法。",
       pt: "Participei de um podcast entre a Innovation Academy e a 42 Tokyo, em que conversei com estudantes coreanos sobre a 42 Network.",
     },
   },
@@ -432,7 +431,7 @@ const talks: Entry[] = [
     description: {
       en: "Produced and presented a Brazilian Portuguese introduction to Vim for Fora da Norma, 42 São Paulo’s podcast.",
       ja: "42 São Pauloのポッドキャスト「Fora da Norma」で、Vim入門動画を制作し、ポルトガル語で解説しました。",
-      zh: "為 42 São Paulo 的 Podcast 節目《Fora da Norma》製作 Vim 入門影片，並以葡萄牙語講解。",
+      zh: "為 42 São Paulo 的 podcast 節目《Fora da Norma》製作 Vim 入門影片，並以葡萄牙語講解。",
       pt: "Produzi e apresentei um vídeo de introdução ao Vim em português para o podcast Fora da Norma, da 42 São Paulo.",
     },
     links: [
