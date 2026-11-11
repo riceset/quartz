@@ -47,6 +47,12 @@ const ongoingSince = (start: Record<SiteLang, string>): Localized => ({
 const tokyo: Localized = { en: "Tokyo", ja: "東京", zh: "東京", pt: "Tóquio" }
 const seoul: Localized = { en: "Seoul", ja: "ソウル", zh: "首爾", pt: "Seul" }
 const internship: Localized = { en: "Internship", ja: "インターン", zh: "實習", pt: "Estágio" }
+const studentOrganization: Localized = {
+  en: "Student Organization",
+  ja: "学生団体",
+  zh: "學生社團",
+  pt: "Organização estudantil",
+}
 const appDevEngineer: Localized = {
   en: "Application Development Engineer",
   ja: "アプリ開発エンジニア",
@@ -200,6 +206,29 @@ const awards: Entry[] = [
 const community: Entry[] = [
   {
     date: ongoingSince({
+      en: "Nov 2026",
+      ja: "2026年11月",
+      zh: "2026 年 11 月",
+      pt: "nov 2026",
+    }),
+    title: {
+      en: "Core Team Member",
+      ja: "コアチームメンバー",
+      zh: "核心團隊成員",
+      pt: "Integrante da equipe principal",
+    },
+    org: "Japan's Venture Academy",
+    detail: studentOrganization,
+    place: tokyo,
+    description: {
+      en: "Member of the Lab department at Japan's Venture Academy, a student-led startup community supported by Shibuya Startup Support, focused on experimenting with new ideas and building entrepreneurial initiatives.",
+      ja: "Shibuya Startup Supportが支援する学生主体のスタートアップコミュニティ、Japan's Venture AcademyのLab部門で活動しています。新しいアイデアを試しながら、起業につながる取り組みを形にしています。",
+      zh: "在 Shibuya Startup Support 支持、由學生主導的新創社群 Japan's Venture Academy 中，參與 Lab 部門。嘗試新的點子，推動創業相關的計畫。",
+      pt: "Faço parte do departamento Lab da Japan's Venture Academy, uma comunidade de startups liderada por estudantes e apoiada pelo Shibuya Startup Support, que se dedica a testar novas ideias e criar iniciativas empreendedoras.",
+    },
+  },
+  {
+    date: ongoingSince({
       en: "Oct 2026",
       ja: "2026年10月",
       zh: "2026 年 10 月",
@@ -212,12 +241,7 @@ const community: Entry[] = [
       pt: "Integrante da equipe de front-end",
     },
     org: "GDG on Campus Waseda University",
-    detail: {
-      en: "Student Organization",
-      ja: "学生団体",
-      zh: "學生社團",
-      pt: "Organização estudantil",
-    },
+    detail: studentOrganization,
     place: tokyo,
     description: {
       en: "Member of the frontend team at Waseda University's Google-supported student developer community.",
@@ -596,16 +620,25 @@ const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
     <div class="home-profile" data-nosnippet>
       <link rel="stylesheet" href={cjkFontHref("Noto+Serif+TC", "zh-Hant")} />
       <link rel="stylesheet" href={cjkFontHref("Noto+Sans+KR", "ko")} />
-      <Section id="experience" title={{ en: "Experience", ja: "経歴", zh: "經歷", pt: "Experiência" }}>
+      <Section
+        id="experience"
+        title={{ en: "Experience", ja: "経歴", zh: "經歷", pt: "Experiência" }}
+      >
         <EntryList entries={experience} />
       </Section>
       <Section id="awards" title={{ en: "Awards", ja: "受賞・奨学金", zh: "獎項", pt: "Prêmios" }}>
         <EntryList entries={awards} />
       </Section>
-      <Section id="community" title={{ en: "Community", ja: "コミュニティ", zh: "社群", pt: "Comunidade" }}>
+      <Section
+        id="community"
+        title={{ en: "Community", ja: "コミュニティ", zh: "社群", pt: "Comunidade" }}
+      >
         <EntryList entries={community} />
       </Section>
-      <Section id="hackathons" title={{ en: "Hackathons", ja: "ハッカソン", zh: "黑客松", pt: "Hackathons" }}>
+      <Section
+        id="hackathons"
+        title={{ en: "Hackathons", ja: "ハッカソン", zh: "黑客松", pt: "Hackathons" }}
+      >
         <EntryList entries={hackathons} />
       </Section>
       <Section id="talks" title={{ en: "Talks", ja: "登壇", zh: "演講與分享", pt: "Palestras" }}>
@@ -614,7 +647,10 @@ const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
       <Section id="education" title={{ en: "Education", ja: "学歴", zh: "學歷", pt: "Formação" }}>
         <EntryList entries={education} />
       </Section>
-      <Section id="languages" title={{ en: "Languages", ja: "言語", zh: "語言能力", pt: "Idiomas" }}>
+      <Section
+        id="languages"
+        title={{ en: "Languages", ja: "言語", zh: "語言能力", pt: "Idiomas" }}
+      >
         <ul class="about-languages">
           {languages.map((lang) => (
             <li>
