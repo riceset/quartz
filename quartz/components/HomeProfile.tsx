@@ -240,7 +240,7 @@ const community: Entry[] = [
       zh: "前端團隊成員",
       pt: "Integrante da equipe de front-end",
     },
-    org: "GDG on Campus Waseda University",
+    org: "GDGoC Waseda University",
     detail: studentOrganization,
     place: tokyo,
     description: {
