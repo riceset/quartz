@@ -1,4 +1,4 @@
 ---
 title: "About"
-description: "About Thiago Komeno: experience, awards, hackathons, talks, education, and languages."
+description: "About Thiago Komeno: experience, awards, community, hackathons, talks, education, and languages."
 ---

@@ -128,43 +128,7 @@ const experience: Entry[] = [
       pt: "No FamilyAlbum, implementei restrições por país para um recurso de IA que identifica familiares nas fotos e sugere imagens para álbuns. O recurso ficou limitado aos países onde podia ser oferecido legalmente. Armazenei em cache o resultado da verificação do país para evitar consultas repetidas à API e usei Swift Testing para testar os casos de acesso permitido, negado e país não identificado. Também substituí o PanModal pelas sheets nativas do iOS depois que ele apresentou problemas no iOS 26.",
     },
   },
-  {
-    date: years(2025, 2026),
-    title: {
-      en: "Google Student Ambassador",
-      ja: "Google 学生アンバサダー",
-      zh: "Google 學生大使",
-      pt: "Embaixador Estudantil do Google",
-    },
-    org: "Google Japan",
-    place: tokyo,
-    description: {
-      en: "Part of the program’s first cohort, sharing everyday AI use cases with more than 1,000 followers. Helped fellow university students learn to use AI safely and effectively.",
-      ja: "Google 学生アンバサダーの第1期生として、1,000人以上のフォロワーに向けて、日常でのAIの使い方を発信しました。また、大学生がAIを安全にうまく活用できるよう支援しました。",
-      zh: "作為 Google 學生大使計畫的首屆成員，向超過 1,000 名追蹤者分享日常生活中如何使用 AI，也協助大學生更安全、有效地使用 AI。",
-      pt: "Fiz parte da primeira turma de embaixadores estudantis do Google, compartilhando formas de usar IA no dia a dia com mais de 1.000 seguidores. Também ajudei outros universitários a usar IA com segurança e de forma prática.",
-    },
-    links: [
-      {
-        label: {
-          en: "Article by Google Gemini",
-          ja: "Google Geminiのnoteで紹介",
-          zh: "Google Gemini 的介紹文章",
-          pt: "Artigo do Google Gemini",
-        },
-        url: "https://note.com/google_gemini/n/nae4c7e7952f7",
-      },
-      {
-        label: {
-          en: "TV news coverage on YouTube",
-          ja: "YouTubeでテレビ報道を見る",
-          zh: "觀看電視新聞報導（YouTube）",
-          pt: "Reportagem de TV no YouTube",
-        },
-        url: "https://www.youtube.com/watch?v=1IyzO2LOErc",
-      },
-    ],
-  },
+
 ]
 
 const readWriteUp: Localized = {
@@ -222,6 +186,85 @@ const awards: Entry[] = [
           pt: "Destaque no Brasil Nippou",
         },
         url: "https://brasilnippou.com/ja/articles/230329-24colonia",
+      },
+    ],
+  },
+]
+
+const community: Entry[] = [
+  {
+    date: {
+      en: "Oct 2026 – Present",
+      ja: "2026年10月〜現在",
+      zh: "2026 年 10 月至今",
+      pt: "out 2026 – presente",
+    },
+    title: {
+      en: "Frontend Team Member",
+      ja: "フロントエンドチームメンバー",
+      zh: "前端團隊成員",
+      pt: "Integrante da Equipe de Front-end",
+    },
+    org: "GDG on Campus Waseda University",
+    detail: {
+      en: "Student Organization",
+      ja: "学生団体",
+      zh: "學生社團",
+      pt: "Organização estudantil",
+    },
+    place: tokyo,
+    description: {
+      en: "Member of the frontend team at Waseda University's Google-supported student developer community.",
+      ja: "早稲田大学のGoogleが支援する学生デベロッパーコミュニティで、フロントエンドチームのメンバーとして活動しています。",
+      zh: "在 Google 支持的早稻田大學學生開發者社群中，擔任前端團隊成員。",
+      pt: "Faço parte da equipe de front-end da comunidade estudantil de desenvolvedores da Universidade Waseda, apoiada pelo Google.",
+    },
+  },
+  {
+    date: {
+      en: "Aug 2025 – Feb 2026",
+      ja: "2025年8月〜2026年2月",
+      zh: "2025 年 8 月至 2026 年 2 月",
+      pt: "ago 2025 – fev 2026",
+    },
+    title: {
+      en: "Google Student Ambassador",
+      ja: "Google 学生アンバサダー",
+      zh: "Google 學生大使",
+      pt: "Embaixador Estudantil do Google",
+    },
+    org: "Google Japan",
+    detail: {
+      en: "Ambassador Program",
+      ja: "アンバサダープログラム",
+      zh: "大使計畫",
+      pt: "Programa de Embaixadores",
+    },
+    place: tokyo,
+    description: {
+      en: "Part of the program’s first cohort, sharing everyday AI use cases with more than 1,000 followers. Helped fellow university students learn to use AI safely and effectively.",
+      ja: "Google 学生アンバサダーの第1期生として、1,000人以上のフォロワーに向けて、日常でのAIの使い方を発信しました。また、大学生がAIを安全にうまく活用できるよう支援しました。",
+      zh: "作為 Google 學生大使計畫的首屆成員，向超過 1,000 名追蹤者分享日常生活中如何使用 AI，也協助大學生更安全、有效地使用 AI。",
+      pt: "Fiz parte da primeira turma de embaixadores estudantis do Google, compartilhando formas de usar IA no dia a dia com mais de 1.000 seguidores. Também ajudei outros universitários a usar IA com segurança e de forma prática.",
+    },
+    links: [
+      {
+        label: {
+          en: "Article by Google Gemini",
+          ja: "Google Geminiのnoteで紹介",
+          zh: "Google Gemini 的介紹文章",
+          pt: "Artigo do Google Gemini",
+        },
+        url: "https://note.com/google_gemini/n/nae4c7e7952f7",
+      },
+      {
+        label: {
+          en: "TV news coverage on YouTube",
+          ja: "YouTubeでテレビ報道を見る",
+          zh: "觀看電視新聞報導（YouTube）",
+          pt: "Reportagem de TV no YouTube",
+        },
+        url: "https://www.youtube.com/watch?v=1IyzO2LOErc",
       },
     ],
   },
@@ -450,7 +493,7 @@ const languages: Language[] = [
 
 // Request only the glyphs these entries use: a full CJK family is several megabytes.
 // Only untranslated strings carry titleLang/orgLang, so .en is the original text.
-const allEntries = [...experience, ...awards, ...hackathons, ...talks, ...education]
+const allEntries = [...experience, ...awards, ...community, ...hackathons, ...talks, ...education]
 const original = (text: Localized) => (typeof text === "string" ? text : text.en)
 const cjkFontHref = (family: string, lang: "zh-Hant" | "ko") => {
   const text = allEntries
@@ -464,9 +507,20 @@ const cjkFontHref = (family: string, lang: "zh-Hant" | "ko") => {
 
 // ── Component ──────────────────────────────────────────────────────────────
 
-const Section = ({ title, children }: { title: Localized; children: any }) => (
-  <section class="about-section">
-    <h2 class="about-section-title">
+const Section = ({
+  id,
+  number,
+  title,
+  children,
+}: {
+  id: string
+  number: string
+  title: Localized
+  children: any
+}) => (
+  <section class="about-section" aria-labelledby={id}>
+    <h2 class="about-section-title" id={id}>
+      <span class="about-section-number" aria-hidden="true">{number} / </span>
       <T text={title} />
     </h2>
     {children}
@@ -547,22 +601,25 @@ const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
     <div class="home-profile" data-nosnippet>
       <link rel="stylesheet" href={cjkFontHref("Noto+Serif+TC", "zh-Hant")} />
       <link rel="stylesheet" href={cjkFontHref("Noto+Sans+KR", "ko")} />
-      <Section title={{ en: "Experience", ja: "経歴", zh: "經歷", pt: "Experiência" }}>
+      <Section id="experience" number="00" title={{ en: "Experience", ja: "経歴", zh: "經歷", pt: "Experiência" }}>
         <EntryList entries={experience} />
       </Section>
-      <Section title={{ en: "Awards", ja: "受賞・奨学金", zh: "獎項", pt: "Prêmios" }}>
+      <Section id="awards" number="01" title={{ en: "Awards", ja: "受賞・奨学金", zh: "獎項", pt: "Prêmios" }}>
         <EntryList entries={awards} />
       </Section>
-      <Section title={{ en: "Hackathons", ja: "ハッカソン", zh: "黑客松", pt: "Hackathons" }}>
+      <Section id="community" number="02" title={{ en: "Community", ja: "コミュニティ", zh: "社群", pt: "Comunidade" }}>
+        <EntryList entries={community} />
+      </Section>
+      <Section id="hackathons" number="03" title={{ en: "Hackathons", ja: "ハッカソン", zh: "黑客松", pt: "Hackathons" }}>
         <EntryList entries={hackathons} />
       </Section>
-      <Section title={{ en: "Talks", ja: "登壇", zh: "演講與分享", pt: "Palestras" }}>
+      <Section id="talks" number="04" title={{ en: "Talks", ja: "登壇", zh: "演講與分享", pt: "Palestras" }}>
         <EntryList entries={talks} />
       </Section>
-      <Section title={{ en: "Education", ja: "学歴", zh: "學歷", pt: "Formação" }}>
+      <Section id="education" number="05" title={{ en: "Education", ja: "学歴", zh: "學歷", pt: "Formação" }}>
         <EntryList entries={education} />
       </Section>
-      <Section title={{ en: "Languages", ja: "言語", zh: "語言能力", pt: "Idiomas" }}>
+      <Section id="languages" number="06" title={{ en: "Languages", ja: "言語", zh: "語言能力", pt: "Idiomas" }}>
         <ul class="about-languages">
           {languages.map((lang) => (
             <li>
