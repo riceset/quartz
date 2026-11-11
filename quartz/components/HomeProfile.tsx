@@ -44,7 +44,7 @@ const appDevEngineer: Localized = {
   en: "Application Development Engineer",
   ja: "アプリ開発エンジニア",
   zh: "應用程式開發工程師",
-  pt: "Engenheiro de Desenvolvimento de Aplicativos",
+  pt: "Engenheiro de desenvolvimento de aplicativos",
 }
 
 const experience: Entry[] = [
@@ -59,7 +59,7 @@ const experience: Entry[] = [
       en: "Full-Stack Software Engineer",
       ja: "フルスタックエンジニア",
       zh: "全端工程師",
-      pt: "Engenheiro de Software Full-Stack",
+      pt: "Engenheiro de software full-stack",
     },
     org: "BaseMe",
     detail: { en: "Part-time", ja: "アルバイト", zh: "兼職", pt: "Meio período" },
@@ -75,7 +75,7 @@ const experience: Entry[] = [
     date: {
       en: "Aug – Sep 2026",
       ja: "2026年8月〜9月",
-      zh: "2026 年 8–9 月",
+      zh: "2026 年 8 月至 9 月",
       pt: "ago – set 2026",
     },
     title: appDevEngineer,
@@ -94,7 +94,7 @@ const experience: Entry[] = [
     date: {
       en: "Aug – Sep 2026",
       ja: "2026年8月〜9月",
-      zh: "2026 年 8–9 月",
+      zh: "2026 年 8 月至 9 月",
       pt: "ago – set 2026",
     },
     title: appDevEngineer,
@@ -103,17 +103,17 @@ const experience: Entry[] = [
     place: tokyo,
     articleUrl: "/Sansan-Internship",
     description: {
-      en: "Built a proof of concept for on-device Japanese contact search with Apple’s Foundation Models and MeCab, matching natural-language queries to names and companies. At Eight, also revised when its TipKit Premium tips appear and removed an unneeded toolbar from the Premium screen to give its web page more room, writing the specs for both.",
+      en: "Built a proof of concept for on-device business card search in Japanese with Apple’s Foundation Models and MeCab, matching natural-language queries to names and companies. At Eight, also revised when its TipKit Premium tips appear and removed an unneeded toolbar from the Premium screen to give its web page more room, writing the specs for both.",
       ja: "AppleのFoundation ModelsとMeCabを使い、端末上で動く日本語の名刺検索の概念実証を開発しました。自然言語で入力すると、名前や会社名を探せる仕組みです。また、EightではTipKitを使ったプレミアムプランの案内の表示ルールを見直し、紹介画面の不要なツールバーを取り除いてWebページの表示領域を広げました。どちらも仕様書の作成から担当しました。",
       zh: "使用 Apple 的 Foundation Models 和 MeCab，開發了在裝置端執行的概念驗證，讓使用者能用日文句子搜尋名片。在 Eight，調整了以 TipKit 呈現的 Premium 方案提示規則，也移除 Premium 介紹畫面中不必要的工具列，讓網頁有更多顯示空間。負責兩項修改的實作與規格書。",
-      pt: "Desenvolvi uma prova de conceito para buscar cartões de visita a partir de queries em japonês, usando o framework Foundation Models da Apple e o MeCab no próprio aparelho. A busca interpreta frases em linguagem natural para encontrar contatos por nome ou empresa. No Eight, revisei as regras de exibição de um aviso sobre o plano premium criado com TipKit e removi a barra de ferramentas da tela de apresentação do plano, ampliando o espaço disponível para a página web. Escrevi as especificações dessas duas mudanças antes de implementá-las.",
+      pt: "Desenvolvi uma prova de conceito para buscar cartões de visita a partir de consultas em japonês, usando o framework Foundation Models da Apple e o MeCab no próprio aparelho. A busca interpreta frases em linguagem natural para encontrar contatos por nome ou empresa. No Eight, revisei as regras de exibição de um aviso sobre o plano premium criado com TipKit e removi a barra de ferramentas da tela de apresentação do plano, ampliando o espaço disponível para a página web. Escrevi as especificações dessas duas mudanças antes de implementá-las.",
     },
   },
   {
     date: {
       en: "Jan – Apr 2026",
       ja: "2026年1月〜4月",
-      zh: "2026 年 1–4 月",
+      zh: "2026 年 1 月至 4 月",
       pt: "jan – abr 2026",
     },
     title: appDevEngineer,
@@ -161,8 +161,8 @@ const awards: Entry[] = [
     title: {
       en: "MEXT Undergraduate Scholarship",
       ja: "国費外国人留学生",
-      zh: "日本政府獎學金",
-      pt: "Bolsa MEXT (Graduação)",
+      zh: "MEXT 大學部獎學金",
+      pt: "Bolsa MEXT (graduação)",
     },
     org: {
       en: "Ministry of Education of Japan",
@@ -172,8 +172,8 @@ const awards: Entry[] = [
     },
     description: {
       en: "Awarded through embassy recommendation, covering full tuition, living expenses, and travel for undergraduate studies in Japan.",
-      ja: "大使館推薦で国費留学生（学部）に選ばれ、2023年に来日しました。",
-      zh: "2023 年經日本大使館推薦，獲得獎學金並赴日留學。",
+      ja: "大使館推薦で国費外国人留学生（学部）に選ばれ、2023年に来日しました。",
+      zh: "2023 年透過日本大使館推薦，獲得 MEXT 大學部獎學金，並赴日留學。",
       pt: "Fui selecionado para a bolsa MEXT de graduação após receber a recomendação da embaixada.",
     },
     links: [
@@ -202,7 +202,7 @@ const community: Entry[] = [
       en: "Frontend Team Member",
       ja: "フロントエンドチームメンバー",
       zh: "前端團隊成員",
-      pt: "Integrante da Equipe de Front-end",
+      pt: "Integrante da equipe de front-end",
     },
     org: "GDG on Campus Waseda University",
     detail: {
@@ -230,7 +230,7 @@ const community: Entry[] = [
       en: "Google Student Ambassador",
       ja: "Google 学生アンバサダー",
       zh: "Google 學生大使",
-      pt: "Embaixador Estudantil do Google",
+      pt: "Embaixador estudantil do Google",
     },
     org: "Google Japan",
     detail: {
@@ -378,7 +378,7 @@ const talks: Entry[] = [
       en: "MEXT Scholarship Speaker",
       ja: "国費留学の体験談",
       zh: "我的 MEXT 留學經驗",
-      pt: "Minha Experiência com a Bolsa MEXT",
+      pt: "Minha experiência com a bolsa MEXT",
     },
     org: {
       en: "Ministry of Foreign Affairs of Japan",
@@ -424,7 +424,7 @@ const talks: Entry[] = [
       en: "Vim in Practice",
       ja: "実践Vim",
       zh: "Vim 實戰",
-      pt: "Vim na Prática",
+      pt: "Vim na prática",
     },
     org: "Fora da Norma Podcast",
     place: { en: "São Paulo", ja: "サンパウロ", zh: "聖保羅", pt: "São Paulo" },
