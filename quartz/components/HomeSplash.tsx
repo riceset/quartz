@@ -26,8 +26,8 @@ const HomeSplash: QuartzComponent = (props: QuartzComponentProps) => {
     { href: section("about"), label: { en: "About", ja: "自己紹介", zh: "關於我", pt: "Sobre" } },
     { href: section("articles"), label: { en: "Articles", ja: "記事", zh: "文章", pt: "Artigos" } },
     {
-      href: "/static/Thiago-Komeno.pdf",
-      label: { en: "Résumé", ja: "履歴書", zh: "履歷", pt: "Currículo" },
+      href: section("toolkit"),
+      label: { en: "Toolkit", ja: "ツール", zh: "工具箱", pt: "Ferramentas" },
     },
     {
       href: "mailto:komeno@riceset.com",

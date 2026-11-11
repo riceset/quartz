@@ -11,13 +11,21 @@ const preferredLang = () => {
   return stored && siteLangs.includes(stored) ? stored : "en"
 }
 
-// The only non-article pages are Home and About. Use the URL before <body> has parsed
+// The only translated pages are Home, About, and Toolkit. Use the URL before <body> has parsed
 // and the Quartz slug after SPA navigation (which doesn't reload the language script).
 const isEnglishOnlyPage = () => {
   const slug = document.body?.dataset.slug
-  if (slug) return slug !== "index" && slug !== "about"
+  if (slug) return !["index", "about", "toolkit"].includes(slug)
   const path = window.location.pathname.replace(/\/+$/, "") || "/"
-  return !["/", "/index", "/index.html", "/about", "/about/index.html"].includes(path)
+  return ![
+    "/",
+    "/index",
+    "/index.html",
+    "/about",
+    "/about/index.html",
+    "/toolkit",
+    "/toolkit/index.html",
+  ].includes(path)
 }
 
 const applyLang = (preference: string) => {

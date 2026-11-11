@@ -31,10 +31,14 @@ export const defaultContentPageLayout: PageLayout = {
       condition: (props) => props.fileData.slug === "articles",
     }),
     Component.ConditionalRender({
+      component: Component.HomeToolkit(),
+      condition: (props) => props.fileData.slug === "toolkit",
+    }),
+    Component.ConditionalRender({
       component: Component.Graph({
         modalOnly: true,
         globalGraph: {
-          removeSlugs: ["index", "about", "articles"],
+          removeSlugs: ["index", "about", "articles", "toolkit"],
           repelForce: 0.65,
           centerForce: 0.45,
           linkDistance: 38,

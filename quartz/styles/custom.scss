@@ -342,11 +342,19 @@ article .katex-display {
       max-width: 920px;
     }
 
-    // The articles index is a list of cards, not prose, so it can run wider than the
-    // ~70-character measure the article pages keep.
+    // The articles index and toolkit are lists, not prose, so they can run wider than
+    // the ~70-character measure the article pages keep.
     & .center:has(.home-articles),
-    & .center:has(.home-articles) ~ footer {
+    & .center:has(.home-articles) ~ footer,
+    & .center:has(.home-toolkit),
+    & .center:has(.home-toolkit) ~ footer {
       max-width: 800px;
+    }
+
+    // Auto margins shrink .center to its content, and the toolkit's grid has no
+    // intrinsic width to push it out, so fill the column up to the cap.
+    & .center:has(.home-toolkit) {
+      width: 100%;
     }
   }
 
@@ -378,7 +386,7 @@ article .katex-display {
 // It lacks CJK glyphs, so only Japanese/Chinese characters fall back to
 // the matching Noto Serif family. Cover translated spans and direct lang tags.
 :is(.splash-name, .splash-nav-link, .home-name, .home-about-title,
-  .home-about-copy > h2, .home-articles-title, .article-card-title,
+  .home-about-copy > h2, .home-articles-title, .home-toolkit-title, .article-card-title,
   .about-section-title, .about-entry-title, .about-language-name)
   :lang(ja) {
   font-family: "Instrument Serif", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
@@ -386,7 +394,7 @@ article .katex-display {
 }
 
 :is(.splash-name, .splash-nav-link, .home-name, .home-about-title,
-  .home-about-copy > h2, .home-articles-title, .article-card-title,
+  .home-about-copy > h2, .home-articles-title, .home-toolkit-title, .article-card-title,
   .about-section-title, .about-entry-title, .about-language-name)
   :lang(zh-Hant) {
   font-family: "Instrument Serif", "Noto Serif TC", "Songti TC", "Songti SC", serif;
@@ -394,14 +402,14 @@ article .katex-display {
 }
 
 :is(.home-name, .home-about-title, .home-about-copy > h2,
-  .home-articles-title, .article-card-title, .about-section-title,
+  .home-articles-title, .home-toolkit-title, .article-card-title, .about-section-title,
   .about-entry-title, .about-language-name):lang(ja) {
   font-family: "Instrument Serif", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
   font-style: normal;
 }
 
 :is(.home-name, .home-about-title, .home-about-copy > h2,
-  .home-articles-title, .article-card-title, .about-section-title,
+  .home-articles-title, .home-toolkit-title, .article-card-title, .about-section-title,
   .about-entry-title, .about-language-name):lang(zh-Hant) {
   font-family: "Instrument Serif", "Noto Serif TC", "Songti TC", "Songti SC", serif;
   font-style: normal;

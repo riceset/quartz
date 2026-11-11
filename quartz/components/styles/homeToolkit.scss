@@ -1,0 +1,143 @@
+// Section headings come from About (.about-section, .about-section-title). Each group is
+// ruled off above, with its heading and tool count on one line and the names gridded below.
+.home-toolkit {
+  margin-top: 3rem;
+}
+
+// Same scale as the About and Articles page titles.
+.home-toolkit-title {
+  margin: 0 0 2.5rem;
+  font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+  font-size: clamp(2.75rem, 6vw, 4rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--dark);
+}
+
+.toolkit-group {
+  margin: 0;
+  padding: 1.4rem 0 1.9rem;
+  border-top: 1px solid var(--lightgray);
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: toolkit-rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 45ms);
+  }
+}
+
+@keyframes toolkit-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
+
+.toolkit-group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+
+  & .about-section-title {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.05;
+  }
+}
+
+// Mono like About's dates and the splash's Tokyo clock.
+.toolkit-group-count {
+  font-family: var(--codeFont);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--gray);
+}
+
+// Names in serif, each on its own hairline, so the list reads like an index.
+.toolkit-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  column-gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  & > li {
+    margin: 0;
+    padding: 0.5rem 0 0.45rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--lightgray) 60%, transparent);
+    font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    color: var(--dark);
+    overflow-wrap: anywhere;
+    position: relative;
+    transition: border-color 0.2s ease;
+
+    &:has(> .toolkit-link:is(:hover, :focus-visible)) {
+      border-bottom-color: var(--gray);
+    }
+  }
+}
+
+// Undo Quartz's accent links so names keep the list's type; the whole cell is the hit
+// area, and a small arrow in the column gap marks the link as leaving the site.
+.toolkit-link {
+  display: block;
+  font-weight: inherit;
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  &::after {
+    content: "↗";
+    position: absolute;
+    right: -0.95rem;
+    top: 0.75rem;
+    font-family: var(--codeFont);
+    font-size: 0.7rem;
+    color: var(--gray);
+    opacity: 0;
+    transform: translate(-0.2rem, 0.2rem);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  &:is(:hover, :focus-visible)::after {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media all and (max-width: 620px) {
+  .home-toolkit {
+    margin-top: 2.5rem;
+  }
+  .home-toolkit-title {
+    margin-bottom: 2rem;
+  }
+  .toolkit-group {
+    padding: 1.2rem 0 1.6rem;
+  }
+  .toolkit-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1rem;
+
+    & > li {
+      font-size: 1.1rem;
+    }
+  }
+}

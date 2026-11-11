@@ -17,7 +17,7 @@ import script from "./scripts/homeArticles.inline"
 const featuredArticleSlug = "Swift-Student-Challenge-2026"
 // Dates and summaries stay in English, just like the articles themselves.
 // Section pages reached from the home splash; they host components, not writing.
-const sectionSlugs = new Set(["index", "about", "articles"])
+const sectionSlugs = new Set(["index", "about", "articles", "toolkit"])
 const summaryProcessor = unified()
   .use(remarkParse)
   .use(remarkMath)
