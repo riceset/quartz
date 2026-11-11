@@ -1,5 +1,5 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import { Localized, T } from "./localized"
+import { Localized, SiteLang, T } from "./localized"
 import style from "./styles/homeProfile.scss"
 
 // ── Data ───────────────────────────────────────────────────────────────────
@@ -37,6 +37,13 @@ const years = (...ys: number[]): Localized => {
   return { en: plain, ja: japanese, zh: chinese, pt: plain }
 }
 
+const ongoingSince = (start: Record<SiteLang, string>): Localized => ({
+  en: `${start.en} – Present`,
+  ja: `${start.ja}〜現在`,
+  zh: `${start.zh}至今`,
+  pt: `${start.pt} – atual`,
+})
+
 const tokyo: Localized = { en: "Tokyo", ja: "東京", zh: "東京", pt: "Tóquio" }
 const seoul: Localized = { en: "Seoul", ja: "ソウル", zh: "首爾", pt: "Seul" }
 const internship: Localized = { en: "Internship", ja: "インターン", zh: "實習", pt: "Estágio" }
@@ -49,16 +56,16 @@ const appDevEngineer: Localized = {
 
 const experience: Entry[] = [
   {
-    date: {
-      en: "May 2026 – Present",
-      ja: "2026年5月〜現在",
-      zh: "2026 年 5 月至今",
-      pt: "mai 2026 – atual",
-    },
+    date: ongoingSince({
+      en: "May 2026",
+      ja: "2026年5月",
+      zh: "2026 年 5 月",
+      pt: "mai 2026",
+    }),
     title: {
       en: "Full-Stack Software Engineer",
-      ja: "フルスタックエンジニア",
-      zh: "全端工程師",
+      ja: "フルスタックソフトウェアエンジニア",
+      zh: "全端軟體工程師",
       pt: "Engenheiro de software full-stack",
     },
     org: "BaseMe",
@@ -103,10 +110,10 @@ const experience: Entry[] = [
     place: tokyo,
     articleUrl: "/Sansan-Internship",
     description: {
-      en: "Built a proof of concept for on-device business card search in Japanese with Apple’s Foundation Models and MeCab, matching natural-language queries to names and companies. At Eight, also revised when its TipKit Premium tips appear and removed an unneeded toolbar from the Premium screen to give its web page more room, writing the specs for both.",
-      ja: "AppleのFoundation ModelsとMeCabを使い、端末上で動く日本語の名刺検索の概念実証を開発しました。自然言語で入力すると、名前や会社名を探せる仕組みです。また、EightではTipKitを使ったプレミアムプランの案内の表示ルールを見直し、紹介画面の不要なツールバーを取り除いてWebページの表示領域を広げました。どちらも仕様書の作成から担当しました。",
-      zh: "使用 Apple 的 Foundation Models 和 MeCab，開發了在裝置端執行的概念驗證，讓使用者能用日文句子搜尋名片。在 Eight，調整了以 TipKit 呈現的 Premium 方案提示規則，也移除 Premium 介紹畫面中不必要的工具列，讓網頁有更多顯示空間。負責兩項修改的實作與規格書。",
-      pt: "Desenvolvi uma prova de conceito para buscar cartões de visita a partir de consultas em japonês, usando o framework Foundation Models da Apple e o MeCab no próprio aparelho. A busca interpreta frases em linguagem natural para encontrar contatos por nome ou empresa. No Eight, revisei as regras de exibição de um aviso sobre o plano premium criado com TipKit e removi a barra de ferramentas da tela de apresentação do plano, ampliando o espaço disponível para a página web. Escrevi as especificações dessas duas mudanças antes de implementá-las.",
+      en: "Built a proof of concept for on-device business card search in Japanese with Apple’s Foundation Models and MeCab, matching natural-language queries to names and companies. At Eight, also revised when its TipKit tips for Eight Premium appear and removed an unneeded toolbar from the Premium screen to give its web page more room, writing the specs for both.",
+      ja: "AppleのFoundation ModelsとMeCabを使い、端末上で動く日本語の名刺検索の概念実証を開発しました。自然言語で入力すると、名前や会社名を探せる仕組みです。また、EightではTipKitを使ったEightプレミアムの案内の表示ルールを見直し、紹介画面の不要なツールバーを取り除いてWebページの表示領域を広げました。どちらも仕様書の作成から担当しました。",
+      zh: "使用 Apple 的 Foundation Models 和 MeCab，開發了在裝置端執行的概念驗證，讓使用者能用日文句子搜尋名片。在 Eight，調整了以 TipKit 呈現的 Eight Premium 方案提示規則，也移除 Premium 介紹畫面中不必要的工具列，讓網頁有更多顯示空間。負責兩項修改的實作與規格書。",
+      pt: "Desenvolvi uma prova de conceito para buscar cartões de visita a partir de consultas em japonês, usando o framework Foundation Models da Apple e o MeCab no próprio aparelho. A busca interpreta frases em linguagem natural para encontrar contatos por nome ou empresa. No Eight, revisei as regras de exibição de um aviso do Eight Premium exibido com TipKit e removi a barra de ferramentas da tela de apresentação do plano, ampliando o espaço disponível para a página web. Escrevi as especificações dessas duas mudanças antes de implementá-las.",
     },
   },
   {
@@ -192,12 +199,12 @@ const awards: Entry[] = [
 
 const community: Entry[] = [
   {
-    date: {
-      en: "Oct 2026 – Present",
-      ja: "2026年10月〜現在",
-      zh: "2026 年 10 月至今",
-      pt: "out 2026 – atual",
-    },
+    date: ongoingSince({
+      en: "Oct 2026",
+      ja: "2026年10月",
+      zh: "2026 年 10 月",
+      pt: "out 2026",
+    }),
     title: {
       en: "Frontend Team Member",
       ja: "フロントエンドチームメンバー",
@@ -375,7 +382,7 @@ const talks: Entry[] = [
   {
     date: { en: "Apr 2026", ja: "2026年4月", zh: "2026 年 4 月", pt: "abr 2026" },
     title: {
-      en: "MEXT Scholarship Speaker",
+      en: "My MEXT Scholarship Experience",
       ja: "国費留学の体験談",
       zh: "我的 MEXT 留學經驗",
       pt: "Minha experiência com a bolsa MEXT",
