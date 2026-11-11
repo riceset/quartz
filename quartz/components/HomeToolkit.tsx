@@ -214,7 +214,7 @@ const links: Record<string, string> = {
 const HomeToolkit: QuartzComponent = () => (
   <div class="home-toolkit" data-nosnippet>
     <h1 class="home-toolkit-title">
-      <T text={{ en: "Toolkit", ja: "ツール", zh: "工具箱", pt: "Ferramentas" }} />
+      <T text={{ en: "Toolkit", ja: "道具箱", zh: "工具箱", pt: "Arsenal" }} />
     </h1>
     {groups.map(({ id, title, tools }, i) => (
       <section class="about-section toolkit-group" aria-labelledby={id} style={`--i: ${i}`}>
