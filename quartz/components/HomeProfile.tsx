@@ -197,7 +197,7 @@ const community: Entry[] = [
       en: "Oct 2026 – Present",
       ja: "2026年10月〜現在",
       zh: "2026 年 10 月至今",
-      pt: "out 2026 – presente",
+      pt: "out 2026 – atual",
     },
     title: {
       en: "Frontend Team Member",
