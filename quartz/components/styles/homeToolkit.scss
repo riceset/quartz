@@ -1,5 +1,5 @@
-// Section headings come from About (.about-section, .about-section-title). Each group is
-// ruled off above, with its heading and tool count on one line and the names gridded below.
+// Section headings come from About (.about-section, .about-section-title). Each group has
+// its heading and tool count on one line and the names gridded below.
 .home-toolkit {
   margin-top: 3rem;
 }
@@ -18,7 +18,6 @@
 .toolkit-group {
   margin: 0;
   padding: 1.4rem 0 1.9rem;
-  border-top: 1px solid var(--lightgray);
 
   @media (prefers-reduced-motion: no-preference) {
     animation: toolkit-rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
@@ -56,10 +55,12 @@
   color: var(--gray);
 }
 
-// Names in serif, each on its own hairline, so the list reads like an index.
+// Names in serif, each on its own hairline, so the list reads like an index. Column
+// counts are even (4, or 2 on phones), and the last name stretches over whatever cells
+// its row has left, so no row ends in a gap.
 .toolkit-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: 1.25rem;
   margin: 0;
   padding: 0;
@@ -80,6 +81,16 @@
 
     &:has(> .toolkit-link:is(:hover, :focus-visible)) {
       border-bottom-color: var(--gray);
+    }
+
+    &:last-child:nth-child(4n + 1) {
+      grid-column: span 4;
+    }
+    &:last-child:nth-child(4n + 2) {
+      grid-column: span 3;
+    }
+    &:last-child:nth-child(4n + 3) {
+      grid-column: span 2;
     }
   }
 }
@@ -138,6 +149,15 @@
 
     & > li {
       font-size: 1.1rem;
+
+      // :nth-child(n) matches every item; it only lifts the reset to the desktop
+      // spans' specificity so they don't carry over to two columns.
+      &:last-child:nth-child(n) {
+        grid-column: auto;
+      }
+      &:last-child:nth-child(odd) {
+        grid-column: span 2;
+      }
     }
   }
 }
