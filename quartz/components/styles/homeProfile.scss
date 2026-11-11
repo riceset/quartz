@@ -23,17 +23,6 @@ $about-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   color: var(--dark);
 }
 
-// Keep the section index quiet beside the existing serif heading.
-.about-section-number {
-  margin-right: 0.5rem;
-  font-family: var(--codeFont);
-  font-size: 0.72rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: var(--gray);
-  white-space: nowrap;
-}
-
 // ── Entries ────────────────────────────────────────────────────────────────
 
 // The date sits in its own margin column, set in mono like the splash's Tokyo clock,

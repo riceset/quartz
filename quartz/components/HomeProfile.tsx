@@ -507,20 +507,9 @@ const cjkFontHref = (family: string, lang: "zh-Hant" | "ko") => {
 
 // ── Component ──────────────────────────────────────────────────────────────
 
-const Section = ({
-  id,
-  number,
-  title,
-  children,
-}: {
-  id: string
-  number: string
-  title: Localized
-  children: any
-}) => (
+const Section = ({ id, title, children }: { id: string; title: Localized; children: any }) => (
   <section class="about-section" aria-labelledby={id}>
     <h2 class="about-section-title" id={id}>
-      <span class="about-section-number" aria-hidden="true">{number} / </span>
       <T text={title} />
     </h2>
     {children}
@@ -601,25 +590,25 @@ const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
     <div class="home-profile" data-nosnippet>
       <link rel="stylesheet" href={cjkFontHref("Noto+Serif+TC", "zh-Hant")} />
       <link rel="stylesheet" href={cjkFontHref("Noto+Sans+KR", "ko")} />
-      <Section id="experience" number="00" title={{ en: "Experience", ja: "経歴", zh: "經歷", pt: "Experiência" }}>
+      <Section id="experience" title={{ en: "Experience", ja: "経歴", zh: "經歷", pt: "Experiência" }}>
         <EntryList entries={experience} />
       </Section>
-      <Section id="awards" number="01" title={{ en: "Awards", ja: "受賞・奨学金", zh: "獎項", pt: "Prêmios" }}>
+      <Section id="awards" title={{ en: "Awards", ja: "受賞・奨学金", zh: "獎項", pt: "Prêmios" }}>
         <EntryList entries={awards} />
       </Section>
-      <Section id="community" number="02" title={{ en: "Community", ja: "コミュニティ", zh: "社群", pt: "Comunidade" }}>
+      <Section id="community" title={{ en: "Community", ja: "コミュニティー", zh: "社群", pt: "Comunidade" }}>
         <EntryList entries={community} />
       </Section>
-      <Section id="hackathons" number="03" title={{ en: "Hackathons", ja: "ハッカソン", zh: "黑客松", pt: "Hackathons" }}>
+      <Section id="hackathons" title={{ en: "Hackathons", ja: "ハッカソン", zh: "黑客松", pt: "Hackathons" }}>
         <EntryList entries={hackathons} />
       </Section>
-      <Section id="talks" number="04" title={{ en: "Talks", ja: "登壇", zh: "演講與分享", pt: "Palestras" }}>
+      <Section id="talks" title={{ en: "Talks", ja: "登壇", zh: "演講與分享", pt: "Palestras" }}>
         <EntryList entries={talks} />
       </Section>
-      <Section id="education" number="05" title={{ en: "Education", ja: "学歴", zh: "學歷", pt: "Formação" }}>
+      <Section id="education" title={{ en: "Education", ja: "学歴", zh: "學歷", pt: "Formação" }}>
         <EntryList entries={education} />
       </Section>
-      <Section id="languages" number="06" title={{ en: "Languages", ja: "言語", zh: "語言能力", pt: "Idiomas" }}>
+      <Section id="languages" title={{ en: "Languages", ja: "言語", zh: "語言能力", pt: "Idiomas" }}>
         <ul class="about-languages">
           {languages.map((lang) => (
             <li>
