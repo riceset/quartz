@@ -91,6 +91,15 @@
       }
     }
 
+    // :active lasts only while the finger is down, so a tap lights the cell and lets
+    // it fade, as the About page links do.
+    @media (hover: none) {
+      &:has(> .toolkit-link:active) {
+        border-bottom-color: var(--gray);
+        transition: none;
+      }
+    }
+
     &:last-child:nth-child(4n + 1) {
       grid-column: span 4;
     }
@@ -145,6 +154,14 @@
     &:hover::after {
       opacity: 1;
       transform: none;
+    }
+  }
+
+  @media (hover: none) {
+    &:active::after {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 }
