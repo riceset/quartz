@@ -126,7 +126,7 @@ const groups: { id: string; title: Localized; tools: string[] }[] = [
     id: "language-learning",
     title: {
       en: "Language Learning",
-      ja: "語学学習",
+      ja: "言語学習",
       zh: "語言學習",
       pt: "Aprendizado de idiomas",
     },
