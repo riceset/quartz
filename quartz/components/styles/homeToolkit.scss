@@ -79,8 +79,16 @@
     position: relative;
     transition: border-color 0.2s ease;
 
-    &:has(> .toolkit-link:is(:hover, :focus-visible)) {
+    &:has(> .toolkit-link:focus-visible) {
       border-bottom-color: var(--gray);
+    }
+
+    // Touch screens keep :hover on the last tapped link, so coming back from it would
+    // leave the cell lit. Only pointers that can really hover get the hover state.
+    @media (hover: hover) {
+      &:has(> .toolkit-link:hover) {
+        border-bottom-color: var(--gray);
+      }
     }
 
     &:last-child:nth-child(4n + 1) {
@@ -96,11 +104,12 @@
 }
 
 // Undo Quartz's accent links so names keep the list's type; the whole cell is the hit
-// area, and a small arrow in the column gap marks the link as leaving the site.
+// area, and a small arrow right after the name marks the link as leaving the site.
 .toolkit-link {
   display: block;
   font-weight: inherit;
   color: inherit;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     color: inherit;
@@ -114,9 +123,9 @@
 
   &::after {
     content: "↗";
-    position: absolute;
-    right: -0.95rem;
-    top: 0.75rem;
+    display: inline-block;
+    margin-left: 0.3em;
+    vertical-align: 0.35em;
     font-family: var(--codeFont);
     font-size: 0.7rem;
     color: var(--gray);
@@ -127,9 +136,16 @@
       transform 0.2s ease;
   }
 
-  &:is(:hover, :focus-visible)::after {
+  &:focus-visible::after {
     opacity: 1;
     transform: none;
+  }
+
+  @media (hover: hover) {
+    &:hover::after {
+      opacity: 1;
+      transform: none;
+    }
   }
 }
 
