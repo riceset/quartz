@@ -215,7 +215,7 @@ const community: Entry[] = [
       en: "Core Team Member",
       ja: "コアチームメンバー",
       zh: "核心團隊成員",
-      pt: "Integrante da equipe principal",
+      pt: "Integrante da Core Team",
     },
     org: "Japan's Venture Academy",
     detail: studentOrganization,
@@ -249,6 +249,40 @@ const community: Entry[] = [
       zh: "在 Google 支持的早稻田大學學生開發者社群中，擔任前端團隊成員。",
       pt: "Faço parte da equipe de front-end da comunidade estudantil de desenvolvedores da Universidade Waseda, apoiada pelo Google.",
     },
+  },
+  {
+    date: ongoingSince({
+      en: "Oct 2026",
+      ja: "2026年10月",
+      zh: "2026 年 10 月",
+      pt: "out 2026",
+    }),
+    title: {
+      en: "Case Department Member",
+      ja: "ケース局メンバー",
+      zh: "案例部門成員",
+      pt: "Integrante do Case Department",
+    },
+    org: "OVAL JAPAN",
+    detail: studentOrganization,
+    place: tokyo,
+    description: {
+      en: "At OVAL JAPAN, which organizes business contests for students, I’m on the team that develops contest topics and materials for participants.",
+      ja: "学生向けのビジネスコンテストを運営するOVAL JAPANで、出題テーマや参加者向け資料を作るケース局に所属しています。",
+      zh: "OVAL JAPAN 舉辦面向學生的商業企劃競賽。我在案例部門，參與規劃競賽題目和準備參賽資料。",
+      pt: "Na OVAL JAPAN, que organiza competições de planos de negócios para estudantes, faço parte da equipe que define os temas e prepara materiais para os participantes.",
+    },
+    links: [
+      {
+        label: {
+          en: "About the Case Department",
+          ja: "ケース局について",
+          zh: "了解案例部門",
+          pt: "Conheça os departamentos",
+        },
+        url: "https://www.oval-japan-official.org/department",
+      },
+    ],
   },
   {
     date: {
