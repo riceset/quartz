@@ -8,7 +8,6 @@ import HomeProfile from "./HomeProfile"
 import HomeArticles from "./HomeArticles"
 import HomeAbout from "./HomeAbout"
 import HomeSplash from "./HomeSplash"
-import HomeToolkit from "./HomeToolkit"
 import Darkmode from "./Darkmode"
 import LanguagePicker from "./LanguagePicker"
 import RailName from "./RailName"
@@ -41,7 +40,6 @@ export {
   HomeArticles,
   HomeAbout,
   HomeSplash,
-  HomeToolkit,
   Content,
   TagContent,
   FolderContent,
