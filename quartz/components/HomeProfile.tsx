@@ -272,17 +272,6 @@ const community: Entry[] = [
       zh: "OVAL JAPAN 舉辦面向學生的商業企劃競賽。我在案例部門，參與規劃競賽題目和準備參賽資料。",
       pt: "Na OVAL JAPAN, que organiza competições de planos de negócios para estudantes, faço parte da equipe que define os temas e prepara materiais para os participantes.",
     },
-    links: [
-      {
-        label: {
-          en: "About the Case Department",
-          ja: "ケース局について",
-          zh: "了解案例部門",
-          pt: "Conheça os departamentos",
-        },
-        url: "https://www.oval-japan-official.org/department",
-      },
-    ],
   },
   {
     date: {
