@@ -283,7 +283,7 @@ const community: Entry[] = [
     title: {
       en: "Google Student Ambassador",
       ja: "Google 学生アンバサダー",
-      zh: "Google 學生大使",
+      zh: "谷歌學生大使",
       pt: "Embaixador estudantil do Google",
     },
     org: "Google Japan",
