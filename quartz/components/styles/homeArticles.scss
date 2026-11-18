@@ -223,11 +223,12 @@
 }
 
 .article-year-heading {
-  margin: 0 0 1rem;
-  font-family: var(--codeFont);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--darkgray);
+  margin: 0 0 1.15rem;
+  font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--dark);
 }
 
 // Like the About timeline: an aligned date gutter and open text rows.
