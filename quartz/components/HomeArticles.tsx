@@ -6,7 +6,7 @@ import { unified } from "unified"
 import { htmlToJsx } from "../util/jsx"
 import { FilePath, resolveRelative } from "../util/path"
 import { unescapeHTML } from "../util/escape"
-import { formatDate, getDate } from "./Date"
+import { getDate } from "./Date"
 import { byDateAndAlphabetical } from "./PageList"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { QuartzPluginData } from "../plugins/vfile"
@@ -15,6 +15,7 @@ import style from "./styles/homeArticles.scss"
 import script from "./scripts/homeArticles.inline"
 
 const featuredArticleSlug = "Swift-Student-Challenge-2026"
+const archiveDateFormat = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" })
 // Dates and summaries stay in English, just like the articles themselves.
 // Section pages reached from the home splash; they host components, not writing.
 const sectionSlugs = new Set(["index", "about", "articles"])
@@ -227,7 +228,9 @@ export default (() => {
                     <article class="article-entry">
                       <p class="article-entry-meta">
                         {date && (
-                          <time datetime={date.toISOString()}>{formatDate(date, "en-US")}</time>
+                          <time datetime={date.toISOString()}>
+                            {archiveDateFormat.format(date)}
+                          </time>
                         )}
                         {tag && <span class="article-entry-tag">{tag}</span>}
                       </p>
