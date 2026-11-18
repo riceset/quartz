@@ -138,6 +138,14 @@ export default (() => {
     const otherArticles = featuredArticle
       ? allArticles.filter((page) => page.slug !== featuredArticle.slug)
       : allArticles
+    const articlesByYear = new Map<string, typeof otherArticles>()
+    for (const page of otherArticles) {
+      const year = getDate(cfg, page)?.getFullYear().toString() ?? "Undated"
+      const group = articlesByYear.get(year)
+      if (group) group.push(page)
+      else articlesByYear.set(year, [page])
+    }
+
     const featuredTitle = featuredArticle?.frontmatter?.title ?? "Untitled"
     const featuredSummary = featuredArticle ? getSummary(featuredArticle, featuredTitle) : ""
 
@@ -204,31 +212,38 @@ export default (() => {
             </div>
           </article>
         )}
-        <ol class="article-index">
-          {otherArticles.map((page) => {
-            const title = page.frontmatter?.title ?? "Untitled"
-            const date = page.dates ? getDate(cfg, page) : null
-            const tag = page.frontmatter?.tags?.[0]
-            const summary = getSummary(page, title)
-            const href = resolveRelative(fileData.slug!, page.slug!)
-            return (
-              <li class="article-index-item">
-                <article class="article-entry">
-                  <p class="article-entry-meta">
-                    {date && <time datetime={date.toISOString()}>{formatDate(date, "en-US")}</time>}
-                    {tag && <span class="article-entry-tag">{tag}</span>}
-                  </p>
-                  <div class="article-entry-body">
-                    <h3 class="article-entry-title">
-                      <a href={href}>{title}</a>
-                    </h3>
-                    {summary && <Excerpt summary={summary} />}
-                  </div>
-                </article>
-              </li>
-            )
-          })}
-        </ol>
+        {Array.from(articlesByYear, ([year, articles]) => (
+          <section class="article-year" key={year}>
+            <h2 class="article-year-heading">{year}</h2>
+            <ol class="article-index">
+              {articles.map((page) => {
+                const title = page.frontmatter?.title ?? "Untitled"
+                const date = page.dates ? getDate(cfg, page) : null
+                const tag = page.frontmatter?.tags?.[0]
+                const summary = getSummary(page, title)
+                const href = resolveRelative(fileData.slug!, page.slug!)
+                return (
+                  <li class="article-index-item">
+                    <article class="article-entry">
+                      <p class="article-entry-meta">
+                        {date && (
+                          <time datetime={date.toISOString()}>{formatDate(date, "en-US")}</time>
+                        )}
+                        {tag && <span class="article-entry-tag">{tag}</span>}
+                      </p>
+                      <div class="article-entry-body">
+                        <h3 class="article-entry-title">
+                          <a href={href}>{title}</a>
+                        </h3>
+                        {summary && <Excerpt summary={summary} />}
+                      </div>
+                    </article>
+                  </li>
+                )
+              })}
+            </ol>
+          </section>
+        ))}
       </section>
     )
   }

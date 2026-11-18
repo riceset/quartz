@@ -218,14 +218,25 @@
   margin-top: 1rem;
 }
 
+.article-year {
+  margin-top: 2.5rem;
+}
+
+.article-year-heading {
+  margin: 0 0 1rem;
+  font-family: var(--codeFont);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--darkgray);
+}
+
 // Like the About timeline: an aligned date gutter and open text rows.
 .article-index {
   display: flex;
   flex-direction: column;
   gap: 2.25rem;
   margin: 0;
-  padding: 2.5rem 0 0;
-  border-top: 1px solid var(--lightgray);
+  padding: 0;
   list-style: none;
 }
 .article-index-item {
@@ -280,7 +291,6 @@
   }
   .article-index {
     gap: 2rem;
-    padding-top: 2rem;
   }
   // On phones the metadata becomes a single line above the title.
   .article-entry {
