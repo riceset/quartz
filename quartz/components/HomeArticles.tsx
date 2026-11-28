@@ -158,7 +158,7 @@ export default (() => {
       <section class="home-articles" data-nosnippet="true">
         <header class="home-articles-header">
           <h1 class="home-articles-title">
-            <T text={{ en: "Articles", ja: "ブログ", zh: "文章", pt: "Artigos" }} />
+            <T text={{ en: "Articles", ja: "記事", zh: "文章", pt: "Artigos" }} />
           </h1>
           <button type="button" class="article-graph global-graph-icon">
             <svg

@@ -25,15 +25,15 @@ const HomeSplash: QuartzComponent = (props: QuartzComponentProps) => {
   const navLinks: { href: string; label: Localized }[] = [
     {
       href: section("about"),
-      label: { en: "About", ja: "プロフィール", zh: "關於我", pt: "Sobre" },
+      label: { en: "About", ja: "自己紹介", zh: "關於我", pt: "Sobre" },
     },
     {
       href: section("articles"),
-      label: { en: "Articles", ja: "ブログ", zh: "文章", pt: "Artigos" },
+      label: { en: "Articles", ja: "記事", zh: "文章", pt: "Artigos" },
     },
     {
       href: "mailto:komeno@riceset.com",
-      label: { en: "Contact", ja: "メール", zh: "聯絡", pt: "Contato" },
+      label: { en: "Contact", ja: "連絡", zh: "聯絡", pt: "Contato" },
     },
   ]
 

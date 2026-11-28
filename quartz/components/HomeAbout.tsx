@@ -5,7 +5,7 @@ import style from "./styles/homeAbout.scss"
 const HomeAbout: QuartzComponent = () => (
   <section class="home-about" aria-labelledby="home-about-title">
     <h1 class="home-about-title">
-      <T text={{ en: "About", ja: "プロフィール", zh: "關於我", pt: "Sobre" }} />
+      <T text={{ en: "About", ja: "自己紹介", zh: "關於我", pt: "Sobre" }} />
     </h1>
 
     <div class="home-about-layout">
