@@ -87,6 +87,9 @@ body[data-slug="index"] {
   inset: 0;
   width: 100%;
   height: 100%;
+  // Only the drawn glyphs are clickable; homeSplash.inline.ts sets the pointer cursor
+  // over them. Suppress the mobile tap flash, which would cover the whole canvas.
+  -webkit-tap-highlight-color: transparent;
 }
 
 // The SVG supplies paths for the canvas rasterizer, but must never flash
