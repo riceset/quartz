@@ -21,10 +21,10 @@ My internship started with a trip from Tokyo to Fukuoka. I live in Tokyo, but th
 <figure style="margin: 0;">
   <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
     <div style="flex: 1 1 0; min-width: 12rem;">
-      <img src="/media/line-internship/plane-tokyo-to-fukuoka.jpeg" alt="An airplane on the runway beneath a warm evening sky before the trip from Tokyo to Fukuoka" style="display: block; width: 100%; height: 18rem; object-fit: cover; border-radius: 8px;" />
+      <img src="/media/line-internship/plane-tokyo-to-fukuoka.webp" alt="An airplane on the runway beneath a warm evening sky before the trip from Tokyo to Fukuoka" style="display: block; width: 100%; height: 18rem; object-fit: cover; border-radius: 8px;" />
     </div>
     <div style="flex: 1 1 0; min-width: 12rem;">
-      <img src="/media/line-internship/hakata-station.jpeg" alt="A train for Chikuzen-Maebaru waiting at a platform in Hakata Station" style="display: block; width: 100%; height: 18rem; object-fit: cover; border-radius: 8px;" />
+      <img src="/media/line-internship/hakata-station.webp" alt="A train for Chikuzen-Maebaru waiting at a platform in Hakata Station" style="display: block; width: 100%; height: 18rem; object-fit: cover; border-radius: 8px;" />
     </div>
   </div>
   <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">Haneda to Hakata, one evening before my first day at LINE.</figcaption>
@@ -35,10 +35,10 @@ I spent only one day in Fukuoka, at the very beginning. That day was focused on 
 <figure style="margin: 0;">
   <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
     <div style="flex: 1 1 0; min-width: 12rem;">
-      <img src="/media/line-internship/walking-to-line-office.jpeg" alt="Coffee and a LINE visitor badge carried on the walk to the Fukuoka office" style="display: block; width: 100%; height: 24rem; object-fit: cover; border-radius: 8px;" />
+      <img src="/media/line-internship/walking-to-line-office.webp" alt="Coffee and a LINE visitor badge carried on the walk to the Fukuoka office" style="display: block; width: 100%; height: 24rem; object-fit: cover; border-radius: 8px;" />
     </div>
     <div style="flex: 1 1 0; min-width: 12rem;">
-      <img src="/media/line-internship/line-office-fukuoka.jpeg" alt="LINE FRIENDS character Moon beside the reception entrance at LINE's Fukuoka office" style="display: block; width: 100%; height: 24rem; object-fit: cover; border-radius: 8px;" />
+      <img src="/media/line-internship/line-office-fukuoka.webp" alt="LINE FRIENDS character Moon beside the reception entrance at LINE's Fukuoka office" style="display: block; width: 100%; height: 24rem; object-fit: cover; border-radius: 8px;" />
     </div>
   </div>
   <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">Coffee in hand and ready to head to the office for my first day.</figcaption>
@@ -63,7 +63,7 @@ I was working **14 hours a week**. As an international student in Japan, I neede
 My first task was part of LINE’s update for **Liquid Glass**, the translucent, light-refracting material Apple introduced in iOS 26. I refer to the app’s Liquid Glass appearance as **the new design** throughout this post; it is only ever active on iOS 26 and above. In the sticker section of LINE’s settings there is a **My Stickers** screen where users can see what they own. It has two tabs, **Stickers** and **Emoji**, and each tab has a large **Download all** button at the bottom that downloads everything at once. The two tabs are built by two separate view controllers, which is why this task ended up touching _two_ files.
 
 <figure style="margin: 1.5rem 0;">
-  <img src="/media/line-internship/download-button-before.png" alt="The original Download all button on the Stickers and Emoji tabs" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
+  <img src="/media/line-internship/download-button-before.webp" alt="The original Download all button on the Stickers and Emoji tabs" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
   <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">The original Download all button on the Stickers and Emoji tabs.</figcaption>
 </figure>
 
@@ -94,7 +94,7 @@ buttonContainer.backgroundColor = .clear
 This removed the solid background behind the button while keeping the button’s own glass appearance. The result was a green button floating above the content:
 
 <figure style="margin: 1.5rem 0;">
-  <img src="/media/line-internship/liquid-glass-prototype.png" alt="The first Liquid Glass prototype beside the version using LINE's colors and a clear surrounding background" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
+  <img src="/media/line-internship/liquid-glass-prototype.webp" alt="The first Liquid Glass prototype beside the version using LINE's colors and a clear surrounding background" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
   <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">The first Liquid Glass prototype, followed by the version using LINE’s colors and a clear surrounding background.</figcaption>
 </figure>
 
@@ -169,7 +169,7 @@ Here `isNewDesignEnabled` stands in for the existing condition for the new desig
 I also carried one thing over from the prototype: the transparent container behind the button. The design files showed that area without a solid background, so I kept that part of the change and flagged it in the pull request. It came back as the second review comment.
 
 <figure style="margin: 1.5rem 0;">
-  <img src="/media/line-internship/download-button-final.png" alt="The final capsule-shaped Download all button on the Stickers and Emoji tabs" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
+  <img src="/media/line-internship/download-button-final.webp" alt="The final capsule-shaped Download all button on the Stickers and Emoji tabs" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
   <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">The final capsule-shaped Download all button on the Stickers and Emoji tabs.</figcaption>
 </figure>
 
@@ -182,14 +182,14 @@ Because the button exists on both tabs of the screen, and because it looks diffe
 **Stickers**
 
 <figure style="margin: 1.5rem 0;">
-  <img src="/media/line-internship/sticker-download-states.png" alt="The Stickers tab in its available, downloading, and downloaded states" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
+  <img src="/media/line-internship/sticker-download-states.webp" alt="The Stickers tab in its available, downloading, and downloaded states" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
   <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">The Stickers tab in its available, downloading, and fully downloaded states.</figcaption>
 </figure>
 
 **Emoji**
 
 <figure style="margin: 1.5rem 0;">
-  <img src="/media/line-internship/emoji-download-states.png" alt="The Emoji tab in its available, downloading, and downloaded states" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
+  <img src="/media/line-internship/emoji-download-states.webp" alt="The Emoji tab in its available, downloading, and downloaded states" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
   <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">The Emoji tab in its available, downloading, and fully downloaded states.</figcaption>
 </figure>
 
@@ -218,7 +218,7 @@ The task also shaped how I wanted to use AI in an unfamiliar project. It helped 
 My second task stayed in the same corner of the app, but this time it was a bug fix. When the new design was enabled, the toggle switches in the sticker auto-suggestion language list sat noticeably closer to the right edge of the screen than the switches on other settings screens.
 
 <figure style="margin: 1.5rem 0;">
-  <img src="/media/line-internship/settings-alignment-bug.png" alt="A correctly aligned settings screen beside the misaligned language settings screen" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
+  <img src="/media/line-internship/settings-alignment-bug.webp" alt="A correctly aligned settings screen beside the misaligned language settings screen" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
   <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">A correctly aligned settings screen beside the language screen that exposed the right-edge bug.</figcaption>
 </figure>
 
@@ -239,7 +239,7 @@ All three live in **Auto Layout**, UIKit’s layout system. A constraint relates
 A control’s **intrinsic size** is the size it reports it would naturally like to be. In the builds I measured, the switch changed from **51 × 31** points in the previous design to **63 × 28** points with the iOS 26 design enabled.
 
 <figure style="margin: 1.5rem 0;">
-  <img src="/media/line-internship/language-settings-designs.png" alt="The language settings screen with the new design disabled and enabled" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
+  <img src="/media/line-internship/language-settings-designs.webp" alt="The language settings screen with the new design disabled and enabled" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
   <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">The same language screen with the new design disabled and enabled, revealing the wider iOS 26 switch.</figcaption>
 </figure>
 
@@ -313,7 +313,7 @@ $0.trailingAnchor.constraint(
 Put differently, the three changes corrected three different things: the **44-point removal** fixed the switch’s layout size, the **16-point padding** aligned the row, and the **4-point adjustment** aligned the visible switch artwork.
 
 <figure style="margin: 1.5rem 0;">
-  <img src="/media/line-internship/language-settings-alignment-fix.png" alt="The language settings screen before and after the alignment fix" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
+  <img src="/media/line-internship/language-settings-alignment-fix.webp" alt="The language settings screen before and after the alignment fix" style="display: block; width: 100%; height: auto; border-radius: 8px;" />
   <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">The language screen before and after the alignment fix.</figcaption>
 </figure>
 
@@ -636,6 +636,6 @@ I am also glad I was able to work with engineers on my own team and with designe
 Two of the three tasks are merged. Thank you to my mentor, to my team, and to the designers involved!
 
 <figure style="margin: 1.5rem 0;">
-  <img src="/media/line-internship/brown-conclusion.jpg" alt="Brown, the LINE FRIENDS bear, at LINE's Fukuoka office" style="display: block; width: 100%; aspect-ratio: 3795 / 2846; object-fit: cover; object-position: center 57%; border-radius: 5px;" />
+  <img src="/media/line-internship/brown-conclusion.webp" alt="Brown, the LINE FRIENDS bear, at LINE's Fukuoka office" style="display: block; width: 100%; aspect-ratio: 3795 / 2846; object-fit: cover; object-position: center 57%; border-radius: 5px;" />
   <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">And, of course, thanks to <a href="https://linefriends.com/en/characters-list/ip-linefriends">Brown</a> too!</figcaption>
 </figure>

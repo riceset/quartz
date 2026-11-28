@@ -13,7 +13,7 @@ tags:
 
 # The Story Behind My Swift Student Challenge Winning Submission
 
-![Certificate](/media/SSC/certificate.jpeg)
+![Certificate](/media/SSC/certificate.webp)
 
 ## Introduction
 
@@ -27,7 +27,7 @@ But I kind of knew that this app would not be suitable for the Swift Student Cha
 
 Afterwards, while going in this educational direction, I remembered that I had gone to Taiwan the previous year and bought this postcard.
 
-![The postcard I bought in Taiwan](/media/SSC/postcard.jpeg)
+![The postcard I bought in Taiwan](/media/SSC/postcard.webp)
 
 I started learning Traditional Chinese around five years ago and began studying [Zhuyin](https://en.wikipedia.org/wiki/Bopomofo) around two years ago. I always found it interesting as a person who knows Japanese, because of how similar it is to Japanese kana. I wanted to build a Duolingo-style app, with each letter being an animated character, and make it a fun experience for kids and foreigners learning Zhuyin. That was the best idea I had in mind at that time.
 
@@ -55,7 +55,7 @@ The first thing I thought about was finding a table that converts shinjitai to k
 
 I then ended up with a really simple prototype. A phrase appears with some kanji highlighted. Then, several options appear at the bottom in a grid, and the user has to tap the correct version of the kanji character.
 
-![Early prototype: tap the correct version of the highlighted kanji](/media/SSC/Beta.png)
+![Early prototype: tap the correct version of the highlighted kanji](/media/SSC/Beta.webp)
 
 I then tried to implement an algorithm to add difficulty to the app. I tried to look for algorithms that could measure the similarity of kanji characters. For example, in the hard mode of the app, I wanted to display kanji characters with the same radical.
 
@@ -67,15 +67,15 @@ The first thing I thought about was building a nice onboarding screen to make th
 
 I added an onboarding screen that briefly tells the story of who I am and explains that I went to the basement of my home in Brazil. This was a good way to introduce myself and put the player into the story.
 
-![Onboarding](/media/SSC/Onboarding.png)
+![Onboarding](/media/SSC/Onboarding.webp)
 
 After that, I added an interactive scene. In this scene, some objects appear in the basement, such as tires and papers, and the user has to move those objects around to reveal what is underneath. I also added a tip to that screen, in case the user does not know that they have to move the objects around, since it is not an explicit action.
 
-![The interactive basement scene](/media/SSC/Interaction.png)
+![The interactive basement scene](/media/SSC/Interaction.webp)
 
 After the diary is revealed, a glowing and mysterious effect appears behind it to show the user that this is not a normal object. And it is true: the user can tap the diary, enter inside it, and go back in time to follow my grandfather’s journey to Brazil.
 
-![Spiral](/media/SSC/Spiral.gif)
+![Spiral](/media/SSC/Spiral.webp)
 
 I also added narration boxes so that the user could see my emotions and what I was thinking during the whole story. This made me the narrator of the story. I also added illustrations for each scene and created a visual language design for the cards.
 
@@ -84,8 +84,8 @@ I also added narration boxes so that the user could see my emotions and what I w
 I wanted to create an authentic story for the diary entries, so I decided to visit the [Japanese Overseas Migration Museum](https://www.jica.go.jp/english/domestic/jomm/outline/index.html) in Yokohama, run by [JICA](https://www.jica.go.jp/english/). The museum contains several documents related to Japanese immigration to other countries, such as the USA, Peru, and Brazil.
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-  <img src="/media/SSC/JICA_building.jpeg" alt="The JICA Japanese Overseas Migration Museum in Yokohama" style="flex: 1 1 0; width: 0; min-width: 12rem; height: 18rem; object-fit: cover; border-radius: 8px;" />
-  <img src="/media/SSC/JICA_documents.jpeg" alt="Immigration documents I read at the museum library" style="flex: 1 1 0; width: 0; min-width: 12rem; height: 18rem; object-fit: cover; border-radius: 8px;" />
+  <img src="/media/SSC/JICA_building.webp" alt="The JICA Japanese Overseas Migration Museum in Yokohama" style="flex: 1 1 0; width: 0; min-width: 12rem; height: 18rem; object-fit: cover; border-radius: 8px;" />
+  <img src="/media/SSC/JICA_documents.webp" alt="Immigration documents I read at the museum library" style="flex: 1 1 0; width: 0; min-width: 12rem; height: 18rem; object-fit: cover; border-radius: 8px;" />
 </div>
 
 I asked for diaries, books, and collections, and spent the whole day in the library reading the documents. At that moment, while reading the letters and documents, I thought that even if I did not win this challenge, I had already gained something really important: the chance to know the feelings of the people from Japan who came to Brazil.
@@ -98,11 +98,11 @@ After reading those entries, I went back home with a new perspective for my app.
 
 At that point, the app was no longer just about teaching the difference between shinjitai and kyujitai. It became a story about memory, language, and reconnecting with my roots. I combined the diary-inspired story with my own emotional narration and illustrations, and slowly the experience started to feel more complete.
 
-![Card](/media/SSC/Card.png)
+![Card](/media/SSC/Card.webp)
 
 Instead of only showing old characters and asking the user to choose the correct answer, I wanted the user to feel like they were entering a memory and discovering the text together with me. That was when the app started to become more than a quiz. It became a short interactive journey.
 
-![Game](/media/SSC/Game.png)
+![Game](/media/SSC/Game.webp)
 
 ## Details That Made the Experience Better
 
@@ -110,7 +110,7 @@ After the main story was finished, I started focusing on the details that would 
 
 One of the key details was the panel at the top of the screen for modern Japanese. When the user tapped a word written in the old script, the modern version of that word would automatically appear and animate inside the panel. I wanted this to feel as if the user was rediscovering the modern text from the old writing.
 
-![Panel](/media/SSC/Panel.gif)
+![Panel](/media/SSC/Panel.webp)
 
 I also focused on the animations throughout the whole experience. The glowing effect behind the diary, the movement of objects in the basement, and the way the text appeared were all meant to make the app feel more immersive.
 
@@ -118,7 +118,7 @@ At the same time, I wanted to make sure the experience would still be comfortabl
 
 Another important detail was the ending dialogue. I did not want the experience to simply stop after the adventure ended. I wanted to give the user a small emotional conclusion, so the story would feel complete.
 
-![Ending](/media/SSC/Ending.png)
+![Ending](/media/SSC/Ending.webp)
 
 Finally, I measured the average time of the whole experience to make sure it stayed under the three-minute limit. This helped me keep the scope focused and avoid adding features that would make the app too long or too complicated.
 

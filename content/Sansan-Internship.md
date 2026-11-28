@@ -152,7 +152,7 @@ The reply to my first report was the longest one I received. I had written that 
 Eight’s premium landing page is the page in the premium registration flow that presents Eight Premium. It is a web page shown inside the app in a **web view**, a browser window embedded in an app screen. It had a **toolbar**, a bar of buttons along the bottom edge, with back, forward and reload buttons. On a landing page none of those three buttons is necessary, and the space could go to more of the web view’s content, the part that explains the premium benefits.
 
 <figure style="margin: 1.5rem 0;">
-  <img src="/media/sansan-internship/premium-web-view.png" alt="Side-by-side comparison of the Eight Premium onboarding screen, showing the Get Eight Premium interface on two iPhones." style="display: block; width: 100%; height: auto; border-radius: 8px;" />
+  <img src="/media/sansan-internship/premium-web-view.webp" alt="Side-by-side comparison of the Eight Premium onboarding screen, showing the Get Eight Premium interface on two iPhones." style="display: block; width: 100%; height: auto; border-radius: 8px;" />
   <figcaption style="margin-top: 0.6rem; color: var(--gray); font-size: 0.82rem; line-height: 1.5; text-align: center;">Before-and-after comparison of the Premium landing page, showing the additional content space gained by removing the unnecessary WebView toolbar.</figcaption>
 </figure>
 

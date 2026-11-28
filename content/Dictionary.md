@@ -615,7 +615,7 @@ struct TabViewSearch: View {
 
 For the home view, I just implemented a dummy view for the moment:
 
-![Home](/media/dictionary/home.png)
+![Home](/media/dictionary/home.webp)
 
 Let’s start building the `SearchView()` for searching by stroke count. Here, we are going to use a pattern of having one main view switching between different states. Let’s start by defining some `@State` variables:
 
@@ -684,7 +684,7 @@ graph TD
 
 ### State 1: No Search Input
 
-![Empty](/media/dictionary/empty.png)
+![Empty](/media/dictionary/empty.webp)
 
 ```swift
 if searchText.isEmpty {
@@ -709,7 +709,7 @@ struct EmptySearchStateView: View {
 
 ### State 2: Database Query in Progress
 
-![Loading](/media/dictionary/loading.png)
+![Loading](/media/dictionary/loading.webp)
 
 ```swift
 else if model.isLoading {
@@ -730,7 +730,7 @@ struct LoadingStateView: View {
 
 ### State 3: An Error Occurred
 
-![Error](/media/dictionary/error.png)
+![Error](/media/dictionary/error.webp)
 
 ```swift
 else if let error = model.errorMessage {
@@ -754,7 +754,7 @@ struct ErrorStateView: View {
 
 ### State 4: Search Completed but No Results Found
 
-![No results](/media/dictionary/no-results.png)
+![No results](/media/dictionary/no-results.webp)
 
 ```swift
 else if model.entries.isEmpty {
@@ -778,7 +778,7 @@ struct NoResultsStateView: View {
 
 ### State 5: Search Completed with Results
 
-![Results](/media/dictionary/results.png)
+![Results](/media/dictionary/results.webp)
 
 ```swift
 else {
@@ -832,7 +832,7 @@ struct CharacterListRow: View {
 
 ### The Character Detail View
 
-![Details](/media/dictionary/details.png)
+![Details](/media/dictionary/details.webp)
 
 Here, the `GroupBox` is used to create a section in the view that visually groups some content.
 
