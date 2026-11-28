@@ -81,6 +81,9 @@ document.addEventListener("nav", () => {
   // 1 for each cell that got a glyph in the last drawn frame. Clicks only count on these,
   // so the gaps between characters and the empty canvas around the figure stay inert.
   let drawn = new Uint8Array(0)
+  // True while the intro is still decoding the figure (the accent-coloured scramble), so
+  // taps can wait until it has settled. Recomputed from each drawn frame.
+  let decoding = true
   // The pose is an accumulated phase (0–1 around the loop) rather than a function of the
   // clock, so the speed can change mid-turn without the figure jumping to another pose.
   let phase = 0
@@ -283,6 +286,7 @@ document.addEventListener("nav", () => {
 
     ctx.clearRect(0, 0, width, height)
     drawn.fill(0)
+    let unsettled = false
     ctx.font = `${fontSize}px "JetBrains Mono", ui-monospace, monospace`
     ctx.textBaseline = "top"
 
@@ -344,6 +348,7 @@ document.addEventListener("nav", () => {
       }
 
       if (elapsed < reveal[i]) {
+        unsettled = true
         if (elapsed < reveal[i] - SCRAMBLE_MS) continue
         glyph = SCRAMBLE[Math.floor((seeds[i] * 97 + now / 60) % SCRAMBLE.length)]
         color = colors.accent
@@ -359,6 +364,7 @@ document.addEventListener("nav", () => {
       ctx.fillText(glyph, x * cellW + offX, y * cellH + offY)
     }
     ctx.globalAlpha = 1
+    decoding = unsettled
   }
 
   const loop = (now: number) => {
@@ -402,8 +408,9 @@ document.addEventListener("nav", () => {
   }
 
   const onClick = (event: MouseEvent) => {
-    // The spin and poke are pure motion, so they stay off for reduced-motion users.
-    if (reduceMotion.matches || cols === 0) return
+    // The spin and poke are pure motion, so they stay off for reduced-motion users, and
+    // they wait for the intro to finish decoding the figure.
+    if (reduceMotion.matches || cols === 0 || decoding) return
     const { x, y, onGlyph } = hit(event)
     if (!onGlyph) return
     pokes = [...pokes, { x, y, born: performance.now() }].slice(-MAX_POKES)
@@ -411,7 +418,7 @@ document.addEventListener("nav", () => {
   }
   const onPointerMove = (event: PointerEvent) => {
     // Only the cursor changes on hover; the art itself reacts to clicks alone.
-    const clickable = !reduceMotion.matches && cols > 0 && hit(event).onGlyph
+    const clickable = !reduceMotion.matches && cols > 0 && !decoding && hit(event).onGlyph
     canvas.style.cursor = clickable ? "pointer" : ""
   }
 
