@@ -2,6 +2,10 @@
 // ghostty.org: a dense `$` body with an `@` rim and soft `·~ox` edges, the whole
 // figure floating and turning slowly, re-rasterized frame by frame like a filmed
 // animation.
+//
+// Clicking the art spins it up. Ghostty's own ghost has a hidden switch that jumps its
+// playback from 30 to 240fps; here a click does the same (8× speed, easing back), and
+// pokes the glyphs around the click: they shove outward and spring back like jelly.
 
 const EDGE_RAMP = " ·~ox=+*%"
 const SKIN_RAMP = "  ··~~o"
@@ -11,6 +15,20 @@ const LOOP_MS = 6000 // one turn of the figure and two bobs
 const LOOP_FRAMES = 90 // distinct poses rasterized (and cached) per loop
 const INTRO_MS = 2600
 const SCRAMBLE_MS = 800 // how long each cell flickers before settling
+const SPIN_BOOST = 7 // extra speed at the peak of a click: 1 + 7 = 8×, Ghostty's 30 → 240fps
+const SPIN_DECAY_MS = 450 // time constant of the ease back to normal speed
+const POKE_RADIUS = 9 // reach of a poke, in rows (a Gaussian falloff, not a hard edge)
+const POKE_PUSH = 2.2 // peak shove at the centre of a poke, in rows
+const POKE_HZ = 3 // wobble frequency of the spring-back
+const POKE_DECAY_MS = 260 // time constant of the wobble dying out
+const POKE_LIFE_MS = 1400 // drop a poke once its wobble is invisible
+const MAX_POKES = 4
+
+interface Poke {
+  x: number // origin, in cells
+  y: number
+  born: number // performance.now() of the click
+}
 
 interface Pose {
   ink: Uint8Array // 0–255 coverage by the doodle's strokes
@@ -54,7 +72,15 @@ document.addEventListener("nav", () => {
   let raster: HTMLCanvasElement | null = null
   let rctx: CanvasRenderingContext2D | null = null
   let colors = { ink: "", accent: "", field: "" }
-  let pointer: { x: number; y: number } | null = null
+  let pokes: Poke[] = []
+  // 1 for each cell that got a glyph in the last drawn frame. Clicks only count on these,
+  // so the gaps between characters and the empty canvas around the figure stay inert.
+  let drawn = new Uint8Array(0)
+  // The pose is an accumulated phase (0–1 around the loop) rather than a function of the
+  // clock, so the speed can change mid-turn without the figure jumping to another pose.
+  let phase = 0
+  let spin = 0 // 0 = normal speed, 1 = full click boost; decays toward 0
+  let lastDraw = 0
   let start = performance.now()
   let lastFrame = 0
   let frame = 0
@@ -97,6 +123,7 @@ document.addEventListener("nav", () => {
     const maxDist = Math.hypot(cx, cy)
     seeds = new Float32Array(cols * rows)
     reveal = new Float32Array(cols * rows)
+    drawn = new Uint8Array(cols * rows)
     for (let i = 0; i < seeds.length; i++) {
       seeds[i] = Math.random()
       const dist = Math.hypot(((i % cols) - cx) * 0.55, Math.floor(i / cols) - cy) / maxDist
@@ -180,12 +207,36 @@ document.addEventListener("nav", () => {
     const still = reduceMotion.matches
     const elapsed = still ? Infinity : now - start
     const t = still ? 0 : now / 1000
-    const index = still ? 0 : Math.floor(((now - start) / LOOP_MS) * LOOP_FRAMES) % LOOP_FRAMES
+
+    // Clamp the step so a frame after a long pause (hidden tab) doesn't lurch the figure.
+    const dt = lastDraw ? Math.min(100, now - lastDraw) : 0
+    lastDraw = now
+    spin *= Math.exp(-dt / SPIN_DECAY_MS)
+    if (spin < 0.001) spin = 0
+    phase = (phase + (dt / LOOP_MS) * (1 + SPIN_BOOST * spin)) % 1
+    const index = still ? 0 : Math.floor(phase * LOOP_FRAMES) % LOOP_FRAMES
     const { ink, inside } = poseAt(index)
+
+    // Each live poke as a spring: `wave` swings outward, overshoots inward and settles;
+    // `heat` is the plain fade, used to flash the shoved glyphs in the accent colour.
+    pokes = pokes.filter((p) => now - p.born < POKE_LIFE_MS)
+    const springs = pokes.map((p) => {
+      const age = now - p.born
+      const fade = Math.exp(-age / POKE_DECAY_MS)
+      return {
+        x: p.x * cellW,
+        y: p.y * cellH,
+        wave: Math.sin((age / 1000) * POKE_HZ * Math.PI * 2) * fade,
+        heat: fade,
+      }
+    })
+    const radius = POKE_RADIUS * cellH
+    const push = POKE_PUSH * cellH
     // A soft light that swings across the face as the figure turns.
     const light = Math.sin((index / LOOP_FRAMES) * Math.PI * 2)
 
     ctx.clearRect(0, 0, width, height)
+    drawn.fill(0)
     ctx.font = `${fontSize}px "JetBrains Mono", ui-monospace, monospace`
     ctx.textBaseline = "top"
 
@@ -196,10 +247,20 @@ document.addEventListener("nav", () => {
       const x = i % cols
       const y = Math.floor(i / cols)
 
-      let near = 0
-      if (pointer) {
-        const d = Math.hypot((x - pointer.x) * 0.55, y - pointer.y)
-        near = Math.max(0, 1 - d / 12)
+      // Shove this glyph away from any nearby poke, in pixels.
+      let offX = 0
+      let offY = 0
+      let heat = 0
+      for (const s of springs) {
+        const dx = x * cellW - s.x
+        const dy = y * cellH - s.y
+        const d = Math.hypot(dx, dy)
+        if (d < 0.5) continue // the clicked glyph itself has no direction to move in
+        const falloff = Math.exp(-((d / radius) ** 2))
+        const amount = push * falloff * s.wave
+        offX += (dx / d) * amount
+        offY += (dy / d) * amount
+        heat = Math.max(heat, falloff * s.heat)
       }
 
       let glyph: string
@@ -218,16 +279,21 @@ document.addEventListener("nav", () => {
         } else {
           glyph = pick(EDGE_RAMP, cover / 0.6)
         }
-        color = near > 0.35 ? colors.accent : colors.ink
+        color = colors.ink
         opacity = 0.55 + cover * 0.3
       } else {
         const shade =
           0.5 +
           0.3 * light * ((x - cols / 2) / (cols / 4)) +
           0.2 * Math.sin(x * 0.21 + y * 0.37 + t * 0.9)
-        glyph = pick(SKIN_RAMP, Math.min(1, shade * 0.85 + near * 0.6))
-        color = near > 0.2 ? colors.accent : colors.field
-        opacity = 0.3 + near * 0.5
+        glyph = pick(SKIN_RAMP, Math.min(1, shade * 0.85))
+        color = colors.field
+        opacity = 0.3
+      }
+
+      if (heat > 0.45) {
+        color = colors.accent
+        opacity = Math.max(opacity, 0.7)
       }
 
       if (elapsed < reveal[i]) {
@@ -238,9 +304,10 @@ document.addEventListener("nav", () => {
       }
 
       if (glyph === " ") continue
+      drawn[i] = 1
       ctx.globalAlpha = opacity
       ctx.fillStyle = color
-      ctx.fillText(glyph, x * cellW, y * cellH)
+      ctx.fillText(glyph, x * cellW + offX, y * cellH + offY)
     }
     ctx.globalAlpha = 1
   }
@@ -269,14 +336,30 @@ document.addEventListener("nav", () => {
     readColors()
     run()
   }
-  const onPointerMove = (event: PointerEvent) => {
-    // Hover is a mouse effect; ignore touch and pen so taps on phones leave the art alone.
-    if (event.pointerType !== "mouse") return
+  // The grid cell under the pointer, and whether a glyph is drawn there.
+  const hit = (event: MouseEvent) => {
     const rect = canvas.getBoundingClientRect()
-    pointer = { x: (event.clientX - rect.left) / cellW, y: (event.clientY - rect.top) / cellH }
+    const x = (event.clientX - rect.left) / cellW
+    const y = (event.clientY - rect.top) / cellH
+    const col = Math.floor(x)
+    const row = Math.floor(y)
+    const onGlyph =
+      col >= 0 && col < cols && row >= 0 && row < rows && drawn[row * cols + col] === 1
+    return { x, y, onGlyph }
   }
-  const onPointerLeave = () => {
-    pointer = null
+
+  const onClick = (event: MouseEvent) => {
+    // The spin and poke are pure motion, so they stay off for reduced-motion users.
+    if (reduceMotion.matches || cols === 0) return
+    const { x, y, onGlyph } = hit(event)
+    if (!onGlyph) return
+    pokes = [...pokes, { x, y, born: performance.now() }].slice(-MAX_POKES)
+    spin = 1
+  }
+  const onPointerMove = (event: PointerEvent) => {
+    // Only the cursor changes on hover; the art itself reacts to clicks alone.
+    const clickable = !reduceMotion.matches && cols > 0 && hit(event).onGlyph
+    canvas.style.cursor = clickable ? "pointer" : ""
   }
 
   const resizeObserver = new ResizeObserver(onResize)
@@ -284,8 +367,8 @@ document.addEventListener("nav", () => {
   document.addEventListener("themechange", onTheme)
   document.addEventListener("visibilitychange", run)
   reduceMotion.addEventListener("change", run)
-  splash.addEventListener("pointermove", onPointerMove)
-  splash.addEventListener("pointerleave", onPointerLeave)
+  canvas.addEventListener("click", onClick)
+  canvas.addEventListener("pointermove", onPointerMove)
 
   const clock = splash.querySelector<HTMLElement>("[data-splash-clock]")
   const tokyoTime = new Intl.DateTimeFormat("en-GB", {
@@ -316,7 +399,7 @@ document.addEventListener("nav", () => {
     document.removeEventListener("themechange", onTheme)
     document.removeEventListener("visibilitychange", run)
     reduceMotion.removeEventListener("change", run)
-    splash.removeEventListener("pointermove", onPointerMove)
-    splash.removeEventListener("pointerleave", onPointerLeave)
+    canvas.removeEventListener("click", onClick)
+    canvas.removeEventListener("pointermove", onPointerMove)
   })
 })
