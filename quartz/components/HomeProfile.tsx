@@ -55,7 +55,7 @@ const studentOrganization: Localized = {
 }
 const appDevEngineer: Localized = {
   en: "Application Development Engineer",
-  ja: "アプリ開発エンジニア",
+  ja: "モバイルエンジニア",
   zh: "應用程式開發工程師",
   pt: "Engenheiro de desenvolvimento de aplicativos",
 }
@@ -70,7 +70,7 @@ const experience: Entry[] = [
     }),
     title: {
       en: "Full-Stack Software Engineer",
-      ja: "フルスタックソフトウェアエンジニア",
+      ja: "フルスタックエンジニア",
       zh: "全端軟體工程師",
       pt: "Engenheiro de software full-stack",
     },

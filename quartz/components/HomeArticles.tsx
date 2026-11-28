@@ -8,6 +8,7 @@ import { FilePath, resolveRelative } from "../util/path"
 import { unescapeHTML } from "../util/escape"
 import { getDate } from "./Date"
 import { byDateAndAlphabetical } from "./PageList"
+import { T } from "./localized"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { QuartzPluginData } from "../plugins/vfile"
 import style from "./styles/homeArticles.scss"
@@ -156,7 +157,9 @@ export default (() => {
     return (
       <section class="home-articles" data-nosnippet="true">
         <header class="home-articles-header">
-          <h1 class="home-articles-title">Articles</h1>
+          <h1 class="home-articles-title">
+            <T text={{ en: "Articles", ja: "ブログ", zh: "文章", pt: "Artigos" }} />
+          </h1>
           <button type="button" class="article-graph global-graph-icon">
             <svg
               class="article-graph-preview"
