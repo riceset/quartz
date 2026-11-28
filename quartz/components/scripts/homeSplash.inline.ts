@@ -23,6 +23,10 @@ const POKE_HZ = 3 // wobble frequency of the spring-back
 const POKE_DECAY_MS = 260 // time constant of the wobble dying out
 const POKE_LIFE_MS = 1400 // drop a poke once its wobble is invisible
 const MAX_POKES = 4
+// Phones report a devicePixelRatio of 3, which makes the canvas 9× the pixels of its CSS
+// size. The glyphs are 5–8px halftone dots, so 2× is already sharp and cuts the fill
+// work by more than half on those screens.
+const MAX_DPR = 2
 
 interface Poke {
   x: number // origin, in cells
@@ -72,6 +76,7 @@ document.addEventListener("nav", () => {
   let raster: HTMLCanvasElement | null = null
   let rctx: CanvasRenderingContext2D | null = null
   let colors = { ink: "", accent: "", field: "" }
+  let warmTimer = 0
   let pokes: Poke[] = []
   // 1 for each cell that got a glyph in the last drawn frame. Clicks only count on these,
   // so the gaps between characters and the empty canvas around the figure stay inert.
@@ -97,7 +102,7 @@ document.addEventListener("nav", () => {
   const layout = () => {
     const rect = canvas.getBoundingClientRect()
     if (rect.width === 0 || rect.height === 0) return
-    const dpr = window.devicePixelRatio || 1
+    const dpr = Math.min(MAX_DPR, window.devicePixelRatio || 1)
     canvas.width = Math.round(rect.width * dpr)
     canvas.height = Math.round(rect.height * dpr)
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
@@ -202,6 +207,29 @@ document.addEventListener("nav", () => {
     return pose
   }
 
+  // Rasterizing a pose (fill + getImageData readback + flood fill) is the most expensive
+  // step. Left lazy, a click's 8× spin needs a fresh pose almost every frame until the loop
+  // has been seen once, which is what made early taps stutter on phones. Instead, fill the
+  // cache in the background, one pose per idle slot, so the spin only ever reads it.
+  // Older iOS Safari has no requestIdleCallback; a short timeout is a fine stand-in.
+  const hasIdle = typeof window.requestIdleCallback === "function"
+  const idle = (fn: () => void) =>
+    hasIdle ? window.requestIdleCallback(fn, { timeout: 200 }) : window.setTimeout(fn, 32)
+  const cancelIdle = (id: number) =>
+    hasIdle ? window.cancelIdleCallback(id) : window.clearTimeout(id)
+  const warmPoses = () => {
+    cancelIdle(warmTimer)
+    if (reduceMotion.matches || cols === 0) return
+    let next = 0
+    const step = () => {
+      while (next < LOOP_FRAMES && poses.has(next)) next++
+      if (next >= LOOP_FRAMES) return
+      poseAt(next)
+      warmTimer = idle(step)
+    }
+    warmTimer = idle(step)
+  }
+
   const draw = (now: number) => {
     if (!rctx || cols === 0) return
     const still = reduceMotion.matches
@@ -214,7 +242,18 @@ document.addEventListener("nav", () => {
     spin *= Math.exp(-dt / SPIN_DECAY_MS)
     if (spin < 0.001) spin = 0
     phase = (phase + (dt / LOOP_MS) * (1 + SPIN_BOOST * spin)) % 1
-    const index = still ? 0 : Math.floor(phase * LOOP_FRAMES) % LOOP_FRAMES
+    let index = still ? 0 : Math.floor(phase * LOOP_FRAMES) % LOOP_FRAMES
+    // While spun up, never stall a frame rasterizing: if the background warm-up hasn't
+    // reached this pose yet, reuse the nearest earlier one. At 8× speed the swap is invisible.
+    if (spin > 0 && !poses.has(index)) {
+      for (let back = 1; back < LOOP_FRAMES; back++) {
+        const candidate = (index - back + LOOP_FRAMES) % LOOP_FRAMES
+        if (poses.has(candidate)) {
+          index = candidate
+          break
+        }
+      }
+    }
     const { ink, inside } = poseAt(index)
 
     // Each live poke as a spring: `wave` swings outward, overshoots inward and settles;
@@ -235,6 +274,13 @@ document.addEventListener("nav", () => {
     // A soft light that swings across the face as the figure turns.
     const light = Math.sin((index / LOOP_FRAMES) * Math.PI * 2)
 
+    // Beyond 3 radii the Gaussian falloff is under 0.0002, so those cells skip the maths.
+    const reach = radius * 3
+
+    // Canvas state changes aren't free, so only touch fillStyle/globalAlpha when they differ.
+    let fill = ""
+    let alpha = -1
+
     ctx.clearRect(0, 0, width, height)
     drawn.fill(0)
     ctx.font = `${fontSize}px "JetBrains Mono", ui-monospace, monospace`
@@ -254,6 +300,7 @@ document.addEventListener("nav", () => {
       for (const s of springs) {
         const dx = x * cellW - s.x
         const dy = y * cellH - s.y
+        if (dx > reach || dx < -reach || dy > reach || dy < -reach) continue
         const d = Math.hypot(dx, dy)
         if (d < 0.5) continue // the clicked glyph itself has no direction to move in
         const falloff = Math.exp(-((d / radius) ** 2))
@@ -305,8 +352,10 @@ document.addEventListener("nav", () => {
 
       if (glyph === " ") continue
       drawn[i] = 1
-      ctx.globalAlpha = opacity
-      ctx.fillStyle = color
+      // Quantize opacity (to 5% steps) so neighbouring glyphs usually share one alpha.
+      const a = Math.round(opacity * 20) / 20
+      if (a !== alpha) ctx.globalAlpha = alpha = a
+      if (color !== fill) ctx.fillStyle = fill = color
       ctx.fillText(glyph, x * cellW + offX, y * cellH + offY)
     }
     ctx.globalAlpha = 1
@@ -314,7 +363,10 @@ document.addEventListener("nav", () => {
 
   const loop = (now: number) => {
     frame = requestAnimationFrame(loop)
-    if (now - lastFrame < FRAME_MS) return
+    // rAF timestamps jitter by a fraction of a millisecond, so a strict `< FRAME_MS` check
+    // drops frames that arrive at 33.2ms: 60Hz screens stutter between 30 and 20fps, and
+    // 30Hz ones (iOS Low Power Mode) fall toward 15fps. Allow a fifth of a frame of slack.
+    if (now - lastFrame < FRAME_MS * 0.8) return
     lastFrame = now
     draw(now)
   }
@@ -330,6 +382,7 @@ document.addEventListener("nav", () => {
 
   const onResize = () => {
     layout()
+    warmPoses()
     run()
   }
   const onTheme = () => {
@@ -391,9 +444,11 @@ document.addEventListener("nav", () => {
     void document.fonts.ready.then(run, run)
   }
   run()
+  warmPoses()
 
   window.addCleanup(() => {
     cancelAnimationFrame(frame)
+    cancelIdle(warmTimer)
     window.clearInterval(clockTimer)
     resizeObserver.disconnect()
     document.removeEventListener("themechange", onTheme)
