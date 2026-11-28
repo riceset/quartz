@@ -663,7 +663,7 @@ const HomeProfile: QuartzComponent = ({ allFiles }: QuartzComponentProps) => {
       >
         <EntryList entries={hackathons} />
       </Section>
-      <Section id="talks" title={{ en: "Talks", ja: "登壇", zh: "演講與分享", pt: "Palestras" }}>
+      <Section id="talks" title={{ en: "Talks", ja: "登壇", zh: "演講", pt: "Palestras" }}>
         <EntryList entries={talks} />
       </Section>
       <Section id="education" title={{ en: "Education", ja: "学歴", zh: "學歷", pt: "Formação" }}>
