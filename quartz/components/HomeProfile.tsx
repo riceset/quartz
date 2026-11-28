@@ -124,10 +124,10 @@ const experience: Entry[] = [
   },
   {
     date: {
-      en: "Jan – Apr 2026",
-      ja: "2026年1月〜4月",
-      zh: "2026 年 1 月至 4 月",
-      pt: "jan – abr 2026",
+      en: "Jan – Mar 2026",
+      ja: "2026年1月〜3月",
+      zh: "2026 年 1 月至 3 月",
+      pt: "jan – mar 2026",
     },
     title: appDevEngineer,
     org: "MIXI",
