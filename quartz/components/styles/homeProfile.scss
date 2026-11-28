@@ -272,6 +272,16 @@ $about-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   .about-entry-link {
     order: 4;
   }
+
+  // Wrapped flex rows don't share columns, so an odd count looks lopsided.
+  // A grid lines the languages up; max-content keeps names like
+  // ポルトガル語 from breaking mid-word. The column gap stays at 2.5rem on most
+  // phones and only tightens below ~390px, so Japanese still fits at 320px.
+  .about-languages {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    column-gap: clamp(1rem, 27vw - 4.1rem, 2.5rem);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
