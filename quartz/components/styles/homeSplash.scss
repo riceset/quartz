@@ -137,10 +137,26 @@ body[data-slug="index"] {
   }
 }
 
+// The name and nav are the same size in every language, so switching
+// languages doesn't make the text jump. The nav is a fixed fraction of the
+// name: 0.56 makes "About Articles Contact" as wide as "Thiago Komeno"
+// (measured in Chromium). Chinese labels run a little wider than its name.
+.splash-signature {
+  --splash-name-size: 3.25rem;
+
+  // Phones stack the socials under the signature. This size makes the English
+  // name end where the icon row ends (6 icons × 1.9rem + 5 gaps × 0.1rem, minus
+  // the 0.45rem of padding around the outer glyphs = 11rem of visible icons,
+  // and "Thiago Komeno" is 5.08em wide).
+  @media all and ($splash-mobile) {
+    --splash-name-size: calc(11rem / 5.08);
+  }
+}
+
 .splash-name {
   margin: 0;
   font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
-  font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+  font-size: var(--splash-name-size);
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -150,14 +166,15 @@ body[data-slug="index"] {
 .splash-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 1.25rem;
+  font-size: calc(var(--splash-name-size) * 0.56);
+  gap: 0.25rem 0.96em;
   margin-top: 0.75rem;
 }
 
 .splash-nav-link {
   padding: 0.15rem 0;
   font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
-  font-size: 1.3rem;
+  font-size: 1em;
   font-weight: 400;
   line-height: 1;
   color: var(--darkgray);
